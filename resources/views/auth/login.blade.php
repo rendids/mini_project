@@ -1,89 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
+
+<!-- Mirrored from fooddesk.dexignlab.com/codeigniter/demo/page_login by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 23 Nov 2023 03:45:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <!-- Title -->
+	 <title>Login</title>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="author" content="DexignLab" />
+	<meta name="robots" content="" />
+	<meta name="description" content="FoodDesk - CodeIgniter Online Food Delivery Admin Dashboard Template"/>
+	<meta property="og:title" content="FoodDesk - CodeIgniter Online Food Delivery Admin Dashboard Template" />
+	<meta property="og:description" content="FoodDesk - CodeIgniter Online Food Delivery Admin Dashboard Template" />
+	<meta property="og:image" content="https://fooddesk.dexignlab.com/xhtml/page-error-404.html" />
+	<meta name="format-detection" content="telephone=no">
 
-    <title>Document</title>
+	<!-- Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="cassets/images/favicon.png">
+    <link href="{{ asset('assets/vendor/swiper/css/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
 </head>
 
-<body>
-    <div class="Login" style="width: 1519px; height: 954px; position: relative; background: white">
-        <img class="Pic5Jpg"
-            style="width: 830px; height: 789px; left: 16px; top: 114px; position: absolute; border-radius: 8px"
-            src="{{ asset('asset/New folder/auth.png') }}" />
-        <div class="Pseudo"
-            style="width: 134px; height: 2px; left: 1246px; top: 173px; position: absolute; background: #EEEEEE"></div>
-        <div class="Masuk"
-            style="width: 71px; height: 25px; left: 1174px; top: 160px; position: absolute; text-align: center; color: #777777; font-size: 16px;  font-weight: 400; line-height: 21px; word-wrap: break-word">
-            Masuk</div>
-        <div class="Pseudo"
-            style="width: 134px; height: 2px; left: 1040px; top: 171px; position: absolute; background: #EEEEEE"></div>
-        <label class="FormLabelStrongEmailAddress"
-            style="width: 176px; height: 25px; left: 928px; top: 207px; position: absolute; color: #777777; font-size: 20px;  font-weight: 700; line-height: 21px; word-wrap: break-word">
-            Alamat E-mail</label>
-        <input class="form-control"
-            style="width: 580px; height: 60px; left: 928px; top: 244px; position: absolute; background: white; border-radius: 8px; border: 1px #B3B3B3 solid" />
-        <label class="FormLabelStrongPassword"
-            style="width: 149px; height: 25px; left: 928px; top: 328px; position: absolute; color: #777777; font-size: 20px;  font-weight: 700; line-height: 21px; word-wrap: break-word">
-            Kata sandi</label>
-        <input class="form-control"
-            style="width: 580px; height: 60px; left: 928px; top: 363px; position: absolute; background: white; border-radius: 8px; border: 1px #B3B3B3 solid"/>
-        <div class="Form" style="width: 229px; height: 40px; left: 942px; top: 435px; position: absolute">
-            <div class="Input"
-                style="width: 20px; height: 20px; left: 0px; top: 3.50px; position: absolute; background: white; border-radius: 3.50px; border: 2px #E7E7E7 solid">
-            </div>
-            <div class="LabelRememberMyPreference"
-                style="width: 187.41px; height: 20px; left: 26px; top: 4px; position: absolute; color: #777777; font-size: 14px;  font-weight: 600; word-wrap: break-word">
-                Kebijakan Privasi</div>
-        </div>
-        <div class="FormLinkForgotPassword"
-            style="width: 132px; height: 25px; left: 1369px; top: 437px; position: absolute; color: #3D4152; font-size: 14px;  font-weight: 400; line-height: 21px; word-wrap: break-word">
-            Lupa Kata Sandi ?</div>
-        <div class="FormButton"
-            style="width: 580px; height: 60px; left: 928px; top: 492px; position: absolute; background: #145AAC; box-shadow: 0px 5px 15px rgba(252, 128, 25, 0.20); border-radius: 8px; border: 1px #145AAC solid">
-            <div class="Masuk"
-                style="width: 72.09px; height: 20px; left: 253.94px; top: 19.59px; position: absolute; text-align: center; color: white; font-size: 14px;  font-weight: 500; line-height: 21px; word-wrap: break-word">
-                Masuk</div>
-        </div>
-        <div class="Rectangle1"
-            style="width: 200px; height: 257px; left: 942px; top: 618px; position: absolute; border-radius: 20px; border: 2px black solid">
-        </div>
-        <img class="PipelineMaintenanceAmico1"
-            style="width: 193px; height: 193px; left: 946px; top: 629px; position: absolute"
-            src="https://via.placeholder.com/193x193" />
-        <img class="PipelineMaintenanceAmico2"
-            style="width: 193px; height: 193px; left: 1292px; top: 640px; position: absolute"
-            src="https://via.placeholder.com/193x193" />
-        <div class="Rectangle2"
-            style="width: 200px; height: 257px; left: 1288px; top: 620px; position: absolute; border-radius: 20px; border: 2px black solid">
-        </div>
-        <div class="Line1"
-            style="width: 220.50px; height: 0px; left: 928px; top: 594px; position: absolute; border: 1px black solid">
-        </div>
-        <div class="Line2"
-            style="width: 220.50px; height: 0px; left: 1288px; top: 594.50px; position: absolute; border: 1px black solid">
-        </div>
-        <div class="Register"
-            style="width: 113px; height: 25px; left: 1159px; top: 575px; position: absolute; text-align: center; color: black; font-size: 20px;  font-weight: 600; line-height: 21px; word-wrap: break-word">
-            Register</div>
-        <div class="LayananJasa"
-            style="width: 173px; height: 46px; left: 952px; top: 826px; position: absolute; text-align: center; color: black; font-size: 20px;  font-weight: 500; line-height: 21px; word-wrap: break-word">
-            Layanan Jasa</div>
-        <div class="Pengguna"
-            style="width: 173px; height: 46px; left: 1308px; top: 826px; position: absolute; text-align: center; color: black; font-size: 20px;  font-weight: 500; line-height: 21px; word-wrap: break-word">
-            Pengguna</div>
-        <img class="GambarWhatsapp20231117Pukul15212"
-            style="width: 511px; height: 127px; left: 967px; top: 34px; position: absolute"
-            src="https://via.placeholder.com/511x127" />
-    </div>
+<body class="body">
+    <div class="container mt-0">
+		<div class="row align-items-center justify-contain-center">
+			<div class="col-xl-12 mt-5">
+				<div class="card border-0">
+					<div class="card-body login-bx">
+						<div class="row  mt-5">
+							<div class="col-xl-7 col-md-6 sign text-center">
+								<div>
+									<img src="{{ asset('') }}" class="food-img" alt="">
+								</div>
+							</div>
+							<div class="col-xl-4 col-md-4 pe-0">
+								<div class="sign-in-your">
+									<div class="text-center mb-3">
+										<img src="{{ asset('assets/images/Group.svg') }}" class="mb-3" alt="">
+										<h4 class="fs-20 font-w800 text-black">Create an Account</h4>
+										<span class="dlab-sign-up">Sign Up</span>
+									</div>
+									<form action="{{ route('login.proses') }}" method="POST">
+                                        @csrf
+										<div class="mb-3">
+											<label class="mb-1"><strong>Email Address</strong></label>
+											<input type="email" class="form-control" name="email" placeholder="hello@example.com">
+										</div>
+										<div class="mb-3">
+											<label class="mb-1"><strong>Password</strong></label>
+											<input type="password" class="form-control" name="password" placeholder="Password">
+										</div>
+										<div class="row d-flex justify-content-between mt-4 mb-2">
+											<div class="mb-3">
+											   <div class="form-check custom-checkbox ms-1">
+													<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
+													<label class="form-check-label" for="basic_checkbox_1">Remember my preference</label>
+												</div>
+											</div>
+											<div class="mb-3">
+												<a href="page-forgot-password.html">Forgot Password?</a>
+											</div>
+										</div>
+										<div class="text-center">
+											<button type="submit" class="btn btn-block shadow text-white" style="background-color: #145AAC">Sign Me In</button>
+										</div>
+									</form>
+									<div class="text-center my-4">
+										<h6 class="dlab-sign-up style-1">Register</h6>
+									</div>
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="{{ asset('assets/images/penyedia.png') }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                      </div>
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="{{ asset('assets/images/penyedia.png') }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        </div>
+                                      </div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!--**********************************
+	Scripts
+***********************************-->
+<!-- Required vendors -->
+<script src="public/assets/vendor/global/global.min.js"></script>
+<script src="public/assets/vendor/swiper/js/swiper-bundle.min.js"></script>
+<script src="public/assets/js/dlabnav-init.js"></script>
+<script src="public/assets/js/styleSwitcher.js"></script>
 </body>
 
+<!-- Mirrored from fooddesk.dexignlab.com/codeigniter/demo/page_login by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 23 Nov 2023 03:46:00 GMT -->
 </html>
