@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -15,18 +16,18 @@ class AuthController extends Controller
     public function loginproses(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ], [
-            'name.required' => 'Harap isi nama',
+            'email.required' => 'Harap isi alamat e-mail',
             'password.required' => 'Harap isi password'
         ]);
-
+        // dd($validator);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        if (Auth::attempt($request->only('name', 'password'))) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
 
             // Redirect based on user role
@@ -43,11 +44,34 @@ class AuthController extends Controller
     }
 
 
-    public function register(){
-
+    public function registerUser()
+    {
+        return view('auth.registerUser');
     }
 
-    public function registersave(Request $request){
+    public function registerPenyedia(){
+        return view('auth.registerpenyedia');
+    }
+
+    public function registerUsersave(Request $request){
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'konfirmasi' => 'required',
+        ]);
+
+        $validator->validate();
+
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'role' => 'user',
+        ]);
+        return redirect()->route('login');
+    }
+    public function registerPenyediasave(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required',
             'email' => 'required',
@@ -56,5 +80,11 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
+    public function logout(Request $request) {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        return redirect()->route('login');
+    }
 }

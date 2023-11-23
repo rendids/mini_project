@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\penyedia;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        return view('penyedia.dahsboard');
     }
 
     /**
