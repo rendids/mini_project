@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\KategoriController;
-use App\Http\Controllers\admin\PersetujuanAdminController;
+use App\Http\Controllers\admin\PersetujuanAdmin;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
@@ -44,7 +44,7 @@ Route::middleware('user-access:admin' , 'auth')->prefix('admin')->group(function
         Route::put('kategori/update/{id}', 'update')->name('kategori.update');
         Route::delete('kategori/delete/{id}', 'destroy')->name('kategori.destroy');
     });
-    Route::controller(PersetujuanAdminController::class)->group(function() {
+    Route::controller(PersetujuanAdmin::class)->group(function() {
         Route::get('persetujuan', 'index')->name('persetujuan');
     });
 });
