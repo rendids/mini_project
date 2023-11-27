@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\KategoriController;
+use App\Http\Controllers\admin\PersetujuanAdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
@@ -30,7 +31,7 @@ Route::controller(AuthController::class)->prefix('auth')->middleware('guest')->g
     Route::post('register/penyedia/proccess', 'registerPenyediasave')->name('registersave.penyedia');
 });
 
-Route::post('auth/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+Route::get('auth/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 //yang dapat di akses admin
 Route::middleware('user-access:admin' , 'auth')->prefix('admin')->group(function () {
@@ -42,6 +43,9 @@ Route::middleware('user-access:admin' , 'auth')->prefix('admin')->group(function
         Route::post('kategori/create', 'store')->name('kategori.create');
         Route::put('kategori/update/{id}', 'update')->name('kategori.update');
         Route::delete('kategori/delete/{id}', 'destroy')->name('kategori.destroy');
+    });
+    Route::controller(PersetujuanAdminController::class)->group(function() {
+        Route::get('persetujuan', 'index')->name('persetujuan');
     });
 });
 
