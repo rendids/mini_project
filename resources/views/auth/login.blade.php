@@ -85,7 +85,7 @@
                     </div>
                     <div class="card" style="width: 18rem;">
                       <div class="card-body" style="text-align: center;">
-                        <img src="{{ asset('assets/images/penyedia.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('assets/images/Add User-pana.png') }}" class="card-img-top" alt="...">
                         <h5 class="card-title" style="font-size: 20px;"><b>Pengguna</b></h5>
                       </div>
                     </div>

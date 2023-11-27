@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\penyedia;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('auth.login');
     }
 
@@ -49,12 +51,14 @@ class AuthController extends Controller
         return view('auth.registerUser');
     }
 
-    public function registerPenyedia(){
+    public function registerPenyedia()
+    {
         return view('auth.registerpenyedia');
     }
 
-    public function registerUsersave(Request $request){
-        $validator = Validator::make($request->all(),[
+    public function registerUsersave(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -71,16 +75,44 @@ class AuthController extends Controller
         ]);
         return redirect()->route('login');
     }
-    public function registerPenyediasave(Request $request){
-        $validator = Validator::make($request->all(),[
+    public function registerPenyediasave(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'konfirmasi' => 'required',
+            // penyedia
+            'id_kategori' => 'required',
+            'alamat' => 'required',
+            'telp' => 'required',
+            'foto' => 'required',
         ]);
+
+        $validator->validate();
+
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'role' => 'penyedia',
+        ]);
+
+
+
+        penyedia::create([
+            'id_user' => $user->id,
+            'id_kategori' => $request->id_kategori,
+            'alamat' => $request->alamat,
+            'telp' => $request->telp,
+            'foto' => $request->foto
+        ]);
+
+        return view('auth.login');
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
