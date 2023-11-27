@@ -103,10 +103,10 @@
 
 
   <!-- Required vendors -->
-  <script src="public/assets/vendor/global/global.min.js"></script>
-  <script src="public/assets/vendor/swiper/js/swiper-bundle.min.js"></script>
-  <script src="public/assets/js/dlabnav-init.js"></script>
-  <script src="public/assets/js/styleSwitcher.js"></script>
+  <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
+  {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
 </body>
 
 

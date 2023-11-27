@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
@@ -12,7 +14,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        
+        $kategori = Kategori::all();
+        return view('admin.kategori', compact('kategori'));
     }
 
     /**
@@ -28,7 +31,17 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        $validator->validate();
+
+        kategori::create($request->all());
+
+        return redirect()->back();
+
     }
 
     /**
@@ -60,6 +73,10 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+       $kategori = kategori::findOrfail($id);
+
+       $kategori->delete();
+
+       return redirect()->back();
     }
 }
