@@ -44,7 +44,7 @@
                 <div class="sign-in-your">
                   <div class="text-center mb-3">
                     <img src="{{ asset('assets/images/Group.svg') }}" class="mb-3" alt="">
-                    <h4 class="fs-20 font-w800 text-black">Create an Account</h4>
+                    <h4 class="fs-19 font-size">Create an Account</h4>
                     <span class="dlab-sign-up">Sign Up</span>
                   </div>
                   <form action="{{ route('login.proses') }}" method="POST">
@@ -70,17 +70,17 @@
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-block shadow text-white"
-                        style="background-color: #145AAC">Sign Me In</button>
+                        style="background-color: #145AAC">Login</button>
                     </div>
                   </form>
                   <div class="text-center my-4">
-                    <h6 class="dlab-sign-up style-1">Register</h6>
+                    <h6 class="dlab-sign-up style 2">Register</h6>
                   </div>
                   <div style="display: flex;">
-                    <div class="card" style="width: 18rem; margin-right: 10px;">
+                    <div class="card" style="width: 18rem; margin-right: 20px;">
                       <div class="card-body" style="text-align: center;">
                         <img src="{{ asset('assets/images/penyedia.png') }}" class="card-img-top" alt="...">
-                        <h5 class="card-title" style="font-size: 20px;"><b>Layanan Jasa</b></h5>
+                        <h5 class="card-title" style="font-size: 19px;"><b>Layanan Jasa</b></h5>
                       </div>
                     </div>
                     <div class="card" style="width: 18rem;">
