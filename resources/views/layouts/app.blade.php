@@ -60,18 +60,8 @@
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper">
-
-        <!--**********************************
-    Nav header start
-***********************************-->
         @include('layouts.navbar')
-        <!--**********************************
-    Sidebar start
-***********************************-->
         @include('layouts.sidebar')
-        <!--**********************************
- Content body start
-***********************************-->
         <div class="content-body">
             <div class="container">
 
@@ -79,21 +69,12 @@
 
             </div>
         </div>
-        <!--**********************************
- Content body end
-***********************************-->
-        <!--**********************************
-    Footer start
-***********************************-->
         <div class="footer">
             <div class="copyright border-top">
                 <p>Copyright © Designed by <a href="https://themeforest.net/user/dexignlabs"
                         target="_blank">DexignLab</a> 2023</p>
             </div>
         </div>
-        <!--**********************************
-    Footer end
-***********************************-->
 
     </div>
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>

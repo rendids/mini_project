@@ -57,7 +57,7 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -65,7 +65,18 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        $validator->validate();
+        
+        $kategori = Kategori::find($id);
+
+        $kategori->update($request->all());
+
+        return redirect()->back();
     }
 
     /**
