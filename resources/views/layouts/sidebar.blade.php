@@ -6,9 +6,9 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li><a href="{{ route('persetujuan') }}" aria-expanded="false">
+            <li><a href="{{ route('calonpenyedia') }}" aria-expanded="false">
                         <i class="bi bi-shop-window"></i>
-                    <span class="nav-text">Persetujuan</span>
+                    <span class="nav-text">Calon Penyedia</span>
                 </a>
             </li>
             <li><a href="{{ route('kategori')}}" aria-expanded="false">
