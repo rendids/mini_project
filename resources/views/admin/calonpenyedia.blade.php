@@ -19,8 +19,7 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr>
-
-                            <th><strong>ROLL NO.</strong></th>
+                            <th><strong>NO.</strong></th>
                             <th><strong>NAME</strong></th>
                             <th><strong>Email</strong></th>
                             <th><strong>Jasa</strong></th>
@@ -31,35 +30,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($penyediaUsers as $item)
                         <tr>
-                            <td><strong>542</strong></td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td>example@example.com	</td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td>089767876567</td>
-                            <td><img src="public/assets/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt=""></td>
+                            <td><strong>{{ $loop->iteration }}</strong></td>
+                            <td><span >{{ $item->name }}</span></div></td>
+                            <td>{{ $item->email }}	</td>
+                            <td><span >{{ $item->penyedia->kategori->name }}</span></td>
+                            <td>{{ $item->penyedia->telp }}</td>
+                            <td><img src="" class="rounded-lg me-2" width="60" alt=""></td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                    <button type="submit" class="btn btn-success shadow btn-xm sharp me-1"><i class="fa fa-check"></i></button>
+                                    <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i class="fa fa-x"></i></button>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td><strong>542</strong></td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td>example@example.com	</td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td>089767876567</td>
-                            <td><img src="public/assets/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt=""></td>
-                            <td>
-                                <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>

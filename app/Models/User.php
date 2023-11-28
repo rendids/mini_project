@@ -24,6 +24,11 @@ class User extends Authenticatable
         'role',
     ];
 
+    public function penyedia()
+    {
+        return $this->hasOne(Penyedia::class, 'id_user');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

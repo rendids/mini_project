@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\penyedia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CalonPenyediaController extends Controller
 {
@@ -11,16 +13,19 @@ class CalonPenyediaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('admin.calonpenyedia');
-    }
+{
+    $penyediaUsers = User::where('role', 'penyedianotaprov')->get();
+
+    return view('admin.calonpenyedia', compact('penyediaUsers'));
+}
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        //a
     }
 
     /**

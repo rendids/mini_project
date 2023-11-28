@@ -38,6 +38,8 @@
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
 
+    @include('layouts.alert')
+
 </head>
 
 <body>

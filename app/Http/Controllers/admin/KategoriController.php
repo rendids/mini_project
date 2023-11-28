@@ -40,7 +40,7 @@ class KategoriController extends Controller
 
         kategori::create($request->all());
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'berhasil menambahkan kategori');
 
     }
 
@@ -71,7 +71,7 @@ class KategoriController extends Controller
         ]);
 
         $validator->validate();
-        
+
         $kategori = Kategori::find($id);
 
         $kategori->update($request->all());

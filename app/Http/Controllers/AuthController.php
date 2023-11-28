@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\penyedia;
 use App\Models\User;
+use App\Models\penyedia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -95,17 +96,19 @@ class AuthController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-            'role' => 'penyedia',
+            'role' => 'penyedianotaprov',
         ]);
 
-
+        $gambar = $request->file('foto');
+        $namaGambar = Str::random(40) . '.' . $gambar->getClientOriginalExtension();
+        $request->gambar->storeAs('fotopenyedia', $namaGambar, 'public');
 
         penyedia::create([
             'id_user' => $user->id,
             'id_kategori' => $request->id_kategori,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
-            'foto' => $request->foto
+            'foto' => $request->$namaGambar
         ]);
 
         return view('auth.login');

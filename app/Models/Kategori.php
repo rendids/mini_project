@@ -9,4 +9,9 @@ class Kategori extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function profile()
+    {
+        return $this->hasMany(penyedia::class, 'id_kategori');
+    }
 }
