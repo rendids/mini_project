@@ -16,8 +16,8 @@
   <meta property="og:image" content="https://fooddesk.dexignlab.com/xhtml/page-error-404.html">
   <meta name="format-detection" content="telephone=no">
 
-  <!-- Mobile Specific -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicon icon -->
   <link rel="shortcut icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
@@ -96,9 +96,7 @@
           </div>
 
         </div>
-      </div>
     </div>
-  </div>
 
   <!-- Required vendors -->
   <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>

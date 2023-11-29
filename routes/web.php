@@ -44,18 +44,23 @@ Route::middleware('user-access:admin' , 'auth')->prefix('admin')->group(function
     });
     Route::controller(KategoriController::class)->group(function() {
         Route::get('kategori', 'index')->name('kategori');
-        Route::post('kategori/create', 'store')->name('kategori.create');
+        Route::post('kategori/buat', 'store')->name('kategori.store');
         Route::put('kategori/update/{id}', 'update')->name('kategori.update');
-        Route::delete('kategori/delete/{id}', 'destroy')->name('kategori.destroy');
+        Route::delete('kategori/hapus/{id}', 'destroy')->name('kategori.destroy');
     });
     Route::controller(PersetujuanAdmin::class)->group(function() {
         Route::get('persetujuan', 'index')->name('persetujuan');
     });
     Route::controller(CalonPenyediaController::class)->group(function(){
        route::get('calonpenyedia', 'index')->name('calonpenyedia');
+       route::patch('calonpenyedia/terima{id}', 'approv')->name('penyedia.terima');
+       route::delete('calonpenyedia/tolak{id}', 'tolak')->name('penyedia.tolak');
     });
     Route::controller(PembayaranController::class)->group(function(){
        route::get('pembayaran', 'index')->name('pembayaran');
+       Route::post('pembayaran/buat', 'store')->name('pembayaran.store');
+       Route::put('pembayaran/update{id}', 'update')->name('pembayaran.update');
+       Route::delete('pembayaran/hapus{id}', 'destroy')->name('pembayaran.delete');
     });
 
     Route::controller(PengajuanController::class)->group(function(){

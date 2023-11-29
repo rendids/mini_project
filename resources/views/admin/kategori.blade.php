@@ -15,7 +15,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('kategori.create') }}" method="post">
+                    <form action="{{ route('kategori.store') }}" method="post">
                         @csrf
                         <label for="name">Nama Kategori</label>
                         <input type="text" class="form-control" name="name" id="">

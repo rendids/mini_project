@@ -30,6 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($count > 0)
                         @foreach ($penyediaUsers as $item)
                         <tr>
                             <td><strong>{{ $loop->iteration }}</strong></td>
@@ -40,12 +41,25 @@
                             <td><img src="" class="rounded-lg me-2" width="60" alt=""></td>
                             <td>
                                 <div class="d-flex">
-                                    <button type="submit" class="btn btn-success shadow btn-xm sharp me-1"><i class="fa fa-check"></i></button>
-                                    <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i class="fa fa-x"></i></button>
+                                    <form action="{{ route('penyedia.terima', ['id' => $item->id]) }}" method="POST">
+                                        @csrf
+                                        @method('patch')
+                                        <button type="submit" class="btn btn-success shadow btn-xm sharp me-1"><i class="fa fa-check"></i></button>
+                                    </form>
+                                    <form action="{{ route('penyedia.tolak', ['id' => $item->id]) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i class="fa fa-x"></i></button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                         @endforeach
+                        @else
+                        <tr>
+                            <td colspan="8" class="text-center">No data</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

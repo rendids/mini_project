@@ -14,57 +14,27 @@ class CalonPenyediaController extends Controller
      */
     public function index()
 {
+    $count = User::where('role', 'penyedianotaprov')->count();
     $penyediaUsers = User::where('role', 'penyedianotaprov')->get();
 
-    return view('admin.calonpenyedia', compact('penyediaUsers'));
+    return view('admin.calonpenyedia', compact('penyediaUsers', 'count'));
 }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function approv(string $id)
     {
-        //a
+       $penyedia = User::find($id);
+
+       $penyedia->update(['role' => 'penyedia']);
+
+       return redirect()->back()->with('success', 'berhasil menerima penyedia baru');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function tolak(string $id)
     {
-        //
-    }
+        $penyedia = User::find($id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $penyedia->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back()->with('success', 'berhasil menolak penyedia baru');
     }
 }

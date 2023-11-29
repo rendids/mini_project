@@ -63,7 +63,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'konfirmasi' => 'required',
+            'konfirmasi-password' => 'required',
         ]);
 
         $validator->validate();
