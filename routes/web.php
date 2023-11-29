@@ -9,6 +9,8 @@ use App\Http\Controllers\admin\PemesananController;
 use App\Http\Controllers\admin\PengajuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
+use App\Http\Controllers\penyedia\PesananController;
+use App\Http\Controllers\penyedia\RattingController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,5 +85,11 @@ Route::middleware('user-access:user', 'auth')->prefix('user')->group(function ()
 Route::middleware('user-access:penyedia' , 'auth')->prefix('penyedia')->group(function () {
     Route::controller(PenyediaDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.penyedia');
+    });
+    Route::controller(PesananController::class)->group(function() {
+        Route::get('pesanan', 'index')->name('pesanan');
+    });
+    Route::controller(RattingController::class)->group(function() {
+        Route::get('ratting', 'index')->name('ratting');
     });
 });
