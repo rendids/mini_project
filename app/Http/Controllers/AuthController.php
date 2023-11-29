@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\User;
 use App\Models\penyedia;
 use Illuminate\Support\Str;
@@ -54,7 +55,8 @@ class AuthController extends Controller
 
     public function registerPenyedia()
     {
-        return view('auth.registerpenyedia');
+        $kategori = Kategori::all();
+        return view('auth.registerpenyedia', compact('kategori'));
     }
 
     public function registerUsersave(Request $request)
@@ -82,7 +84,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'konfirmasi' => 'required',
+            'konfirmasi-password' => 'required',
             // penyedia
             'id_kategori' => 'required',
             'alamat' => 'required',
@@ -92,6 +94,11 @@ class AuthController extends Controller
 
         $validator->validate();
 
+        $gambar = $request->file('foto');
+        $namaGambar = Str::random(40) . '.' . $gambar->getClientOriginalExtension();
+        $gambar->storeAs('fotopenyedia', $namaGambar, 'public');
+
+
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -99,16 +106,13 @@ class AuthController extends Controller
             'role' => 'penyedianotaprov',
         ]);
 
-        $gambar = $request->file('foto');
-        $namaGambar = Str::random(40) . '.' . $gambar->getClientOriginalExtension();
-        $request->gambar->storeAs('fotopenyedia', $namaGambar, 'public');
 
         penyedia::create([
             'id_user' => $user->id,
             'id_kategori' => $request->id_kategori,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
-            'foto' => $request->$namaGambar
+            'foto' => $namaGambar
         ]);
 
         return view('auth.login');
