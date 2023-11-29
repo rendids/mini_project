@@ -29,7 +29,7 @@
 </head>
 
 <body class="body">
-  <div class="container mt-0">
+  {{-- <div class="container mt-0">
     <div class="row align-items-center justify-contain-center">
       <div class="col-xl-12 mt-5">
         <div class="card border-0">
@@ -75,7 +75,98 @@
                       </div>
                   </form>
 
+                  <div class="tab-pane fade" class="row" style="margin-left:-230px;" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+
+  <style>
+    .page {
+      display: none;
+    }
+
+    .active-page {
+      display: block;
+    }
+  </style>
+
+
+
+  <div class="container mt-0">
+    <div class="row align-items-center justify-contain-center">
+      <div class="col-xl-12 mt-5">
+        <div class="card border-0">
+          <div class="card-body login-bx">
+            <div class="row mt-5">
+              <div class="col-xl-7 col-md-6 sign text-center">
+                <div>
+                  <img src="{{ asset('') }}" class="food-img" alt="">
+                </div>
+              </div>
+              <div class="col-xl-4 col-md-4 pe-0">
+                <div class="sign-in-your active-page" id="page1">
+                  <div class="text-center mb-3">
+                    <img src="{{ asset('assets/images/Group.svg') }}" class="mb-3" alt="">
+                    <h4 class="fs-18 font-size">Buat akun sebagai penyedia jasa di assistify</h4>
+                    <span class="dlab-sign-up">Register</span>
+                  </div>
+                  <form action="{{ route('registersave.penyedia') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                      <label class="mb-1"><strong>Username</strong></label>
+                      <input type="text" class="form-control" name="text" placeholder="Masukkan Username">
+                    </div>
+                    <div class="mb-3">
+                      <label class="mb-1"><strong>Email</strong></label>
+                      <input type="email" class="form-control" name="email" placeholder="Masukkan email">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label class="mb-1"><strong>Password</strong></label>
+                        <input type="password" class="form-control" name="password" placeholder="Masukkan password">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="mb-1"><strong>Konfirmasi Password</strong></label>
+                        <input type="password" class="form-control" name="konfirmasi-password"
+                          placeholder="Konfirmasi password">
+                      </div>
+                    </div>
+                    <div class="text-end">
+                      <button type="button" class="btn btn-sm shadow text-white" style="background-color: #145AAC"
+                        onclick="nextPage('page1', 'page2')">
+                        <span style="font-size: 14px;">Selanjutnya</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <body>
+                  <div class="container">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="sign-in-your page" id="page2">
+                          <!-- Konten halaman baru setelah tombol "Selanjutnya" diklik -->
+                          <h2>Selamat!</h2>
+                          <p>Anda telah berhasil mendaftar.</p>
+                          <div class="text-end">
+                            <button type="button" class="btn btn-sm shadow text-white"
+                              style="background-color: #145AAC" onclick="previousPage('page2', 'page1')">
+                              <span style="font-size: 14px;">Sebelumnya</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </body>
+
+
               </div>
             </div>
           </div>
@@ -84,9 +175,26 @@
     </div>
   </div>
 
+  <script>
+    function nextPage(currentPageId, nextPageId) {
+      var currentPage = document.getElementById(currentPageId);
+      var nextPage = document.getElementById(nextPageId);
+
+      currentPage.classList.remove('active-page');
+      nextPage.classList.add('active-page');
+    }
+
+    function previousPage(currentPageId, previousPageId) {
+      var currentPage = document.getElementById(currentPageId);
+      var previousPage = document.getElementById(previousPageId);
+
+      currentPage.classList.remove('active-page');
+      previousPage.classList.add('active-page');
+    }
+  </script>
 
 
-  <!-- Required vendors -->
+
   <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
   <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
@@ -94,4 +202,3 @@
 </body>
 
 </html>
-
