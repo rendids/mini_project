@@ -8,7 +8,7 @@
 
 <head>
     <!-- Title -->
-    <title>Layanan Jasa</title>
+    <title>FoodDesk - CodeIgniter Online Food Delivery Admin Dashboard Template</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +38,7 @@
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
 
-    @include('layouts.alert')
+    @include('layoutsjasa.alert')
 
 </head>
 
@@ -62,8 +62,8 @@
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper">
-        @include('layouts.navbar')
-        @include('layouts.sidebar')
+        @include('layoutsjasa.navbar')
+        @include('layoutsjasa.sidebar')
         <div class="content-body">
             <div class="container">
 
