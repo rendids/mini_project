@@ -4,6 +4,9 @@ use App\Http\Controllers\admin\CalonPenyediaController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\PersetujuanAdmin;
+use App\Http\Controllers\admin\PembayaranController;
+use App\Http\Controllers\admin\PemesananController;
+use App\Http\Controllers\admin\PengajuanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
@@ -51,6 +54,17 @@ Route::middleware('user-access:admin' , 'auth')->prefix('admin')->group(function
     Route::controller(CalonPenyediaController::class)->group(function(){
        route::get('calonpenyedia', 'index')->name('calonpenyedia');
     });
+    Route::controller(PembayaranController::class)->group(function(){
+       route::get('pembayaran', 'index')->name('pembayaran');
+    });
+
+    Route::controller(PengajuanController::class)->group(function(){
+       route::get('pengajuan', 'index')->name('pengajuan');
+    });
+    Route::controller(PemesananController::class)->group(function(){
+       route::get('pemesanan', 'index')->name('pemesanan');
+    });
+
 });
 
 //yang dapat di akses user

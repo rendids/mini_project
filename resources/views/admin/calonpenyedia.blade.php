@@ -12,7 +12,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Exam Toppers</h4>
+            <h4 class="card-title">Persetujuan Calon penyedia jasa</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">

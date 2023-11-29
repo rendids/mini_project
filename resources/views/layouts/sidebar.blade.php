@@ -16,17 +16,17 @@
                     <span class="nav-text">Kategori</span>
                 </a>
             </li>
-            <li><a href="javascript:void(0);" aria-expanded="false">
+            <li><a href="{{ route('pembayaran') }}" aria-expanded="false">
                 <i class="bi bi-info-circle"></i>
                     <span class="nav-text">Pembayaran</span>
                 </a>
             </li>
-                <li><a href="javascript:void(0);" aria-expanded="false">
+                <li><a href="{{ route('pengajuan') }}" aria-expanded="false">
                     <i class="bi bi-pie-chart"></i>
                     <span class="nav-text">Pengajuan</span>
                 </a>
             </li>
-            <li><a href="javascript:void(0);" aria-expanded="false">
+            <li><a href="{{ route('pemesanan') }}" aria-expanded="false">
                     <i class="bi bi-star"></i>
                     <span class="nav-text">Pemesanan</span>
                 </a>
