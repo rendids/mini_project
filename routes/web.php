@@ -12,6 +12,8 @@ use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardContro
 use App\Http\Controllers\penyedia\PesananController;
 use App\Http\Controllers\penyedia\RattingController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
+use App\Http\Controllers\user\PesanController;
+use App\Http\Controllers\user\RiwayatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,6 +80,12 @@ Route::middleware('user-access:admin' , 'auth')->prefix('admin')->group(function
 Route::middleware('user-access:user', 'auth')->prefix('user')->group(function () {
     Route::controller(UserDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.user');
+    });
+    Route::controller(PesanController::class)->group(function() {
+        Route::get('pesan', 'index')->name('pesan');
+    });
+    Route::controller(RiwayatController::class)->group(function() {
+        Route::get('riwayat', 'index')->name('riwayat');
     });
 });
 

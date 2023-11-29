@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,4 +13,11 @@
         <button type="submit">logout</button>
     </form>
 </body>
-</html>
+</html> --}}
+
+@extends('layoutsuser.app')
+@section('content')
+
+<h1>INI ADALAH DASHBOARD<h1>
+
+@endsection
