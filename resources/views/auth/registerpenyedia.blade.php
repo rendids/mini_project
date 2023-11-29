@@ -47,11 +47,11 @@
                     <h4 class="fs-18 font-size">Buat akun sebagai penyedia jasa di assistify</h4>
                     <span class="dlab-sign-up">Register</span>
                   </div>
-                  <form action="{{ route('registersave.user') }}" method="POST">
+                  <form action="{{ route('registersave.penyedia') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                       <label class="mb-1"><strong>Username</strong></label>
-                      <input type="text" class="form-control" name="name" placeholder="Masukkan Username">
+                      <input type="text" class="form-control" name="text" placeholder="Masukkan Username">
                     </div>
                     <div class="mb-3">
                       <label class="mb-1"><strong>Email</strong></label>
@@ -94,3 +94,4 @@
 </body>
 
 </html>
+
