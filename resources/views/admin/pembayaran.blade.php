@@ -2,8 +2,8 @@
 @section('content')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">halo</li>
-            <li class="breadcrumb-item">hai</li>
+            <li class="breadcrumb-item active">admin</li>
+            <li class="breadcrumb-item">pembayaran</li>
         </ol>
     </div>
 
