@@ -6,6 +6,7 @@ use App\Models\pembayaran;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
 {
@@ -41,24 +42,24 @@ class PembayaranController extends Controller
             'tujuan.unique' => 'tujuan pembayaran telah ada',
             'keterangan.required' => 'keterangan wajib diisi',
         ]);
-            $metodePembayaran = $request->input('metode');
-            $tujuan = $request->input('tujuan');
+        $metodePembayaran = $request->input('metode');
+        $tujuan = $request->input('tujuan');
 
-            if ($metodePembayaran === 'E-WALET') {
-                if ($request->hasFile('keterangan')) {
-                    $keteranganFile = $request->file('keterangan');
-                    $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
-                    $request->keterangan->storeAs('pembayaran', $namaGambar, 'public');
+        if ($metodePembayaran === 'E-WALET') {
+            if ($request->hasFile('keterangan')) {
+                $keteranganFile = $request->file('keterangan');
+                $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
+                $request->keterangan->storeAs('pembayaran', $namaGambar, 'public');
 
-                    $data['keterangan'] = $namaGambar;
-                } else {
+                $data['keterangan'] = $namaGambar;
+            } else {
                 return  back()->with('error', 'pembayaran gagal');
-                }
             }
-            // dd($data);
-            pembayaran::create($data);
+        }
+        // dd($data);
+        pembayaran::create($data);
 
-            return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -83,18 +84,44 @@ class PembayaranController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'keterangan' => 'required',
-        ], [
-            'keterangan.required' => 'keterangan wajib diisi',
+            'metode' => 'required',
+            'tujuan' => 'required',
+            'keterangan' => $request->input('metode') === 'E-WALET' ? 'nullable|image' : 'nullable',
         ]);
 
-       $bayar = pembayaran::find($id);
+        $metodePembayaran = $request->input('metode');
+        $tujuan = $request->input('tujuan');
 
-       $bayar->update([
-        'keterangan' => $request->keterangan
-       ]);
+        $pembayaran = pembayaran::findOrFail($id);
 
-       return redirect()->back();
+        if ($metodePembayaran === 'E-WALET') {
+            if ($request->hasFile('keterangan')) {
+                $keteranganFile = $request->file('keterangan');
+                $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
+                $request->keterangan->storeAs('pembayaran', $namaGambar, 'public');
+
+                // Hapus gambar sebelumnya jika ada
+                if ($pembayaran->keterangan) {
+                    Storage::disk('public')->delete('pembayaran/' . $pembayaran->keterangan);
+                }
+
+                $data['keterangan'] = $namaGambar;
+            }
+        }
+        // Lakukan pembaruan data jika 'tujuan' sama
+        if ($pembayaran->tujuan === $tujuan) {
+            $pembayaran->update($data);
+            return redirect()->route('pembayaran')->with('success', 'berhasil mengupdate metode');
+        } else {
+            // 'tujuan' berbeda, periksa apakah ada data dengan 'tujuan' yang sama
+            $existingPembayaran = pembayaran::where('tujuan', $tujuan)->first();
+            if ($existingPembayaran) {
+                return back()->with('error', 'Tujuan ini sudah digunakan');
+            }
+
+            $pembayaran->update($data);
+            return redirect()->route('pembayaran')->with('success', 'berhasil mengupdate metode');
+        }
     }
 
     /**
@@ -102,10 +129,10 @@ class PembayaranController extends Controller
      */
     public function destroy(string $id)
     {
-      $pembayaran =  pembayaran::findOrfail($id);
+        $pembayaran =  pembayaran::findOrfail($id);
 
-      $pembayaran->delete();
+        $pembayaran->delete();
 
-      return redirect()->back()->with('success', 'berhasila menghapus pembayaran');
+        return redirect()->back()->with('success', 'berhasila menghapus pembayaran');
     }
 }
