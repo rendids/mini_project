@@ -82,7 +82,19 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'keterangan' => 'required',
+        ], [
+            'keterangan.required' => 'keterangan wajib diisi',
+        ]);
+
+       $bayar = pembayaran::find($id);
+
+       $bayar->update([
+        'keterangan' => $request->keterangan
+       ]);
+
+       return redirect()->back();
     }
 
     /**

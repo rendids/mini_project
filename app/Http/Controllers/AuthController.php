@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
 use App\Models\User;
+use App\Models\Kategori;
 use App\Models\penyedia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -70,12 +71,16 @@ class AuthController extends Controller
 
         $validator->validate();
 
-        User::create([
+       $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),
             'role' => 'user',
         ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
         return redirect()->route('login');
     }
     public function registerPenyediasave(Request $request)
