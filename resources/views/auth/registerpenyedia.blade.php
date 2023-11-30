@@ -37,7 +37,7 @@
                         <div class="row mt-5">
                             <div class="col-xl-7 col-md-6 sign text-center">
                                 <div>
-                                    <img src="{{ asset('') }}" class="food-img" alt="">
+                                    <img src="{{ asset('assets/images/auth.png') }}" class="food-img" alt="">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-4 pe-0">
@@ -54,7 +54,8 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                    <form action="{{ route('registersave.penyedia') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('registersave.penyedia') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-step" data-step="1">
                                             <div class="mb-3">
@@ -81,8 +82,7 @@
                                             </div>
                                             <div class="text-end">
                                                 <button type="button" class="btn btn-sm shadow text-white"
-                                                    style="background-color: #145AAC"
-                                                    onclick="nextStep(1, 2)">
+                                                    style="background-color: #145AAC" onclick="nextStep(1, 2)">
                                                     <span style="font-size: 14px;">Selanjutnya</span>
                                                 </button>
                                             </div>
@@ -115,15 +115,18 @@
                                             </div>
                                             <div class="text-end">
                                                 <button type="button" class="btn btn-sm shadow text-white"
-                                                    style="background-color: #145AAC"
-                                                    onclick="nextStep(2, 1)">
+                                                    style="background-color: #145AAC" onclick="nextStep(2, 1)">
                                                     <span style="font-size: 14px;">sebelumnya</span>
                                                 </button>
                                             </div>
                                             <div class="text-center mt-4">
                                                 <button type="submit" class="btn btn-block shadow text-white"
-                                                  style="background-color: #145AAC">Login</button>
-                                              </div>
+                                                    style="background-color: #145AAC">Login</button>
+                                            </div>
+                                            <p class="mt-5 text-center">
+                                                Sudah punya akun? <a href="{{ route('login') }}"
+                                                    class="text-underline">Masuk</a>
+                                            </p>
                                         </div>
                                     </form>
                                 </div>
