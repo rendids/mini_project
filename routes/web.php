@@ -29,7 +29,7 @@ use App\Http\Controllers\EmailVerificationController;
 |
 */
 
-Route::controller(UserDashboardController::class)->middleware('verified')->group(function () {
+Route::controller(UserDashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard.user');
 });
 
@@ -60,7 +60,7 @@ Route::controller(AuthController::class)->prefix('auth',)->middleware('guest')->
 Route::get('auth/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 //yang dapat di akses admin
-Route::middleware('user-access:admin', 'auth', 'verified', )->prefix('admin')->group(function () {
+Route::middleware('user-access:admin', 'auth', )->prefix('admin')->group(function () {
     Route::controller(AdminDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.admin');
     });

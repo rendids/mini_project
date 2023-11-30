@@ -20,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicon icon -->
+  @include('layouts.alert')
   <link rel="shortcut icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
   <link href="{{ asset('assets/vendor/swiper/css/swiper-bundle.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">

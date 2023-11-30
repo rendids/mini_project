@@ -11,7 +11,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Kategori</h5>
+                    <h5 class="modal-title">Tambah Pembayaran</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                     </button>
                 </div>
@@ -90,12 +90,15 @@
                             @endif
                             <td>
                                 <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xm sharp me-1"><i
-                                            class="fa fa-pencil"></i></a>
+                                    <button class="btn btn-primary shadow btn-xm sharp me-1"
+                                        onclick="openEditModal('{{ $item->id }}', '{{ $item->metode }}', '{{ $item->tujuan }}', '{{ $item->keterangan }}')">
+                                        <i class="fas fa-pencil"></i>
+                                    </button>
                                     <form action="{{ route('pembayaran.delete', ['id' => $item->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i class="fa fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i
+                                                class="fa fa-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
@@ -107,4 +110,52 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editModal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Pembayaran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" action="" method="post">
+                        @csrf
+                        @method('patch')
+                        <label for="edit_name">metode</label>
+                        <input type="text" class="form-control" name="name" id="edit_name" disabled>
+
+                        <label for="edit_tujuan">tujuan</label>
+                        <input type="text" class="form-control" name="tujuan" id="edit_tujuan" disabled>
+
+                        <label for="edit_keterangan">Keterangan</label>
+                        <input type="text" class="form-control" name="keterangan" id="edit_keterangan">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="editForm" class="btn btn-primary btn-sm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openEditModal(id, name, tujuan, keterangan) {
+            // Set the form action dynamically based on the category ID
+            var editForm = document.getElementById('editForm');
+            editForm.action = "{{ route('pembayaran.update', ['id' => ':id']) }}".replace(':id', id);
+
+            // Populate the form fields with category data
+            document.getElementById('edit_name').value = name;
+            document.getElementById('edit_keterangan').value = keterangan;
+            document.getElementById('edit_tujuan').value = tujuan;
+
+
+            var keteranganInput = document.getElementById('edit_keterangan');
+            keteranganInput.type = (name === 'E-WALET') ? 'file' : 'text';
+
+            // Open the edit modal
+            $('#editModal').modal('show');
+        }
+    </script>
 @endsection

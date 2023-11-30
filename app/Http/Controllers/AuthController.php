@@ -43,6 +43,10 @@ class AuthController extends Controller
             } elseif ($user->role === 'penyedia') {
                 return redirect()->route('dashboard.penyedia')->with('message', 'Login berhasil');
             }
+            {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Anda tidak memiliki akses untuk login.');
+            }
         }
 
         return redirect()->back()->withInput()->withErrors(['password' => 'Nama atau password salah']);
@@ -120,7 +124,7 @@ class AuthController extends Controller
             'foto' => $namaGambar
         ]);
 
-        return view('auth.login');
+        return view('auth.login')->with('message', 'silahkan tungu konfirmasi admin');
     }
 
     public function logout(Request $request)

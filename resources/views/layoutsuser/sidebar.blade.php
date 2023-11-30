@@ -6,6 +6,7 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
+            @auth
             <li><a href="{{ route('pesan') }}" aria-expanded="false">
                         <i class="bi bi-bag-check"></i>
                     <span class="nav-text">Pesanan</span>
@@ -16,5 +17,6 @@
                     <span class="nav-text">Riwayat</span>
                 </a>
             </li>
+            @endauth
     </div>
 </div>
