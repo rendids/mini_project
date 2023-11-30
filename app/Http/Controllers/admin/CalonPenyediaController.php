@@ -28,7 +28,7 @@ class CalonPenyediaController extends Controller
 
         if ($user->role === 'penyedianotaprov') {
             $user->update(['role' => 'penyedia']);
-            Mail::to($user->email)->send(new SendMAil($user, 'tolak'));
+            Mail::to($user->email)->send(new SendMAil($user, 'terima'));
         }
 
 

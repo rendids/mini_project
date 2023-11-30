@@ -31,7 +31,7 @@ class SendMAil extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'dari assistify',
+            subject: 'FROM ASSISTIFY',
         );
     }
 
