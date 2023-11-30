@@ -31,8 +31,8 @@
                             $no = 1;
                         @endphp
                         <tr>
-                            <td><strong>{{ $no++ }}</strong></td>
-                            <td><strong>ilya halimatus</strong></td>
+                            <td><span>{{ $no++ }}</span></td>
+                            <td><span>ilya halimatus</span></td>
                             <td><span >Dr. Jackson</span></div></td>
                             <td><span >E-walet</span></div></td>
                             <td><span >Rp. 330.000</span></div></td>
@@ -42,17 +42,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td><strong>yayayayya</strong></td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td><span >Bank</span></div></td>
-                            <td><span >Rp. 220.00</span></div></td>
-                            <td>
-                                <div class="d-flex">
-                                    <a href="" class="btn btn-primary shadow btn-xm sharp me-1"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+
 
                     </tbody>
                 </table>
