@@ -33,7 +33,8 @@ class KategoriController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'keterangan' => 'required'
+            'keterangan' => 'required',
+            'harga' => ''
         ]);
 
         $validator->validate();
