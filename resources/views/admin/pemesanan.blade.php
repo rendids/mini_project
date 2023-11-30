@@ -33,20 +33,9 @@
                         <tr>
                             <td><strong>{{ $no++ }}</strong></td>
                             <td><strong>ilya halimatus</strong></td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td><span >Service AC</span></div></td>
-                            <td><span >Rp. 330.000</span></div></td>
-                            <td>
-                                <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xm sharp me-1"><i class="fa fa-eye"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>yayayayya</strong></td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td><span >Service Oven</span></div></td>
-                            <td><span >Rp. 220.00</span></div></td>
+                            <td><strong>Dr. Jackson</strong></td>
+                            <td><strong>Service AC</strong></td>
+                            <td><strong>Rp. 330.000</strong></td>
                             <td>
                                 <div class="d-flex">
                                     <a href="#" class="btn btn-primary shadow btn-xm sharp me-1"><i class="fa fa-eye"></i></a>

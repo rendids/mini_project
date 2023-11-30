@@ -32,17 +32,22 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'keterangan' => 'required',
-            'harga' => ''
+            'name' => 'required|unique:kategoris',
+            'harga' => 'required|gt:0',
+        ], [
+            'name.unique' => 'Nama kategori tidak boleh sama',
+            'name.required' => 'Nama Kategori tidak boleh kosong',
+            'harga.required' => 'Harga tidak boleh kosong',
+            'harga.gt' => 'Harga tidak boleh min',
         ]);
 
-        $validator->validate();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         kategori::create($request->all());
 
-        return redirect()->back()->with('success', 'berhasil menambahkan kategori');
-
+        return redirect()->back()->with('success', 'Berhasil menambahkan kategori');
     }
 
     /**
@@ -65,20 +70,25 @@ class KategoriController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'keterangan' => 'required'
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|unique:katgoris',
+        'harga' => 'required|gt:0',
+    ], [
+        'name.unique' => 'Nama kategori tidak boleh sama',
+        'name.required' => 'Nama kategori tidak boleh kosong',
+        'harga.required' => 'Harga tidak boleh kosong',
+        'harga.gt' => 'Harga tidak boleh min',
+    ]);
 
-        $validator->validate();
+    $validator->validate();
 
-        $kategori = Kategori::find($id);
+    $kategori = Kategori::find($id);
 
-        $kategori->update($request->all());
+    $kategori->update($request->all());
 
-        return redirect()->back();
-    }
+    return redirect()->route('kategori')->with('success', 'Berhasil mengubah data');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -89,6 +99,6 @@ class KategoriController extends Controller
 
        $kategori->delete();
 
-       return redirect()->back();
+       return redirect()->back()->with('success', 'Berhasil menghapus data');
     }
 }
