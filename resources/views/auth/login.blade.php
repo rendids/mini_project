@@ -106,10 +106,7 @@
 
         </div>
       </div>
-
-      <!-- Modal Kebijakan Privasi -->
       
-
       <!-- Required vendors -->
       <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
       <script src="{{ asset('assets/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
