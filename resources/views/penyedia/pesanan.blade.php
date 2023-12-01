@@ -26,24 +26,24 @@
                                 <td><strong>1</strong></td>
                                 <td>
                                     <div>
-                                        <h5 class="mb-0">Service AC</h5>
+                                        <h5 class="">Service AC</h5>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        <p class="mb-0">June 1, 2020, 08:22 AM</p>
+                                        <h5 class="">Jason</h5>
                                     </div>
                                 </td>
                                 <td>
-                                    <span>dana</span>
+                                    <h5 class="">Dana</h5>
                                 </td>
                                 <td>
-                                        <h4 class="text-primary">$ 5.59</h4>
+                                        <h5 class="">Rp 50.000</h5>
                                 </td>
                                 <td>
                                     <div>
-                                        <a href="javascript:void(0);" class="btn btn-outline-primary">Terima</a>
                                         <a href="javascript:void(0);" class="btn btn-outline-danger">Tolak</a>
+                                        <a href="javascript:void(0);" class="btn btn-outline-primary">Terima</a>
                                     </div>
                                 </td>
                             </tr>

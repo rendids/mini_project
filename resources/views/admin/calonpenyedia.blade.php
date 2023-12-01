@@ -19,13 +19,12 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr class="bg-primary text-white">
-                            <th><strong>NO.</strong></th>
-                            <th><strong>NAME</strong></th>
+                            <th><strong>No</strong></th>
+                            <th><strong>Nama</strong></th>
                             <th><strong>Email</strong></th>
                             <th><strong>Jasa</strong></th>
                             <th><strong>No.Tlpn</strong></th>
                             <th><strong>Aksi</strong></th>
-                            <th><strong></strong></th>
                         </tr>
                     </thead>
                     <tbody>

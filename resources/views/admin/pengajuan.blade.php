@@ -18,12 +18,12 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr class="bg-primary text-white">
-                            <th><strong>NO</strong></th>
-                            <th><strong>NAMA PEMESANAN</strong></th>
-                            <th><strong>NAMA JASA</strong></th>
-                            <th><strong>NAMA PEMBAYARAN</strong></th>
-                            <th><strong>TOTAL</strong></th>
-                            <th><strong>AKSI</strong></th>
+                            <th><strong>N</strong></th>
+                            <th><strong>Nama Pemesanan</strong></th>
+                            <th><strong>Nama Jasa</strong></th>
+                            <th><strong>Nama Pembayaran</strong></th>
+                            <th><strong>Total</strong></th>
+                            <th><strong>Aksi</strong></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,9 +33,9 @@
                         <tr>
                             <td><span>{{ $no++ }}</span></td>
                             <td><span>ilya halimatus</span></td>
-                            <td><span >Dr. Jackson</span></div></td>
-                            <td><span >E-walet</span></div></td>
-                            <td><span >Rp. 330.000</span></div></td>
+                            <td><span>Dr. Jackson</span></div></td>
+                            <td><span>E-walet</span></div></td>
+                            <td><span>Rp. 330.000</span></div></td>
                             <td>
                                 <div class="d-flex">
                                     <a href="" class="btn btn-primary shadow btn-xm sharp me-1"><i class="fa fa-eye"></i></a>

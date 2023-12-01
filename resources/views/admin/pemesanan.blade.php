@@ -17,12 +17,12 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr class="bg-primary text-white">
-                            <th><strong>NO</strong></th>
-                            <th><strong>NAMA PEMESANAN</strong></th>
-                            <th><strong>NAMA PENYEDIA</strong></th>
-                            <th><strong>NAMA JASA</strong></th>
-                            <th><strong>TOTAL</strong></th>
-                            <th><strong>AKSI</strong></th>
+                            <th><strong>No</strong></th>
+                            <th><strong>Nama Pemesanan</strong></th>
+                            <th><strong>Nama Penyedia</strong></th>
+                            <th><strong>Nama Jasa</strong></th>
+                            <th><strong>Total</strong></th>
+                            <th><strong>Aksi</strong></th>
                             <th><strong></strong></th>
                         </tr>
                     </thead>

@@ -66,10 +66,10 @@
                     <table class="table table-responsive-md">
                         <thead>
                             <tr class="bg-primary text-white">
-                                <th><strong>NO.</strong></th>
+                                <th><strong>No</strong></th>
                                 <th><strong>Metode</strong></th>
-                                <th><strong>TUJUAN</strong></th>
-                                <th><strong>KETERANGAN</strong></th>
+                                <th><strong>Tujuan</strong></th>
+                                <th><strong>Keterangan</strong></th>
                                 <th><strong>Aksi</strong></th>
                                 <th><strong></strong></th>
                             </tr>
