@@ -44,6 +44,8 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 've
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
 
+Route::get('/kebijakan_privasi', [AuthController::class, 'kebijakan'])->name('kebijakan_privasi');
+
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'sendVerificationNotification'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
