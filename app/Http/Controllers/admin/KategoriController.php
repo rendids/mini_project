@@ -81,7 +81,7 @@ class KategoriController extends Controller
         'harga.gt' => 'Harga tidak boleh min',
     ]);
 
-    $validator->validate();
+    
 
     $kategori = Kategori::find($id);
 

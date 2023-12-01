@@ -53,7 +53,7 @@
           <table class="table table-responsive-md">
             <thead>
               <tr class="bg-primary text-white">
-                <th><strong>NO.</strong></th>
+                <th><strong>No</strong></th>
                 <th><strong>Nama Kategori</strong></th>
                 <th><strong>Harga</strong></th>
                 <th><strong>Aksi</strong></th>
@@ -64,7 +64,7 @@
                 <tr>
                   <td><strong>{{ $loop->iteration }}</strong></td>
                   <td><span>{{ $item->name }}</span></td>
-                  <td>{{ $item->harga }}</td>
+                  <td>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</td>
                   <td>
                     <div class="d-flex justify-content-center">
                       <button class="btn btn-primary shadow btn-xm sharp me-1"
