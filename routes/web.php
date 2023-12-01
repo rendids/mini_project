@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\user\PesanController;
+use App\Http\Controllers\user\DetailController;
 use App\Http\Controllers\admin\PersetujuanAdmin;
 use App\Http\Controllers\user\RiwayatController;
 use App\Http\Controllers\admin\KategoriController;
@@ -12,11 +13,11 @@ use App\Http\Controllers\admin\PengajuanController;
 use App\Http\Controllers\admin\PembayaranController;
 use App\Http\Controllers\penyedia\PesananController;
 use App\Http\Controllers\penyedia\RattingController;
+use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\admin\CalonPenyediaController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
-use App\Http\Controllers\EmailVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,9 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     });
     Route::controller(RiwayatController::class)->group(function () {
         Route::get('riwayat', 'index')->name('riwayat');
+    });
+    Route::controller(DetailController::class)->group(function () {
+        Route::get('detail', 'index')->name('detail');
     });
 });
 

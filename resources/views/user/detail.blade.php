@@ -28,6 +28,7 @@
 
 </style>
 
+
 <div class="container">
 
 
@@ -343,63 +344,24 @@
         <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
             <div class="row">
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
-                    <div class="card dishe-bx b-hover style-1">
-                        <div class="card-body pb-0 pt-3">
-                            <div class="text-center mb-2">
-                                <img src="assets/images/popular-img/pic-3.jpg" alt="">
-                            </div>
-                            <div class="border-bottom pb-3">
-                                <div class="d-flex align-items-center">
-                                    <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z" fill="#FC8019"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer border-0 pt-2">
-                            <div class="common d-flex align-items-center justify-content-between">
-                                <div>
-                                    <a href="javascript:void(0);"><h4>Service AC </h4></a>
-                                    <h3 class="">Rp. 500.000</h3>
-                                </div>
-                                <div class="eye-button">
-                                    <div class="fa fa-eye" id="eye-icon" style="margin: 5px;"></div>
-                                    <div class="sub-bx"></div>
-                                </div>
-
-                                <script>
-                                    const eyeIcon = document.getElementById('eye-icon');
-                                    eyeIcon.addEventListener('click', function() {
-                                        window.location.href = '/user/detail'; // Ganti '/detail' dengan URL halaman tujuan Anda
-                                    });
-                                </script>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
 
 
                 <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
                     <div class="mb-sm-0 mb-3 pagination-title">
-                        <p class="mb-0"><span>Showing 1-5</span> from <span>100</span> data</p>
+                        {{-- <p class="mb-0"><span>Showing 1-5</span> from <span>100</span> data</p> --}}
                     </div>
+                    <div class="card" style="width: 200%; height: 200%">
+                        <div class="card-body">
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>
                     <nav>
                         <ul class="pagination pagination-gutter">
                             <li class="page-item page-indicator">
                                 <a class="page-link" href="javascript:void(0)">
                                     <i class="la la-angle-left"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                            <li class="page-item page-indicator">
-                                <a class="page-link" href="javascript:void(0)">
-                                    <i class="la la-angle-right"></i></a>
-                            </li>
                         </ul>
                     </nav>
                 </div>
