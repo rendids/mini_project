@@ -60,8 +60,7 @@ class AuthController extends Controller
 
     public function registerPenyedia()
     {
-        $kategori = Kategori::all();
-        return view('auth.registerpenyedia', compact('kategori'));
+        return view('auth.registerpenyedia');
     }
 
     public function registerUsersave(Request $request)
@@ -100,27 +99,22 @@ class AuthController extends Controller
             'password' => 'required',
             'konfirmasi-password' => 'required',
             // penyedia
-            'id_kategori' => 'required',
+            'layanan' => 'required',
             'alamat' => 'required',
             'telp' => 'required',
-            'foto' => 'required',
 
         ],[
             'name.required' => 'Harap masukkan username',
             'email.required' => 'Harap masukkan email',
             'password.required' => 'Harap masukkan password',
             'konfirmasi-password.required' => 'Harap masukkan konfirmasi password',
-            'id_kategori.required' => 'Harap masukkan kategori',
+            'layanan.required' => 'Harap masukkan kategori',
             'alamat.required' => 'Harap masukkan alamat',
             'telp.required' => 'Harap masukkan no telp',
-            'foto.required' => 'Harap masukkan foto'
         ]);
 
         $validator->validate();
 
-        $gambar = $request->file('foto');
-        $namaGambar = Str::random(40) . '.' . $gambar->getClientOriginalExtension();
-        $gambar->storeAs('fotopenyedia', $namaGambar, 'public');
 
 
         $user = User::create([
@@ -133,10 +127,9 @@ class AuthController extends Controller
 
         penyedia::create([
             'id_user' => $user->id,
-            'id_kategori' => $request->id_kategori,
+            'layanan' => $request->layanan,
             'alamat' => $request->alamat,
             'telp' => $request->telp,
-            'foto' => $namaGambar
         ]);
 
         return view('auth.login')->with('message', 'silahkan tungu konfirmasi admin');

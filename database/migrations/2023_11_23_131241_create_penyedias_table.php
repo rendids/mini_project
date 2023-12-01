@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('penyedias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('id_kategori')->constrained('kategoris');
+            $table->string('layanan');
+            $table->string('harga');
             $table->string('alamat');
             $table->string('telp');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

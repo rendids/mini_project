@@ -37,10 +37,9 @@ class CalonPenyediaController extends Controller
 
     public function tolak(string $id)
     {
-        $penyedia = penyedia::findOrFail($id);
-        $penyedia->delete();
-        $user = User::findOrFail($penyedia->id_user);
-        if ($user->role == 'penyedianotaprove') {
+        $user = User::find($id);
+
+        if ($user->role === 'penyedianotaprov') {
             $user->delete();
             Mail::to($user->email)->send(new SendMAil($user, 'tolak'));
         }

@@ -90,14 +90,8 @@
                                         <div class="form-step" data-step="2" style="display: none;">
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label class="mb-1"><strong>kategori</strong></label>
-                                                    <select class="form-control" name="id_kategori" id="">
-                                                        <option selected disabled> pilih kategori</option>
-                                                        @foreach ($kategori as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label class="mb-1"><strong>jenis layanan</strong></label>
+                                                    <input type="text" name="layanan" id="" class="form-control" placeholder="masukan jenis layanan">
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>No Telp</strong></label>
@@ -109,10 +103,6 @@
                                                 <label class="mb-1"><strong>Alamat</strong></label>
                                                 <textarea type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat"></textarea>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="mb-1"><strong>Foto</strong></label>
-                                                <input type="file" class="form-control" name="foto">
-                                            </div>
                                             <div class="text-end">
                                                 <button type="button" class="btn btn-sm shadow text-white"
                                                     style="background-color: #145AAC" onclick="nextStep(2, 1)">
@@ -123,11 +113,11 @@
                                                 <button type="submit" class="btn btn-block shadow text-white"
                                                     style="background-color: #145AAC">Login</button>
                                             </div>
-                                            <p class="mt-5 text-center">
-                                                Sudah punya akun? <a href="{{ route('login') }}"
-                                                    class="text-underline">Masuk</a>
-                                            </p>
                                         </div>
+                                        <p class="mt-5 text-center">
+                                            Sudah punya akun? <a href="{{ route('login') }}"
+                                                class="text-underline">Masuk</a>
+                                        </p>
                                     </form>
                                 </div>
                             </div>

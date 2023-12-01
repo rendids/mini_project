@@ -24,7 +24,6 @@
                             <th><strong>Email</strong></th>
                             <th><strong>Jasa</strong></th>
                             <th><strong>No.Tlpn</strong></th>
-                            <th><strong>Foto</strong></th>
                             <th><strong>Aksi</strong></th>
                             <th><strong></strong></th>
                         </tr>
@@ -36,9 +35,8 @@
                             <td><strong>{{ $loop->iteration }}</strong></td>
                             <td><span >{{ $item->name }}</span></div></td>
                             <td>{{ $item->email }}	</td>
-                            <td><span >{{ $item->penyedia->kategori->name }}</span></td>
+                            <td><span >{{ $item->penyedia->layanan }}</span></td>
                             <td>{{ $item->penyedia->telp }}</td>
-                            <td><img src="{{ asset('storage/fotopenyedia/'. $item->penyedia->foto) }}" class="rounded-lg me-2" width="60" alt=""></td>
                             <td>
                                 <div class="d-flex">
                                     <form action="{{ route('penyedia.terima', ['id' => $item->id]) }}" method="POST">

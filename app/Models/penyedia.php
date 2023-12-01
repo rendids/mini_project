@@ -15,8 +15,4 @@ class penyedia extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'id_kategori');
-    }
 }
