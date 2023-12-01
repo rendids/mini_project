@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
                     <div class="card">
-                        <div class="card-body " style="background-color: #bcc9dd">
+                        <div class="card-body" style="background-color: #bcc9dd">
                             <div class="restro-review d-flex align-items-center border-bottom mb-4  pb-4">
                                 <img src="public/assets/images/resturent-review/pic-1.jpg" alt="">
                                 <div>
@@ -59,7 +59,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <p style="color: black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                            <h6 style="color: black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</h6>
                             <div>
                                 <h6 class="font-w400">Ordered June 21, 2020</h6>
                             </div>
