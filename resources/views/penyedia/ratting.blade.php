@@ -1,10 +1,20 @@
 @extends('layoutsjasa.app')
 @section('content')
+
+<link rel="stylesheet" href="path/to/styles.css">
+
+<style>
+    .custom-h1 {
+    font-size: 3rem;
+}
+</style>
+
+
 <div class="card-body">
     <div>
-        <h3 class=" cate-title font-w700 mb-4">RIwayat</h3>
+        <h1 class="cate-title font-w1000 mb-4 custom-h1">Riwayat</h1>
         <div class="d-flex align-items-center justifiy-content-between mb-4">
-           
+
 
         </div>
     </div>
@@ -13,7 +23,7 @@
             <div class="row">
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body " style="background-color: #bcc9dd">
                             <div class="restro-review d-flex align-items-center border-bottom mb-4  pb-4">
                                 <img src="public/assets/images/resturent-review/pic-1.jpg" alt="">
                                 <div>
@@ -49,7 +59,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                            <p style="color: black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
                             <div>
                                 <h6 class="font-w400">Ordered June 21, 2020</h6>
                             </div>

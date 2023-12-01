@@ -1,12 +1,18 @@
 @extends('layoutsjasa.app')
 @section('content')
+
+<style>
+    .table-list th{
+        color: white;
+    }
+</style>
     <div class="col-xl-12">
         <div class="card h-auto">
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-list i-table style-1 mb-4 border-0" id="guestTable-all3">
                         <thead>
-                            <tr>
+                            <tr class="bg-primary text-white">
                                 <th>No</th>
                                 <th>Nama Pemesan</th>
                                 <th>Nama Jasa</th>
@@ -32,11 +38,8 @@
                                     <span>dana</span>
                                 </td>
                                 <td>
-                                    <div>
                                         <h4 class="text-primary">$ 5.59</h4>
-                                    </div>
                                 </td>
-                                <td></td>
                                 <td>
                                     <div>
                                         <a href="javascript:void(0);" class="btn btn-outline-primary">Terima</a>
