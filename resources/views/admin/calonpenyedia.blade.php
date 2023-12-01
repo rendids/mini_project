@@ -18,7 +18,7 @@
             <div class="table-responsive">
                 <table class="table table-responsive-md">
                     <thead>
-                        <tr>
+                        <tr class="bg-primary text-white">
                             <th><strong>NO.</strong></th>
                             <th><strong>NAME</strong></th>
                             <th><strong>Email</strong></th>
