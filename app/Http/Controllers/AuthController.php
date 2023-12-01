@@ -71,6 +71,11 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
             'konfirmasi-password' => 'required',
+        ],[
+            'name.required' => 'Harap masukkan username',
+            'email.required' => 'Harap masukkan email',
+            'password.required' => 'Harap masukkan password',
+            'konfirmasi-password.required' => 'Harap masukkan password'
         ]);
 
         $validator->validate();
@@ -99,6 +104,16 @@ class AuthController extends Controller
             'alamat' => 'required',
             'telp' => 'required',
             'foto' => 'required',
+
+        ],[
+            'name.required' => 'Harap masukkan username',
+            'email.required' => 'Harap masukkan email',
+            'password.required' => 'Harap masukkan password',
+            'konfirmasi-password.required' => 'Harap masukkan konfirmasi password',
+            'id_kategori.required' => 'Harap masukkan kategori',
+            'alamat.required' => 'Harap masukkan alamat',
+            'telp.required' => 'Harap masukkan no telp',
+            'foto.required' => 'Harap masukkan foto'
         ]);
 
         $validator->validate();
