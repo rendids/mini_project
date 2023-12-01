@@ -143,4 +143,9 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
+
+    public function kebijakan()
+    {
+        return view('auth.kebijakan');
+    }
 }
