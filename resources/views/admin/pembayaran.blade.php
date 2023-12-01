@@ -128,18 +128,18 @@
                             </ul>
                         </div>
                     @endif
-
-                    <form id="editForm" action="" method="post">
+                    <form id="editForm" action="" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
-                        <label for="edit_name">metode</label>
+                        <label for="edit_name">Metode</label>
                         <input type="text" class="form-control" name="metode" id="edit_name" readonly>
 
-                        <label for="edit_tujuan">tujuan</label>
+                        <label for="edit_tujuan">Tujuan</label>
                         <input type="text" class="form-control" name="tujuan" id="edit_tujuan" readonly>
 
                         <label for="edit_keterangan">Keterangan</label>
-                        <input type="file" class="form-control" name="keterangan" id="edit_keterangan">
+                        <input type="text" class="form-control" name="keterangan" id="edit_keterangan">
+
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -149,19 +149,19 @@
             </div>
         </div>
     </div>
+
     <script>
         function openEditModal(id, metode, tujuan, keterangan) {
-            // Set the form action dynamically based on the category ID
             var editForm = document.getElementById('editForm');
             editForm.action = "{{ route('pembayaran.update', ['id' => ':id']) }}".replace(':id', id);
 
-            // Populate the form fields with category data
             document.getElementById('edit_name').value = metode;
-            document.getElementById('edit_keterangan').value = keterangan;
             document.getElementById('edit_tujuan').value = tujuan;
 
-            // Assuming keteranganInput is defined somewhere
             var keteranganInput = document.getElementById('edit_keterangan');
+            keteranganInput.value = keterangan;
+
+            // Display the existing file preview
 
             // Change input type based on metode
             if (metode === 'E-WALET') {
@@ -170,8 +170,11 @@
                 keteranganInput.type = 'text';
             }
 
-            // Open the edit modal
+            // Tampilkan modal
             $('#editModal').modal('show');
         }
     </script>
+
+
+
 @endsection

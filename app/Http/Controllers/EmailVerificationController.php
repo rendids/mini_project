@@ -17,7 +17,7 @@ class EmailVerificationController extends Controller
     {
         $request->fulfill();
         event(new Verified($request->user()));
-        
+
         return redirect('/');
     }
 

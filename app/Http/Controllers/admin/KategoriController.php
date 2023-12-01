@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
@@ -63,42 +64,43 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-{
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|unique:katgoris',
-        'harga' => 'required|gt:0',
-    ], [
-        'name.unique' => 'Nama kategori tidak boleh sama',
-        'name.required' => 'Nama kategori tidak boleh kosong',
-        'harga.required' => 'Harga tidak boleh kosong',
-        'harga.gt' => 'Harga tidak boleh min',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:katgoris',
+            'harga' => 'required|gt:0',
+        ], [
+            'name.unique' => 'Nama kategori tidak boleh sama',
+            'name.required' => 'Nama kategori tidak boleh kosong',
+            'harga.required' => 'Harga tidak boleh kosong',
+            'harga.gt' => 'Harga tidak boleh min',
+        ]);
 
-    
+        $kategori = Kategori::find($id);
 
-    $kategori = Kategori::find($id);
+        $kategori->update($request->all());
 
-    $kategori->update($request->all());
-
-    return redirect()->route('kategori')->with('success', 'Berhasil mengubah data');
-}
+        return redirect()->route('kategori')->with('success', 'Berhasil mengubah data');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-       $kategori = kategori::findOrfail($id);
+        try {
+            $kategori = kategori::findOrfail($id);
 
-       $kategori->delete();
+            $kategori->delete();
 
-       return redirect()->back()->with('success', 'Berhasil menghapus data');
+            return redirect()->back()->with('success', 'Berhasil menghapus data');
+        } catch (Exception $e) {
+            return back()->with('error', 'tidak dapat menghapus kategori karena sedang digunakan');
+        }
     }
 }

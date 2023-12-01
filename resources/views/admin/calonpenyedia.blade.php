@@ -38,7 +38,7 @@
                             <td>{{ $item->email }}	</td>
                             <td><span >{{ $item->penyedia->kategori->name }}</span></td>
                             <td>{{ $item->penyedia->telp }}</td>
-                            <td><img src="https://example.com/path/to/image.jpg" class="rounded-lg me-2" width="60" alt=""></td>
+                            <td><img src="{{ asset('storage/fotopenyedia/'. $item->penyedia->foto) }}" class="rounded-lg me-2" width="60" alt=""></td>
                             <td>
                                 <div class="d-flex">
                                     <form action="{{ route('penyedia.terima', ['id' => $item->id]) }}" method="POST">
