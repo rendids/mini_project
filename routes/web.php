@@ -17,6 +17,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\admin\CalonPenyediaController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
 
 /*
@@ -30,11 +31,9 @@ use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardContro
 |
 */
 
-Route::controller(UserDashboardController::class)->group(function () {
-    Route::get('/', 'index')->name('dashboard.user');
-});
 
 
+Route::get('/', [LandingController::class, 'index']);
 
 Route::get('/email/verify', [EmailVerificationController::class, 'showVerificationNotice'])
     ->middleware('auth', 'checkEmailVerification')
@@ -98,6 +97,9 @@ Route::middleware('user-access:admin', 'auth', )->prefix('admin')->group(functio
 
 //yang dapat di akses user
 Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group(function () {
+    Route::controller(UserDashboardController::class)->group(function () {
+        Route::get('dashboard', 'index')->name('dashboard.user');
+    });
     Route::controller(PesanController::class)->group(function () {
         Route::get('pesan', 'index')->name('pesan');
     });
