@@ -9,7 +9,6 @@ use App\Http\Controllers\user\DetailController;
 use App\Http\Controllers\admin\PersetujuanAdmin;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\RiwayatController;
-use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\PemesananController;
 use App\Http\Controllers\admin\PengajuanController;
 use App\Http\Controllers\admin\PembayaranController;
@@ -68,12 +67,6 @@ Route::middleware('user-access:admin', 'auth', )->prefix('admin')->group(functio
     Route::controller(AdminDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.admin');
     });
-    Route::controller(KategoriController::class)->group(function () {
-        Route::get('kategori', 'index')->name('kategori');
-        Route::post('kategori/buat', 'store')->name('kategori.store');
-        Route::put('kategori/update/{id}', 'update')->name('kategori.update');
-        Route::delete('kategori/hapus/{id}', 'destroy')->name('kategori.destroy');
-    });
     Route::controller(PersetujuanAdmin::class)->group(function () {
         Route::get('persetujuan', 'index')->name('persetujuan');
     });
@@ -131,5 +124,6 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     });
     Route::controller(PenyediaProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile.penyedia');
+        Route::put('profile.update{id}', 'profileupdate')->name('update.profile.penyedia');
     });
 });

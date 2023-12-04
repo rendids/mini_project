@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\penyedia;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -12,23 +13,16 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('penyedia.profile');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $data_user = Auth::user();
+        return view('penyedia.profile', compact('data_user'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function profileupdate(Request $request)
     {
-        //
+        
     }
 
     /**

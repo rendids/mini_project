@@ -11,4 +11,12 @@ class PesananController extends Controller
     {
        return view('penyedia.pesanan');
     }
+
+    public function tolakpesanan(){
+
+    }
+
+    public function terimapesanan(){
+        
+    }
 }

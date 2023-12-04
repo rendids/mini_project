@@ -11,11 +11,6 @@
                     <span class="nav-text">Calon Penyedia</span>
                 </a>
             </li>
-            <li><a href="{{ route('kategori')}}" aria-expanded="false">
-                <i class="fa-solid fa-layer-group"></i>
-                    <span class="nav-text">Kategori</span>
-                </a>
-            </li>
             <li><a href="{{ route('pembayaran') }}" aria-expanded="false">
                 <i class="fa-regular fa-money-bill-1"></i>
                     <span class="nav-text">Pembayaran</span>
