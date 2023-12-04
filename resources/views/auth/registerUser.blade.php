@@ -52,23 +52,35 @@
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Username</strong></label>
                                             <input type="name" class="form-control" name="name"
-                                                placeholder="Masukkan Username">
+                                               value="{{ old('name')}}" placeholder="Masukkan Username">
+                                               @error('name')
+                                               <span class="text-danger">{{ $message }}</span>
+                                           @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Email</strong></label>
                                             <input type="email" class="form-control" name="email"
-                                                placeholder="Masukkan email">
+                                               value="{{ old('email')}}" placeholder="Masukkan email">
+                                               @error('email')
+                                               <span class="text-danger">{{ $message }}</span>
+                                           @enderror
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label class="mb-1"><strong>Password</strong></label>
                                                 <input type="password" class="form-control" name="password"
                                                     placeholder="Masukkan password">
+                                                    @error('password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label class="mb-1"><strong>Konfirmasi Password</strong></label>
                                                 <input type="password" class="form-control" name="konfirmasi-password"
                                                     placeholder="Konfirmasi password">
+                                                    @error('konfirmasi-password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="text-center">

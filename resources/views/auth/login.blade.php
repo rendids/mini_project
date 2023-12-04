@@ -52,10 +52,16 @@
             <div class="mb-3">
               <label class="mb-1"><strong>Email</strong></label>
               <input type="email" class="form-control" name="email" value="{{ old('email')}}" placeholder="Masukkan Alamat Email">
+              @error('email')
+              <span class="text-danger">{{ $message }}</span>
+          @enderror
             </div>
             <div class="mb-3">
               <label class="mb-1"><strong>Password</strong></label>
               <input type="password" class="form-control" name="password" placeholder="Masukkan Kata Sandi">
+              @error('password')
+              <span class="text-danger">{{ $message }}</span>
+          @enderror
             </div>
             <div class="col-lg-12 d-flex justify-content-between">
                 <div class="form-check mb-3">

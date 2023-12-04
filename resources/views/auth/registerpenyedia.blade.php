@@ -86,7 +86,7 @@
                                                     <label class="mb-1"><strong>Konfirmasi Password</strong></label>
                                                     <input type="password" class="form-control"
                                                         name="konfirmasi-password" placeholder="Konfirmasi password">
-                                                        @error('password')
+                                                        @error('konfirmasi-password')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                                 </div>
