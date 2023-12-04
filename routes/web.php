@@ -107,7 +107,7 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
         Route::get('riwayat', 'index')->name('riwayat');
     });
     Route::controller(DetailController::class)->group(function () {
-        Route::get('detail', 'index')->name('detail');
+        Route::get('detail{id}', 'index')->name('detail');
     });
 });
 

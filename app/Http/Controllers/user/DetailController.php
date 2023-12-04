@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
+use App\Models\penyedia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        return view('user.detail');
+        $sedia = penyedia::find($id);
+        return view('user.detail', compact('sedia'));
     }
 
     /**
