@@ -1,21 +1,21 @@
 @extends('layoutsuser.appprofile')
 @section('profile')
-    <nav class="navbar navbar-expand-lg ">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#home" data-toggle="tab" onclick="openTab('home')">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about" data-toggle="tab" onclick="openTab('about')">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact" data-toggle="tab" onclick="openTab('contact')">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
+
+
+<nav class="navbar navbar-expand-lg justify-content-center ms-5">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ">
+            <li class="nav-item active mt-1" style="font-size: 13pt">
+                <a class="nav-link" href="#home" data-toggle="tab" onclick="openTab('home')">Profile</a>
+            </li>
+            <li class="nav-item mt-1" style="font-size: 13pt;">
+                <a class="nav-link" href="#about" data-toggle="tab" onclick="openTab('about')">Ubah Password</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<hr>
     <div class="tab-content mt-3">
         <div class="tab-pane active" id="home">
             <div class="container-fluid mt-3">
@@ -25,7 +25,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="card d-flex align-items-center p-2 h-100">
+                            <div class="card d-flex align-items-center p-2 h-100 border-0">
                                 <div style="border-radius: 100%; height:150px; width:155px;">
                                     <img src="{{ asset('storage/fotopenyedia/' . $data_user->foto) }}"
                                         class="profile-image card-img-top" alt="Profile" id="photo-profile"
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                            <div class="card h-100">
+                            <div class="card h-100" style="border-left: 2px solid #black; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                 <div class="card-header">
                                     <h3 class="card-title">Detail Info User</h3>
                                 </div>

@@ -30,7 +30,7 @@
                                 " style="display: none;">
                             <label for="pp" class="btn btn-outline-dark btn-block mb-2">Ubah foto profile</label>
                         </div>
-
+<hr><hr>
                     </div>
                 </div>
                 <div class="col-lg-8">

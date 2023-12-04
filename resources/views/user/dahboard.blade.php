@@ -13,6 +13,9 @@
         .sub-bx {
             /* Gaya sub-bx Anda */
         }
+        .search-area2 {
+        margin-top: -40px; /* Sesuaikan nilai negatif ini untuk menyesuaikan posisi ke atas */
+    }
     </style>
 
     <div class="input-group search-area2 style-1">
