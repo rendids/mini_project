@@ -8,7 +8,7 @@
 
 <head>
     <!-- Title -->
-    <title>FoodDesk - CodeIgniter Online Food Delivery Admin Dashboard Template</title>
+    <title>dahsboard</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

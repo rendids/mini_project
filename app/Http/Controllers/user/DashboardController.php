@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
+use App\Models\penyedia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('user.dahboard');
+        $penyedia = penyedia::all();
+        return view('user.dahboard', compact('penyedia'));
     }
 
     /**
