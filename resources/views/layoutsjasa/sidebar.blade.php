@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li><a href="{{ route('ratting') }}" aria-expanded="false">
-                <i class="bi bi-emoji-angry"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
                     <span class="nav-text">Ratting</span>
                 </a>
             </li>
