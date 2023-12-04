@@ -51,7 +51,7 @@
             @csrf
             <div class="mb-3">
               <label class="mb-1"><strong>Email</strong></label>
-              <input type="email" class="form-control" name="email" placeholder="Masukkan Alamat Email">
+              <input type="email" class="form-control" name="email" value="{{ old('email')}}" placeholder="Masukkan Alamat Email">
             </div>
             <div class="mb-3">
               <label class="mb-1"><strong>Password</strong></label>
@@ -106,7 +106,7 @@
 
         </div>
       </div>
-      
+
       <!-- Required vendors -->
       <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
       <script src="{{ asset('assets/vendor/swiper/js/swiper-bundle.min.js') }}"></script>

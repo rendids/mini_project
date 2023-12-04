@@ -47,37 +47,48 @@
                                         <h4 class="fs-18 font-size">Buat akun sebagai penyedia jasa di assistify</h4>
                                         <span class="dlab-sign-up">Register</span>
                                     </div>
-                                    <div class="error text-light bg-danger">
+                                    {{-- <div class="error text-light bg-danger">
                                         <ul>
                                             @foreach ($errors->all() as $error)
                                                 <li>{{ $error }}</li>
                                             @endforeach
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                     <form action="{{ route('registersave.penyedia') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-step" data-step="1">
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Username</strong></label>
-                                                <input type="text" class="form-control" name="name"
-                                                    placeholder="Masukkan Username">
+                                                <input type="text" class="form-control" name="name" value="{{ old('name')}}" placeholder="Masukkan Username">
+                                                @error('name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Email</strong></label>
                                                 <input type="email" class="form-control" name="email"
-                                                    placeholder="Masukkan email">
+                                                value="{{ old('email')}}" placeholder="Masukkan email">
+                                                @error('email')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>Password</strong></label>
                                                     <input type="password" class="form-control" name="password"
                                                         placeholder="Masukkan password">
+                                                        @error('password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>Konfirmasi Password</strong></label>
                                                     <input type="password" class="form-control"
                                                         name="konfirmasi-password" placeholder="Konfirmasi password">
+                                                        @error('password')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                                 </div>
                                             </div>
                                             <div class="text-end">
@@ -91,17 +102,25 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>jenis layanan</strong></label>
-                                                    <input type="text" name="layanan" id="" class="form-control" placeholder="masukan jenis layanan">
+                                                    <input type="text" name="layanan" id="" class="form-control" value="{{ old('layanan')}}"  placeholder="masukan jenis layanan">
+                                                    @error('layanan')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>No Telp</strong></label>
-                                                    <input type="number" class="form-control" name="telp"
-                                                        placeholder="masukan nomer telepon">
+                                                    <input type="number" class="form-control" name="telp" value="{{ old('telp')}}" placeholder="masukan nomer telepon">
+                                                    @error('telp')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Alamat</strong></label>
-                                                <textarea type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat"></textarea>
+                                                <textarea type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">{{ old('alam')}}</textarea>
+                                                @error('alamat')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="text-end">
                                                 <button type="button" class="btn btn-sm shadow text-white"

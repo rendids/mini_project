@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end pt-3">
-                <button type="reset" class="btn btn-outline-danger mx-3">Batal</button>
+                <button type="reset" class="btn btn-outline-danger mx-3 ">Batal</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
 
