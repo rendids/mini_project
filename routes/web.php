@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\PemesananController;
 use App\Http\Controllers\admin\PengajuanController;
 use App\Http\Controllers\admin\PembayaranController;
 use App\Http\Controllers\penyedia\PesananController;
+use App\Http\Controllers\penyedia\ProfileController as PenyediaProfileController;
 use App\Http\Controllers\penyedia\RattingController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\admin\CalonPenyediaController;
@@ -121,5 +122,8 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     });
     Route::controller(RattingController::class)->group(function () {
         Route::get('ratting', 'index')->name('ratting');
+    });
+    Route::controller(PenyediaProfileController::class)->group(function () {
+        Route::get('profile', 'index')->name('profile.penyedia');
     });
 });
