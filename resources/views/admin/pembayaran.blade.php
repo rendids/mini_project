@@ -34,8 +34,8 @@
                             placeholder="Masukkan tujuan">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Close</button>
-                    <button type="sumbit" class="btn btn-primary btn-sm">Save changes</button>
+                    <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    <button type="sumbit" class="btn btn-primary btn-sm">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -143,8 +143,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="editForm" class="btn btn-primary btn-sm">Save changes</button>
+                    <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" form="editForm" class="btn btn-primary btn-sm">Simpan</button>
                 </div>
             </div>
         </div>
