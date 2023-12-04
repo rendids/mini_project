@@ -103,12 +103,14 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     });
     Route::controller(DetailController::class)->group(function () {
         Route::get('detail{id}', 'index')->name('detail');
+        Route::get('memesan{id}', 'memesan')->name('memesan');
     });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile');
         route::put('profile.update{id}', 'updateprofile')->name('updateProfile');
         route::put('profile.update.pass{id}', 'updateProfilePass')->name('updateProfilePass');
     });
+
 });
 
 //yang dapat di akses penyedia

@@ -20,10 +20,11 @@ class DetailController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function memesan(string $id)
+        {
+            $sedia = penyedia::find($id);
+            return view('user.memesan', compact('sedia'));
+        }
 
     /**
      * Store a newly created resource in storage.
