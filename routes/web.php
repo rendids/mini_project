@@ -3,9 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\user\PesanController;
 use App\Http\Controllers\user\DetailController;
 use App\Http\Controllers\admin\PersetujuanAdmin;
+use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\RiwayatController;
 use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\PemesananController;
@@ -18,7 +20,6 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\admin\CalonPenyediaController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\LandingController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
 
 /*
@@ -109,6 +110,11 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     });
     Route::controller(DetailController::class)->group(function () {
         Route::get('detail{id}', 'index')->name('detail');
+    });
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('profile', 'index')->name('profile');
+        route::put('profile.update{id}', 'updateprofile')->name('updateProfile');
+        route::put('profile.update.pass{id}', 'updateProfilePass')->name('updateProfilePass');
     });
 });
 
