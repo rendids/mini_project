@@ -18,7 +18,7 @@
                                 <th>Nama Jasa</th>
                                 <th>Pembayaran</th>
                                 <th>Total</th>
-                                <th>Aksi</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@
                                         <h5 class="">Rp 50.000</h5>
                                 </td>
                                 <td>
-                                    <div>
+                                    <div class="d-flex justify-content-center">
                                         <a href="javascript:void(0);" class="btn btn-outline-danger">Tolak</a>
                                         <a href="javascript:void(0);" class="btn btn-outline-primary">Terima</a>
                                     </div>
