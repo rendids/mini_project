@@ -1,70 +1,75 @@
 @extends('layoutsuser.appprofile')
 @section('profile')
+    <style>
+        .navbar-nav .nav-link {
+            color: #333232;
+            position: relative;
+            transition: color 0.3s ease-in-out;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 15pt;
+            letter-spacing: 1px;
+            /* Atur jarak antar huruf sesuai kebutuhan */
+            text-transform: uppercase;
+            /* Ubah teks menjadi huruf kapital */
+        }
 
 
 
-<style>
-    .navbar-nav .nav-link {
-        color: #333232;
-        position: relative;
-        transition: color 0.3s ease-in-out;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 15pt;
-        letter-spacing: 1px; /* Atur jarak antar huruf sesuai kebutuhan */
-        text-transform: uppercase; /* Ubah teks menjadi huruf kapital */
-    }
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            /* Ketebalan garis bawah */
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            /* Warna garis bawah saat normal */
+            transition: background-color 0.3s ease-in-out;
+        }
 
+        .navbar-nav .nav-link:hover {
+            color: #0271e7;
+            /* Warna teks saat hover */
+        }
 
+        .navbar-nav .nav-link:hover::before {
+            background-color: #007bff;
+            /* Warna garis bawah saat hover */
+        }
 
-    .navbar-nav .nav-link::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px; /* Ketebalan garis bawah */
-        bottom: 0;
-        left: 0;
-        background-color: transparent; /* Warna garis bawah saat normal */
-        transition: background-color 0.3s ease-in-out;
-    }
+        .navbar-nav .nav-item .nav-link {
+            display: flex;
+            align-items: center;
+        }
 
-    .navbar-nav .nav-link:hover {
-        color: #0271e7; /* Warna teks saat hover */
-    }
+        .navbar-nav .nav-item .nav-link i {
+            margin-right: 6px;
+            /* Atur jarak antara ikon dan teks */
+        }
+    </style>
 
-    .navbar-nav .nav-link:hover::before {
-        background-color: #007bff; /* Warna garis bawah saat hover */
-    }
-    .navbar-nav .nav-item .nav-link {
-        display: flex;
-        align-items: center;
-    }
-
-    .navbar-nav .nav-item .nav-link i {
-        margin-right: 6px; /* Atur jarak antara ikon dan teks */
-    }
-</style>
-
-<nav class="navbar navbar-expand-lg justify-content-center ms-2">
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active mt-2" style="font-size: 12pt">
-                <a class="nav-link" href="#home" data-toggle="tab" onclick="openTab('home')">
-                    Profile
-                </a>
-            </li>
-            <li class="nav-item mt-2" style="font-size: 12pt;">
-                <a class="nav-link" href="#about" data-toggle="tab" onclick="openTab('about')">
-                    Ubah Password
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-lg justify-content-center ms-5">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active mt-2" style="font-size: 12pt">
+                    <a class="nav-link" href="#home" data-toggle="tab" onclick="openTab('home')">
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item mt-2" style="font-size: 12pt;">
+                    <a class="nav-link" href="#about" data-toggle="tab" onclick="openTab('about')">
+                        Ubah Password
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
 
 
-<hr>
+    <hr>
     <div class="tab-content mt-3">
         <div class="tab-pane active" id="home">
             <div class="container-fluid mt-3">
@@ -74,7 +79,8 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
+                            <div class="card d-flex align-items-center p-2 h-100 border-0 ">
+                                <h4 class="text-center mt-2">Profile</h4>
                                 <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
                                     <img src="{{ asset('storage/fotopenyedia/' . $data_user->foto) }}"
                                         class="profile-image card-img-top" alt="Profile" id="photo-profile"
@@ -102,7 +108,8 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                            <div class="card h-100" style="border-left: 2px solid #black; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                            <div class="card h-100"
+                                style="border-left: 2px solid #black; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                 <div class="card-header">
                                     <h2>Detail Info User</h2>
                                 </div>
@@ -154,60 +161,89 @@
                     </div>
                 </form>
             </div>
-            <!-- Modal Ganti Kata Sandi -->
-            <div class="modal fade" id="gantiKataSandiModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ganti Kata Sandi</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+        </div>
+        <div class="tab-pane active" id="about">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
+                        <h4 class="text-center mt-2">Profile</h4>
+                        <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
+                            <img src="{{ asset('storage/fotopenyedia/' . $data_user->foto) }}"
+                                class="profile-image card-img-top" alt="Profile" id="photo-profile"
+                                style="width: 100%; height: 100%; border-radius:50%;">
                         </div>
-                        <div class="modal-body">
-                            <form action="{{ route('updateProfilePass', '') }}/{{ $data_user->id }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <div class="form-group">
-                                    <label for="passwordLama">Kata Sandi Lama</label>
-                                    <input type="password" class="form-control" name="passwordLama" id="passwordLama"
-                                        placeholder="Kata Sandi Lama">
-                                    @error('passwordLama')
-                                        <p class="text-danger">{{ $message }}</p>
+                        <div class="text-center" style="height: auto">
+                            <h5 class="card-title">{{ $data_user->name }}</h5>
+                            @error('foto')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <input hidden type="file" name="foto" id="foto"
+                                onchange="
+                                    var reader = new FileReader();
+
+                                    reader.onload = function (e) {
+                                        $('#photo-profile').attr('src', e.target.result);
+                                    }
+
+                                    reader.readAsDataURL(this.files[0]);
+                            ">
+                            <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
+                                profile</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card h-100"
+                        style="border-left: 2px solid #black; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                        <div class="card-header">
+                            <h2>Ubah Password</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="old_password" class="col-form-label fw-bold fs-4">Password Lama</label>
+                                    <input type="text"
+                                        class="form-control  @error('old_password') is-invalid @enderror"
+                                        id="old_password" placeholder="password lama" name="old_password">
+                                    @error('old_password')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="passwordBaru">Kata Sandi Baru</label>
-                                    <input type="password" class="form-control" name="passwordBaru" id="passwordBaru"
-                                        placeholder="Kata Sandi Baru">
-                                    @error('passwordBaru')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="konfirmasiPasswordBaru">Konfirmasi Kata Sandi Baru</label>
-                                    <input type="password" class="form-control" name="konfirmasiPasswordBaru"
-                                        id="konfirmasiPasswordBaru" placeholder="Konfirmasi Kata Sandi Baru">
-                                    @error('konfirmasiPasswordBaru')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-secondary">Simpan Perubahan</button>
-                                </div>
-                            </form>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="col-form-label fw-bold fs-4">Password Baru</label>
+                                <input type="password"
+                                    class="form-control   @error('password') is-invalid @enderror" id="password"
+                                    name="password"
+                                    placeholder="Password">
+                                @error('password')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password_confirmation" class="col-form-label fw-bold fs-4">Confirm Password</label>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                name="password_confirmation"
+                                    placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end pt-2">
+                            <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @endsection
-    <script>
-        function openTab(tabName) {
-            $('.nav-link').removeClass('active');
-            $('[href="#' + tabName + '"]').addClass('active');
-            $('.tab-pane').removeClass('show active');
-            $('#' + tabName).addClass('show active');
-        }
-    </script>
+
+    </div>
+@endsection
+<script>
+    function openTab(tabName) {
+        $('.nav-link').removeClass('active');
+        $('[href="#' + tabName + '"]').addClass('active');
+        $('.tab-pane').removeClass('show active');
+        $('#' + tabName).addClass('show active');
+    }
+</script>
