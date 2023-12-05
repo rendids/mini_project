@@ -17,9 +17,17 @@ class DashboardController extends Controller
         return view('user.dahboard', compact('penyedia'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+
+public function search(Request $request)
+{
+    $keyword = $request->input('search');
+    $penyedia = penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')->get();
+
+    return view('user.dahboard', compact('penyedia'));
+}
+
+
     public function create()
     {
         //
@@ -64,4 +72,5 @@ class DashboardController extends Controller
     {
         //
     }
+
 }

@@ -19,6 +19,7 @@
     </style>
 
     <div class="input-group search-area2 style-1">
+        <form action="{{ route('dashboard.search') }}" method="GET">
         <span class="input-group-text p-0"><a href="javascript:void(0)"><svg class="me-1" width="32" height="32"
                     viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -26,8 +27,12 @@
                         fill="#FC8019"></path>
                 </svg>
             </a></span>
-        <input type="text" class="form-control p-0" placeholder="What do you want eat today...">
+        <input type="text" class="form-control p-0" name="search" placeholder="What do you want eat today...">
+    </form>
     </div>
+
+
+
     <br><br>
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <div class="row">

@@ -110,6 +110,9 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
         route::put('profile.update{id}', 'updateprofile')->name('updateProfile');
         route::put('profile.update.pass{id}', 'updateProfilePass')->name('updateProfilePass');
     });
+    Route::controller(UserDashboardController::class)->group(function () {
+        Route::get('/dashboard/search', 'search')->name('dashboard.search');
+    });
 
 });
 
