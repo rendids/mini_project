@@ -10,11 +10,6 @@
             </a></span>
             <input type="text" class="form-control p-0" placeholder="Search here">
         </div>
-        <select class="form-control default-select border w-auto" style="display: none;">
-            <option>Recently</option>
-            <option>Oldest</option>
-            <option>Newest</option>
-        </select><div class="nice-select form-control default-select border w-auto" tabindex="0"><span class="current">Recently</span><ul class="list"><li data-value="Recently" class="option selected">Recently</li><li data-value="Oldest" class="option">Oldest</li><li data-value="Newest" class="option">Newest</li></ul></div>
     </div>
     <div class="card h-auto">
         <div class="card-body p-0">
@@ -69,7 +64,11 @@
                                     <h4 class="text-primary">$ 5.59</h4>
                                 </div>
                             </td>
-                            <td><span class="badge badge-xl light badge-success">Completed</span></td>
+                            <td><!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Beri Ratting
+                                  </button>
+                            </td>
                             <td>
                                 <div>
                                     <a href="javascript:void(0);" class="btn btn-outline-primary">Order Again</a>
@@ -114,5 +113,71 @@
         </div>
     </div>
 </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="rating-container">
+                            <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
+                            <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
+                            <i class="far fa-star" data-rating="3" style="font-size: 300%; color: #ffd700;"></i>
+                            <i class="far fa-star" data-rating="4" style="font-size: 300%; color: #ffd700;"></i>
+                            <i class="far fa-star" data-rating="5" style="font-size: 300%; color: #ffd700;"></i>
+                        </div>
+                    </div
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label for="name" class="fs-4 fw-bold">Komentar</label>
+                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-success">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const stars = document.querySelectorAll('.rating-container i');
+
+        stars.forEach((star) => {
+            star.addEventListener('click', function () {
+                const clickedRating = this.getAttribute('data-rating');
+                resetStars(clickedRating);
+                updateRating(clickedRating);
+            });
+        });
+
+        function resetStars(clickedRating) {
+            stars.forEach((star) => {
+                const starRating = star.getAttribute('data-rating');
+                star.classList.remove('fas');
+
+                // Tampilkan kembali rating yang lebih rendah atau sama dengan yang dipilih
+                if (starRating <= clickedRating) {
+                    star.classList.add('fas');
+                }
+            });
+        }
+
+        function updateRating(rating) {
+            // Lakukan apa yang Anda butuhkan ketika rating diperbarui
+            console.log('Rating baru: ' + rating);
+        }
+    });
+    </script>
+
 
 @endsection
