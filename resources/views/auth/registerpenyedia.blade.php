@@ -130,7 +130,7 @@
                                             </div>
                                             <div class="text-center mt-4">
                                                 <button type="submit" class="btn btn-block shadow text-white"
-                                                    style="background-color: #145AAC">Login</button>
+                                                    style="background-color: #145AAC">Register</button>
                                             </div>
                                         </div>
                                         <p class="mt-5 text-center">

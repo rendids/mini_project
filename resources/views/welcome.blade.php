@@ -33,14 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#testimoni">Testimoni</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link mr-6" href="#hubungi">Hubungi Kami</a>
-                        </li>
                     </ul>
                     <div class="flex items-center font-bold space-x-4">
-                        <button class="bg-blue-600 px-4 py-2 text-white hover:opacity-80 rounded-full">Masuk</button>
-                        <button
-                            class="px-4 py-2 border-2 hover:transition hover:ease-in-out hover:delay-100 duration-100 rounded-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">Daftar</button>
+                        <a href="/auth/login" class="bg-blue-600 px-4 py-2 text-white hover:opacity-80 rounded-full">Masuk</a>
                     </div>
                 </div>
             </div>
@@ -52,14 +47,8 @@
         <!-- Bagian Kiri -->
         <div class="lg:w-1/2 relative text-white flex items-center justify-center">
             <div class="text-left mt-8 mx-5 lg:mx-0">
-                <h1 class="text-6xl font-bold mb-3">Welcome to Your Website</h1>
-                <p class="text-lg ml-3  mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ratione
-                    vel modi ab quod dolor reiciendis asperiores nostrum nam cumque! Ipsam doloremque, repellat aut
-                    dolores atque cumque quaerat eum assumenda molestias nesciunt ab suscipit expedita consectetur eius!
-                    Inventore, delectus dolore..</p>
-                <a href="#"
-                    class="bg-white text-blue-600  py-2 px-4 rounded-full font-bold transition duration-300 hover:bg-blue-500 hover:text-white">Get
-                    Started</a>
+                <h1 class="text-6xl font-bold mb-3">SELAMAT DATANG DI WEBSITE KAMI</h1>
+                <p class="text-lg ml-3  mb-8">Website kami adalah website yang menyediakan berbagai jenis layanan jasa unggulan yang akan membantu anda dengan layanan terbaik.Kualitas tanpa kompromi, layanan yang disesuaikan dengan kebutuhan Anda.Kami bangga menjadi mitra pilihan dalam memenuhi kebutuhan Anda.</p>
             </div>
         </div>
 
@@ -70,15 +59,12 @@
             </div>
         </div>
     </div>
-    <div class="w-full bg-slate-100   h-screen">
+    <div id="layanan" class="w-full bg-slate-100   h-screen">
         <div class="row mx-5 ">
             <div class=" mx-auto mt-4 mb-5">
 
                 <p class="text-4xl text-center font-semibold mb-2">Layanan Kami</p>
-                <p class=" text-center text-base ">Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Est sit
-                    voluptate itaque, laboriosam quam, illo commodi ipsam obcaecati <br> maiores dolorem repellendus
-                    nostrum
-                    similique quae consectetur!</p>
+                <p class=" text-center text-base mb-2">Layanan yang dapat disesuaikan dengan kebutuhan Anda.Layanan jasa berkualitas tinggi untuk <br> memenuhi harapan Anda.Dari ide hingga realisasi, kami siap menjadi mitra terpercaya Anda.Yang Dilayani oleh Ahli Berpengalaman    </p>
             </div>
             <div class="col-md-12 flex flex-wrap">
 
@@ -143,16 +129,12 @@
             </div>
         </div>
     </div>
-    <div class="w-full bg-blue-600   h-[35rem]">
+    <div id="tentang" class="w-full bg-blue-600   h-[35rem]">
         <div class="row mx-5 ">
             <div class=" mx-auto mt-14 mb-5">
 
                 <p class="text-4xl text-center font-semibold text-white mb-2">Keunggulan Kami</p>
-                <p class=" text-center text-base text-white ">Lorem ipsum dolor sit amet consectetur <br> adipisicing
-                    elit. Est sit
-                    voluptate itaque, laboriosam quam, illo commodi ipsam obcaecati <br> maiores dolorem repellendus
-                    nostrum
-                    similique quae consectetur!</p>
+                <p class=" text-center text-base text-white ">Kami mengutamakan kepuasan pelanggan dengan layanan terbaik. <br> Dapatkan Solusi yang Efektif dan Efisien dengan Layanan Jasa Kami.<br>Pelayanan Jasa Berkualitas Tinggi Hanya Sejauh Klik dengan ujung jari anda. </p>
             </div>
             <div class="col-md-12 flex flex-wrap">
 
@@ -162,17 +144,12 @@
                     <div
                         class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md">
 
-                        <div class="card-body ">
+                        <div class="card-body text-center">
 
-                            <svg class=" mx-auto" xmlns="http://www.w3.org/2000/svg" height="40"
-                                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                                <path
-                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-                            </svg>
+                            <i class=" fa-solid fa-wrench" style="font-size: 300%"></i>
 
-                            <div class="text-2xl text-center font-semibold">Judul Keunggulan</div>
-                            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio,
-                                ullam!</p>
+                            <div class="text-2xl text-center font-semibold">Keunggulan Layanan</div>
+                            <p class="text-center">Pelayanan kami sudah pasti berkualitas dengan penyedia jasa yang sudah berpengalaman dalam bidangnya</p>
                         </div>
                     </div>
                 </div>
@@ -181,16 +158,11 @@
                     <div
                         class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md">
 
-                        <div class="card-body ">
+                        <div class="card-body  text-center">
 
-                            <svg class=" mx-auto" xmlns="http://www.w3.org/2000/svg" height="40"
-                                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                                <path
-                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-                            </svg>
-                            <div class="text-2xl text-center font-semibold">Judul Keunggulan</div>
-                            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio,
-                                ullam!</p>
+                            <i class="fa-solid fa-link" style="font-size: 300%"></i>
+                            <div class="text-2xl text-center font-semibold">Keunggulan Fitur </div>
+                            <p class="text-center">Keunggulan wesite kita terdapat fitur pengajuan untuk layanan jasa dan juga banyak fitur pembayaran yang tersedia</p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +177,7 @@
                                 <path
                                     d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                             </svg>
-                            <div class="text-2xl text-center font-semibold">Judul Keunggulan</div>
+                            <div class="text-2xl text-center font-semibold">Keunggulan</div>
                             <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio,
                                 ullam!</p>
                         </div>
@@ -217,7 +189,7 @@
             </div>
         </div>
     </div>
-    <div class="w-full bg-slate-100   h-screen">
+    <div id="testimoni" class="w-full bg-slate-100   h-screen">
         <div class="row mx-5 ">
             <div class="mt-8">
 
@@ -225,11 +197,7 @@
                 <div class=" mx-auto mt-4 mb-5">
 
                     <p class="text-4xl text-center font-semibold mb-2">Testimoni Kami</p>
-                    <p class=" text-center text-base ">Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Est
-                        sit
-                        voluptate itaque, laboriosam quam, illo commodi ipsam obcaecati <br> maiores dolorem repellendus
-                        nostrum
-                        similique quae consectetur!</p>
+                    <p class=" text-center text-base ">Berikut adalah beberapa testimoni dari <br>user yang telah menggunakan dan memesan jasa lewat website kami</p>
                 </div>
                 <div class="col-md-12 flex flex-wrap gap-y-3 justify-center">
 
@@ -326,68 +294,14 @@
             </div>
         </div>
     </div>
-    <div class="w-full bg-blue-600 h-screen">
-        <div class="lg:flex mx-5 gap-x-5">
 
 
-            <!-- Right Column -->
-            <div class="lg:w-1/2">
-                <div class="mt-8">
-                    <div class="container mt-32 mx-auto p-6 bg-white rounded-lg shadow-md">
-                        <h2 class="text-2xl font-extrabold mb-6">Contact Us</h2>
-
-                        <!-- Form -->
-                        <form action="#" method="POST">
-                            <!-- Username Field -->
-                            <div class="mb-4">
-                                <label for="username"
-                                    class="block text-gray-600 text-sm font-medium mb-2">Username</label>
-                                <input type="text" id="username" name="username" placeholder="Your Username"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                    required>
-                            </div>
-
-                            <!-- Email Field -->
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-600 text-sm font-medium mb-2">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Your Email"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                    required>
-                            </div>
-
-                            <!-- Message Field -->
-                            <div class="mb-6">
-                                <label for="message"
-                                    class="block text-gray-600 text-sm font-medium mb-2">Message</label>
-                                <textarea id="message" name="message" rows="4" placeholder="Your Message"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                    required></textarea>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <button type="submit"
-                                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="lg:w-1/2">
-                <div class="mt-4">
-                    <div class="container text-end text-white capitalize mt-24 mx-auto p-6 ">
-                        <h2 class="text-6xl font-extrabold mb-6 capitalize">Folow juga kami di </h2>
-                        <div class="gap-x-7">
-
-                            <a href="" class="text"><i class="fa-brands hover:opacity-80 mr-3 fa-instagram text-3xl"></i> </a>
-                            <a href=""><i class="fa-brands hover:opacity-80 mr-3 fa-facebook text-3xl"></i> </a>
-                            <a href=""><i class="fa-brands hover:opacity-80 fa-twitter text-3xl"></i> </a>
-                        </div>
-                        <h2 class="text-xl font-extrabold mb-6 capitalize">untuk mendapatkan info  selanjutnya mengenai  website kami</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="https://flowbite.com/" class="hover:underline"></a>
+    </span>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</footer>
 
     <!-- Tambahkan link Tailwind CSS (diperbarui ke versi terbaru) -->
     <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
