@@ -12,10 +12,12 @@ class DashboardController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $penyedia = penyedia::all();
-        return view('user.dahsboard', compact('penyedia'));
-    }
+{
+
+    $penyedia = penyedia::paginate(8); // Change 10 to the number of items per page you want
+    return view('user.dahboard', compact('penyedia'));
+}
+
 
 
 

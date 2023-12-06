@@ -115,7 +115,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Alamat</strong></label>
-                                                <textarea type="text" class="form-control" name="alamat" value="{{ old('alamat') }}" placeholder="masukkan alamat"></textarea>
+                                                <textarea type="text" class="form-control" name="alamat" value="" placeholder="masukkan alamat">{{ old('alamat') }}</textarea>
                                                 @error('alamat')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

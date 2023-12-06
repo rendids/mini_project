@@ -73,26 +73,46 @@
 
     <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
         <div class="mb-sm-0 mb-3 pagination-title">
-
+            <!-- You can add any title or information here -->
         </div>
         <nav>
             <ul class="pagination pagination-gutter">
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-left"></i></a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                <!-- Previous Page Link -->
+                @if ($penyedia->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="la la-angle-left"></i></span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $penyedia->previousPageUrl() }}" rel="prev">
+                            <i class="la la-angle-left"></i>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-right"></i></a>
-                </li>
+                <!-- Pagination Elements -->
+                @for ($i = 1; $i <= $penyedia->lastPage(); $i++)
+                    <li class="page-item {{ $i == $penyedia->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $penyedia->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+
+                <!-- Next Page Link -->
+                @if ($penyedia->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $penyedia->nextPageUrl() }}" rel="next">
+                            <i class="la la-angle-right"></i>
+                        </a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="la la-angle-right"></i></span>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>
+
     </div>
     </div>
     </div>
