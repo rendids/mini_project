@@ -133,7 +133,7 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     Route::controller(PesananController::class)->middleware('cekprofile')->group(function () {
         Route::get('pesanan', 'index')->name('pesanan');
         Route::patch('pesanan.tolak{id}', 'tolakpesanan')->name('tolak.pesanan');
-        Route::patch('pesanan.terima{id}', 'tolakpesanan')->name('terima.pesanan');
+        Route::patch('pesanan.terima{id}', 'terimapesanan')->name('terima.pesanan');
     });
     Route::controller(RattingController::class)->group(function () {
         Route::get('ratting', 'index')->name('rating.penyedia');

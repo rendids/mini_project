@@ -41,12 +41,12 @@
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <form action="{{ route('terima.pesanan', ['id' => $itm->id]) }}" method="POST">
+                                        <form action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
                                             @csrf
                                             @method('patch')
                                             <button type="submit" class="btn btn-outline-danger">tolak</button>
                                         </form>
-                                        <form action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
+                                        <form action="{{ route('terima.pesanan', ['id' => $itm->id]) }}" method="POST">
                                             @csrf
                                             @method('patch')
                                             <button type="submit" class="btn btn-outline-success mx-3">Terima</button>
