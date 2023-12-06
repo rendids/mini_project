@@ -60,7 +60,7 @@
                                         <div class="form-step" data-step="1">
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Username</strong></label>
-                                                <input type="text" class="form-control" name="name" value="{{ old('name')}}" placeholder="Masukkan Username">
+                                                <input type="text" class="form-control" name="name" value="{{ old('name')}}" placeholder="masukkan Username">
                                                 @error('name')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -68,7 +68,7 @@
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Email</strong></label>
                                                 <input type="email" class="form-control" name="email"
-                                                value="{{ old('email')}}" placeholder="Masukkan email">
+                                                value="{{ old('email')}}" placeholder="masukkan email">
                                                 @error('email')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -76,16 +76,14 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>Password</strong></label>
-                                                    <input type="password" class="form-control" name="password"
-                                                        placeholder="Masukkan password">
+                                                    <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="masukkan password">
                                                         @error('password')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label class="mb-1"><strong>Konfirmasi Password</strong></label>
-                                                    <input type="password" class="form-control"
-                                                        name="konfirmasi-password" placeholder="Konfirmasi password">
+                                                    <input type="password" class="form-control" name="konfirmasi-password" value="{{ old('konfirmasi-password') }}" placeholder="asukkan konfirm passsword">
                                                         @error('konfirmasi-password')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -117,7 +115,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="mb-1"><strong>Alamat</strong></label>
-                                                <textarea type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">{{ old('alam')}}</textarea>
+                                                <textarea type="text" class="form-control" name="alamat" value="{{ old('alamat') }}" placeholder="masukkan alamat"></textarea>
                                                 @error('alamat')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
