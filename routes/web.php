@@ -50,6 +50,12 @@ Route::post('/email/verification-notification', [EmailVerificationController::cl
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
+    Route::middleware(['checkProfile'])->group(function () {
+        // Routes yang membutuhkan profil lengkap
+
+        Route::get('/dashboard', 'DashboardController@index');
+        // Tambahkan lebih banyak route sesuai kebutuhan
+    });
 
 Route::controller(AuthController::class)->prefix('auth',)->middleware('guest')->group(function () {
     Route::get('login', 'login')->name('login');
@@ -110,7 +116,7 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile');
-        route::put('profile.update{id}', 'updateprofile')->name('updateProfile');
+        route::put('profile.update{id}', 'uploadProfilePhoto')->name('updateProfile');
         route::put('profile.update.pass{id}', 'updateProfilePass')->name('updateProfilePass');
     });
     Route::controller(UserDashboardController::class)->group(function () {
@@ -121,10 +127,10 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
 
 //yang dapat di akses penyedia
 Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(function () {
-    Route::controller(PenyediaDashboardController::class)->group(function () {
+    Route::controller(PenyediaDashboardController::class)->middleware('cekprofile')->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.penyedia');
     });
-    Route::controller(PesananController::class)->group(function () {
+    Route::controller(PesananController::class)->middleware('cekprofile')->group(function () {
         Route::get('pesanan', 'index')->name('pesanan');
         Route::patch('pesanan.tolak{id}', 'tolakpesanan')->name('tolak.pesanan');
         Route::patch('pesanan.terima{id}', 'tolakpesanan')->name('terima.pesanan');
@@ -135,5 +141,8 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     Route::controller(PenyediaProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile.penyedia');
         Route::put('profile.update{id}', 'profileupdate')->name('update.profile.penyedia');
+        Route::post('/dashboard/upload-profile-photo', 'uploadProfilePhoto')->name('uploadProfilePhoto');
+        // Route::put('update-profile{id}', 'uploadPhoto')->name('upload.photo');
+        Route::put('update/{id}', 'upload')->name('upload.foto');
     });
 });

@@ -21,6 +21,8 @@ class ProfileController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+
     public function updateprofile(Request $request , string $id)
     {
        $user = User::findorfail($id);

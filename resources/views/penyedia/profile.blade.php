@@ -68,7 +68,14 @@
     <div class="tab-content mt-3">
         <div class="tab-pane active" id="home">
             <div class="container-fluid mt-3">
-                <form action="{{ route('update.profile.penyedia', ['id' => $data_user->id]) }}" method="POST"
+                @if ($errors->any)
+                @foreach ($errors as $item)
+                {{ $item }}
+                @endforeach
+                @else
+
+                @endif
+                <form action="{{ route('upload.foto', ['id' => $data_user->id]) }}" method="POST"
                     enctype="multipart/form-data" class="form-horizontal">
                     @method('PUT')
                     @csrf
@@ -127,9 +134,9 @@
 
                                     <div class="form-group">
                                         <label for="inputName2" class="col-form-label fw-bold fs-4">No Telp</label>
-                                        <input type="tel" class="form-control" name="phone" id="no_telp"
+                                        <input type="tel" class="form-control" name="telp" id="telp"
                                             placeholder="{{ $data_user->phone ?? 'Nomor telepon belum ditambahkan' }}"
-                                            value="{{ $data_user->phone ?? '' }}">
+                                            value="{{ $data_user->telp ?? '' }}">
                                         @error('phone')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
