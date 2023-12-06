@@ -45,6 +45,7 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 've
     ->name('verification.verify');
 
 Route::get('/kebijakan_privasi', [AuthController::class, 'kebijakan'])->name('kebijakan_privasi');
+Route::get('/resetpassword', [AuthController::class, 'lupa_password'])->name('lupa.password');
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'sendVerificationNotification'])
     ->middleware(['auth', 'throttle:6,1'])

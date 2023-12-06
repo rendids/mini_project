@@ -1,24 +1,132 @@
 @extends('layoutsuser.appprofile')
 @section('profile')
-    <div class="container-fluid mt-3">
-        <form action="{{ route('updateProfile', ['id' => $data_user->id]) }}" method="POST" enctype="multipart/form-data"
-            class="form-horizontal">
-            @method('PUT')
-            @csrf
+
+<nav class="navbar navbar-expand-lg justify-content-center ms-5">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active mt-2" style="font-size: 12pt">
+                <a class="nav-link" href="#home" data-toggle="tab" onclick="openTab('home')">
+                    Profile
+                </a>
+            </li>
+            <li class="nav-item mt-2" style="font-size: 12pt;">
+                <a class="nav-link" href="#about" data-toggle="tab" onclick="openTab('about')">
+                    Ubah Password
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <hr>
+    <div class="tab-content mt-3">
+        <div class="tab-pane active" id="home">
+            <div class="container-fluid mt-3">
+                <form action="{{ route('update.profile.penyedia', ['id' => $data_user->id]) }}" method="POST"
+                    enctype="multipart/form-data" class="form-horizontal">
+                    @method('PUT')
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card d-flex align-items-center p-2 h-100 border-0 ">
+                                <h4 class="text-center mt-2">Profile</h4>
+                                <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
+                                    <img src="{{ asset('storage/fotopenyedia/' . $data_user->foto) }}"
+                                        class="profile-image card-img-top" alt="Profile" id="photo-profile"
+                                        style="width: 100%; height: 100%; border-radius:50%;">
+                                </div>
+                                <div class="text-center" style="height: auto">
+                                    <h5 class="card-title">{{ $data_user->name }}</h5>
+                                    @error('foto')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                    <input hidden type="file" name="foto" id="foto"
+                                        onchange="
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (e) {
+                                            $('#photo-profile').attr('src', e.target.result);
+                                        }
+
+                                        reader.readAsDataURL(this.files[0]);
+                                ">
+                                    <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
+                                        profile</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card h-100"
+                                style="border-left: 2px solid #black; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                                <div class="card-header">
+                                    <h2>Detail Info User</h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
+                                        <input type="text" class="form-control" name="nama" id="inputName"
+                                            placeholder="Nama" value="{{ $data_user->name }}">
+                                        @error('nama')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail" class="col-form-label fw-bold fs-4">Email</label>
+                                        <input type="email" class="form-control" name="email" id="inputEmail"
+                                            placeholder="Email" value="{{ $data_user->email }}">
+                                        @error('email')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputName2" class="col-form-label fw-bold fs-4">No Telp</label>
+                                        <input type="tel" class="form-control" name="phone" id="no_telp"
+                                            placeholder="{{ $data_user->phone ?? 'Nomor telepon belum ditambahkan' }}"
+                                            value="{{ $data_user->phone ?? '' }}">
+                                        @error('phone')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputExperience" class="col-form-label fw-bold fs-4">Alamat</label>
+                                        <textarea class="form-control" name="alamat" id="inputExperience"
+                                            placeholder="{{ $data_user->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->alamat ?? '' }}</textarea>
+                                        @error('alamat')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end pt-2">
+                        <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane active" id="about">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="card d-flex align-items-center p-2 h-100">
-                        <div style="border-radius: 100%; height:150px; width:155px;">
-                            <img src="{{ asset('storage/image/photo-user/' . $data_user->foto) }}"
+                    <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
+                        <h4 class="text-center mt-2">Profile</h4>
+                        <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
+                            <img src="{{ asset('storage/fotopenyedia/' . $data_user->foto) }}"
                                 class="profile-image card-img-top" alt="Profile" id="photo-profile"
                                 style="width: 100%; height: 100%; border-radius:50%;">
                         </div>
-                        <div class="card-body text-center">
+                        <div class="text-center" style="height: auto">
                             <h5 class="card-title">{{ $data_user->name }}</h5>
-                            @error('pp')
+                            @error('foto')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
-                            <input type="file" name="pp" id="pp"
+                            <input hidden type="file" name="foto" id="foto"
                                 onchange="
                                     var reader = new FileReader();
 
@@ -30,104 +138,59 @@
                                  "style="display: none;">
                             <label for="pp" class="btn btn-outline-dark btn-block mb-2">Ubah foto profile</label>
                         </div>
-<hr><hr>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="card h-100">
+                    <div class="card h-100"
+                        style="border-left: 2px solid #black; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                         <div class="card-header">
-                            <h3 class="card-title">Detail Info User</h3>
+                            <h2>Ubah Password</h2>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputName" class="col-form-label">Nama</label>
-                                <input type="text" class="form-control" name="nama" id="inputName" placeholder="Nama" value="{{ $data_user->name }}">
-                                @error('nama')
-                                    <p class="text-danger">{{ $message }}</p>
+                                <label for="old_password" class="col-form-label fw-bold fs-4">Password Lama</label>
+                                    <input type="text"
+                                        class="form-control  @error('old_password') is-invalid @enderror"
+                                        id="old_password" placeholder="password lama" name="old_password">
+                                    @error('old_password')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="col-form-label fw-bold fs-4">Password Baru</label>
+                                <input type="password"
+                                    class="form-control   @error('password') is-invalid @enderror" id="password"
+                                    name="password"
+                                    placeholder="Password">
+                                @error('password')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group">
-                                <label for="inputEmail" class="col-form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email" value="{{ $data_user->email }}">
-                                @error('email')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <label for="password_confirmation" class="col-form-label fw-bold fs-4">Confirm Password</label>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                name="password_confirmation"
+                                    placeholder="Password">
                             </div>
-
-                            <div class="form-group">
-                                <label for="inputName2" class="col-form-label">No Telp</label>
-                                <input type="tel" class="form-control" name="phone" id="no_telp" placeholder="{{ $data_user->phone ?? 'Nomor telepon belum ditambahkan' }}" value="{{ $data_user->phone ?? '' }}">
-                                @error('phone')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputExperience" class="col-form-label">Alamat</label>
-                                <textarea class="form-control" name="alamat" id="inputExperience" placeholder="{{ $data_user->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->alamat ?? '' }}</textarea>
-                                @error('alamat')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-
+                        </div>
+                        <div class="d-flex justify-content-end pt-2">
+                            <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-end pt-3">
-                <button type="reset" class="btn btn-outline-danger mx-3 ">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-
         </div>
-        </form>
 
-    <!-- Modal Ganti Kata Sandi -->
-    <div class="modal fade" id="gantiKataSandiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ganti Kata Sandi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('updateProfilePass', '') }}/{{ $data_user->id }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="passwordLama">Kata Sandi Lama</label>
-                            <input type="password" class="form-control" name="passwordLama" id="passwordLama"
-                                placeholder="Kata Sandi Lama">
-                            @error('passwordLama')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="passwordBaru">Kata Sandi Baru</label>
-                            <input type="password" class="form-control" name="passwordBaru" id="passwordBaru"
-                                placeholder="Kata Sandi Baru">
-                            @error('passwordBaru')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="konfirmasiPasswordBaru">Konfirmasi Kata Sandi Baru</label>
-                            <input type="password" class="form-control" name="konfirmasiPasswordBaru"
-                                id="konfirmasiPasswordBaru" placeholder="Konfirmasi Kata Sandi Baru">
-                            @error('konfirmasiPasswordBaru')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-secondary">Simpan Perubahan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
+<script>
+    function openTab(tabName) {
+        $('.nav-link').removeClass('active');
+        $('[href="#' + tabName + '"]').addClass('active');
+        $('.tab-pane').removeClass('show active');
+        $('#' + tabName).addClass('show active');
+    }
+</script>
