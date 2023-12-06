@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('pemesan');
             $table->string('jasa');
             $table->string('penyedia');
-            $table->dateTime('waktu');  
+            $table->dateTime('waktu');
             $table->string('alamatpemesan');
             $table->string('pembayaran');
             $table->string('bukti');
+            $table->string('total');
             $table->string('status');
 =======
             

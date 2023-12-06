@@ -26,59 +26,65 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                @foreach ($ as $item)
-                                    <td><strong></strong></td>
-                                    <td><strong>ilya halimatus</strong></td>
-                                    <td><strong>Dr. Jackson</strong></td>
-                                    <td><strong>Service AC</strong></td>
-                                    <td><strong>Rp. 330.000</strong></td>
+                            @foreach ($pemesan as $itm)
+                                <tr>
+                                    <td><strong>{{ $loop->iteration }}</strong></td>
+                                    <td><strong>{{ $itm->pemesan }}</strong></td>
+                                    <td><strong>{{ $itm->penyedia }}</strong></td>
+                                    <td><strong>{{ $itm->jasa }}</strong></td>
+                                    <td><strong>{{ $itm->total }}</strong></td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="#" class="btn btn-primary shadow btn-xm sharp me-1"
-                                                data-bs-toggle="modal" data-bs-target="#myModal">
+                                            <button type="button" class="btn btn-primary shadow btn-xm sharp me-1"
+                                                onclick="openModal('{{ $itm->id }}', '{{ $itm->pembayaran }}', '{{ $itm->bukti }}')">
                                                 <i class="fa fa-eye"></i>
-                                            </a>
-                                        </div>
-                                @endforeach
+                                            </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Pengajuan Dana</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="mb-3">
-                                                        <label for="metodePengajuan" class="form-label">Metode
-                                                            Pengajuan</label>
-                                                        <input type="text" class="form-control" id="metodePengajuan"
-                                                            placeholder="Masukkan metode pengajuan">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="keterangan" class="form-label">Keterangan</label>
-                                                        <textarea class="form-control" id="keterangan" rows="3" placeholder="Masukkan keterangan"></textarea>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-success">Terima</button>
-                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                </td>
-                            </tr>
-
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="metodePengajuan" class="form-label">Metode pembayaran</label>
+                        <input type="text" value="" readonly class="form-control" id="metodePembayaran"
+                            placeholder="Masukkan metode pengajuan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Bukti</label>
+                        <img src="" id="foto" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <form id="formpersetujuuan" action="" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Terima</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
+<script>
+    function openModal(id, pembayaran, bukti) {
+        var setujui = document.getElementById('formpersetujuuan');
+        setujui.action = "{{ route('setujui.pemesanan', ['id' => ':id']) }}".replace(':id', id);
+        document.getElementById('metodePembayaran').value = pembayaran;
+        document.getElementById('foto').src = '{{ asset('storage/bukti') }}/' + bukti;
+        $('#modal').modal('show');
+    }
+</script>

@@ -13,6 +13,7 @@
                                 <th>Jasa</th>
                                 <th>tanggal</th>
                                 <th>pembayaran</th>
+                                <th>Total</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -24,6 +25,7 @@
                                     <td>{{ $item->jasa }}</td>
                                     <td>{{ $item->waktu }}</td>
                                     <td>{{ $item->pembayaran }}</td>
+                                    <td>{{ $item->total }}</td>
                                     @if ($item->status == 'menunggu konfirmasi')
                                         <td class="text-danger">{{ $item->status }}</td>
                                     @else

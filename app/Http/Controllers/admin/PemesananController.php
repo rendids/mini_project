@@ -13,16 +13,21 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        $pemesan = pesanan::all();
+        $pemesan = pesanan::where('status', 'dalam proses tahap 1')->get();
        return view('admin.pemesanan', compact('pemesan'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function setujui($id)
     {
-        //
+      $pesanan =  pesanan::find($id);
+
+      $pesanan->update(['status' => 'dalam proses tahap 2']);
+
+
+      return redirect()->back();
     }
 
     /**

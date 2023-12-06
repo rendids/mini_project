@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Models\pesanan;
 use App\Models\penyedia;
 use App\Models\pembayaran;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -43,16 +44,26 @@ class DetailController extends Controller
             'pembayaran' => 'required',
             'bukti' => 'required'
         ]);
+        $keteranganFile = $request->file('bukti');
+        if ($keteranganFile) {
+            $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
+            $keteranganFile->storeAs('public/bukti', $namaGambar);
+        } else {
+            // Handle the case where no file is present
+        }
+
         $buat = pesanan::create([
             'pemesan' => $request->pemesan,
             'penyedia' => $request->penyedia,
-            'jasa' => $request ->jasa,
+            'jasa' => $request->jasa,
             'alamatpemesan' => $request->alamatpemesan,
             'waktu' => $request->waktu,
             'pembayaran' => $request->pembayaran,
-            'bukti' => $request->bukti,
-            'status' => 'dalam proses',
+            'bukti' => $namaGambar, // Use $namaGambar directly
+            'total' => $request->total,
+            'status' => 'dalam proses tahap 1',
         ]);
+
         return redirect()->route('pesan');
     }
 

@@ -24,20 +24,21 @@
             <div class="card mb-3" style="width:1500px; height:auto">
                 <div class="row g-0">
                     @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> Ada beberapa masalah dengan input Anda.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> Ada beberapa masalah dengan input Anda.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="col-md-12">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <form action=" {{ route('buat.pemesanan') }}" method="POST">
+                                    <form action=" {{ route('buat.pemesanan') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <label for="name" class="fs-4 fw-bold">Nama</label>
                                         <input type="text" name="pemesan" class="form-control"
@@ -141,7 +142,11 @@
                                             }
                                         </script>
                                         <div class="modal-footer ">
+                                            <div class="">
+                                                <h1>Total</h1>
+                                            </div>
                                             <h4 class="">{{ $sedia->harga }}</h4>
+                                            <input hidden name="total" type="text" value="{{ $sedia->harga }}">
                                         </div>
                                         <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
                                         </form>

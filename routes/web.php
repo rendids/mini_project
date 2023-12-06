@@ -87,6 +87,7 @@ Route::middleware('user-access:admin', 'auth',)->prefix('admin')->group(function
     });
     Route::controller(PemesananController::class)->group(function () {
         route::get('pemesanan', 'index')->name('pemesanan');
+        route::patch('setujui.pesanan{id}', 'setujui')->name('setujui.pemesanan');
     });
 });
 
@@ -125,6 +126,8 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     });
     Route::controller(PesananController::class)->group(function () {
         Route::get('pesanan', 'index')->name('pesanan');
+        Route::patch('pesanan.tolak{id}', 'tolakpesanan')->name('tolak.pesanan');
+        Route::patch('pesanan.terima{id}', 'tolakpesanan')->name('terima.pesanan');
     });
     Route::controller(RattingController::class)->group(function () {
         Route::get('ratting', 'index')->name('rating.penyedia');
