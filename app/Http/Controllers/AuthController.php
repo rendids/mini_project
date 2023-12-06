@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\password;
+
 class AuthController extends Controller
 {
     public function login()
@@ -100,17 +102,22 @@ class AuthController extends Controller
             'konfirmasi-password' => 'required',
             // penyedia
             'layanan' => 'required',
-            'alamat' => 'required',
-            'telp' => 'required',
+            'alamat' => 'required|min:5|max:200',
+            'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
 
         ],[
             'name.required' => 'Harap masukkan username',
             'email.required' => 'Harap masukkan email',
             'password.required' => 'Harap masukkan password',
             'konfirmasi-password.required' => 'Harap masukkan konfirmasi password',
-            'layanan.required' => 'Harap masukkan kategori',
+            'layanan.required' => 'Harap masukkan nama layanan jasa',
             'alamat.required' => 'Harap masukkan alamat',
+            'alamat.min' => 'alamat minimal 5 huruf',
+            'alamat.max' => 'alamat maksimal tidak melebihi 200 kalimat',
             'telp.required' => 'Harap masukkan no telp',
+            'telp.numeric' => 'no telp harus berupa angka',
+            'telp.regex' => 'format no telpon tidak valid',
+            'telp.digits_between' => 'no telp harus memiliki panjang antara 10 hingga 12'
         ]);
 
         $validator->validate();
@@ -132,7 +139,7 @@ class AuthController extends Controller
             'telp' => $request->telp,
         ]);
 
-        return view('auth.login')->with('message', 'silahkan tungu konfirmasi admin');
+        return view('auth.login')->with('success', 'silahkan tunggu konfirmasi admin');
     }
 
     public function logout(Request $request)
@@ -144,8 +151,13 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-    public function kebijakan()
+    public function resetpassword()
     {
-        return view('auth.kebijakan');
+        return view('auth.resetpassword');
+    }
+
+    public function passwordemail()
+    {
+
     }
 }
