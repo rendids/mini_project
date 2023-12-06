@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
+<<<<<<< Updated upstream
             $table->string('pemesan');
             $table->string('jasa');
             $table->string('penyedia');
@@ -21,6 +22,9 @@ return new class extends Migration
             $table->string('pembayaran');
             $table->string('bukti');
             $table->string('status');
+=======
+            
+>>>>>>> Stashed changes
             $table->timestamps();
         });
     }

@@ -100,6 +100,7 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     });
     Route::controller(RiwayatController::class)->group(function () {
         Route::get('riwayat', 'index')->name('riwayat');
+        Route::post('rating','rating')->name('rating');
     });
     Route::controller(DetailController::class)->group(function () {
         Route::get('detail{id}', 'index')->name('detail');
@@ -126,7 +127,7 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
         Route::get('pesanan', 'index')->name('pesanan');
     });
     Route::controller(RattingController::class)->group(function () {
-        Route::get('ratting', 'index')->name('ratting');
+        Route::get('ratting', 'index')->name('rating.penyedia');
     });
     Route::controller(PenyediaProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile.penyedia');

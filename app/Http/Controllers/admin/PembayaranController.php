@@ -37,7 +37,7 @@ class PembayaranController extends Controller
             'tujuan' => 'required|unique:pembayarans,tujuan,NULL,id,metode,' . $request->input('metode'),
             'keterangan' => 'required',
         ], [
-            'metode.required' => 'wajib diisi',
+            'metode.required' => 'metode wajib diisi',
             'tujuan.required' => 'tujuan pembayaran wajib diisi',
             'tujuan.unique' => 'tujuan pembayaran telah ada',
             'keterangan.required' => 'keterangan wajib diisi',
@@ -86,7 +86,12 @@ class PembayaranController extends Controller
         $data = $request->validate([
             'metode' => 'required',
             'tujuan' => 'required',
-            'keterangan' => $request->input('metode') === 'E-WALET' ? 'nullable|image' : 'nullable',
+            'keterangan' => $request->input('metode') === 'E-WALET' ? 'nullable|image' : 'required,nullable' ,
+        ],[
+            'metode.required' => 'Metode pembayaran harus dipilih.',
+            'tujuan.required' => 'Tujuan pembayaran harus diisi.',
+            'keterangan.required'=>'keterangan harus diisi',
+            'keterangan.image' => 'Keterangan harus berupa file gambar (jika metode E-WALET).',
         ]);
 
         $metodePembayaran = $request->input('metode');

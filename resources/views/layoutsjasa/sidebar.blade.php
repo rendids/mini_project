@@ -11,7 +11,7 @@
                     <span class="nav-text">Pesanan</span>
                 </a>
             </li>
-            <li><a href="{{ route('ratting') }}" aria-expanded="false">
+            <li><a href="{{ route('rating.penyedia') }}" aria-expanded="false">
                 <i class="fa-solid fa-star-half-stroke"></i>
 
                 <span class="nav-text">Ratting</span>

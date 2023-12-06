@@ -18,25 +18,41 @@
                 <div class="modal-body">
                     <form action="{{ route('pembayaran.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <label for="metode">Metode Pembayaran</label>
-                        <select name="metode" class="form-control" id="metode" onchange="handleMetodeChange()">
-                            <option disabled selected>Pilih Metode</option>
-                            <option value="BANK">BANK</option>
-                            <option value="E-WALET">E-WALET</option>
-                        </select>
 
-                        <label for="tujuan" class="mt-3">Tujuan</label>
-                        <input type="text" id="tujuan" name="tujuan" class="form-control"
-                            placeholder="Masukkan tujuan">
+                        <div class="form-group">
+                            <label for="metode">Metode Pembayaran</label>
+                            <select name="metode" class="form-control" id="metode" onchange="handleMetodeChange()">
+                                <option disabled selected>Pilih Metode</option>
+                                <option value="BANK">BANK</option>
+                                <option value="E-WALET">E-WALET</option>
+                            </select>
+                            @error('metode')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                        <label for="keterangan" class="mt-3">Keterangan</label>
-                        <input type="text" id="keterangan" name="keterangan" class="form-control"
-                            placeholder="Masukkan tujuan">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
-                    <button type="sumbit" class="btn btn-primary btn-sm">Simpan</button>
+                        <div class="form-group">
+                            <label for="tujuan" class="mt-3">Tujuan</label>
+                            <input type="text" id="tujuan" name="tujuan" class="form-control" placeholder="Masukkan tujuan">
+                            @error('tujuan')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keterangan" class="mt-3">Keterangan</label>
+                            <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Masukkan keterangan">
+                            @error('keterangan')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -103,7 +119,7 @@
                                 </div>
                             </td>
                             </tr>
-                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -139,6 +155,8 @@
 
                         <label for="edit_keterangan">Keterangan</label>
                         <input type="text" class="form-control" name="keterangan" id="edit_keterangan">
+                        <div style="margin-top: 30px; margin-left:1%">
+                        <img src="{{ asset('storage/pembayaran/' . $item->keterangan) }}" alt="">
 
                     </form>
                 </div>
@@ -149,6 +167,7 @@
             </div>
         </div>
     </div>
+    @endforeach
 
     <script>
         function openEditModal(id, metode, tujuan, keterangan) {

@@ -12,9 +12,9 @@ class RiwayatController extends Controller
     {
        return view('user.riwayat');
     }
-    public function ratting(Request $request)
+    public function rating(Request $request)
     {
-        $ratting= ratting::create([
+        ratting::create([
             'ratting'=>$request->ratting,
             'komentar'=>$request->komentar,
         ]);

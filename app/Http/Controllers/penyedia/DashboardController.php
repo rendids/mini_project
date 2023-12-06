@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\penyedia;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('penyedia.dahsboard');
+        $user=User::where('role', 'user')->count();
+        $penyedia=User::where('role','penyedia')->count();
+        return view('penyedia.dahsboard',compact('user','penyedia'));
     }
 
     /**

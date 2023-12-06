@@ -77,6 +77,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
+<<<<<<< Updated upstream
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -132,4 +133,69 @@
             }
         });
     </script>
+=======
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="{{ route('rating')}}" method="post">
+                            @csrf
+                            @method('POST')
+
+                            <div class="rating-container">
+                                <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
+                                <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
+                                <i class="far fa-star" data-rating="3" style="font-size: 300%; color: #ffd700;"></i>
+                                <i class="far fa-star" data-rating="4" style="font-size: 300%; color: #ffd700;"></i>
+                                <i class="far fa-star" data-rating="5" style="font-size: 300%; color: #ffd700;"></i>
+
+                                <input type="hidden" id="ratingValue" name="ratting" value="">
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <label for="name" class="fs-4 fw-bold">Komentar</label>
+                                    <textarea name="komentar" id="" cols="30" rows="10" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Konfirmasi</button>
+                            </div>
+                        </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll(".rating-container i");
+
+        stars.forEach(function (star) {
+            star.addEventListener("click", function () {
+                const ratingValue = this.getAttribute("data-rating");
+                document.getElementById("ratingValue").value = ratingValue;
+                highlightStars(ratingValue);
+            });
+        });
+    });
+
+    function highlightStars(rating) {
+        const stars = document.querySelectorAll(".rating-container i");
+
+        stars.forEach(function (star) {
+            const starRating = star.getAttribute("data-rating");
+            if (starRating <= rating) {
+                star.classList.add("fas");
+                star.classList.remove("far");
+            } else {
+                star.classList.remove("fas");
+                star.classList.add("far");
+            }
+        });
+    }
+</script>
+
+
+
+>>>>>>> Stashed changes
 @endsection

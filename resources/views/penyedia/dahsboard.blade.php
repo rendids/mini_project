@@ -42,7 +42,7 @@
                                     </svg>
                                     <!-- </div> -->
                                     <div class="text-end">
-                                        <h2 class="angka m-0">142</h2>
+                                        <h2 class="angka m-0">{{$user}}</h2>
                                         <p>jumlah User</p>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                     </svg>
                                     <!-- </div> -->
                                     <div class="text-end">
-                                        <h2 class="angka m-0">89</h2>
+                                        <h2 class="angka m-0">{{$penyedia}}</h2>
                                         <p>Jumlah Jasa</p>
                                     </div>
                                 </div>
