@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Models\pesanan;
 use App\Models\penyedia;
+use App\Models\pembayaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,17 +23,37 @@ class DetailController extends Controller
      * Show the form for creating a new resource.
      */
     public function memesan(string $id)
-        {
-            $sedia = penyedia::find($id);
-            return view('user.memesan', compact('sedia'));
-        }
+    {
+        $sedia = penyedia::find($id);
+        $bayar = pembayaran::all();
+        return view('user.memesan', compact('sedia', 'bayar'));
+    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pemesan' => 'required',
+            'penyedia' => 'required',
+            'jasa' => 'required',
+            'alamatpemesan' => 'required',
+            'waktu' => 'required',
+            'pembayaran' => 'required',
+            'bukti' => 'required'
+        ]);
+        $buat = pesanan::create([
+            'pemesan' => $request->pemesan,
+            'penyedia' => $request->penyedia,
+            'jasa' => $request ->jasa,
+            'alamatpemesan' => $request->alamatpemesan,
+            'waktu' => $request->waktu,
+            'pembayaran' => $request->pembayaran,
+            'bukti' => $request->bukti,
+            'status' => 'dalam proses',
+        ]);
+        return redirect()->route('pesan');
     }
 
     /**

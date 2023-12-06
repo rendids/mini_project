@@ -63,7 +63,7 @@ Route::controller(AuthController::class)->prefix('auth',)->middleware('guest')->
 Route::get('auth/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 //yang dapat di akses admin
-Route::middleware('user-access:admin', 'auth', )->prefix('admin')->group(function () {
+Route::middleware('user-access:admin', 'auth',)->prefix('admin')->group(function () {
     Route::controller(AdminDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.admin');
     });
@@ -104,6 +104,7 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     Route::controller(DetailController::class)->group(function () {
         Route::get('detail{id}', 'index')->name('detail');
         Route::get('memesan{id}', 'memesan')->name('memesan');
+        Route::post('pesan', 'store')->name('buat.pemesanan');
     });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile');

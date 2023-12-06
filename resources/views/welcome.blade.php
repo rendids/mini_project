@@ -34,9 +34,39 @@
                             <a class="nav-link" href="#testimoni">Testimoni</a>
                         </li>
                     </ul>
+                    @auth
+
                     <div class="flex items-center font-bold space-x-4">
                         <a href="/auth/login" class="bg-blue-600 px-4 py-2 text-white hover:opacity-80 rounded-full">Masuk</a>
+                            <!-- Profile Dropdown -->
+                            <div x-data="{ open: false }" class="relative">
+                                <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none">
+                                    @if (Auth::user()->role == 'penyedia')
+                                    <img src="https://placekitten.com/40/40" alt="Profile Image" class="w-8 h-8 rounded-full">
+                                    @else
+                                    <img src="{{ asset('') }}" alt="" srcset="">
+                                    @endif
+                                    <span class="text-gray-700">{{ Auth::user()->name }}</span>
+                                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+
+                                <!-- Dropdown Menu -->
+                                <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">Profil</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">Pengaturan</a>
+                                    <hr class="my-2 border-gray-200">
+                                    <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-red-500 hover:bg-red-100 hover:text-red-700">Keluar</a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    @endauth
+
+                    @guest
+                    <div class="flex items-center font-bold space-x-4">
+                        <button class="bg-blue-600 px-4 py-2 text-white hover:opacity-80 rounded-full" onclick="window.location='{{ route('login') }}'">Masuk</button>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -305,6 +335,8 @@
 
     <!-- Tambahkan link Tailwind CSS (diperbarui ke versi terbaru) -->
     <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+     <!-- Tambahkan link ke CDN Alpine.js untuk menangani interaktivitas dropdown -->
+     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 </body>
 
 </html>

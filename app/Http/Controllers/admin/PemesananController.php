@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\pesanan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PemesananController extends Controller
 {
@@ -12,7 +13,8 @@ class PemesananController extends Controller
      */
     public function index()
     {
-       return view('admin.pemesanan');
+        $pemesan = pesanan::all();
+       return view('admin.pemesanan', compact('pemesan'));
     }
 
     /**

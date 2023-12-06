@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $penyedia = penyedia::all();
+        $penyedia = penyedia::where('status', 'profilelengkap')->get();
         return view('user.dahboard', compact('penyedia'));
     }
 

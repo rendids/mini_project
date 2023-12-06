@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('telp');
             $table->string('foto')->nullable();
+            $table->string('status')->default('profile belum lengkap');
             $table->timestamps();
         });
     }
