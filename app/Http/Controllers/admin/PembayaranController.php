@@ -57,10 +57,8 @@ class PembayaranController extends Controller
                 return  back()->with('error', 'pembayaran gagal');
             }
         }
-        // dd($data);
-        pembayaran::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Data berhasil disimpan.');
     }
 
     /**

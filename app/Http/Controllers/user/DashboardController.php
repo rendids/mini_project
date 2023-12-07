@@ -40,7 +40,7 @@ public function search(Request $request)
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

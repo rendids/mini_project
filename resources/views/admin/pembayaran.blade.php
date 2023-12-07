@@ -18,7 +18,6 @@
                 <div class="modal-body">
                     <form action="{{ route('pembayaran.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
                         <div class="form-group">
                             <label for="metode">Metode Pembayaran</label>
                             <select name="metode" class="form-control" id="metode" onchange="handleMetodeChange()">
@@ -92,6 +91,7 @@
                         </thead>
                         <tbody>
                             @foreach ($pembayaran as $item)
+
                                 <tr>
                                     <td><strong>{{ $loop->iteration }}</strong></td>
                                     <td><span>{{ $item->metode }}</span></td>
@@ -119,6 +119,7 @@
                                 </div>
                             </td>
                             </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -197,7 +198,7 @@
                         <label for="edit_keterangan">Keterangan</label>
                         <input type="text" class="form-control" name="keterangan" id="edit_keterangan">
                         <div style="margin-top: 30px; margin-left:1%">
-                        <img src="{{ asset('storage/pembayaran/' . $item->keterangan) }}" alt="">
+                        <img src="{{ asset('storage/pembayaran/' . $item->keterangan) }}" width="300" alt="">
 
                     </form>
                 </div>
@@ -208,7 +209,6 @@
             </div>
         </div>
     </div>
-    @endforeach
 
     <script>
         function openEditModal(id, metode, tujuan, keterangan) {
