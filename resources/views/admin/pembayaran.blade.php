@@ -122,6 +122,47 @@
 
                         </tbody>
                     </table>
+                    <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
+                        <div class="mb-sm-0 mb-3 pagination-title">
+                            <!-- You can add any title or information here -->
+                        </div>
+                        <nav>
+                            <ul class="pagination pagination-gutter">
+                                <!-- Previous Page Link -->
+                                @if ($pembayaran->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link"><i class="la la-angle-left"></i></span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $pembayaran->previousPageUrl() }}" rel="prev">
+                                            <i class="la la-angle-left"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                <!-- Pagination Elements -->
+                                @for ($i = 1; $i <= $pembayaran->lastPage(); $i++)
+                                    <li class="page-item {{ $i == $pembayaran->currentPage() ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $pembayaran->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+
+                                <!-- Next Page Link -->
+                                @if ($pembayaran->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $pembayaran->nextPageUrl() }}" rel="next">
+                                            <i class="la la-angle-right"></i>
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link"><i class="la la-angle-right"></i></span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>

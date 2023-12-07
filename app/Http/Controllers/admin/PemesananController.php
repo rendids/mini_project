@@ -12,10 +12,11 @@ class PemesananController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $pemesan = pesanan::where('status', 'dalam proses tahap 1')->get();
-       return view('admin.pemesanan', compact('pemesan'));
-    }
+{
+    $pemesan = Pesanan::where('status', 'dalam proses tahap 1')->paginate(10); // Change 10 to the number of items per page you want
+    return view('admin.pemesanan', compact('pemesan'));
+}
+
 
     /**
      * Show the form for creating a new resource.

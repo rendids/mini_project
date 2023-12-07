@@ -15,9 +15,10 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $pembayaran = pembayaran::all();
+        $pembayaran = Pembayaran::paginate(5); // Change 10 to the number of items per page you want
         return view('admin.pembayaran', compact('pembayaran'));
     }
+
 
     /**
      * Show the form for creating a new resource.
