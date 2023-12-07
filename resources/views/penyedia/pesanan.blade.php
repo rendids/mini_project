@@ -6,6 +6,8 @@
         color: white;
     }
 </style>
+
+
     <div class="col-xl-12">
         <div class="card h-auto">
             <div class="card-body p-0">
@@ -40,6 +42,13 @@
                                     <img src="{{ asset('storage/bukti/'. $itm->bukti) }}" class="img-fluid" style="width: 200px;" alt="" srcset="">
                                 </td>
                                 <td>
+
+                                    <style>
+                                        .d-flex.justify-content-center {
+                                            justify-content: space-between;
+                                        }
+                                    </style>
+
                                     <div class="d-flex justify-content-center">
                                         <form action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
                                             @csrf

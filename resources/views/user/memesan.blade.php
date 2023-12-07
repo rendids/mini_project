@@ -143,7 +143,7 @@
                                         </script>
                                         <div class="modal-footer ">
                                             <div class="">
-                                                <h1>Total</h1>
+                                                <h3>Total:</h3>
                                             </div>
                                             <h4 class="">{{ $sedia->harga }}</h4>
                                             <input hidden name="total" type="text" value="{{ $sedia->harga }}">

@@ -151,10 +151,15 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-    public function resetpassword()
+    public function kebijakan()
     {
-        return view('auth.resetpassword');
+        return view('auth.kebijakan');
     }
+
+   public function lupa_password()
+   {
+    return view('auth.resetpassword');
+   }
 
     public function passwordemail()
     {

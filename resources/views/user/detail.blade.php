@@ -34,7 +34,7 @@
                                     <li class="larger-text"><strong>Jadwal Libur:</strong> Tanggal Merah dan Hari Besar</li>
                                 </ul>
                                 <br>
-                                <h2>Harga : {{ $sedia->harga }}</h2>
+                                <h3>Harga : {{ $sedia->harga }}</h3>
                                 <a href="{{ route('memesan', ['id' => $sedia->id]) }}" class="btn btn-primary" >
                                     pesan
                                 </a>
