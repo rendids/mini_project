@@ -106,7 +106,7 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     Route::controller(DetailController::class)->group(function () {
         Route::get('detail{id}', 'index')->name('detail');
         Route::get('memesan{id}', 'memesan')->name('memesan');
-        Route::post('pesan', 'store')->name('buat.pemesanan');
+        Route::post('pesan{id}', 'store')->name('buat.pemesanan');
     });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile');

@@ -163,7 +163,13 @@
                     </div>
                     <div class="d-flex justify-content-end pt-2">
                         <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <form action="{{ route('dashboard.penyedia') }}" method="POST">
+                            @csrf
+                            <!-- Isi formulir dengan input dan field yang sesuai -->
+
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+
                     </div>
                 </form>
             </div>

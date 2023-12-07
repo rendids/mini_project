@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <form action=" {{ route('buat.pemesanan') }}" method="POST"
+                                    <form action=" {{ route('buat.pemesanan', $sedia->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <label for="name" class="fs-4 fw-bold">Nama</label>

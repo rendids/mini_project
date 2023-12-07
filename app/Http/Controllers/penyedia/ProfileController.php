@@ -54,7 +54,7 @@ class ProfileController extends Controller
             'status' => 'profilelengkap'
         ]);
         //   dd($penyedia);
-
+        return redirect()->route('dashboard.penyedia')->with('success', 'Data berhasil disimpan.');
         return redirect()->back();
     }
 }

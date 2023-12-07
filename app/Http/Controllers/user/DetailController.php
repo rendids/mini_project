@@ -25,7 +25,7 @@ class DetailController extends Controller
      */
     public function memesan(string $id)
     {
-        $sedia = penyedia::find($id);
+        $sedia = penyedia::with('user')->find($id);
         $bayar = pembayaran::all();
         return view('user.memesan', compact('sedia', 'bayar'));
     }
@@ -33,7 +33,7 @@ class DetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
         $request->validate([
             'pemesan' => 'required',
@@ -54,7 +54,7 @@ class DetailController extends Controller
 
         $buat = pesanan::create([
             'pemesan' => $request->pemesan,
-            'penyedia' => $request->penyedia,
+            'penyedia_id' => $id,
             'jasa' => $request->jasa,
             'alamatpemesan' => $request->alamatpemesan,
             'waktu' => $request->waktu,

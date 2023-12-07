@@ -53,7 +53,7 @@
 
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
+                            {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
                                 Lihat Notifikasi
                             </button>
 
@@ -91,7 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                             <div class="dropdown header-profile2 ">
                                 <a class="nav-link " href="javascript:void(0);" role="button"
