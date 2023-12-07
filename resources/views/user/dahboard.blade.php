@@ -19,6 +19,7 @@
     </style>
 
     <div class="input-group search-area2 style-1">
+        <form action="{{ route('dashboard.search') }}" method="GET">
         <span class="input-group-text p-0"><a href="javascript:void(0)"><svg class="me-1" width="32" height="32"
                     viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -26,8 +27,11 @@
                         fill="#FC8019"></path>
                 </svg>
             </a></span>
-        <input type="text" class="form-control p-0" placeholder="What do you want eat today...">
+        <input type="text" class="form-control p-0" name="search" placeholder="What do you want eat today...">
+    </form>
     </div>
+
+
     <br><br>
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <div class="row">
@@ -37,7 +41,7 @@
 
                         <div class="card-body pb-0 pt-3">
                             <div class="text-center mb-2">
-                                <img src="{{ asset('storage/fotopenyedia/' . $item->foto) }}" class=""
+                                <img src="{{ asset('storage/' . $item->foto) }}" class=""
                                     style="width: 170px;" alt="foto peyedia">
                             </div>
                             <div class="border-bottom pb-3">
@@ -52,7 +56,7 @@
                             <div class="common d-flex align-items-center justify-content-between">
                                 <div>
                                     <h5 class="text-base font-bold mb-1">Rating: ⭐⭐⭐⭐</h5>
-                                    <h5 class="text-base font-bold mb-1">Harga: <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.')}}</span> </h5>
+                                    <h5 class="text-base font-bold mb-1">Harga: <span>{{ $item->harga }}</span> </h5>
                                 </div>
                                 <a href="{{ route('detail', ['id' => $item->id]) }}" class="btn btn-primary btn-sm fs-1">
                                     <i class="fa-regular fa-eye text-white fs-2"></i>
@@ -68,26 +72,46 @@
 
     <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
         <div class="mb-sm-0 mb-3 pagination-title">
-
+            <!-- You can add any title or information here -->
         </div>
         <nav>
             <ul class="pagination pagination-gutter">
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-left"></i></a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                <!-- Previous Page Link -->
+                @if ($penyedia->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="la la-angle-left"></i></span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $penyedia->previousPageUrl() }}" rel="prev">
+                            <i class="la la-angle-left"></i>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-right"></i></a>
-                </li>
+                <!-- Pagination Elements -->
+                @for ($i = 1; $i <= $penyedia->lastPage(); $i++)
+                    <li class="page-item {{ $i == $penyedia->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $penyedia->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+
+                <!-- Next Page Link -->
+                @if ($penyedia->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $penyedia->nextPageUrl() }}" rel="next">
+                            <i class="la la-angle-right"></i>
+                        </a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="la la-angle-right"></i></span>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>
+
     </div>
     </div>
     </div>

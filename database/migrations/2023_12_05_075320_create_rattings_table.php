@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('rattings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('penyedia_id')->constrained('penyedias');
+            $table->foreignId('pesanan_id')->constrained('pesanans');
             $table->string('ratting');
             $table->string('komentar');
             $table->timestamps();

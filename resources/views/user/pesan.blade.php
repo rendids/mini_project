@@ -21,15 +21,19 @@
                             @foreach ($pesan as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->penyedia }}</td>
+                                    <td>{{ $item->penyedia->user->name }}</td>
                                     <td>{{ $item->jasa }}</td>
                                     <td>{{ $item->waktu }}</td>
                                     <td>{{ $item->pembayaran }}</td>
                                     <td>{{ $item->total }}</td>
-                                    @if ($item->status == 'menunggu konfirmasi')
-                                        <td class="text-danger">{{ $item->status }}</td>
+                                    @if ($item->status == 'di tolak')
+                                    <td class="text-blue">{{ $item->status }}</td>
+                                    @elseif($item->status == 'di terima')
+                                    <td class="text-red">{{ $item->status }}</td>
+                                    @elseif ($item->status == 'dalam proses tahap 1')
+                                    <td class="text-black">{{ $item->status == 'dalam proses tahap 1' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}</td>
                                     @else
-                                        <td class="text-success">{{ $item->status }}</td>
+                                    <td class="text-primary">{{ $item->status == 'dalam proses tahap 1' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}</td>
                                     @endif
                                 </tr>
                             @endforeach

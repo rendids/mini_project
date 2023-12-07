@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             [
+                'id' => '1',
                 'role' => 'admin',
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('12345678'),
             ],
             [
+                'id' => '2',
                 'role' => 'penyedia',
                 'name' => 'penyedia1',
                 'email' => 'penyedia@gmail.com',
@@ -33,12 +35,24 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('12345678')
             ],
             [
+                'id' => '3',
                 'role' => 'user',
                 'name' => 'user1',
                 'email' => 'user@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('12345678')
             ]
+            ]);
+
+            DB::table('penyedias')->insert([
+                'id' => '1',
+                'id_user' => '2',
+                'layanan' => 'perbaiki sepeda',
+                'harga' => '100000',
+                'telp' => '089543558567',
+                'alamat' => 'jl semangka',
+                'foto' => 'fotopenyedia/foto_4.png',
+                'status' => 'profilelengkap'
             ]);
     }
 }

@@ -33,39 +33,45 @@ class DetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $id)
-    {
-        $request->validate([
-            'pemesan' => 'required',
-            'penyedia' => 'required',
-            'jasa' => 'required',
-            'alamatpemesan' => 'required',
-            'waktu' => 'required',
-            'pembayaran' => 'required',
-            'bukti' => 'required'
-        ]);
-        $keteranganFile = $request->file('bukti');
-        if ($keteranganFile) {
-            $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
-            $keteranganFile->storeAs('public/bukti', $namaGambar);
-        } else {
-            // Handle the case where no file is present
-        }
+    public function store(Request $request, $id)
+{
+    $request->validate([
+        'pemesan' => 'required',
+        'penyedia' => 'required',
+        'jasa' => 'required',
+        'alamatpemesan' => 'required',
+        'waktu' => 'required',
+        'pembayaran' => 'required',
+        'bukti' => 'required'
+    ]);
 
-        $buat = pesanan::create([
-            'pemesan' => $request->pemesan,
-            'penyedia_id' => $id,
-            'jasa' => $request->jasa,
-            'alamatpemesan' => $request->alamatpemesan,
-            'waktu' => $request->waktu,
-            'pembayaran' => $request->pembayaran,
-            'bukti' => $namaGambar, // Use $namaGambar directly
-            'total' => $request->total,
-            'status' => 'dalam proses tahap 1',
-        ]);
-
-        return redirect()->route('pesan');
+    $keteranganFile = $request->file('bukti');
+    if ($keteranganFile) {
+        $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
+        $keteranganFile->storeAs('public/bukti', $namaGambar);
+    } else {
+        // Handle the case where no file is present
     }
+
+    // Retrieve the penyedia based on the $id parameter
+    $penyedia = Penyedia::with('user')->findOrFail($id);
+
+    $buat = Pesanan::create([
+        'pemesan' => $request->pemesan,
+        'penyedia_id' => $penyedia->id,
+        'jasa' => $request->jasa,
+        'alamatpemesan' => $request->alamatpemesan,
+        'waktu' => $request->waktu,
+        'pembayaran' => $request->pembayaran,
+        'bukti' => $namaGambar,
+        'total' => $request->total,
+        'status' => 'dalam proses tahap 1',
+    ]);
+
+    // dd($buat);
+    return redirect()->route('pesan');
+}
+
 
     /**
      * Display the specified resource.

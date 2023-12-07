@@ -35,9 +35,7 @@
                         </li>
                     </ul>
                     @auth
-
                     <div class="flex items-center font-bold space-x-4">
-                        <a href="/auth/login" class="bg-blue-600 px-4 py-2 text-white hover:opacity-80 rounded-full">Masuk</a>
                             <!-- Profile Dropdown -->
                             <div x-data="{ open: false }" class="relative">
                                 <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none">
@@ -62,7 +60,6 @@
                         </div>
                     </div>
                     @endauth
-
                     @guest
                     <div class="flex items-center font-bold space-x-4">
                         <button class="bg-blue-600 px-4 py-2 text-white hover:opacity-80 rounded-full" onclick="window.location='{{ route('login') }}'">Masuk</button>

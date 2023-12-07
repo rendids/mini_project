@@ -20,7 +20,7 @@
                 </div>
                 <div class="card" style="width: 200%; height: 120%">
                     <div class="card-body d-flex align-items-center">
-                        <img src="{{ asset('storage/fotopenyedia/' . $sedia->foto) }}" class="card-img-top" alt="..."
+                        <img src="{{ asset('storage/' . $sedia->foto) }}" class="card-img-top" alt="..."
                             style="width: 40%;">
                         <div class="col-md-8">
                             <div class="card-body">

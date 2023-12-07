@@ -17,6 +17,7 @@
                             <tr class="bg-primary text-white">
                                 <th>No</th>
                                 <th>Nama Pemesan</th>
+                                <th>Alamat Pemesaan</th>
                                 <th>Pembayaran</th>
                                 <th>Total</th>
                                 <th>Bukti</th>
@@ -33,10 +34,15 @@
                                     </div>
                                 </td>
                                 <td>
+                                    <div>
+                                        <h5 class="">{{ $itm->alamatpemesan }}</h5>
+                                    </div>
+                                </td>
+                                <td>
                                     <h5 class="">{{ $itm->pembayaran }}</h5>
                                 </td>
                                 <td>
-                                        <h5 class="">{{ $itm->total }}</h5>
+                                    <h5 class="">{{ $itm->total }}</h5>
                                 </td>
                                 <td>
                                     <img src="{{ asset('storage/bukti/'. $itm->bukti) }}" class="img-fluid" style="width: 200px;" alt="" srcset="">

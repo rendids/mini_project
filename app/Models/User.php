@@ -20,6 +20,9 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'foto',
+        'telp',
+        'alamat',
         'email',
         'password',
         'role',
@@ -30,6 +33,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Penyedia::class, 'id_user');
     }
 
+    public function ratings()
+    {
+        return $this->hasMany(ratting::class);
+    }
+
+    public function pesanans()
+    {
+        return $this->hasMany(Pesanan::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

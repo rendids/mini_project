@@ -9,4 +9,9 @@ class pesanan extends Model
 {
     use HasFactory;
     protected $guarded =[];
+
+    public function penyedia()
+    {
+        return $this->belongsTo(Penyedia::class);
+    }
 }

@@ -30,7 +30,7 @@
                                 <tr>
                                     <td><strong>{{ $loop->iteration }}</strong></td>
                                     <td><strong>{{ $itm->pemesan }}</strong></td>
-                                    <td><strong>{{ $itm->penyedia }}</strong></td>
+                                    <td><strong>{{ $itm->penyedia->user->name }}</strong></td>
                                     <td><strong>{{ $itm->jasa }}</strong></td>
                                     <td><strong>{{ $itm->total }}</strong></td>
                                     <td>

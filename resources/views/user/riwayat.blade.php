@@ -28,7 +28,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <p class="mb-0">{{ $pesanan->jasa }}</p>
+                                                <p class="mb-0">{{ $pesanan->waktu }}</p>
                                             </div>
                                         </td>
                                         <td>
@@ -36,7 +36,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <h4 class="text-primary">$ 5.59</h4>
+                                                <h4 class="text-primary">{{ $pesanan->total }}</h4>
                                             </div>
                                         </td>
                                         <td><!-- Button trigger modal -->
@@ -146,6 +146,8 @@
                             <form action="{{ route('rating') }}" method="post">
                                 @csrf
                                 @method('POST')
+                                <input type="hidden" name="pesanan_id" value="{{ $pesanan->id }}">
+                                <input type="hidden" name="pesanan_penyedia_id" value="{{ $pesanan->penyedia->id }}">
                                 <div class="rating-container">
                                     <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
                                     <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
@@ -171,6 +173,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         const stars = document.querySelectorAll(".rating-container i");
