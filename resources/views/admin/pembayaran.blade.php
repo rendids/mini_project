@@ -26,28 +26,31 @@
                                 <option value="E-WALET">E-WALET</option>
                             </select>
                             @error('metode')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="tujuan" class="mt-3">Tujuan</label>
-                            <input type="text" id="tujuan" name="tujuan" class="form-control" placeholder="Masukkan tujuan">
+                            <input type="text" id="tujuan" name="tujuan" class="form-control"
+                                placeholder="Masukkan tujuan">
                             @error('tujuan')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="keterangan" class="mt-3">Keterangan</label>
-                            <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Masukkan keterangan">
+                            <input type="text" id="keterangan" name="keterangan" class="form-control"
+                                placeholder="Masukkan keterangan">
                             @error('keterangan')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-danger light btn-sm"
+                                data-bs-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                         </div>
                     </form>
@@ -91,7 +94,6 @@
                         </thead>
                         <tbody>
                             @foreach ($pembayaran as $item)
-
                                 <tr>
                                     <td><strong>{{ $loop->iteration }}</strong></td>
                                     <td><span>{{ $item->metode }}</span></td>
@@ -123,7 +125,8 @@
 
                         </tbody>
                     </table>
-                    <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
+                    <div
+                        class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
                         <div class="mb-sm-0 mb-3 pagination-title">
                             <!-- You can add any title or information here -->
                         </div>
@@ -198,7 +201,7 @@
                         <label for="edit_keterangan">Keterangan</label>
                         <input type="text" class="form-control" name="keterangan" id="edit_keterangan">
                         <div style="margin-top: 30px; margin-left:1%">
-                        <img src="{{ asset('storage/pembayaran/' . $item->keterangan) }}" width="300" alt="">
+                            <img src="" width="300" alt="" id="gambarmuncul">
 
                     </form>
                 </div>
@@ -213,15 +216,24 @@
     <script>
         function openEditModal(id, metode, tujuan, keterangan) {
             var editForm = document.getElementById('editForm');
+            // Ganti bagian ini untuk memastikan URL rute sesuai dengan struktur URL aplikasi Anda
             editForm.action = "{{ route('pembayaran.update', ['id' => ':id']) }}".replace(':id', id);
 
             document.getElementById('edit_name').value = metode;
             document.getElementById('edit_tujuan').value = tujuan;
 
+            if (metode === 'E-WALET') {
+                var gambarmuncul = document.getElementById('gambarmuncul');
+                gambarmuncul.src = "{{ asset('storage/pembayaran') }}/" + keterangan;
+                gambarmuncul.style.display = 'block'; // Tampilkan gambar
+            } else {
+                document.getElementById('gambarmuncul').style.display = 'none'; // Sembunyikan gambar
+            }
+
             var keteranganInput = document.getElementById('edit_keterangan');
             keteranganInput.value = keterangan;
 
-            // Display the existing file preview
+            // Display the existing file preview (jika ada)
 
             // Change input type based on metode
             if (metode === 'E-WALET') {
