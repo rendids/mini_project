@@ -123,6 +123,7 @@
                                     $('#photo-profile').attr('src', e.target.result);
                                 }
 
+
                                 reader.readAsDataURL(this.files[0]);
                         ">
                             <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
@@ -232,6 +233,13 @@
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="d-flex justify-content-end pt-2">
+                                <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                                <form action="{{ route('dashboard.penyedia') }}" method="POST">
+                                    @csrf
+                                    <!-- Isi formulir dengan input dan field yang sesuai -->
+
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                             <div class="d-flex justify-content-end pt-2">
                                 <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
