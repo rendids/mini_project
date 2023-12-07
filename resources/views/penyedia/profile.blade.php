@@ -106,7 +106,7 @@
                 <div class="col-4" style="border-right:2px solid black">
                     <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
                         <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
-                            <img src="{{ asset('storage/' . $data_user->penyedia->foto) }}"
+                            <img src="{{ asset('storage/' . $data_user->foto) }}"
                                 class="profile-image card-img-top" alt="Profile" id="photo-profile"
                                 style="width: 100%; height: 100%; border-radius:50%;">
                         </div>
@@ -233,6 +233,16 @@
                                 @enderror
                             </div>
                             </div>
+                            <div class="d-flex justify-content-end pt-2">
+                                <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                                <form action="{{ route('dashboard.penyedia') }}" method="POST">
+                                    @csrf
+                                    <!-- Isi formulir dengan input dan field yang sesuai -->
+
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+
                             </div>
+
                         </div>
+
         @endsection
