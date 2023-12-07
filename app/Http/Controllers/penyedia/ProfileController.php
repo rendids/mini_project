@@ -27,9 +27,18 @@ class ProfileController extends Controller
             'foto' => 'required_if:anotherfield,nullable',
             'name' => 'required',
             'email' => 'required',
-            'telp' => 'required',
+            'telp' => 'required|min:10',
             'alamat' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|min:4'
+        ],[
+            'foto.required' => 'Foto Harus Diisi',
+            'name.required' => 'Nama Harus Diisi',
+            'email.required' => 'Email Harus Diisi',
+            'telp.required' => 'No Tlpn Harus Diisi',
+            'telp.min' => 'No Tlp minimal 10 angka',
+            'alamat.required' => 'Alamat Harus Diisi',
+            'harga.required' => 'Harga Harus Diisi',
+
         ]);
 
         $user =  user::find($id);

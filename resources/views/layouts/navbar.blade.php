@@ -1,3 +1,37 @@
+<style>
+    /* Style for the logout button */
+.kotak a {
+    text-decoration: none;
+    color: #ffffff; /* Text color */
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.kotak a:hover {
+    background-color: #479dd6; /* Background color on hover */
+}
+
+/* Style for the icon */
+.kotak svg {
+    fill: none;
+    stroke: #ffffff; /* Icon color */
+    stroke-width: 2;
+}
+
+/* Style for the container */
+.kotak h6 {
+    margin: 0;
+    color: #ffffff; /* Text color */
+}
+
+/* Center the icon and text in the container */
+.kotak .d-flex {
+    justify-content: center;
+    align-items: center;
+}
+
+</style>
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
         <svg width="22" height="42" viewBox="0 0 22 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,45 +87,14 @@
 
                         </li>
                         <li>
-                            {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
                                 Lihat Notifikasi
                             </button>
-
-                            <!-- Modal -->
-                            <div class="modal" id="notificationModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-
-                                        <!-- Header Modal -->
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Notifikasi Pesan</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-
-                                        <!-- Body Modal -->
-                                        <div class="modal-body">
-                                            <!-- Menampilkan notifikasi -->
-                                            @foreach(auth()->user()->unreadNotifications as $notification)
-                                                <div class="alert alert-info">
-                                                    {!! $notification->data['message'] !!}
-                                                    <form action="{{ route('markAsRead') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="notification_id" value="{{ $notification->id }}">
-                                                        <button type="submit" class="btn btn-link btn-sm">Tandai sebagai sudah dibaca</button>
-                                                    </form>
-                                                </div>
-                                            @endforeach
-                                        </div>
-
-                                        <!-- Footer Modal -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                        </div>
-
+                            
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                             <div class="dropdown header-profile2 ">
                                 <a class="nav-link " href="javascript:void(0);" role="button"
@@ -132,6 +135,15 @@
                         </li>
                     </ul>
                 </div>
+                <div class="modal" id="notificationModal">
+                    <div class="modal-content">
+                        <span class="close" id="closeModalBtn">&times;</span>
+                        <h2>Notification Title</h2>
+                        <p>This is a notification message.</p>
+                    </div>
+                </div>
+
+                <script src="scripts.js"></script>
             </div>
         </nav>
     </div>

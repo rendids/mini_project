@@ -6,7 +6,7 @@
         .fa-eye {
             color: blue;
             /* Warna yang diinginkan */
-            font-size: 24px;
+            font-size: 20px;
             /* Sesuaikan ukuran ikon */
         }
 
