@@ -21,113 +21,40 @@ class ProfileController extends Controller
         return view('penyedia.profile', compact('data_user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function profileupdate(Request $request, $id)
     {
-        $user = User::findorfail($id);
-
-        $user->update($request->all());
-
-        return redirect()->back()->with('berhasil menambahkan profile');
-    }
-
-    // public function uploadProfilePhoto(Request $request,)
-    // {
-    //     $request->validate([
-    //         'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    //     ]);
-
-    //     $file = $request->file('foto');
-    //     $fileName = time() . '.' . $file->getClientOriginalExtension();
-    //     $filePath = 'fotopenyedia/' . $fileName;
-
-    //     Storage::disk('public')->put($filePath, file_get_contents($file));
-
-    //     // Simpan nama file foto ke dalam database
-    //     auth()->user()->penyedia->update(['foto' => $fileName]);
-
-    //     return redirect()->route('dashboard')->with('success', 'Foto profil berhasil diunggah.');
-    // }
-    public function uploadPhoto(Request $request, $id)
-    {
-
         $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required_if:anotherfield,nullable',
+            'name' => 'required',
+            'email' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required',
+            'harga' => 'required'
         ]);
 
-        $file = $request->file('foto');
-        $foto = User::findOrFail($id)->penyedia;
-
-        if($file) {
-            Storage::delete('fotopenyedia/' . $foto->foto);
-
-            $img = $file->hashName();
-            $file->storeAs('fotopenyedia/', $img);
-            $foto->foto = $img;
+        $user =  user::find($id);
+        $foto = $request->file('foto');
+        if ($foto) {
+            $fotoPath = $foto->storeAs('fotopenyedia', 'foto_' . $user->id . '.' . $foto->getClientOriginalExtension(), 'public');
+        } else {
+            $fotoPath = $user->penyedia->foto ?? null; // Use existing photo path if available
         }
-        // $foto->name = $request->input('nama');
-        // $foto->email = $request->input('email');
-        // $foto->alamat = $request->input('alamat');
-        // $foto->telp = $request->input('telp');
-        $foto->status = "profilelengkap";
-        $foto->save();
-
-
-
-        return redirect()->route('dashboard.penyedia')->with('success', 'Foto profil berhasil diunggah.');
-    }
-
-    public function upload(Request $request, $id){
-        $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
         ]);
 
-        $file = $request->file('foto');
-        $foto = User::findOrFail($id)->penyedia;
+        $penyedia = penyedia::where('id_user', $user->id)->first();
 
-        if($file) {
-            Storage::delete('fotopenyedia/' . $foto->foto);
+        $penyedia->update([
+            'foto' => $fotoPath,
+            'telp' => $request->telp,
+            'alamat' => $request->alamat,
+            'harga' => $request->harga,
+            'status' => 'profilelengkap'
+        ]);
+        //   dd($penyedia);
 
-            $img = $file->hashName();
-            $file->storeAs('fotopenyedia/', $img);
-            $foto->foto = $img;
-        }
-        $foto->status = "profilelengkap";
-        $foto->save;
-        return redirect()->route('dashboard.penyedia')->with('success', 'Foto profil berhasil diunggah.');
-
-    }
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back();
     }
 }

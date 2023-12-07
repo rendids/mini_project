@@ -53,6 +53,45 @@
 
                         </li>
                         <li>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
+                                Lihat Notifikasi
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal" id="notificationModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Header Modal -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Notifikasi Pesan</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Body Modal -->
+                                        <div class="modal-body">
+                                            <!-- Menampilkan notifikasi -->
+                                            @foreach(auth()->user()->unreadNotifications as $notification)
+                                                <div class="alert alert-info">
+                                                    {!! $notification->data['message'] !!}
+                                                    <form action="{{ route('markAsRead') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="notification_id" value="{{ $notification->id }}">
+                                                        <button type="submit" class="btn btn-link btn-sm">Tandai sebagai sudah dibaca</button>
+                                                    </form>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                        <!-- Footer Modal -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                             <div class="dropdown header-profile2 ">
                                 <a class="nav-link " href="javascript:void(0);" role="button"

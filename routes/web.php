@@ -51,13 +51,6 @@ Route::post('/email/verification-notification', [EmailVerificationController::cl
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
-    Route::middleware(['checkProfile'])->group(function () {
-        // Routes yang membutuhkan profil lengkap
-
-        Route::get('/dashboard', 'DashboardController@index');
-        // Tambahkan lebih banyak route sesuai kebutuhan
-    });
-
 Route::controller(AuthController::class)->prefix('auth',)->middleware('guest')->group(function () {
     Route::get('login', 'login')->name('login');
     Route::post('/login/proses', 'loginproses')->name('login.proses');
@@ -141,9 +134,6 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     });
     Route::controller(PenyediaProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile.penyedia');
-        Route::put('profile.update{id}', 'profileupdate')->name('update.profile.penyedia');
-        Route::post('/dashboard/upload-profile-photo', 'uploadProfilePhoto')->name('uploadProfilePhoto');
-        // Route::put('update-profile{id}', 'uploadPhoto')->name('upload.photo');
-        Route::put('update/{id}', 'upload')->name('upload.foto');
+        Route::put('profile.update/{id}', 'profileupdate')->name('profile.penyedia.update');
     });
 });
