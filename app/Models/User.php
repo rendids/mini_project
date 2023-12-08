@@ -28,15 +28,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
     ];
 
+    public function notifikasi()
+    {
+        return $this->hasMany(Notifikasi::class);
+    }
+
     public function penyedia()
     {
         return $this->hasOne(Penyedia::class, 'id_user');
     }
 
+    // User.php
+
     public function ratings()
     {
-        return $this->hasMany(ratting::class);
+        return $this->hasMany(Ratting::class, 'user_id');
     }
+
 
     public function pesanans()
     {

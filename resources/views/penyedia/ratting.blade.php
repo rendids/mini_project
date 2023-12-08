@@ -25,87 +25,43 @@
                             <div class="card">
                                 <div class="card-body" style="background-color: #bcc9dd">
                                     <div class="restro-review d-flex align-items-center border-bottom mb-4  pb-4">
-                                        <img src="public/assets/images/resturent-review/pic-1.jpg" alt="">
+                                        <img src="{{ asset('storage/foto_user/' . $item->user->foto) }}" alt="">
                                         <div>
-                                            <h4 class="font-w500">{{ $item->user }}</h4>
+                                            <h4 class="font-w500">{{ $item->user->name }}</h4>
                                         </div>
                                     </div>
                                     <div class="recent-review d-flex align-items-center">
-
                                         <div>
-                                            <h4 class="font-w500 mb-0">Service AC</h4>
                                             <ul class="d-flex mb-2">
-                                                <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                                            fill="#FC8019"></path>
-                                                    </svg>
-                                                </li>
-                                                <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                                            fill="#FC8019"></path>
-                                                    </svg>
-                                                </li>
-                                                <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                                            fill="#FC8019"></path>
-                                                    </svg>
-                                                </li>
-                                                <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                                            fill="#FC8019"></path>
-                                                    </svg>
-                                                </li>
-                                                <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                                            fill="#FC8019"></path>
-                                                    </svg>
-                                                </li>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <li>
+                                                        <svg width="16" height="15" viewBox="0 0 16 15"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            @if ($i <= $item->ratting)
+                                                                <path
+                                                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                                                    fill="#FC8019"></path>
+                                                            @else
+                                                                <path
+                                                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                                                    fill="none" stroke="#FC8019"></path>
+                                                            @endif
+                                                        </svg>
+                                                    </li>
+                                                @endfor
                                             </ul>
+
                                         </div>
                                     </div>
-                                    <h6 style="color: black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                        eiusmod tempor.</h6>
+                                    <h6 style="color: black">{{ $item->komentar }}</h6>
                                     <div>
-                                        <h6 class="font-w400">Ordered June 21, 2020</h6>
+                                        <h6 class="font-w400">{{ $item->pesanan->waktu }}</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-            </div>
-            <div
-                class="d-flex align-items-center justify-content-sm-between justify-content-center flex-wrap pagination-bx">
-                <div class="mb-sm-0 mb-3 pagination-title">
-                    <p class="mb-0"><span>Showing 1-5</span> from <span>100</span> data</p>
-                </div>
-                <nav>
-                    <ul class="pagination pagination-gutter">
-                        <li class="page-item page-indicator">
-                            <a class="page-link" href="javascript:void(0)">
-                                <i class="la la-angle-left"></i></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                        <li class="page-item page-indicator">
-                            <a class="page-link" href="javascript:void(0)">
-                                <i class="la la-angle-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>

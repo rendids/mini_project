@@ -9,15 +9,22 @@ class ratting extends Model
 {
     use HasFactory;
 
-    protected $guarded =[];
+    protected $guarded = [];
 
-    public function ratinguser(){
-        return $this->belongsToMany(User::class);
-    }
+    // Ratting.php
 
-    public function provider()
+    public function user()
     {
-        return $this->belongsTo(penyedia::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function penyedia()
+    {
+        return $this->belongsTo(Penyedia::class, 'penyedia_id');
+    }
+
+    public function pesanan()
+    {
+        return $this->belongsTo(Pesanan::class, 'pesanan_id');
+    }
 }

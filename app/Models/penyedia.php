@@ -16,6 +16,8 @@ class penyedia extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
+    // Penyedia.php
+
     public function ratings()
     {
         return $this->hasMany(Ratting::class, 'penyedia_id');

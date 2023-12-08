@@ -4,10 +4,12 @@ namespace App\Http\Controllers\user;
 
 use App\Models\pesanan;
 use App\Models\penyedia;
+use App\Models\Notifikasi;
 use App\Models\pembayaran;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
@@ -33,51 +35,44 @@ class DetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
-{
-    $request->validate([
-        'pemesan' => 'required',
-        'penyedia' => 'required',
-        'jasa' => 'required',
-        'alamatpemesan' => 'required',
-        'waktu' => 'required',
-        'pembayaran' => 'required',
-        'bukti' => 'required'
-    ],[
-        'pemesan.required' => 'Nama harus diisi',
-        'alamatpemesan.required' => 'Alamat harus diisi',
-        'waktu.required' => 'Waktu harus diisi',
-        'pembayaran' => 'required',
-        'bukti' => 'required'
-    ]);
+    public function store(Request $request, string $id)
+    {
+        $request->validate([
+            'pemesan' => 'required',
+            'penyedia' => 'required',
+            'jasa' => 'required',
+            'alamatpemesan' => 'required',
+            'waktu' => 'required',
+            'pembayaran' => 'required',
+            'bukti' => 'required'
+        ]);
+        $keteranganFile = $request->file('bukti');
+        if ($keteranganFile) {
+            $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
+            $keteranganFile->storeAs('public/bukti', $namaGambar);
+        } else {
+            // Handle the case where no file is present
+        }
 
-    $keteranganFile = $request->file('bukti');
-    if ($keteranganFile) {
-        $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
-        $keteranganFile->storeAs('public/bukti', $namaGambar);
-    } else {
-        // Handle the case where no file is present
+        $buat = pesanan::create([
+            'pemesan' => $request->pemesan,
+            'penyedia_id' => $id,
+            'jasa' => $request->jasa,
+            'alamatpemesan' => $request->alamatpemesan,
+            'waktu' => $request->waktu,
+            'pembayaran' => $request->pembayaran,
+            'bukti' => $namaGambar, // Use $namaGambar directly
+            'total' => $request->total,
+            'status' => 'dalam proses tahap 1',
+        ]);
+       $user = Auth::user();
+        Notifikasi::create([
+            'user_id' => $user->id,
+            'pesan' => 'anda berhasil membuat pesanan baru',
+        ]);
+
+        return redirect()->route('pesan');
     }
-
-    // Retrieve the penyedia based on the $id parameter
-    $penyedia = Penyedia::with('user')->findOrFail($id);
-
-    $buat = Pesanan::create([
-        'pemesan' => $request->pemesan,
-        'penyedia_id' => $penyedia->id,
-        'jasa' => $request->jasa,
-        'alamatpemesan' => $request->alamatpemesan,
-        'waktu' => $request->waktu,
-        'pembayaran' => $request->pembayaran,
-        'bukti' => $namaGambar,
-        'total' => $request->total,
-        'status' => 'dalam proses tahap 1',
-    ]);
-
-    // dd($buat);
-    return redirect()->route('pesan');
-}
-
 
     /**
      * Display the specified resource.

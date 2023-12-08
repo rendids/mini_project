@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
 {
 
-    $penyedia = penyedia::paginate(8); // Change 10 to the number of items per page you want
+    $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want
     return view('user.dahboard', compact('penyedia'));
 }
 
@@ -40,7 +40,7 @@ public function search(Request $request)
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**

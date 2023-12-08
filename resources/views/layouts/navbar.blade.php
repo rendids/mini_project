@@ -1,37 +1,3 @@
-<style>
-    /* Style for the logout button */
-.kotak a {
-    text-decoration: none;
-    color: #ffffff; /* Text color */
-    display: block;
-    padding: 10px;
-    transition: background-color 0.3s;
-}
-
-.kotak a:hover {
-    background-color: #479dd6; /* Background color on hover */
-}
-
-/* Style for the icon */
-.kotak svg {
-    fill: none;
-    stroke: #ffffff; /* Icon color */
-    stroke-width: 2;
-}
-
-/* Style for the container */
-.kotak h6 {
-    margin: 0;
-    color: #ffffff; /* Text color */
-}
-
-/* Center the icon and text in the container */
-.kotak .d-flex {
-    justify-content: center;
-    align-items: center;
-}
-
-</style>
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
         <svg width="22" height="42" viewBox="0 0 22 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,21 +46,25 @@
                         <div class="nav-item d-flex align-items-center">
                         </div>
                     </div>
-
                     <ul class="navbar-nav header-right ">
 
                         <li class="nav-item d-flex align-items-center">
+                            <div class="dropdown header-profile2" style="margin-top: 100%;">
+                                <i class="bi bi-bell" style="font-size: 24px;">
+                                    <a href="">
+                                        @foreach (auth()->user()->notifikasi()->where('dibaca', false)->get() as $notif)
+                                        <div class="notifikasi">
+                                            <p>{{ $notif->pesan }}</p>
+                                            <!-- Tambahkan tombol atau tautan untuk menandai notifikasi sebagai dibaca -->
+                                            <a href="{{ route('tandaiDibaca', ['notifikasiId' => $notif->id]) }}">Tandai sebagai dibaca</a>
+                                        </div>
+                                    @endforeach
 
+                                    </a>
+                                </i>
+                            </div>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
-                                Lihat Notifikasi
-                            </button>
-                            
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                             <div class="dropdown header-profile2 ">
                                 <a class="nav-link " href="javascript:void(0);" role="button"
@@ -111,7 +81,7 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="app_profile.html" class="dropdown-item ai-icon ">
+                                    <a href="{{ route('profile.penyedia') }}" class="dropdown-item ai-icon ">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
                                             height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -128,22 +98,15 @@
                                             <polyline points="16 17 21 12 16 7"></polyline>
                                             <line x1="21" y1="12" x2="9" y2="12"></line>
                                         </svg>
+
                                         <span class="ms-1">Logout </span>
                                     </a>
+                                    <i class="fa-solid fa-bell"></i>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="modal" id="notificationModal">
-                    <div class="modal-content">
-                        <span class="close" id="closeModalBtn">&times;</span>
-                        <h2>Notification Title</h2>
-                        <p>This is a notification message.</p>
-                    </div>
-                </div>
-
-                <script src="scripts.js"></script>
             </div>
         </nav>
     </div>
