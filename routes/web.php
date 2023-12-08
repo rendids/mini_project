@@ -102,6 +102,7 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     Route::controller(RiwayatController::class)->group(function () {
         Route::get('riwayat', 'index')->name('riwayat');
         Route::post('rating','rating')->name('rating');
+        Route::post('pengembalian', 'pengembalian')->name('pengembalian');
     });
     Route::controller(DetailController::class)->group(function () {
         Route::get('detail{id}', 'index')->name('detail');

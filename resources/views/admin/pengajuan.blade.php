@@ -64,7 +64,7 @@
                                           </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-success">Terima</button>
+                                          <button type="submit" class="btn btn-success">Terima</button>
                                         </div>
                                       </div>
                                     </div>
