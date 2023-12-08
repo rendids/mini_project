@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -60,9 +61,13 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function updateProfilePass(Request $request)
+    public function changePassword(Request $request)
     {
-        //
+
+        
+
+
+        return redirect()->route('password.change')->with('success', 'Password changed successfully!');
     }
 
     /**
