@@ -113,6 +113,8 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
         Route::get('profile', 'index')->name('profile');
         Route::put('profile.update{id}', 'updateprofile')->name('updateProfile');
         Route::put('foto.update{id}', 'updatefoto')->name('updatefoto');
+        Route::put('password.update{id}', 'updatepassword')->name('updatepassword');
+
 
     });
     Route::controller(UserDashboardController::class)->group(function () {

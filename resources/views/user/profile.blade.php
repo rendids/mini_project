@@ -72,9 +72,10 @@
             background-color: transparent;
         }
     </style>
-    <div class="col-xxl-12">
-        <div class="isi">
-            <div class="d-flex justify-content-end">
+<div class="col-xxl-12">
+    <div class="isi">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
                 <ul class="nav nav-pills card-header-pills" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" data-bs-toggle="tab" href="#developers" role="tab">
@@ -90,13 +91,17 @@
                 <div class="flex-grow-1">
                     <p class="text-muted mb-0"></p>
                 </div>
-            </div><!-- end card header -->
-            <hr>
-            <!-- Add the rest of your content here -->
+            </div>
+            <a href="dashboard" class="ms-2">
+                <i style="margin-right: 8px; font-size:20px;" class="fas fa-arrow-right-from-bracket"></i>
+            </a>
         </div>
+        <hr>
     </div>
+</div>
 
 
+            <!-- Add the rest of your content here -->
     <div class="card-body">
         <!-- Tab panes -->
         <div class="d-flex">
@@ -112,7 +117,7 @@
                         </div>
                         <div class="text-center" style="height: auto">
                             <h5 class="card-title">{{ $data_user->name }}</h5>
-                            @error('foto')
+                            @error('foto') 
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                             <input hidden type="file" name="foto" id="foto"
@@ -145,7 +150,7 @@
                                     <div class="card h-100"
                                         style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                         <div class="card-header">
-                                            <h2>Detail Info Penyedia</h2>
+                                            <h2>Profile user</h2>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group">
@@ -170,9 +175,9 @@
                                                 <label for="inputName2" class="col-form-label fw-bold fs-4">No
                                                     Telp</label>
                                                 <input type="tel" class="form-control" name="telp" id="telp"
-                                                    placeholder="{{ $data_user->telp ?? 'Nomor telepon belum ditambahkan' }}"
+                                                    placeholder="No telp"
                                                     value="{{ $data_user->telp ?? '' }}">
-                                                @error('phone')
+                                                @error('telp')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -180,7 +185,7 @@
                                                 <label for="inputExperience"
                                                     class="col-form-label fw-bold fs-4">Alamat</label>
                                                 <textarea class="form-control" name="alamat" id="inputExperience"
-                                                    placeholder="{{ $data_user->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->alamat ?? '' }}</textarea>
+                                                    placeholder="Alamat">{{ $data_user->alamat ?? '' }}</textarea>
                                                 @error('alamat')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -201,16 +206,24 @@
                     </div>
                     <div class="tab-pane" id="designers" role="tabpanel">
                         <div class="row">
+                            <form action="{{ route('updatepassword', ['id' => $data_user->id]) }}" method="POST"
+                                enctype="multipart/form-data" class="form-horizontal">
+                                @csrf
+                                @method('PUT')
                             <div class="card h-100"
                                 style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                 <div class="card-body">
+                                    <div class="card-header">
+                                        <h2>Password</h2>
+                                    </div>
                                     <div class="form-group">
                                         <label for="password" class="col-form-label fw-bold fs-4">Password lama</label>
                                         <input type="password" class="form-control" name="password_lama" id="password"
-                                            placeholder="masukan password lama">
-                                        @error('password_lama')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
+                                        placeholder="Password lama"
+                                        value="">
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="konfirmasi-password"
@@ -223,13 +236,10 @@
                                     </div>
                                     <div class="d-flex justify-content-end pt-2">
                                         <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                                        <form action="{{ route('dashboard.penyedia') }}" method="POST">
-                                            @csrf
-                                            <!-- Isi formulir dengan input dan field yang sesuai -->
-
                                             <button type="submit" class="btn btn-primary">Simpan</button>
 
                                     </div>
+                                </form>
 
                                 </div>
                             @endsection

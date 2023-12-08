@@ -20,7 +20,12 @@ class ProfileController extends Controller
         return view("user.profile", compact('data_user'));
     }
 
-    public function updatefoto(Request $request, string $id)
+    /**
+     * Show the form for creating a new resource.
+     */
+
+
+      public function updatefoto(Request $request, string $id)
     {
         $request->validate([
             'foto' => 'required',
@@ -39,8 +44,6 @@ class ProfileController extends Controller
         ]);
         return redirect()->back();
     }
-
-
     public function updateprofile(Request $request, string $id)
     {
         $request->validate([
@@ -49,17 +52,13 @@ class ProfileController extends Controller
             'telp' => 'required',
             'alamat' => 'required',
         ],[
-            'name.required' => 'Harus diisi',
+            'name.required' =>'Harus diisi',
             'email.required' => 'Harus diisi',
             'telp.required' => 'Harus diisi',
             'alamat.required' => 'Harus diisi',
         ]);
         // dd($request);
         $userupdate = User::find($id);
-        // Handle file upload
-
-
-        // Update other fields
         $userupdate->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -72,9 +71,23 @@ class ProfileController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function updatepassword( Request $request, string $id)
+    {
+        $request->validate([
+            'password_lama' => 'required',
+            'password' => 'required|confirmed|min:8',
+        ], [
+            'password_lama.required' => 'Password lama tidak boleh kosong',
+            'password.required' => 'Password baru tidak boleh kosong',
+            'password.confirmed' => 'Konfirmasi password baru tidak cocok',
+            'password.min' => 'Password baru minimal 8 karakter',
+        ]);
+
+        // Proses logika untuk memperbarui password
+        // ...
+
+        return redirect()->back()->with('success', 'Password berhasil diperbarui');
+    }
     public function changePassword(Request $request)
     {
 
