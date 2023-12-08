@@ -16,7 +16,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
+
         $data_user = Auth::user();
+       // dd($data_user);
         return view("user.profile", compact('data_user'));
     }
 
