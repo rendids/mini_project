@@ -105,18 +105,18 @@
                     enctype="multipart/form-data" class="form-horizontal">
                     @method('PUT')
                     @csrf
-                <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
-                    <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
-                        <img src="{{ asset('storage/' . $data_user->foto) }}" class="profile-image card-img-top"
-                            alt="Profile" id="photo-profile" style="width: 100%; height: 100%; border-radius:50%;">
-                    </div>
-                    <div class="text-center" style="height: auto">
-                        <h5 class="card-title">{{ $data_user->name }}</h5>
-                        @error('foto')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                        <input hidden type="file" name="foto" id="foto"
-                            onchange="
+                    <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
+                        <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
+                            <img src="{{ asset('storage/' . $data_user->foto) }}" class="profile-image card-img-top"
+                                alt="Profile" id="photo-profile" style="width: 100%; height: 100%; border-radius:50%;">
+                        </div>
+                        <div class="text-center" style="height: auto">
+                            <h5 class="card-title">{{ $data_user->name }}</h5>
+                            @error('foto')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <input hidden type="file" name="foto" id="foto"
+                                onchange="
                                 var reader = new FileReader();
 
                                 reader.onload = function (e) {
@@ -126,75 +126,68 @@
 
                                 reader.readAsDataURL(this.files[0]);
                         ">
-                        <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
-                            profile</label>
+                            <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
+                                profile</label>
+                        </div>
                     </div>
-                </div>
             </div>
             <div class="col-8">
                 <div class="tab-content text-muted">
                     <div class="tab-pane active" id="developers" role="tabpanel">
                         <div class="row">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card h-100"
-                                            style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
-                                            <div class="card-header">
-                                                <h2>Detail Info Penyedia</h2>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card h-100"
+                                        style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                                        <div class="card-header">
+                                            <h2>Detail Info Penyedia</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
+                                                <input type="text" class="form-control" name="name" id="inputName"
+                                                    placeholder="Nama" value="{{ $data_user->name }}">
+                                                @error('nama')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
-                                                    <input type="text" class="form-control" name="name" id="inputName"
-                                                        placeholder="Nama" value="{{ $data_user->name }}">
-                                                    @error('nama')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputEmail"
-                                                        class="col-form-label fw-bold fs-4">Email</label>
-                                                    <input type="email" class="form-control" name="email"
-                                                        id="inputEmail" placeholder="Email" value="{{ $data_user->email }}">
-                                                    @error('email')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail" class="col-form-label fw-bold fs-4">Email</label>
+                                                <input type="email" class="form-control" name="email" id="inputEmail"
+                                                    placeholder="Email" value="{{ $data_user->email }}">
+                                                @error('email')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputName2" class="col-form-label fw-bold fs-4">No
-                                                        Telp</label>
-                                                    <input type="tel" class="form-control" name="telp" id="telp"
-                                                        placeholder="{{ $data_user->telp ?? 'Nomor telepon belum ditambahkan' }}"
-                                                        value="{{ $data_user->telp ?? '' }}">
-                                                    @error('phone')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputExperience"
-                                                        class="col-form-label fw-bold fs-4">Alamat</label>
-                                                    <textarea class="form-control" name="alamat" id="inputExperience"
-                                                        placeholder="{{ $data_user->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->alamat ?? '' }}</textarea>
-                                                    @error('alamat')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputName2" class="col-form-label fw-bold fs-4">No
+                                                    Telp</label>
+                                                <input type="tel" class="form-control" name="telp" id="telp"
+                                                    placeholder="{{ $data_user->telp ?? 'Nomor telepon belum ditambahkan' }}"
+                                                    value="{{ $data_user->telp ?? '' }}">
+                                                @error('phone')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputExperience"
+                                                    class="col-form-label fw-bold fs-4">Alamat</label>
+                                                <textarea class="form-control" name="alamat" id="inputExperience"
+                                                    placeholder="{{ $data_user->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->alamat ?? '' }}</textarea>
+                                                @error('alamat')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-end pt-2">
-                                    <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                                    <form action="{{ route('dashboard.penyedia') }}" method="POST">
-                                        @csrf
-                                        <!-- Isi formulir dengan input dan field yang sesuai -->
-
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </form>
-
-                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end pt-2">
+                                <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
 
                             </form>
 
@@ -207,17 +200,17 @@
                                 style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="password" class="col-form-label fw-bold fs-4">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password"
-                                            placeholder="password" value="{{ $data_user->password }}">
-                                        @error('password')
+                                        <label for="password" class="col-form-label fw-bold fs-4">Password lama</label>
+                                        <input type="password" class="form-control" name="password_lama" id="password"
+                                            placeholder="masukan password lama">
+                                        @error('password_lama')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="konfirmasi-password"
-                                            class="col-form-label fw-bold fs-4">Password</label>
-                                        <input type="password" class="form-control" name="konfirmasi-konfirmasi-password"
+                                            class="col-form-label fw-bold fs-4">Password Baru</label>
+                                        <input type="password" class="form-control" name="password"
                                             id="konfirmasi-password" placeholder="konfirmasi password">
                                         @error('konfirmasi-password')
                                             <p class="text-danger">{{ $message }}</p>

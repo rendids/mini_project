@@ -100,13 +100,17 @@
 </div>
 
 
-            <div class="card-body">
-                <!-- Tab panes -->
-                <div class="d-flex">
-                <div class="col-4" style="border-right:2px solid black">
+<div class="card-body">
+    <!-- Tab panes -->
+    <div class="d-flex">
+        <div class="col-4" style="border-right:2px solid black">
+            <form action="{{ route('profile.penyedia.update', ['id' => $data_user->id]) }}" method="POST"
+                enctype="multipart/form-data" class="form-horizontal">
+                @method('PUT')
+                @csrf
                     <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
                         <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
-                            <img src="{{ asset('storage/' . $data_user->foto) }}"
+                            <img src="{{ asset('storage/' . $data_user->penyedia->foto) }}"
                                 class="profile-image card-img-top" alt="Profile" id="photo-profile"
                                 style="width: 100%; height: 100%; border-radius:50%;">
                         </div>
@@ -135,10 +139,6 @@
                 <div class="tab-content text-muted">
                     <div class="tab-pane active" id="developers" role="tabpanel">
                         <div class="row">
-                            <form action="{{ route('profile.penyedia.update', ['id' => $data_user->id]) }}" method="POST"
-                                enctype="multipart/form-data" class="form-horizontal">
-                                @method('PUT')
-                                @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card h-100"
