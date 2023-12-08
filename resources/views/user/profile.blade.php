@@ -101,7 +101,7 @@
         <!-- Tab panes -->
         <div class="d-flex">
             <div class="col-4" style="border-right:2px solid black">
-                <form action="{{ route('updateProfile', ['id' => $data_user->id]) }}" method="POST"
+                <form action="{{ route('updatefoto', ['id' => $data_user->id]) }}" method="POST"
                     enctype="multipart/form-data" class="form-horizontal">
                     @method('PUT')
                     @csrf
@@ -129,6 +129,7 @@
                             <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
                                 profile</label>
                         </div>
+                    </form>
                     </div>
             </div>
             <div class="col-8">
@@ -137,6 +138,10 @@
                         <div class="row">
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <form action="{{ route('updateProfile', ['id' => $data_user->id]) }}" method="POST"
+                                        enctype="multipart/form-data" class="form-horizontal">
+                                        @method('PUT')
+                                        @csrf
                                     <div class="card h-100"
                                         style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                         <div class="card-header">
@@ -147,7 +152,7 @@
                                                 <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
                                                 <input type="text" class="form-control" name="name" id="inputName"
                                                     placeholder="Nama" value="{{ $data_user->name }}">
-                                                @error('nama')
+                                                @error('name')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>

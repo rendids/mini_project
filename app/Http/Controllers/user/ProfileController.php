@@ -20,34 +20,48 @@ class ProfileController extends Controller
         return view("user.profile", compact('data_user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
-    public function updateprofile(Request $request, string $id)
+    public function updatefoto(Request $request, string $id)
     {
         $request->validate([
             'foto' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
+        ],[
+            'foto.required' => 'Harus diisi',
         ]);
-        // dd($request);
         $userupdate = User::find($id);
-        // Handle file upload
         $foto = $request->file('foto');
         if ($foto) {
             $fotoPath = $foto ? $foto->storeAs('foto_user', 'foto_' . Str::random(12) . '.' . $foto->getClientOriginalExtension(), 'public') : $userupdate->foto;
         } else {
             $fotoPath = $userupdate->foto ?? null;
         }
+        $userupdate->update([
+            'foto' => $fotoPath,
+        ]);
+        return redirect()->back();
+    }
+
+
+    public function updateprofile(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required',
+        ],[
+            'name.required' => 'Harus diisi',
+            'email.required' => 'Harus diisi',
+            'telp.required' => 'Harus diisi',
+            'alamat.required' => 'Harus diisi',
+        ]);
+        // dd($request);
+        $userupdate = User::find($id);
+        // Handle file upload
+
 
         // Update other fields
         $userupdate->update([
-            'foto' => $fotoPath,
-            'nama' => $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'telp' => $request->telp,
             'alamat' => $request->alamat,
@@ -64,7 +78,7 @@ class ProfileController extends Controller
     public function changePassword(Request $request)
     {
 
-        
+
 
 
         return redirect()->route('password.change')->with('success', 'Password changed successfully!');

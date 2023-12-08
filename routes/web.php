@@ -111,6 +111,8 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
     Route::controller(ProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile');
         Route::put('profile.update{id}', 'updateprofile')->name('updateProfile');
+        Route::put('foto.update{id}', 'updatefoto')->name('updatefoto');
+
     });
     Route::controller(UserDashboardController::class)->group(function () {
         Route::get('/dashboard/search', 'search')->name('dashboard.search');
