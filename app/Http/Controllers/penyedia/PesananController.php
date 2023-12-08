@@ -28,6 +28,6 @@ class PesananController extends Controller
             'status' => 'di terima'
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Data berhasil disimpan.');;
     }
 }

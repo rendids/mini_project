@@ -33,6 +33,7 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $data = $request->validate([
             'metode' => 'required',
             'tujuan' => 'required|unique:pembayarans,tujuan,NULL,id,metode,' . $request->input('metode'),
@@ -57,7 +58,7 @@ class PembayaranController extends Controller
                 return  back()->with('error', 'pembayaran gagal');
             }
         }
-        pembayaran::create($data);                  
+        pembayaran::create($data);
         return redirect()->back()->with('success', 'Data berhasil disimpan.');
     }
 

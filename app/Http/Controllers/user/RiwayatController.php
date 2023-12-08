@@ -56,10 +56,16 @@ class RiwayatController extends Controller
             'keterangan' => 'required'
         ]);
 
+        $user = Auth::user();
+
         pengembalian::create([
-            '' => '',
-            '' => '',
-            '' => '',
+            'user_id' => $user->id,
+            'id_pesanan' => '1',
+            'metode' => $request->metode,
+            'tujuan' => $request->tujuan,
+            'keterangan' => $request->keterangan,
         ]);
+
+    return back()->with('success', 'Data Berhasil Ditambahkan');
     }
 }
