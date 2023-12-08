@@ -43,30 +43,20 @@ class DetailController extends Controller
         'waktu' => 'required',
         'pembayaran' => 'required',
         'bukti' => 'required'
+    ],[
+        'pemesan.required' => 'Nama harus diisi',
+        'alamatpemesan.required' => 'Alamat harus diisi',
+        'waktu.required' => 'Waktu harus diisi',
+        'pembayaran' => 'required',
+        'bukti' => 'required'
     ]);
 
-<<<<<<< Updated upstream
     $keteranganFile = $request->file('bukti');
     if ($keteranganFile) {
         $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
         $keteranganFile->storeAs('public/bukti', $namaGambar);
     } else {
         // Handle the case where no file is present
-=======
-        $buat = pesanan::create([
-            'pemesan' => $request->pemesan,
-            'penyedia_id' => $id,
-            'jasa' => $request->jasa,
-            'alamatpemesan' => $request->alamatpemesan,
-            'waktu' => $request->waktu,
-            'pembayaran' => $request->pembayaran,
-            'bukti' => $namaGambar, // Use $namaGambar directly
-            'total' => $request->total,
-            'status' => 'dalam proses tahap 1',
-        ]);
-
-        return redirect()->route('pesan')->with('success', 'Berhasil DiPesan.');
->>>>>>> Stashed changes
     }
 
     // Retrieve the penyedia based on the $id parameter

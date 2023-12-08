@@ -20,7 +20,6 @@ class RiwayatController extends Controller
     }
 
     public function rating(Request $request)
-<<<<<<< Updated upstream
 {
     $request->validate([
         'ratting' => 'required',
@@ -48,15 +47,6 @@ class RiwayatController extends Controller
     return back()->with('success', 'Data Berhasil Ditambahkan');
 }
 
-=======
-    {
-        ratting::create([
-            'ratting' => $request->ratting,
-            'komentar' => $request->komentar,
-        ]);
-        return back()->with('success', 'Berhasil Komentar');
-    }
->>>>>>> Stashed changes
 
     public function pengembalian(Request $request)
     {

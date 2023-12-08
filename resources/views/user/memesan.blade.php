@@ -23,44 +23,53 @@
             </div>
             <div class="card mb-3" style="width:1500px; height:auto">
                 <div class="row g-0">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> Ada beberapa masalah dengan input Anda.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <div class="col-md-12">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <form action=" {{ route('buat.pemesanan',['id' => $sedia->id]) }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <label for="name" class="fs-4 fw-bold">Nama</label>
-                                        <input type="text" name="pemesan" class="form-control"
-                                            placeholder="masukkan nama anda" value="{{ old('value') }}" id="">
-                                        <label for="name" class="fs-4 fw-bold">Nama Penyedia Layanan</label>
-                                        <input type="text" name="penyedia" class="form-control" readonly
-                                            value="{{ $sedia->user->name }}" id="">
-                                        <label for="name" class="fs-4 fw-bold">No hp Penyedia</label>
-                                        <input type="text" class="form-control" readonly value="{{ $sedia->telp }}"
-                                            id="">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <form action="{{ route('buat.pemesanan', ['id' => $sedia->id]) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <label for="name" class="fs-4 fw-bold ">Nama</label>
+                                            <input type="text" name="pemesan" class="form-control"
+                                                placeholder="Masukkan nama Anda" value="{{ old('pemesan') }}"
+                                                id="pemesan">
+                                            @error('pemesan')
+                                                <span class="text-danger my-2">{{ $message }}</span>
+                                            @enderror
+                                            <br>
+
+                                            <label for="name" class="fs-4 fw-bold">Nama Penyedia Layanan</label>
+                                            <input type="text" name="penyedia" class="form-control" readonly
+                                                value="{{ $sedia->user->name }}" id="penyedia">
+                                            <label for="name" class="fs-4 fw-bold">No hp Penyedia</label>
+                                            <input type="text" class="form-control" readonly value="{{ $sedia->telp }}"
+                                                id="no_hp_penyedia">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="name" class="fs-4 fw-bold">Layanan</label>
+                                        <input type="text" name="jasa" class="form-control" readonly
+                                            value="{{ $sedia->layanan }}" id="layanan">
+                                        <label for="name" class="fs-4 fw-bold">Alamat</label>
+                                        <textarea name="alamatpemesan" id="alamatpemesan" cols="30" rows="10" class="form-control"
+                                            placeholder="Masukkan alamat Anda">{{ old('alamatpemesan') }}</textarea>
+                                        @error('alamatpemesan')
+                                            <span class="text-danger my-2">{{ $message }}</span>
+                                        @enderror
+                                        <br>
+
+                                        <label for="" class="fs-4 fw-bold">Tanggal</label>
+                                        <input type="datetime-local" class="form-control" name="waktu" id="tanggal">
+                                        @error('waktu')
+                                            <span class="text-danger my-2">{{ $message }}</span>
+                                        @enderror
+                                        <br>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <label for="name" class="fs-4 fw-bold">Layanan</label>
-                                    <input type="text" name="jasa"class="form-control" readonly
-                                        value="{{ $sedia->layanan }}" id="">
-                                    <label for="name" class="fs-4 fw-bold">Alamat</label>
-                                    <textarea name="alamatpemesan" id="" cols="30" rows="10" class="form-control"
-                                        placeholder="masukkan alamat anda"></textarea>
-                                    <label for="" class="fs-4 fw-bold">tanggal</label>
-                                    <input type="datetime-local" class="form-control" name="waktu" id="">
-                                </div>
-                            </div>
+
+
+
                         </div>
                         <div class="modal-footer">
                             <button onclick="window.location =`{{ route('detail', ['id' => $sedia->id]) }}`" type="button"
