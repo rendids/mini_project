@@ -90,13 +90,24 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'Password berhasil diperbarui');
     }
-    public function changePassword(Request $request)
+    public function changePassword(Request $request, $id)
     {
+        $this->validate($request, [
+            'old_password' => 'required|min:8|max:64',
+            'new_password' => 'required|min:8|max:64',
+        ]);
 
+        $user = User::find($id);
 
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json(['error' => 'Invalid old password.'], 400);
+        }
 
+        $user->update([
+            'password' => Hash::make($request->new_password)
+        ]);
 
-        return redirect()->route('password.change')->with('success', 'Password changed successfully!');
+        return response()->json(['message' => 'Password changed successfully!'], 200);
     }
 
     /**
