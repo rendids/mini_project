@@ -46,7 +46,7 @@
 										<img src="../../assets/images/banner-img/pic-1.png" alt="">
 										<div class="d-flex align-items-center sidebar-info">
 											<div>
-												<h6 class="font-w500 mb-0 ms-2">{{ Auth::user->name }}</h6>
+												<h6 class="font-w500 mb-0 ms-2">{{ Auth::user()->name }}</h6>
 											</div>
 											<i class="fas fa-chevron-down"></i>
 										</div>

@@ -39,6 +39,7 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    @include('layoutsuser.alert')
     @include('layoutsuser.navbar')
 
     <div class=" mt-5 d-flex align-items-center justify-content-center">

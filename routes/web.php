@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingController;
@@ -9,16 +8,17 @@ use App\Http\Controllers\user\DetailController;
 use App\Http\Controllers\admin\PersetujuanAdmin;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\RiwayatController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\admin\PemesananController;
 use App\Http\Controllers\admin\PengajuanController;
 use App\Http\Controllers\admin\PembayaranController;
 use App\Http\Controllers\penyedia\PesananController;
-use App\Http\Controllers\penyedia\ProfileController as PenyediaProfileController;
 use App\Http\Controllers\penyedia\RattingController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\admin\CalonPenyediaController;
 use App\Http\Controllers\user\DashboardController as UserDashboardController;
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\penyedia\ProfileController as PenyediaProfileController;
 use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardController;
 
 /*
@@ -45,7 +45,24 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 've
     ->name('verification.verify');
 
 Route::get('/kebijakan_privasi', [AuthController::class, 'kebijakan'])->name('kebijakan_privasi');
-Route::get('/resetpassword', [AuthController::class, 'lupa_password'])->name('lupa.password');
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])
+    ->middleware('guest')
+    ->name('password.request');
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->middleware('guest')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])
+    ->middleware('guest')
+    ->name('password.update');
+
+
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'sendVerificationNotification'])
     ->middleware(['auth', 'throttle:6,1'])

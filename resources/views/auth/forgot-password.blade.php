@@ -34,17 +34,18 @@
                 <h3><i class="fas fa-lock fa-4x"></i></h3>
                 <h2 class="text-center">Forgot Password?</h2>
                 <p>You can reset your password here.</p>
-                <form class="form">
+                <form class="form" action="{{ route('password.email') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-addon d-flex align-items-center justify-content-center">
                                 <i class="fas fa-envelope color-blue"></i>
                             </span>
-                            <input id="emailInput" placeholder="Email address" class="form-control" type="email" autocomplete="off" required>
+                            <input id="emailInput" placeholder="Email address" name="email" class="form-control" type="email" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-primary btn-block" type="submit">Send My Password</button>
+                        <button class="btn btn-primary btn-block" type="submit">Kirim</button>
                     </div>
                 </form>
             </div>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\penyedia;
 
 use App\Models\User;
+use App\Models\pesanan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -13,9 +15,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $penyedialogin = Auth::user()->penyedia->id;
         $user=User::where('role', 'user')->count();
-        $penyedia=User::where('role','penyedia')->count();
-        return view('penyedia.dahsboard',compact('user','penyedia'));
+        $penyedia=pesanan::where('penyedia_id', $penyedialogin)->where('status', 'di tolak')->count();
+        $penyediaterima=pesanan::where('penyedia_id', $penyedialogin)->where('status','!=' ,'di tolak')->count();
+        return view('penyedia.dahsboard',compact('user','penyedia', 'penyediaterima'));
     }
 
     /**

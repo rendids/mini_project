@@ -79,7 +79,7 @@
                   }
                 });
               </script>
-              <a href="{{ route('lupa.password') }}">Lupa Password?</a>
+              <a href="{{ route('password.request') }}">Lupa Password?</a>
             </div>
             <div class="text-center">
               <button type="submit" class="btn btn-block shadow text-white"
