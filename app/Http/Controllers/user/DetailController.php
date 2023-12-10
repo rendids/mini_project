@@ -19,7 +19,8 @@ class DetailController extends Controller
     public function index(string $id)
     {
         $sedia = penyedia::find($id);
-        return view('user.detail', compact('sedia'));
+        $bayar = pembayaran::all();
+        return view('user.detail', compact('sedia', 'bayar'));
     }
 
     /**
@@ -28,7 +29,6 @@ class DetailController extends Controller
     public function memesan(string $id)
     {
         $sedia = penyedia::with('user')->find($id);
-        $bayar = pembayaran::all();
         return view('user.memesan', compact('sedia', 'bayar'));
     }
 

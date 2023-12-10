@@ -27,50 +27,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $no = 1;
-                        @endphp
-                        <tr>
-                            <td><strong></strong>{{ $no++ }}</td>
-                            <td>ilya halimatus</td>
-                            <td>Dr. Jackson</td>
-                            <td>E-walet</td>
-                            <td>Rp. 330.000</td>
-                            <td>
-                                <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xm sharp me-1" data-bs-toggle="modal" data-bs-target="#myModal">
-                                      <i class="fa fa-eye"></i>
-                                    </a>
+                        @foreach ($pengambilans as $index => $item)
+                          @if ($item->status == 'process')
+                          <tr>
+                              <td><strong></strong>{{ $index + 1 }}</td>
+                              <td>{{ $item->user->name }}</td>
+                              <td>{{ $item->pesanan->jasa }}</td>
+                              <td>{{ $item->metode }}</td>
+                              <td>Rp. {{ $item->pesanan->total }}</td>
+                              <td>
+                                  <div class="d-flex">
+                                      <a href="{{ route('pengajuan-process', $item->id) }}" class="btn btn-primary shadow btn-xm sharp me-1">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                      </a>
                                   </div>
-
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Pengajuan Dana</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <form>
-                                            <div class="mb-3">
-                                              <label for="metodePengajuan" class="form-label">Metode Pengajuan</label>
-                                              <input type="text" class="form-control" id="metodePengajuan" placeholder="Masukkan metode pengajuan">
-                                            </div>
-                                            <div class="mb-3">
-                                              <label for="keterangan" class="form-label">Keterangan</label>
-                                              <textarea class="form-control" id="keterangan" rows="3" placeholder="Masukkan keterangan"></textarea>
-                                            </div>
-                                          </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="submit" class="btn btn-success">Terima</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
+                              </td>
+                          </tr>
+                          @endif
+                        @endforeach
 
 
                     </tbody>

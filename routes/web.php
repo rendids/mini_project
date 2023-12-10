@@ -101,6 +101,7 @@ Route::middleware('user-access:admin', 'auth',)->prefix('admin')->group(function
 
     Route::controller(PengajuanController::class)->group(function () {
         route::get('pengajuan', 'index')->name('pengajuan');
+        route::get('pengajuan-process/{id}', 'pengajuanProcess')->name('pengajuan-process');
     });
     Route::controller(PemesananController::class)->group(function () {
         route::get('pemesanan', 'index')->name('pemesanan');

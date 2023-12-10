@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\pengembalian;
+use App\Models\pesanan;
 use Illuminate\Http\Request;
 
 class PengajuanController extends Controller
@@ -12,12 +14,25 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        return view('admin.pengajuan');
+        $pengambilans = pengembalian::with('user', 'pesanan')->get();
+        return view('admin.pengajuan', compact('pengambilans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function pengajuanProcess(string $id)
+    {
+        $pengembalian = pengembalian::where('id', $id)->first();
+
+        //process data
+        $pengembalian->status = 'success';
+        $pengembalian->update();
+
+        $pesanan = pesanan::where('id', $pengembalian->pesanan_id)->first();
+        $pesanan->status = 'pengembalian berhasil';
+        $pesanan->update();
+
+        return back()->with('success', 'Data Berhasil Ditambahkan');
+    }
+
     public function create()
     {
         //

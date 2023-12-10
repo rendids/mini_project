@@ -15,7 +15,8 @@ class RiwayatController extends Controller
     public function index()
     {
         $pesananDitolak = pesanan::where('status', 'di tolak')->get();
-        $pesananDiterima = pesanan::where('status', 'di terima')->get();
+        $pesananDiterima = Pesanan::where('status', '!=', 'di tolak')->get();
+        // $pesananDiterima = pesanan::where('status', 'di terima')->orwhere('status', 'pengembalian berhasil')->get();
         return view('user.riwayat', compact('pesananDitolak', 'pesananDiterima'));
     }
 
@@ -48,24 +49,24 @@ class RiwayatController extends Controller
 }
 
 
-    public function pengembalian(Request $request)
-    {
-        $request->validate([
-            'metode' => 'required',
-            'tujuan' => 'required',
-            'keterangan' => 'required'
-        ]);
+public function pengembalian(Request $request)
+{
 
-        $user = Auth::user();
+    $request->validate([
+        'metode' => 'required',
+        'tujuan' => 'required',
+        'keterangan' => 'required'
+    ]);
 
-        pengembalian::create([
-            'user_id' => $user->id,
-            'id_pesanan' => '1',
-            'metode' => $request->metode,
-            'tujuan' => $request->tujuan,
-            'keterangan' => $request->keterangan,
-        ]);
+    pengembalian::create([
+        'user_id' => Auth::user()->id,
+        'pesanan_id' => $request->pesanan_id,
+        'metode' => $request->metode,
+        'tujuan' => $request->tujuan,
+        'keterangan' => $request->keterangan,
+        'status' => 'process',
+    ]);
 
     return back()->with('success', 'Data Berhasil Ditambahkan');
-    }
+}
 }

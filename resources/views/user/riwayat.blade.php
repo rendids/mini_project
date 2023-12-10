@@ -13,7 +13,6 @@
                                 <th>Total</th>
                                 <th>Action</th>
                                 <th>Status</th>
-
                                 <th class="bg-none"></th>
                                 <th class="bg-none"></th>
                             </tr>
@@ -41,23 +40,32 @@
                                         </td>
                                         <td><!-- Button trigger modal -->
                                             @if ($pesanan->status == 'di tolak')
-                                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#basicModal">
-                                                pengembalian
-                                            </button>
-                                        @else
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                Beri Rating
-                                            </button>
-                                        @endif
-
+                                                <button type="button" class="btn btn-warning btn-sm btn-pengembalian"
+                                                    data-pesanan="{{ $pesanan->id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#basicModal">
+                                                    Pengembalian
+                                                </button>
+                                            @endif
+                                            @if ($pesanan->status == 'di terima')
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">
+                                                    Beri Rating
+                                                </button>
+                                            @endif
+                                            @if ($pesanan->status == 'pengembalian berhasil')
+                                                -
+                                            @endif
                                         </td>
                                         <td>
                                             <div>
                                                 <a href="javascript:void(0);"
-                                                class="{{ $pesanan->status == 'di tolak' ? 'text-danger' : 'text-success' }}">
-                                                {{ $pesanan->status == 'di tolak' ? 'Ditolak' : 'Diterima' }}
-                                             </a>
-
+                                                    class="
+                                                    {{ $pesanan->status == 'di tolak' ? 'text-danger' : '' }}
+                                                    {{ $pesanan->status == 'di terima' ? 'text-success' : '' }}
+                                                    {{ $pesanan->status == 'pengembalian berhasil' ? 'text-success' : '' }}
+                                                    ">
+                                                    {{ $pesanan->status }}
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -81,6 +89,7 @@
                     <form action="{{ route('pengembalian') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
+                        <input type="hidden" name="pesanan_id" id="modalPesananId">
                         <div class="form-group">
                             <label for="metode">Metode Pembayaran</label>
                             <select name="metode" class="form-control" id="metode" onchange="handleMetodeChange()">
@@ -89,28 +98,44 @@
                                 <option value="E-WALET">E-WALET</option>
                             </select>
                             @error('metode')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="tujuan" class="mt-3">Tujuan</label>
-                            <input type="text" id="tujuan" name="tujuan" class="form-control" placeholder="Masukkan tujuan">
+                            <input type="text" id="tujuan" name="tujuan" class="form-control"
+                                placeholder="Masukkan tujuan">
                             @error('tujuan')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <div class="form-group">
+
+                        <div id="label1" class="form-group label1">
                             <label for="keterangan" class="mt-3">Keterangan</label>
-                            <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Masukkan keterangan">
+                            <input type="text" id="keterangan" name="keterangan" class="form-control"
+                                placeholder="Masukkan keterangan">
                             @error('keterangan')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <script>
+                            // var Element1 = document.querySelector('#label1')
+                            // var Element2 = document.querySelector('.label1')
+                            var Element3 = document.querySelectorAll('.label1')
+
+                            // console.log(`element berdasarkan id`);
+                            // console.log(Element1);
+                            // console.log(`element berdasarkan classname`);
+                            // console.log(Element2);
+                            console.log(`element berdasarkan semua tag`);
+                            console.log(Element3);
+                        </script>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-danger light btn-sm"
+                                data-bs-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                         </div>
                     </form>
@@ -133,7 +158,7 @@
         }
     </script>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -175,7 +200,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         const stars = document.querySelectorAll(".rating-container i");
@@ -204,4 +229,18 @@
                         });
                     }
                 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var modalTriggerButtons = document.querySelectorAll('.btn-pengembalian');
+
+        modalTriggerButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var pesananId = this.getAttribute('data-pesanan');
+                console.log(pesananId);
+                document.getElementById('modalPesananId').value = pesananId;
+            });
+        });
+    });
+</script>
             @endsection

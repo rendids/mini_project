@@ -24,7 +24,7 @@ class DashboardController extends Controller
 public function search(Request $request)
 {
     $keyword = $request->input('search');
-    $penyedia = penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')->get();
+    $penyedia = penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')->paginate(8);
 
     return view('user.dahboard', compact('penyedia'));
 }

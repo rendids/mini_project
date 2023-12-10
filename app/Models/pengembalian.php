@@ -10,4 +10,14 @@ class pengembalian extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function pesanan()
+    {
+        return $this->belongsTo(pesanan::class, 'pesanan_id');
+    }
 }
