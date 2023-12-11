@@ -27,17 +27,19 @@ class ProfileController extends Controller
             'foto' => 'required_if:anotherfield,nullable',
             'name' => 'required',
             'email' => 'required',
-            'telp' => 'required|min:10',
-            'alamat' => 'required',
+            'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
+            'alamat' => 'required|min:5|max:200',
             'harga' => 'required|min:4'
         ],[
             'foto.required' => 'Foto Harus Diisi',
             'name.required' => 'Nama Harus Diisi',
             'email.required' => 'Email Harus Diisi',
-            'telp.required' => 'No Tlpn Harus Diisi',
-            'telp.min' => 'No Tlp minimal 10 angka',
-            'alamat.required' => 'Alamat Harus Diisi',
+            'telp.required' => 'No telpon harus diisi',
+            'telp.numeric' => 'No telpon harus berupa angka',
+            'telp.regex' => 'Format no telpon tidak valid',
+            'telp.digits_between' => 'No telpon harus memiliki panjang antara 10 hingga 12',
             'harga.required' => 'Harga Harus Diisi',
+            'harga.min' => 'harga minimal 4 karakter'
 
         ]);
 
