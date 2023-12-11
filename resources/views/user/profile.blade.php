@@ -72,70 +72,101 @@
             background-color: transparent;
         }
     </style>
-<div class="col-xxl-12">
-    <div class="isi">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <ul class="nav nav-pills card-header-pills" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active fw-bold" data-bs-toggle="tab" href="#developers" role="tab">
-                            <h4>Profil</h4>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" data-bs-toggle="tab" href="#designers" role="tab">
-                            <h4>Kata Sandi</h4>
-                        </a>
-                    </li>
-                </ul>
-                <div class="flex-grow-1">
-                    <p class="text-muted mb-0"></p>
+    <div class="col-xxl-12">
+        <div class="isi">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <ul class="nav nav-pills card-header-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bold" data-bs-toggle="tab" href="#developers" role="tab">
+                                <h4>Profil</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" data-bs-toggle="tab" href="#designers" role="tab">
+                                <h4>Kata Sandi</h4>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="flex-grow-1">
+                        <p class="text-muted mb-0"></p>
+                    </div>
                 </div>
+                <a href="dashboard" class="ms-2">
+                    <i style="margin-right: 8px; font-size:20px;" class="fas fa-arrow-right-from-bracket"></i>
+                </a>
             </div>
-            <a href="dashboard" class="ms-2">
-                <i style="margin-right: 8px; font-size:20px;" class="fas fa-arrow-right-from-bracket"></i>
-            </a>
+            <hr>
         </div>
-        <hr>
     </div>
-</div>
 
 
-            <!-- Add the rest of your content here -->
+    <!-- Add the rest of your content here -->
     <div class="card-body">
         <!-- Tab panes -->
         <div class="d-flex">
             <div class="col-4" style="border-right:2px solid black">
-                <form action="{{ route('updatefoto', ['id' => $data_user->id]) }}" method="POST"
+                <form id="updateForm" action="{{ route('updatefoto', ['id' => $data_user->id]) }}" method="POST"
                     enctype="multipart/form-data" class="form-horizontal">
                     @method('PUT')
                     @csrf
                     <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
-                        <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
-
-                            <img src="{{ asset('storage/' . $data_user->foto) }}" class="profile-image card-img-top"
-                                alt="Profile" style="width: 100%; height: 100%; border-radius:50%;">
-                        </div>
+                        <label id="label" for="foto">
+                            <p>choose file</p>
+                            <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
+                                <img id="photo-profile" src="{{ asset('storage/' . $data_user->foto) }}"
+                                    class="profile-image card-img-top" alt="Profile"
+                                    style="width: 100%; height: 100%; border-radius:50%;">
+                            </div>
+                        </label>
                         <div class="text-center" style="height: auto">
                             <h5 class="card-title">{{ $data_user->name }}</h5>
                             @error('foto')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
-                            <input hidden type="file" name="foto" id="foto"
-                                onchange="var reader = new FileReader();
-
-                                reader.onload = function (e) {
-                                    $('#photo-profile').attr('src', e.target.result);
-                                }
-
-
-                                reader.readAsDataURL(this.files[0]);
-                        ">
-                            <label type="submit" for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
-                                profile</label>
+                            <input type="file" name="foto" id="foto" onchange="previewFile()">
+                            <button type="button" class="btn btn-outline-primary btn-block mb-2"
+                                onclick="submitForm()">Ubah foto
+                                profile</button>
                         </div>
-                    </form>
                     </div>
+                </form>
+                <style>
+                </style>
+
+                <script>
+                    function previewFile() {
+                        var reader = new FileReader();
+                        var photoProfile = document.getElementById('photo-profile');
+
+                        reader.onload = function(e) {
+                            photoProfile.src = e.target.result;
+                        };
+
+                        reader.readAsDataURL(document.getElementById('foto').files[0]);
+                    }
+
+                    function submitForm() {
+                        var formData = new FormData(document.getElementById('updateForm'));
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', document.getElementById('updateForm').action, true);
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                // Handle success, if needed
+                                console.log(xhr.responseText);
+                                location.reload(); // Reload the page
+                            } else {
+                                // Handle errors, if needed
+                                console.error(xhr.responseText);
+                            }
+                        };
+
+                        xhr.send(formData);
+                    }
+                </script>
+
+
             </div>
             <div class="col-8">
                 <div class="tab-content text-muted">
@@ -147,51 +178,50 @@
                                         enctype="multipart/form-data" class="form-horizontal">
                                         @method('PUT')
                                         @csrf
-                                    <div class="card h-100"
-                                        style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
-                                        <div class="card-header">
-                                            <h2>Profile user</h2>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
-                                                <input type="text" class="form-control" name="name" id="inputName"
-                                                    placeholder="Nama" value="{{ $data_user->name }}">
-                                                @error('name')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                        <div class="card h-100"
+                                            style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                                            <div class="card-header">
+                                                <h2>Profile user</h2>
                                             </div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
+                                                    <input type="text" class="form-control" name="name" id="inputName"
+                                                        placeholder="Nama" value="{{ $data_user->name }}">
+                                                    @error('name')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="inputEmail" class="col-form-label fw-bold fs-4">Email</label>
-                                                <input type="email" class="form-control" name="email" id="inputEmail"
-                                                    placeholder="Email" value="{{ $data_user->email }}">
-                                                @error('email')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail"
+                                                        class="col-form-label fw-bold fs-4">Email</label>
+                                                    <input type="email" class="form-control" name="email"
+                                                        id="inputEmail" placeholder="Email" value="{{ $data_user->email }}">
+                                                    @error('email')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="inputName2" class="col-form-label fw-bold fs-4">No
-                                                    Telp</label>
-                                                <input type="tel" class="form-control" name="telp" id="telp"
-                                                    placeholder="No telp"
-                                                    value="{{ $data_user->telp ?? '' }}">
-                                                @error('telp')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputExperience"
-                                                    class="col-form-label fw-bold fs-4">Alamat</label>
-                                                <textarea class="form-control" name="alamat" id="inputExperience"
-                                                    placeholder="Alamat">{{ $data_user->alamat ?? '' }}</textarea>
-                                                @error('alamat')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                @enderror
+                                                <div class="form-group">
+                                                    <label for="inputName2" class="col-form-label fw-bold fs-4">No
+                                                        Telp</label>
+                                                    <input type="tel" class="form-control" name="telp" id="telp"
+                                                        placeholder="No telp" value="{{ $data_user->telp ?? '' }}">
+                                                    @error('telp')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputExperience"
+                                                        class="col-form-label fw-bold fs-4">Alamat</label>
+                                                    <textarea class="form-control" name="alamat" id="inputExperience" placeholder="Alamat">{{ $data_user->alamat ?? '' }}</textarea>
+                                                    @error('alamat')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end pt-2">
@@ -210,36 +240,36 @@
                                 enctype="multipart/form-data" class="form-horizontal">
                                 @csrf
                                 @method('PUT')
-                            <div class="card h-100"
-                                style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
-                                <div class="card-body">
-                                    <div class="card-header">
-                                        <h2>Password</h2>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password" class="col-form-label fw-bold fs-4">Password lama</label>
-                                        <input type="password" class="form-control" name="password_lama" id="password"
-                                        placeholder="Password lama"
-                                        value="">
-                                    @error('password')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="konfirmasi-password"
-                                            class="col-form-label fw-bold fs-4">Password Baru</label>
-                                        <input type="password" class="form-control" name="password"
-                                            id="konfirmasi-password" placeholder="konfirmasi password">
-                                        @error('konfirmasi-password')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                    <div class="d-flex justify-content-end pt-2">
-                                        <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                                <div class="card h-100"
+                                    style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                                    <div class="card-body">
+                                        <div class="card-header">
+                                            <h2>Password</h2>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-form-label fw-bold fs-4">Password
+                                                lama</label>
+                                            <input type="password" class="form-control" name="password_lama"
+                                                id="password" placeholder="Password lama" value="">
+                                            @error('password')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="konfirmasi-password" class="col-form-label fw-bold fs-4">Password
+                                                Baru</label>
+                                            <input type="password" class="form-control" name="password"
+                                                id="konfirmasi-password" placeholder="konfirmasi password">
+                                            @error('konfirmasi-password')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="d-flex justify-content-end pt-2">
+                                            <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
                                             <button type="submit" class="btn btn-primary">Simpan</button>
 
-                                    </div>
-                                </form>
+                                        </div>
+                            </form>
 
-                                </div>
-                            @endsection
+                        </div>
+                    @endsection

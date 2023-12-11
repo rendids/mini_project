@@ -13,6 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="DexignLab" />
     <meta name="robots" content="" />
     <meta name="description" content="FoodDesk - CodeIgniter Online Food Delivery Admin Dashboard Template" />

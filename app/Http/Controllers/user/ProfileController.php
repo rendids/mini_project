@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -18,22 +19,27 @@ class ProfileController extends Controller
     {
 
         $data_user = Auth::user();
-       // dd($data_user);
+        // dd($data_user);
         return view("user.profile", compact('data_user'));
     }
-      public function updatefoto(Request $request, string $id)
+    public function updatefoto(Request $request, string $id)
     {
         $request->validate([
-            'foto' => 'required',
-        ],[
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
             'foto.required' => 'Harus diisi',
+            'foto.image' => 'File harus berupa gambar',
+            'foto.mimes' => 'Format gambar tidak valid',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
+
         $userupdate = User::find($id);
+
         $foto = $request->file('foto');
-        if ($foto) {
-            $fotoPath = $foto ? $foto->storeAs('foto_user', 'foto_' . Str::random(12) . '.' . $foto->getClientOriginalExtension(), 'public') : $userupdate->foto;
-        } else {
-            $fotoPath = $userupdate->foto ?? null;
+        $fotoPath = $foto->storeAs('foto_user', 'foto_' . Str::random(12) . '.' . $foto->getClientOriginalExtension(), 'public');
+        // Hapus foto lama jika ada
+        if ($userupdate->foto && Storage::exists($userupdate->foto)) {
+            Storage::disk('public')->delete($userupdate->foto);
         }
         $userupdate->update([
             'foto' => $fotoPath,
@@ -48,8 +54,8 @@ class ProfileController extends Controller
             'email' => 'required',
             'telp' => 'required',
             'alamat' => 'required',
-        ],[
-            'name.required' =>'Harus diisi',
+        ], [
+            'name.required' => 'Harus diisi',
             'email.required' => 'Harus diisi',
             'telp.required' => 'Harus diisi',
             'alamat.required' => 'Harus diisi',
@@ -68,7 +74,7 @@ class ProfileController extends Controller
     }
 
 
-    public function updatepassword( Request $request, string $id)
+    public function updatepassword(Request $request, string $id)
     {
         $request->validate([
             'password_lama' => 'required',

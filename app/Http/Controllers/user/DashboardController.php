@@ -15,7 +15,7 @@ class DashboardController extends Controller
 {
 
     $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want
-    return view('user.dahsboard', compact('penyedia'));
+    return view('user.dahboard', compact('penyedia'));
 }
 
 
