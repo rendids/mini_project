@@ -86,7 +86,7 @@ class PembayaranController extends Controller
         $data = $request->validate([
             'metode' => 'required',
             'tujuan' => 'required',
-            'keterangan' => $request->input('metode') === 'E-WALET' ? 'nullable|image' : 'required,nullable' ,
+            'keterangan' => $request->input('metode') === 'E-WALET' ? 'nullable|image' : 'required|nullable' ,
         ],[
             'metode.required' => 'Metode pembayaran harus dipilih.',
             'tujuan.required' => 'Tujuan pembayaran harus diisi.',

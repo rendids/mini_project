@@ -58,11 +58,14 @@
 										<svg  xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
 										<span class="ms-2">Profile</span>
 									</a>
-									<a href="{{ route('logout') }}" class="dropdown-item ai-icon ms-1">
-										<svg  xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-
-										<span class="ms-1">Logout </span>
-									</a>
+									<a href="#" onclick="confirmLogout()" class="dropdown-item ai-icon ms-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                            <polyline points="16 17 21 12 16 7"></polyline>
+                                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                                        </svg>
+                                        <span class="ms-1">Logout</span>
+                                    </a>
                                     <i class="fa-solid fa-bell"></i>
  								</div>
 							</div>
@@ -71,5 +74,24 @@
 				</div>
 			</div>
 		</nav>
+        <script>
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Logout',
+                    text: 'apa anda yakin ingin logout?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, Logout!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform the logout action (redirect to the logout route)
+                        window.location.href = "{{ route('logout') }}";
+                    }
+                });
+            }
+        </script>
 	</div>
 </div>

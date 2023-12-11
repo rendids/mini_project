@@ -112,15 +112,35 @@
                                         onclick="openEditModal('{{ $item->id }}', '{{ $item->metode }}', '{{ $item->tujuan }}', '{{ $item->keterangan }}')">
                                         <i class="fas fa-pencil"></i>
                                     </button>
-                                    <form action="{{ route('pembayaran.delete', ['id' => $item->id]) }}" method="POST">
+                                    <form id="deleteForm{{ $item->id }}" action="{{ route('pembayaran.delete', ['id' => $item->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i
-                                                class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-danger shadow btn-xm sharp" onclick="confirmDelete({{ $item->id }})">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </td>
                             </tr>
+                            <script>
+                                function confirmDelete(itemId) {
+                                    Swal.fire({
+                                        title: 'Informasi Hapus',
+                                        text: 'apa anda yakin ingin menghapus?',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'iya, hapus!',
+                                        cancelButtonText: 'Batal'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Submit the form when the user clicks 'Yes, delete it!'
+                                            document.getElementById('deleteForm' + itemId).submit();
+                                        }
+                                    });
+                                }
+                            </script>
                             @endforeach
 
                         </tbody>

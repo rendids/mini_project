@@ -29,6 +29,7 @@ class DetailController extends Controller
     public function memesan(string $id)
     {
         $sedia = penyedia::with('user')->find($id);
+        
         return view('user.memesan', compact('sedia', 'bayar'));
     }
 

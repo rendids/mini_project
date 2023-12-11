@@ -56,10 +56,10 @@
                                     </style>
 
                                     <div class="d-flex justify-content-center">
-                                        <form action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
+                                        <form id="rejectForm{{ $itm->id }}" action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
                                             @csrf
                                             @method('patch')
-                                            <button type="submit" class="btn btn-outline-danger">tolak</button>
+                                            <button type="button" class="btn btn-outline-danger" onclick="confirmReject({{ $itm->id }})">tolak</button>
                                         </form>
                                         <form action="{{ route('terima.pesanan', ['id' => $itm->id]) }}" method="POST">
                                             @csrf
@@ -69,6 +69,25 @@
                                     </div>
                                 </td>
                             </tr>
+                            <script>
+                                function confirmReject(itemId) {
+                                    Swal.fire({
+                                        title: 'Konfirmasi',
+                                        text: 'Anda yakin ingin menolak pesanan?',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ya, Tolak!',
+                                        cancelButtonText: 'Batal'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Submit the form when the user clicks 'Ya, Tolak!'
+                                            document.getElementById('rejectForm' + itemId).submit();
+                                        }
+                                    });
+                                }
+                            </script>
                             @endforeach
                         </tbody>
                     </table>

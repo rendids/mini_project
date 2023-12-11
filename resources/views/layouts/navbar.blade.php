@@ -91,5 +91,24 @@
                 <script src="scripts.js"></script>
             </div>
         </nav>
+        <script>
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Logout',
+                    text: 'apa anda yakin ingin logout?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, Logout!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform the logout action (redirect to the logout route)
+                        window.location.href = "{{ route('logout') }}";
+                    }
+                });
+            }
+        </script>
     </div>
 </div>

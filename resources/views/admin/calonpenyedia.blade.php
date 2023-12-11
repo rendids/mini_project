@@ -43,14 +43,35 @@
                                         @method('patch')
                                         <button type="submit" class="btn btn-success shadow btn-xm sharp me-1"><i class="fa fa-check"></i></button>
                                     </form>
-                                    <form action="{{ route('penyedia.tolak', ['id' => $item->id]) }}" method="post">
+                                    <form id="rejectForm{{ $item->id }}" action="{{ route('penyedia.tolak', ['id' => $item->id]) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger shadow btn-xm sharp"><i class="fa fa-x"></i></button>
+                                        <button type="button" class="btn btn-danger shadow btn-xm sharp" onclick="confirmReject({{ $item->id }})">
+                                            <i class="fa fa-x"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
+                        <script>
+                            function confirmReject(itemId) {
+                                Swal.fire({
+                                    title: 'Informasi',
+                                    text: 'apa anda yakin ingin menolak?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'Ya, Yakin!',
+                                    cancelButtonText: 'Batal'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Submit the form when the user clicks 'Yes, reject it!'
+                                        document.getElementById('rejectForm' + itemId).submit();
+                                    }
+                                });
+                            }
+                        </script>
                         @endforeach
                         @else
                         <tr>

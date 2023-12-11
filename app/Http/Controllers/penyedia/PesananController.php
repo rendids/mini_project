@@ -19,7 +19,7 @@ class PesananController extends Controller
         $pesan->update([
             'status' => 'di tolak'
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhasil ditolak');
     }
 
     public function terimapesanan($id){
