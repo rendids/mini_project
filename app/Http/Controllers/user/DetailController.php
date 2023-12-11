@@ -39,13 +39,27 @@ class DetailController extends Controller
     {
         $request->validate([
             'pemesan' => 'required',
-            'nopemesan' => 'required',
+            'nopemesan' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
             'penyedia' => 'required',
             'jasa' => 'required',
-            'alamatpemesan' => 'required',
+            'alamatpemesan' => 'required|min:5|max:200',
             'waktu' => 'required',
             'pembayaran' => 'required',
             'bukti' => 'required'
+        ],[
+            'pemesan.required' => 'nama harus diisi',
+            'nopemesan.required' => 'no telp harus diisi',
+            'nopemesan.numberic' => 'Harus berupa angka',
+            'nopemesan.regex' =>'format tidak valid',
+            'nopemesan.between'=>'harus memiliki antara 10-12 angka',
+            'penyedia.required' => 'nama penyedia harus diisi',
+            'jasa.required'=>'jasa harus diisi',
+            'alamatpemesan.required'=>'isi alamat anda',
+            'alamatpemesan.min' =>'Alamat minimal 5 karakter',
+            'alamatpemesan.max'=> 'Alamat maksimal 200 karakter',
+            'waktu.required'=>'tentukan waktu pelaksanaan',
+            'pembayaran.required'=>'isi metode pembayaran',
+            'bukti.required'=>'isi bukti anda',
         ]);
         $keteranganFile = $request->file('bukti');
         if ($keteranganFile) {

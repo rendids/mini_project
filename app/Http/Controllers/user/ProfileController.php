@@ -87,8 +87,8 @@ class ProfileController extends Controller
             'password_lama' => 'required',
             'password' => 'required|min:8',
         ], [
-            'password_lama.required' => 'Password lama tidak boleh kosong',
-            'password.required' => 'Password baru tidak boleh kosong',
+            'password.required' => 'isi password lama',
+            // 'password.required' => 'Password baru tidak boleh kosong',
             'password.min' => 'Password baru minimal 8 karakter',
         ]);
 

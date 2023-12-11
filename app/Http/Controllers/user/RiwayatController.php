@@ -21,11 +21,6 @@ class RiwayatController extends Controller
 
     public function rating(Request $request)
 {
-    $request->validate([
-        'ratting' => 'required',
-        'komentar' => 'required'
-    ]);
-
     $pesanan_id = $request->pesanan_id;
     $pesanan = pesanan::find($pesanan_id);
 
