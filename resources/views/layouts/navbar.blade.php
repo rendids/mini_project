@@ -1,3 +1,23 @@
+<style>
+   .logout-btn {
+        background-color: #007bff; /* Set the default background color */
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px; /* Add rounded corners */
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    }
+
+    .logout-btn:hover {
+        background-color: #89a5c2; /* Change the background color on hover */
+    }
+
+    .logout-btn .logout-text {
+        font-weight: bold; /* Make the text bold */
+    }
+</style>
+
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
         <svg width="22" height="42" viewBox="0 0 22 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,48 +58,23 @@
 
                         </li>
                         <li>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
-                                Lihat Notifikasi
-                            </button>
+
+                            <a href="{{ route('logout') }}" class=" ai-icon ms-1">
+
+                                <span class="ms-1">
+
+                                    <span class="logout-btn">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span class="logout-text">Logout</span>
+                                    </span>
+                                </span>
+                            </a>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-							<div class="dropdown header-profile2 ">
-								<a class="nav-link " href="javascript:void(0);"  role="button" data-bs-toggle="dropdown">
-									<div class="header-info2 d-flex align-items-center">
-										<img src="../../assets/images/banner-img/pic-1.png" alt="">
-										<div class="d-flex align-items-center sidebar-info">
-											<div>
-												<h6 class="font-w500 mb-0 ms-2">Joshua</h6>
-											</div>
-											<i class="fas fa-chevron-down"></i>
-										</div>
-
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="app_profile.html" class="dropdown-item ai-icon ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
-                                            height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                        <span class="ms-2">Profile</span>
-                                    </a>
-                                    <a href="{{ route('logout') }}" class="dropdown-item ai-icon ms-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
-                                            height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                            <polyline points="16 17 21 12 16 7"></polyline>
-                                            <line x1="21" y1="12" x2="9" y2="12"></line>
-                                        </svg>
-                                        <span class="ms-1">Logout </span>
-                                    </a>
                                 </div>
                             </div>
                         </li>

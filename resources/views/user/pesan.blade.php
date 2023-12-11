@@ -27,18 +27,24 @@
                                     <td>{{ $item->pembayaran }}</td>
                                     <td>{{ 'RP ' . number_format( $item->total , 0, ',', '.')}}</td>
                                     @if ($item->status == 'di tolak')
-                                        <td class="text-blue">{{ $item->status }}</td>
-                                    @elseif($item->status == 'di terima')
-                                        <td class="text-red">{{ $item->status }}</td>
-                                    @elseif ($item->status == 'dalam proses tahap 1')
-                                        <td class="text-black">
-                                            {{ $item->status == 'dalam proses tahap 1' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}
-                                        </td>
-                                    @else
-                                        <td class="text-primary">
-                                            {{ $item->status}}
-                                        </td>
-                                    @endif
+                                    <td class="text-red"><strong>{{ $item->status }}</strong></td>
+                                @elseif($item->status == 'di terima')
+                                    <td class="text-green"><strong>{{ $item->status }}</strong></td>
+                                @elseif ($item->status == 'dalam proses tahap 1')
+                                    <td class="text-orange">
+                                        <strong>{{ $item->status == 'dalam proses tahap 1' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}</strong>
+                                    </td>
+                                @elseif ($item->status == 'selesai')
+                                    <td class="text-blue">
+                                        <strong>{{ $item->status }}</strong>
+                                    </td>
+                                @else
+                                    <td class="text-primary">
+                                        <strong>{{ $item->status }}</strong>
+                                    </td>
+                                @endif
+
+
                                 </tr>
                             @endforeach
                         </tbody>

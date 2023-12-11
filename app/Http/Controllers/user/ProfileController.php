@@ -51,13 +51,20 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
-        ], [
-            'name.required' => 'Harus diisi',
+            'email' => 'required|unique:users|email',
+            'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
+            'alamat' => 'required|min:5|max:200',
+        ],[
+            'name.required' =>'Harus diisi',
             'email.required' => 'Harus diisi',
+            'email.unique' => 'email sudah digunakan',
+            'email.email'=>'email tidak valid',
             'telp.required' => 'Harus diisi',
+            'telp.numberic' => 'Harus berupa angka',
+            'telp.regex' =>'format tidak valid',
+            'telp.between'=>'harus memiliki antara 10-12 angka',
+            'alamat.min' =>'Alamat minimal 5 karakter',
+            'alamat.max'=> 'Alamat maksimal 200 karakter',
             'alamat.required' => 'Harus diisi',
         ]);
         // dd($request);

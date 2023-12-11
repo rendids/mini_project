@@ -44,7 +44,7 @@
                                                     {{ $pesanan->status == 'di terima' ? 'text-success' : '' }}
                                                     {{ $pesanan->status == 'pengembalian berhasil' ? 'text-success' : '' }}
                                                     ">
-                                                    {{ $pesanan->status }}
+                                                    {{ $pesanan->status  }}
                                                 </a>
                                             </div>
                                         </td>
