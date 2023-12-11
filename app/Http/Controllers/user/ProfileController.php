@@ -21,12 +21,6 @@ class ProfileController extends Controller
        // dd($data_user);
         return view("user.profile", compact('data_user'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-
-
       public function updatefoto(Request $request, string $id)
     {
         $request->validate([
@@ -44,6 +38,7 @@ class ProfileController extends Controller
         $userupdate->update([
             'foto' => $fotoPath,
         ]);
+
         return redirect()->back();
     }
     public function updateprofile(Request $request, string $id)
