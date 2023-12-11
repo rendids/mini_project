@@ -22,4 +22,9 @@ class penyedia extends Model
     {
         return $this->hasMany(Ratting::class, 'penyedia_id');
     }
+
+    public function pesanan()
+    {
+        return $this->hasMany(pesanan::class, );
+    }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Models\pesanan;
 use App\Models\penyedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -12,22 +14,27 @@ class DashboardController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
+    {
+        $penyedia = Penyedia::get();
+        $bestseller = $penyedia->sortByDesc(function ($penyedia) {
+            return $penyedia->pesanan; // Gantilah dengan metode atau atribut yang sesuai
+        })->take(6);
 
-    $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want
-    return view('user.dahboard', compact('penyedia'));
-}
+        // dd($bestseller);
+        $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want
+        return view('user.dahboard', compact('penyedia', 'bestseller'));
+    }
 
 
 
 
-public function search(Request $request)
-{
-    $keyword = $request->input('search');
-    $penyedia = penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')->paginate(8);
+    public function search(Request $request)
+    {
+        $keyword = $request->input('search');
+        $penyedia = penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')->paginate(8);
 
-    return view('user.dahboard', compact('penyedia'));
-}
+        return view('user.dahboard', compact('penyedia'));
+    }
 
 
     public function create()
@@ -40,7 +47,6 @@ public function search(Request $request)
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -74,5 +80,4 @@ public function search(Request $request)
     {
         //
     }
-
 }
