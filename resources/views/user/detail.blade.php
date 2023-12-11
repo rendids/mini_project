@@ -1,38 +1,26 @@
 @extends('layoutsuser.app')
 
 <style>
-   .larger-text {
+    .larger-text {
         font-size: 15px;
         /* Sesuaikan ukuran teks yang diinginkan */
     }
-
-    .smaller-card {
-        max-width: 400px; /* Adjust the max-width to your preference */
-    }
-    .card-img-container {
-        max-width: 250%;
-        margin: 10% auto;
-    }
-.btn-kanan{
-    justify-content: right;
-    gap: 5px;
-}
 </style>
 
 @section('content')
     <h1 class="text-capitalize">
         detail dari : <span class="text-primary">{{ $sedia->layanan }} - {{ $sedia->user->name }}</span>
     </h1>
-    <div class="d-flex flex-row gap-2 flex-wrap" style="border: 1px solid rgb(128, 128, 128); border-radius: 10px; height: 455px; ">
+    <div class="d-flex flex-row gap-2 flex-wrap" style="border: 1px solid rgb(128, 128, 128); border-radius: 10px">
         <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
             <div class="row">
                 <div
                     class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
                     <div class="mb-sm-0 mb-3 pagination-title">
                     </div>
-                    <div class="card w-800" style="border: none">
+                    <div class="card w-100" style="border: none">
                         <div class="card-body d-flex align-items-center">
-                            <div class="col-md-15">
+                            <div class="col-md-12">
                                 <div class="card-body">
                                     <div class="">
                                         <img src="{{ asset('storage/' . $sedia->foto) }}" class="card-img-top"
@@ -61,41 +49,50 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-xxl-6 col-sm-6">
-            <div class="card mb-4 w-100" style="border: none">
-                <div class="row g-5">
-                    <div class="card mb-4 w-100 smaller-card" style="border: none">
+        <div class="col-xl-6 col-xxl-6 col-sm-6">
+            <div class="card mb-3 w-100" style="border: none">
+                <div class="row g-0">
+                    <div class="col-md-12">
                         <div class="card-body">
                             <form action="{{ route('buat.pemesanan', ['id' => $sedia->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <label for="name" class="fs-10 fw-bold ">Nama</label>
+                                <label for="name" class="fs-4 fw-bold">Nama</label>
                                 <input type="text" name="pemesan" class="form-control" placeholder="Masukkan nama Anda"
                                     value="{{ old('pemesan') }}" id="pemesan">
                                 @error('pemesan')
                                     <span class="text-danger my-2">{{ $message }}</span>
                                 @enderror
-                                <input type="hidden" name="penyedia" class="form-control" readonly
-                                    value="{{ $sedia->user->name }}" id="penyedia">
-                                <label for="name" class="fs-10 fw-bold">No Telp</label>
-                                <input type="number" name="nopemesan" class="form-control" placeholder="masukan no telp" id="no_hp_penyedia">
-                                <input type="hidden" name="jasa" class="form-control" readonly
-                                    value="{{ $sedia->layanan }}" id="layanan">
-                                <label for="name" class="fs-10 fw-bold">Alamat</label>
+                                <br>
+
+                                {{-- <input type="hidden" name="penyedia" class="form-control" readonly
+                                    value="{{ $sedia->user->name }}" id="penyedia"> --}}
+
+                                <label for="name" class="fs-4 fw-bold">No Telp</label>
+                                <input type="number" name="nopemesan" class="form-control" placeholder="Masukkan no telp" id="no_hp_penyedia">
+                                @error('nopemesan')
+                                <span class="text-danger my-2">{{ $message }}</span>
+                            @enderror
+                            <br>
+
+                                {{-- <input type="hidden" name="jasa" class="form-control" readonly
+                                    value="{{ $sedia->layanan }}" id="layanan"> --}}
+
+                                <label for="name" class="fs-4 fw-bold">Alamat</label>
                                 <textarea name="alamatpemesan" id="alamatpemesan" cols="30" rows="10" class="form-control"
                                     placeholder="Masukkan alamat Anda">{{ old('alamatpemesan') }}</textarea>
                                 @error('alamatpemesan')
                                     <span class="text-danger my-2">{{ $message }}</span>
                                 @enderror
+                                <br>
 
-                                <label for="" class="fs-10 fw-bold">Tanggal</label>
+                                <label for="" class="fs-4 fw-bold">Tanggal</label>
                                 <input type="datetime-local" class="form-control" name="waktu" id="tanggal">
                                 @error('waktu')
                                     <span class="text-danger my-2">{{ $message }}</span>
                                 @enderror
-
-                                <br><br>
-                                <div class=" btn-kanan d-flex" >
+                                <br>
+                                <div class="modal-footer">
                                     <button onclick="window.location =`{{ route('detail', ['id' => $sedia->id]) }}`"
                                         type="button" class="btn btn-outline-danger">Batal</button>
                                     <!-- Tombol Lanjutkan -->
@@ -103,7 +100,6 @@
                                         data-bs-target="#modalPembayaran">
                                         Lanjutkan
                                     </button>
-                                </div>
 
                                     <!-- Modal Pembayaran -->
                                     <div class="modal fade" id="modalPembayaran" tabindex="-1"
@@ -130,6 +126,9 @@
                                                                         {{ $item->tujuan }}</option>
                                                                 @endforeach
                                                             </select>
+                                                            @error('pembayaran')
+                                                            <span class="text-danger my-2">{{ $message }}</span>
+                                                        @enderror
                                                         </div>
                                                         <div class="col-md-6" id="keteranganContainer"
                                                             style="display: none;">
@@ -138,12 +137,16 @@
                                                                 id="keteranganInput">
                                                             <img src="" class="img-fluid" style="display: none;"
                                                                 id="displayImage" alt="">
+
                                                         </div>
                                                     </div>
                                                     <div class="row my-3">
                                                         <div class="col-md-12">
                                                             <label for="">Bukti pembayaran</label>
                                                             <input type="file" name="bukti" class="form-control">
+                                                            @error('bukti')
+                                                            <span class="text-danger my-2">{{ $message }}</span>
+                                                        @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -193,5 +196,8 @@
             </div>
         </div>
     </div>
-    @endsection
-
+    </div>
+    </div>
+    </div>
+    </div>
+@endsection
