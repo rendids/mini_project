@@ -51,6 +51,32 @@
         color: #aaa;
         font-size: 12px;
     }
+
+    .notification-icon {
+        position: relative;
+        display: inline-block;
+    }
+
+    .badge-notification {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+    }
+    .notification-icon {
+        position: relative;
+        display: inline-block;
+    }
+
+    .badge-notification {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+        font-size: 8px; /* Sesuaikan ukuran sesuai kebutuhan */
+    }
+
+
 </style>
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
@@ -102,14 +128,13 @@
                         </div>
                     </div>
                     <ul class="navbar-nav header-right ">
-                        <li class="nav-item d-flex align-items-center mx-3" style="margin-top: 27px;">
+                        <li class="nav-item d-flex align-items-center ms-3 me-4     " style="margin-top: 30px;">
                             <div class="dropdown">
-                                <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="notification-icon">
                                     <i class="fas fa-bell fs-3 text-light"></i>
-                                    <span class="badge rounded-pill badge-notification bg-danger ms-2" style="border-radius: 100%;">10</span>
-                                </a>
+                                    <span class="badge rounded-circle badge-notification bg-danger ms-2" style="border-radius: 50%;">10</span>
 
+                                </a>
                                 <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;"
                                     aria-labelledby="navbarDropdownMenuLink">
                                     <div class="mx-3 mb-3 d-flex justify-content-between align-items-start">

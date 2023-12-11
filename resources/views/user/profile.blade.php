@@ -112,7 +112,7 @@
                     @csrf
                     <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
                         <label id="label" for="foto">
-                            <p>choose file</p>
+                      {{-- <strong><p>choose file</p></strong> --}}
                             <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
                                 <img id="photo-profile" src="{{ asset('storage/' . $data_user->foto) }}"
                                     class="profile-image card-img-top" alt="Profile"
@@ -124,7 +124,7 @@
                             @error('foto')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
-                            <input type="file" name="foto" id="foto" onchange="previewFile()">
+                            <input style="display: none" type="file" name="foto" id="foto" onchange="previewFile()">
                             <button type="button" class="btn btn-outline-primary btn-block mb-2"
                                 onclick="submitForm()">Ubah foto
                                 profile</button>
