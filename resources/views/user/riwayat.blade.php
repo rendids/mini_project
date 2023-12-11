@@ -50,7 +50,7 @@
                                         </td>
                                         <td><!-- Button trigger modal -->
                                         @if ($pesanan->status == 'di tolak')
-                                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#basicModal">
+                                            <button type="button" class="btn btn-warning btn-sm btn-pengembalian" data-pesanan="{{ $pesanan->id }}" data-bs-toggle="modal" data-bs-target="#basicModal">
                                                 pengembalian
                                             </button>
                                         @elseif ($pesanan->status == 'di terima')
