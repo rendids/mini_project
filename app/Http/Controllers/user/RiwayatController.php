@@ -14,9 +14,8 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        $pesananDitolak = pesanan::where('status', 'di tolak')->get();
-        $pesananDiterima = Pesanan::where('status', '!=', 'di tolak')->get();
-        // $pesananDiterima = pesanan::where('status', 'di terima')->orwhere('status', 'pengembalian berhasil')->get();
+        $pesananDitolak = pesanan::where('status', '!=', 'dalam proses tahap 2')->get();
+        $pesananDiterima = Pesanan::where('status', '!=', 'dalam proses tahap 1')->get();
         return view('user.riwayat', compact('pesananDitolak', 'pesananDiterima'));
     }
 
@@ -42,7 +41,7 @@ class RiwayatController extends Controller
         'komentar' => $request->komentar,
     ]);
 
-    $pesanan->update(['status' => 'sudah di rating']);
+    $pesanan->update(['status' => 'selesai']);
     // dd($buat);
 
     return back()->with('success', 'Data Berhasil Ditambahkan');

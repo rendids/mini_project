@@ -1,3 +1,57 @@
+<style>
+    width: 300px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 63px;
+    right: 35px;
+    transition: 1s opacity,
+    250ms height;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .notifi-box h2 {
+        font-size: 14px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        color: #999;
+    }
+
+    .notifi-box h2 span {
+        color: #f00;
+    }
+
+    .notifi-item {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 15px 5px;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+
+    .notifi-item:hover {
+        background-color: #eee;
+    }
+
+    .notifi-item img {
+        display: block;
+        width: 50px;
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+
+    .notifi-item .text h4 {
+        color: #777;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .notifi-item .text p {
+        color: #aaa;
+        font-size: 12px;
+    }
+</style>
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
         <svg width="22" height="42" viewBox="0 0 22 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,30 +102,32 @@
                         </div>
                     </div>
                     <ul class="navbar-nav header-right ">
-                        <li class="nav-item d-flex align-items-center mt-2 mx-3">
+                        <li class="nav-item d-flex align-items-center mx-3" style="margin-top: 27px;">
                             <div class="dropdown">
-                                <a class="me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                                role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-bell"></i>
-                                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                                <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-bell fs-3 text-light"></i>
+                                    <span class="badge rounded-pill badge-notification bg-danger ms-2" style="border-radius: 100%;">10</span>
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li>
-                                        <a class="dropdown-item" href="#">Some news</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Another news</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </li>
+
+                                <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;"
+                                    aria-labelledby="navbarDropdownMenuLink">
+                                    <div class="mx-3 mb-3 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">Notifikasi <span
+                                                    class="badge badge-notification rounded-pill bg-primary">14</span></div>
+                                        </div>
+                                        <a href="">selengkapnya</a>
+                                    </div>
+                                    <li class="list-group-item">A second item</li>
                                 </ul>
                             </div>
                         </li>
+
                         <div class="dropdown header-profile2 ">
                             <a class="nav-link " href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                                 <div class="header-info2 d-flex align-items-center">
-                                    <img src="{{ asset('storage/' . Auth::user()->foto)  }}" alt="">
+                                    <img src="{{ asset('storage/foto_user/' . Auth::user()->foto) }}" alt="">
                                     <div class="d-flex align-items-center sidebar-info">
                                         <div>
                                             <h6 class="font-w500 mb-0 ms-2">{{ Auth::user()->name }}</h6>

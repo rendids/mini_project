@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
             $table->string('pemesan');
+            $table->string('nopemesan');
             $table->string('jasa');
             $table->foreignId('penyedia_id')->constrained('penyedias');
             $table->dateTime('waktu');

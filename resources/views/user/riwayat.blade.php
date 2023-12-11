@@ -11,8 +11,8 @@
                                 <th>tanggal</th>
                                 <th>pembayaran</th>
                                 <th>Total</th>
-                                <th>Action</th>
                                 <th>Status</th>
+                                <th>Action</th>
                                 <th class="bg-none"></th>
                                 <th class="bg-none"></th>
                             </tr>
@@ -38,24 +38,6 @@
                                                 <h4 class="text-primary">{{ $pesanan->total }}</h4>
                                             </div>
                                         </td>
-                                        <td><!-- Button trigger modal -->
-                                            @if ($pesanan->status == 'di tolak')
-                                                <button type="button" class="btn btn-warning btn-sm btn-pengembalian"
-                                                    data-pesanan="{{ $pesanan->id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#basicModal">
-                                                    Pengembalian
-                                                </button>
-                                            @endif
-                                            @if ($pesanan->status == 'di terima')
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal">
-                                                    Beri Rating
-                                                </button>
-                                            @endif
-                                            @if ($pesanan->status == 'pengembalian berhasil')
-                                                -
-                                            @endif
-                                        </td>
                                         <td>
                                             <div>
                                                 <a href="javascript:void(0);"
@@ -67,6 +49,19 @@
                                                     {{ $pesanan->status }}
                                                 </a>
                                             </div>
+                                        </td>
+                                        <td><!-- Button trigger modal -->
+                                        @if ($pesanan->status == 'di tolak')
+                                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#basicModal">
+                                                pengembalian
+                                            </button>
+                                        @elseif ($pesanan->status == 'di terima')
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $pesanan->id }}">
+                                                Beri Rating
+                                            </button>
+                                        @else
+
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -158,13 +153,13 @@
         }
     </script>
     <!-- Modal -->
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @foreach ($pesananDitolak->merge($pesananDiterima) as $pesanan)
+    <div class="modal fade" id="exampleModal{{ $pesanan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -200,7 +195,9 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
+    @endforeach
+
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         const stars = document.querySelectorAll(".rating-container i");

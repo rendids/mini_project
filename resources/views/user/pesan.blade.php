@@ -36,7 +36,7 @@
                                         </td>
                                     @else
                                         <td class="text-primary">
-                                            {{ $item->status == 'dalam proses tahap 1' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}
+                                            {{ $item->status}}
                                         </td>
                                     @endif
                                 </tr>

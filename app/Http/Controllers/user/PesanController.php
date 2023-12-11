@@ -11,7 +11,7 @@ class PesanController extends Controller
     public function index()
     {
 
-        $pesan = Pesanan::where('status','!=', 'dalam proses')->get();
+        $pesan = Pesanan::where('status', '!=', 'selesai')->get();
 
        return view('user.pesan', compact('pesan'));
     }

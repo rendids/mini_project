@@ -39,6 +39,7 @@ class DetailController extends Controller
     {
         $request->validate([
             'pemesan' => 'required',
+            'nopemesan' => 'required',
             'penyedia' => 'required',
             'jasa' => 'required',
             'alamatpemesan' => 'required',
@@ -56,6 +57,7 @@ class DetailController extends Controller
 
         $buat = pesanan::create([
             'pemesan' => $request->pemesan,
+            'nopemesan' => $request->nopemesan,
             'penyedia_id' => $id,
             'jasa' => $request->jasa,
             'alamatpemesan' => $request->alamatpemesan,
@@ -66,6 +68,7 @@ class DetailController extends Controller
             'status' => 'dalam proses tahap 1',
         ]);
        $user = Auth::user();
+
         Notifikasi::create([
             'user_id' => $user->id,
             'pesan' => 'anda berhasil membuat pesanan baru',

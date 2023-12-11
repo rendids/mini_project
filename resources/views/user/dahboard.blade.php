@@ -40,7 +40,7 @@
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <div class="row">
             @foreach ($penyedia as $item)
-                <div class="col-xl-3 col-xxl-4 col-sm-6">
+                <div3 class="col-xl-3 col-xxl-4 col-sm-6">
                     <div class="card dishe-bx b-hover style-1">
 
                         <div class="card-body pb-0 pt-3">
@@ -63,12 +63,12 @@
                                     <h5 class="text-base font-bold mb-1">Harga: <span>{{ $item->harga }}</span> </h5>
                                 </div>
                                 <a href="{{ route('detail', ['id' => $item->id]) }}" class="btn btn-primary btn-sm fs-1">
-                                    <i class="fa-regular fa-eye text-white fs-2"></i>
+                                    <i class="fa-regular fa-eye text-white fs-4"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div3
             @endforeach
         </div>
     </div>
