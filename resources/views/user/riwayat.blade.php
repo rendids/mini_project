@@ -21,21 +21,19 @@
                                 @foreach ($pesananDitolak->merge($pesananDiterima) as $pesanan)
                                     <tr>
                                         <td>
-
                                             <h5 class="mb-0">{{ $pesanan->jasa }}</h5>
-                                            <p class="mb-0">1x </p>
                                         </td>
                                         <td>
                                             <div>
-                                                <p class="mb-0">{{ $pesanan->waktu }}</p>
+                                                <h5 class="mb-0">{{ $pesanan->waktu }}</h5>
                                             </div>
                                         </td>
                                         <td>
-                                            <span>dana</span>
+                                           <h5 class="mb-0">{{ $pesanan->pembayaran }}</h5>
                                         </td>
                                         <td>
                                             <div>
-                                                <h4 class="text-primary">{{ $pesanan->total }}</h4>
+                                                <h5 class="mb-0">{{ 'RP ' . number_format( $pesanan->total , 0, ',', '.')}}</h5>
                                             </div>
                                         </td>
                                         <td>

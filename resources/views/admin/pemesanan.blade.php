@@ -32,7 +32,7 @@
                                     <td><strong>{{ $itm->pemesan }}</strong></td>
                                     <td><strong>{{ $itm->penyedia->user->name }}</strong></td>
                                     <td><strong>{{ $itm->jasa }}</strong></td>
-                                    <td><strong>{{ $itm->total }}</strong></td>
+                                    <td><strong>{{ 'RP ' . number_format($itm->total , 0, ',', '.')}}</strong></td>
                                     <td>
                                         <div class="d-flex">
                                             <button type="button" class="btn btn-primary shadow btn-xm sharp me-1"

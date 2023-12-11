@@ -18,7 +18,7 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr class="bg-primary text-white">
-                            <th><strong>N</strong></th>
+                            <th><strong>No</strong></th>
                             <th><strong>Nama Pemesanan</strong></th>
                             <th><strong>Nama Jasa</strong></th>
                             <th><strong>Nama Pembayaran</strong></th>
@@ -34,7 +34,7 @@
                               <td>{{ $item->user->name }}</td>
                               <td>{{ $item->pesanan->jasa }}</td>
                               <td>{{ $item->metode }}</td>
-                              <td>Rp. {{ $item->pesanan->total }}</td>
+                              <td>{{ 'RP ' . number_format(  $item->pesanan->total , 0, ',', '.')}}</td>
                               <td>
                                   <div class="d-flex">
                                       <a href="{{ route('pengajuan-process', $item->id) }}" class="btn btn-primary shadow btn-xm sharp me-1">

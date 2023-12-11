@@ -25,7 +25,7 @@
                                     <td>{{ $item->jasa }}</td>
                                     <td>{{ $item->waktu }}</td>
                                     <td>{{ $item->pembayaran }}</td>
-                                    <td>{{ $item->total }}</td>
+                                    <td>{{ 'RP ' . number_format( $item->total , 0, ',', '.')}}</td>
                                     @if ($item->status == 'di tolak')
                                         <td class="text-blue">{{ $item->status }}</td>
                                     @elseif($item->status == 'di terima')

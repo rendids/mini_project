@@ -42,7 +42,7 @@
                                     <h5 class="">{{ $itm->pembayaran }}</h5>
                                 </td>
                                 <td>
-                                    <h5 class="">{{ $itm->total }}</h5>
+                                    <h5 class="">{{ 'RP ' . number_format($itm->total , 0, ',', '.')}}</h5>
                                 </td>
                                 <td>
                                     <img src="{{ asset('storage/bukti/'. $itm->bukti) }}" class="img-fluid" style="width: 200px;" alt="" srcset="">

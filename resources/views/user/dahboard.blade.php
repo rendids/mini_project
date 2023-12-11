@@ -60,7 +60,7 @@
                             <div class="common d-flex align-items-center justify-content-between">
                                 <div>
                                     <h5 class="text-base font-bold mb-1">Rating: ⭐⭐⭐⭐</h5>
-                                    <h5 class="text-base font-bold mb-1">Harga: <span>{{ $item->harga }}</span> </h5>
+                                    <h5 class="text-base font-bold mb-1">Harga: <span>{{ 'RP ' . number_format($item->harga , 0, ',', '.')}}</span> </h5>
                                 </div>
                                 <a href="{{ route('detail', ['id' => $item->id]) }}" class="btn btn-primary btn-sm fs-1">
                                     <i class="fa-regular fa-eye text-white fs-4"></i>
