@@ -216,8 +216,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, Logout!',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'Iya',
+                cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Perform the logout action (redirect to the logout route)

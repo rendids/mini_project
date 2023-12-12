@@ -36,7 +36,7 @@
                                     <!-- </div> -->
                                     <div class="text-end">
                                         <h2 class="angka m-0">{{$penyedia}}</h2>
-                                        <p>Jummlah Pesanan Yang Ditolak</p>
+                                        <p>Jumlah Pesanan Yang Ditolak</p>
                                     </div>
                                 </div>
                             </div>
