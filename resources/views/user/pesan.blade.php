@@ -23,7 +23,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->penyedia->user->name }}</td>
                                     <td>{{ $item->jasa }}</td>
-                                    <td>{{ $item->waktu }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->waktu)->isoFormat('dddd, d MMMM YYYY') }}</td>
                                     <td>{{ $item->pembayaran }}</td>
                                     <td>{{ 'RP ' . number_format( $item->total , 0, ',', '.')}}</td>
                                     @if ($item->status == 'di tolak')
