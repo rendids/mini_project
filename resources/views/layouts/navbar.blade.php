@@ -1,6 +1,6 @@
 <style>
    .logout-btn {
-        background-color: 145aac; /* Set the default background color */
+        background-color: #007bff; /* Set the default background color */
         color: white;
         padding: 10px 15px;
         border: none;
@@ -10,7 +10,7 @@
     }
 
     .logout-btn:hover {
-        background-color: 145aac; /* Change the background color on hover */
+        background-color: #89a5c2; /* Change the background color on hover */
     }
 
     .logout-btn .logout-text {
@@ -100,8 +100,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
                     cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Iya',
-                    cancelButtonText: 'Batal'
+                    confirmButtonText: 'Yes, Logout!',
+                    cancelButtonText: 'Cancel'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Perform the logout action (redirect to the logout route)

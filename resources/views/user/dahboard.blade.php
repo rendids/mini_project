@@ -18,6 +18,29 @@
             margin-top: -20px;
             /* Sesuaikan nilai negatif ini untuk menyesuaikan posisi ke atas */
         }
+
+        .card.dishe-bx:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Tambahkan efek bayangan saat hover */
+        .card.dishe-bx:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #1E4FA7;
+            /* Ganti warna latar sesuai keinginan Anda */
+            border-color: #1E4FA7;
+            /* Ganti warna border sesuai keinginan Anda */
+        }
+
+        /* Hover effect on icon */
+        .btn-primary:hover i {
+            color: #ffffff;
+            /* Ganti warna ikon sesuai keinginan Anda */
+        }
     </style>
 
     <div class="input-group search-area2 style-1">
@@ -48,9 +71,9 @@
         <div class="row">
             @foreach ($bestseller as $item)
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
-                    <div class="card dishe-bx b-hover style-1">
+                    <div class="card dishe-bx b-hover style-1 shadow">
 
-                        <div class="card-body pb-0 pt-3">
+                        <div class="card-body pb-0 pt-3 shadow">
                             <div class="text-center mb-2">
                                 <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width:100%;"
                                     alt="foto peyedia">
@@ -67,22 +90,22 @@
                             <div class="common d-flex align-items-center justify-content-between">
                                 <div>
                                     @php
-                                    $totalRatings = 0;
-                                    $jumlahRatings = count($item->ratings);
-                                @endphp
-
-                                @foreach ($item->ratings as $rating)
-                                    @php
-                                        $totalRatings += $rating->ratting;
+                                        $totalRatings = 0;
+                                        $jumlahRatings = count($item->ratings);
                                     @endphp
-                                @endforeach
 
-                                @php
-                                    $rataRata = ($jumlahRatings > 0) ? $totalRatings / $jumlahRatings : 0;
-                                    // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
-                                    $rataRataFormatted = number_format($rataRata, 1);
-                                @endphp
-                                    <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }}  </h5>
+                                    @foreach ($item->ratings as $rating)
+                                        @php
+                                            $totalRatings += $rating->ratting;
+                                        @endphp
+                                    @endforeach
+
+                                    @php
+                                        $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
+                                        // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
+                                        $rataRataFormatted = number_format($rataRata, 1);
+                                    @endphp
+                                    <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }} </h5>
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
                                     </h5>
@@ -105,9 +128,9 @@
         <div class="row">
             @foreach ($penyedia as $item)
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
-                    <div class="card dishe-bx b-hover style-1">
+                    <div class="card dishe-bx b-hover style-1 shadow">
 
-                        <div class="card-body pb-0 pt-3">
+                        <div class="card-body pb-0 pt-3 shadow">
                             <div class="text-center mb-2">
                                 <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width: 100%;"
                                     alt="foto peyedia">
@@ -124,21 +147,21 @@
                             <div class="common d-flex align-items-center justify-content-between">
                                 <div>
                                     @php
-                                    $totalRatings = 0;
-                                    $jumlahRatings = count($item->ratings);
-                                @endphp
-
-                                @foreach ($item->ratings as $rating)
-                                    @php
-                                        $totalRatings += $rating->ratting;
+                                        $totalRatings = 0;
+                                        $jumlahRatings = count($item->ratings);
                                     @endphp
-                                @endforeach
 
-                                @php
-                                    $rataRata = ($jumlahRatings > 0) ? $totalRatings / $jumlahRatings : 0;
-                                    // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
-                                    $rataRataFormatted = number_format($rataRata, 1);
-                                @endphp
+                                    @foreach ($item->ratings as $rating)
+                                        @php
+                                            $totalRatings += $rating->ratting;
+                                        @endphp
+                                    @endforeach
+
+                                    @php
+                                        $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
+                                        // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
+                                        $rataRataFormatted = number_format($rataRata, 1);
+                                    @endphp
                                     <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }}</h5>
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>

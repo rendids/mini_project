@@ -5,20 +5,25 @@
         font-size: 15px;
         /* Sesuaikan ukuran teks yang diinginkan */
     }
+
+    .content-body {
+        min-height: 1500px !important;
+    }
 </style>
 
 @section('content')
     <h1 class="text-capitalize">
         detail dari : <span class="text-primary">{{ $sedia->layanan }} - {{ $sedia->user->name }}</span>
     </h1>
-    <div class="d-flex flex-row gap-2 flex-wrap" style="border: 1px solid rgb(128, 128, 128); border-radius: 10px">
+    <div class="d-flex flex-row gap-2 flex-wrap"
+        style="border: 1px solid rgb(128, 128, 128); border-radius: 10px; height: 490px">
         <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
             <div class="row">
                 <div
                     class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
                     <div class="mb-sm-0 mb-3 pagination-title">
                     </div>
-                    <div class="card w-100" style="border: none">
+                    <div class="card w-100" style="border: none ">
                         <div class="card-body d-flex align-items-center">
                             <div class="col-md-12">
                                 <div class="card-body">
@@ -196,4 +201,58 @@
             </div>
         </div>
     </div>
-    @endsection
+    <br><br>
+    <h1></h1>
+    <div class="d-flex " style="left: -424px; position: absolute; top: 487px;">
+        <div class="">
+
+            <div class="recent-review d-flex align-items-center">
+                <img src="public/assets/images/popular-img/pic-1.jpg" alt="">
+                <div>
+                    <h4 class="font-w00 ">Fish Burger</h4>
+                    <ul class="d-flex flex-row p-2">
+                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                    fill="#FC8019"></path>
+                            </svg>
+                        </li>
+                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                    fill="#FC8019"></path>
+                            </svg>
+                        </li>
+                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                    fill="#FC8019"></path>
+                            </svg>
+                        </li>
+                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                    fill="#FC8019"></path>
+                            </svg>
+                        </li>
+                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
+                                    fill="#FC8019"></path>
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            <div>
+                <h6 class="font-w400">Ordered June 21, 2020</h6>
+            </div>
+        </div>
+    </div>
+@endsection

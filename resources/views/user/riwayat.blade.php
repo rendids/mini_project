@@ -1,5 +1,63 @@
 @extends('layoutsuser.app')
 @section('content')
+<style>
+
+    .table-list th{
+        color: #fff;
+    }
+    /* Gaya untuk menonaktifkan garis tabel default */
+    .table-list,
+    .table-list th,
+    .table-list td {
+        border: none;
+    }
+
+    /* Gaya untuk latar belakang header tabel */
+    .table-list thead {
+        background-color: #2e54b5; /* Warna latar belakang header */
+        color: #fff; /* Warna teks header */
+    }
+
+    /* Gaya untuk baris ganjil */
+    .table-list tbody tr:nth-child(odd) {
+        background-color: #f2f2f2; /* Warna latar belakang baris ganjil */
+    }
+
+    /* Gaya untuk baris saat dihover */
+    .table-list tbody tr:hover {
+        background-color: #e2e5e8; /* Warna latar belakang saat dihover */
+    }
+
+    /* Gaya untuk teks berwarna merah pada status "Di Tolak" */
+    .text-danger {
+        color: #dc3545; /* Warna merah */
+    }
+
+    /* Gaya untuk teks berwarna orange pada status "Menunggu Konfirmasi" */
+    .text-warning {
+        color: #fd7e14; /* Warna orange */
+    }
+
+    /* Gaya untuk teks berwarna hijau pada status "Diterima" */
+    .text-success {
+        color: #28a745; /* Warna hijau */
+    }
+
+    /* Gaya untuk modal */
+    .modal-content {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        background-color: #3498db; /* Warna latar belakang header modal */
+        color: #fff; /* Warna teks header modal */
+    }
+
+    .modal-footer {
+        background-color: #f2f2f2; /* Warna latar belakang footer modal */
+    }
+</style>
+
     <div class="col-xl-12">
         <div class="card h-auto">
             <div class="card-body p-0">

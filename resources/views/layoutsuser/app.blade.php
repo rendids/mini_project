@@ -72,12 +72,12 @@
 
             </div>
         </div>
-        <div class="footer">
+        {{-- <div class="footer">
             <div class="copyright border-top">
                 <p>Copyright © Designed by <a href="https://themeforest.net/user/dexignlabs"
                         target="_blank">DexignLab</a> 2023</p>
             </div>
-        </div>
+        </div> --}}
 
     </div>
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
