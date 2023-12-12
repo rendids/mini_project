@@ -39,7 +39,6 @@ class DetailController extends Controller
     public function store(Request $request, string $id)
     {
         $request->validate([
-            'pemesan' => 'required',
             'nopemesan' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
             'penyedia' => 'required',
             'jasa' => 'required',
@@ -48,7 +47,6 @@ class DetailController extends Controller
             'pembayaran' => 'required',
             'bukti' => 'required'
         ],[
-            'pemesan.required' => 'nama harus diisi',
             'nopemesan.required' => 'no telp harus diisi',
             'nopemesan.numeric' => ' no telp Harus berupa angka',
             'nopemesan.regex' =>'format tidak valid',
@@ -70,25 +68,33 @@ class DetailController extends Controller
         } else {
             // Handle the case where no file is present
         }
+        $user = Auth::user();
+        $chekPesanan = pesanan::where('pemesan', $user->id)->whereNot('status','selesai')->count();
+        if($chekPesanan > 0) {
+            return redirect()->route('pesan')->with('error', 'masih ada pesanan yang belum selesai');
+        }else{
+            $buat = pesanan::create([
+                'pemesan' => $user->id,
+                'nopemesan' => $request->nopemesan,
+                'penyedia_id' => $id,
+                'jasa' => $request->jasa,
+                'alamatpemesan' => $request->alamatpemesan,
+                'waktu' => $request->waktu,
+                'pembayaran' => $request->pembayaran,
+                'bukti' => $namaGambar, // Use $namaGambar directly
+                'total' => $request->total,
+                'status' => 'dalam proses tahap 1',
+            ]);
+            Notifikasi::create([
+                'user_id' => $user->id,
+                'pesan' => 'anda berhasil membuat pesanan baru',
+            ]);
+        }
 
-        $buat = pesanan::create([
-            'pemesan' => $request->pemesan,
-            'nopemesan' => $request->nopemesan,
-            'penyedia_id' => $id,
-            'jasa' => $request->jasa,
-            'alamatpemesan' => $request->alamatpemesan,
-            'waktu' => $request->waktu,
-            'pembayaran' => $request->pembayaran,
-            'bukti' => $namaGambar, // Use $namaGambar directly
-            'total' => $request->total,
-            'status' => 'dalam proses tahap 1',
-        ]);
-       $user = Auth::user();
 
-        Notifikasi::create([
-            'user_id' => $user->id,
-            'pesan' => 'anda berhasil membuat pesanan baru',
-        ]);
+
+
+
 
         return redirect()->route('pesan');
     }

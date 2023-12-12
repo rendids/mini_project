@@ -57,13 +57,6 @@
                             <form action="{{ route('buat.pemesanan', ['id' => $sedia->id]) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <label for="name" class="fs-4 fw-bold">Nama</label>
-                                <input type="text" name="pemesan" class="form-control" placeholder="Masukkan nama Anda"
-                                    value="{{ old('pemesan') }}" id="pemesan">
-                                @error('pemesan')
-                                    <span class="text-danger my-2">{{ $message }}</span>
-                                @enderror
-                                <br>
 
                                 <input type="hidden" name="penyedia" class="form-control" readonly
                                     value="{{ $sedia->user->name }}" id="penyedia">
