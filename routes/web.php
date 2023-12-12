@@ -85,9 +85,6 @@ Route::middleware('user-access:admin', 'auth',)->prefix('admin')->group(function
     Route::controller(AdminDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.admin');
     });
-    Route::controller(PersetujuanAdmin::class)->group(function () {
-        Route::get('persetujuan', 'index')->name('persetujuan');
-    });
     Route::controller(CalonPenyediaController::class)->group(function () {
         route::get('calonpenyedia', 'index')->name('calonpenyedia');
         route::patch('calonpenyedia/terima{id}', 'approv')->name('penyedia.terima');

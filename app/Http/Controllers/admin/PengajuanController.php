@@ -27,7 +27,7 @@ class PengajuanController extends Controller
         $pengembalian->update();
 
         $pesanan = pesanan::where('id', $pengembalian->pesanan_id)->first();
-        $pesanan->status = 'pengembalian berhasil';
+        $pesanan->status = 'selesai';
         $pesanan->update();
 
         return back()->with('success', 'Data Berhasil Ditambahkan');

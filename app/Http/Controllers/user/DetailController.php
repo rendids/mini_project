@@ -46,33 +46,34 @@ class DetailController extends Controller
             'waktu' => 'required',
             'pembayaran' => 'required',
             'bukti' => 'required'
-        ],[
+        ], [
             'nopemesan.required' => 'no telp harus diisi',
             'nopemesan.numeric' => ' no telp Harus berupa angka',
-            'nopemesan.regex' =>'format tidak valid',
-            'nopemesan.digits_between'=>' no telp harus memiliki antara 10-12 angka',
+            'nopemesan.regex' => 'format tidak valid',
+            'nopemesan.digits_between' => ' no telp harus memiliki antara 10-12 angka',
             'penyedia.required' => 'nama penyedia harus diisi',
-            'jasa.required'=>'jasa harus diisi',
-            'alamatpemesan.required'=>'isi alamat anda',
-            'alamatpemesan.min' =>'Alamat minimal 5 karakter',
-            'alamatpemesan.max'=> 'Alamat maksimal 200 karakter',
-            'waktu.required'=>'tentukan waktu pelaksanaan',
-            'pembayaran.required'=>'isi metode pembayaran',
-            'bukti.required'=>'isi bukti anda',
+            'jasa.required' => 'jasa harus diisi',
+            'alamatpemesan.required' => 'isi alamat anda',
+            'alamatpemesan.min' => 'Alamat minimal 5 karakter',
+            'alamatpemesan.max' => 'Alamat maksimal 200 karakter',
+            'waktu.required' => 'tentukan waktu pelaksanaan',
+            'pembayaran.required' => 'isi metode pembayaran',
+            'bukti.required' => 'isi bukti anda',
         ]);
 
-        $keteranganFile = $request->file('bukti');
-        if ($keteranganFile) {
-            $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
-            $keteranganFile->storeAs('public/bukti', $namaGambar);
-        } else {
-            // Handle the case where no file is present
-        }
+
         $user = Auth::user();
-        $chekPesanan = pesanan::where('pemesan', $user->id)->whereNot('status','selesai')->count();
-        if($chekPesanan > 0) {
+        $chekPesanan = pesanan::where('pemesan', $user->id)->whereNot('status', 'selesai')->count();
+        if ($chekPesanan > 0) {
             return redirect()->route('pesan')->with('error', 'masih ada pesanan yang belum selesai');
-        }else{
+        } else {
+            $keteranganFile = $request->file('bukti');
+            if ($keteranganFile) {
+                $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
+                $keteranganFile->storeAs('public/bukti', $namaGambar);
+            } else {
+                // Handle the case where no file is present
+            }
             $buat = pesanan::create([
                 'pemesan' => $user->id,
                 'nopemesan' => $request->nopemesan,
@@ -100,6 +101,7 @@ class DetailController extends Controller
     }
 
     /**
+     *
      * Display the specified resource.
      */
     public function show(string $id)

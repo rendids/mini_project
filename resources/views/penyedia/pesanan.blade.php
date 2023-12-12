@@ -30,7 +30,7 @@
                                 <td><strong>{{ $loop->iteration }}</strong></td>
                                 <td>
                                     <div>
-                                        <h5 class="">{{ $itm->pemesan }}</h5>
+                                        <h5 class="">{{ $itm->users->name }}</h5>
                                     </div>
                                 </td>
                                 <td>

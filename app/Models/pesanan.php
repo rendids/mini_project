@@ -16,7 +16,7 @@ class pesanan extends Model
     }
 
     public function users(){
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(user::class, 'pemesan');
     }
 
     public function ratings()
