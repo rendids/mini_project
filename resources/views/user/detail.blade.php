@@ -69,11 +69,12 @@
                                     value="{{ $sedia->user->name }}" id="penyedia"> --}}
 
                                 <label for="name" class="fs-4 fw-bold">No Telp</label>
-                                <input type="number" name="nopemesan" class="form-control" placeholder="Masukkan no telp" id="no_hp_penyedia">
+                                <input type="number" name="nopemesan" class="form-control" placeholder="Masukkan no telp"
+                                    id="no_hp_penyedia">
                                 @error('nopemesan')
-                                <span class="text-danger my-2">{{ $message }}</span>
-                            @enderror
-                            <br>
+                                    <span class="text-danger my-2">{{ $message }}</span>
+                                @enderror
+                                <br>
 
                                 {{-- <input type="hidden" name="jasa" class="form-control" readonly
                                     value="{{ $sedia->layanan }}" id="layanan"> --}}
@@ -127,8 +128,8 @@
                                                                 @endforeach
                                                             </select>
                                                             @error('pembayaran')
-                                                            <span class="text-danger my-2">{{ $message }}</span>
-                                                        @enderror
+                                                                <span class="text-danger my-2">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                         <div class="col-md-6" id="keteranganContainer"
                                                             style="display: none;">
@@ -145,8 +146,8 @@
                                                             <label for="">Bukti pembayaran</label>
                                                             <input type="file" name="bukti" class="form-control">
                                                             @error('bukti')
-                                                            <span class="text-danger my-2">{{ $message }}</span>
-                                                        @enderror
+                                                                <span class="text-danger my-2">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -196,8 +197,4 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-@endsection
+    @endsection

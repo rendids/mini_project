@@ -22,18 +22,23 @@ class DashboardController extends Controller
 
         // dd($bestseller);
         $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want
+
         return view('user.dahboard', compact('penyedia', 'bestseller'));
     }
-
-
 
 
     public function search(Request $request)
     {
         $keyword = $request->input('search');
-        $penyedia = penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')->paginate(8);
 
-        return view('user.dahboard', compact('penyedia'));
+    $bestseller = Penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')
+        ->paginate(8);
+
+    $penyedia = Penyedia::where('layanan', 'LIKE', '%' . $keyword . '%')
+        ->where('status', 'profilelengkap')
+        ->paginate(8);
+
+    return view('user.dahboard', compact('penyedia', 'bestseller'));
     }
 
 

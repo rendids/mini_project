@@ -7,14 +7,10 @@
             font-size: 3rem;
         }
     </style>
-
-
     <div class="card-body">
         <div>
             <h1 class="cate-title font-w1000 mb-4 custom-h1">Riwayat</h1>
             <div class="d-flex align-items-center justifiy-content-between mb-4">
-
-
             </div>
         </div>
         <div class="tab-content" id="pills-tabContent">
