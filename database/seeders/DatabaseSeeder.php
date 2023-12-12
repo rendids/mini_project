@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => '100000',
                 'telp' => '089543558567',
                 'alamat' => 'jl semangka',
-                'foto' => 'fotopenyedia/foto_4.png',
+                'foto' => 'fotopenyedia/foto_2.jpg',
                 'status' => 'profilelengkap'
             ]);
     }

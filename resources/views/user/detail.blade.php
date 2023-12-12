@@ -24,7 +24,7 @@
                                 <div class="card-body">
                                     <div class="">
                                         <img src="{{ asset('storage/' . $sedia->foto) }}" class="card-img-top"
-                                            alt="..." style="width: 250px;">
+                                            alt="..." style="width: 100%; object-fit: cover; height: auto; max-height: 200px; ">
                                     </div>
                                     <h1 class="text-capitalize text-primary" style="font-size: 50px">{{ $sedia->layanan }}
                                     </h1>
@@ -65,8 +65,8 @@
                                 @enderror
                                 <br>
 
-                                {{-- <input type="hidden" name="penyedia" class="form-control" readonly
-                                    value="{{ $sedia->user->name }}" id="penyedia"> --}}
+                                <input type="hidden" name="penyedia" class="form-control" readonly
+                                    value="{{ $sedia->user->name }}" id="penyedia">
 
                                 <label for="name" class="fs-4 fw-bold">No Telp</label>
                                 <input type="number" name="nopemesan" class="form-control" placeholder="Masukkan no telp"
@@ -76,8 +76,8 @@
                                 @enderror
                                 <br>
 
-                                {{-- <input type="hidden" name="jasa" class="form-control" readonly
-                                    value="{{ $sedia->layanan }}" id="layanan"> --}}
+                                <input type="hidden" name="jasa" class="form-control" readonly
+                                    value="{{ $sedia->layanan }}" id="layanan">
 
                                 <label for="name" class="fs-4 fw-bold">Alamat</label>
                                 <textarea name="alamatpemesan" id="alamatpemesan" cols="30" rows="10" class="form-control"

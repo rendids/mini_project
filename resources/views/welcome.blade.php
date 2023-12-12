@@ -100,9 +100,8 @@
             </div>
             <div class="col-md-12 flex flex-wrap">
 
-
+            @foreach ($bestseller as $best)
                 <div class="col-md-3">
-
                     <div
                         class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md">
                         <div class="card-header">
@@ -110,53 +109,12 @@
                             <img src="{{ asset('assets/images/penyedia.png') }}" class="w-[36rem]" alt="">
                         </div>
                         <div class="card-body ">
-                            <div class="text-2xl font-semibold">Judul Jasa</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ullam!</p>
+                            <div class="text-2xl font-semibold">{{ $best->layanan }}</div>
+                            <p>{{ $best->alamat }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-
-                    <div
-                        class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md">
-                        <div class="card-header">
-
-                            <img src="{{ asset('assets/images/penyedia.png') }}" class="w-[36rem]" alt="">
-                        </div>
-                        <div class="card-body ">
-                            <div class="text-2xl font-semibold">Judul Jasa</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ullam!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-
-                    <div
-                        class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md">
-                        <div class="card-header">
-
-                            <img src="{{ asset('assets/images/penyedia.png') }}" class="w-[36rem]" alt="">
-                        </div>
-                        <div class="card-body ">
-                            <div class="text-2xl font-semibold">Judul Jasa</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ullam!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-
-                    <div
-                        class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md">
-                        <div class="card-header">
-
-                            <img src="{{ asset('assets/images/penyedia.png') }}" class="w-[36rem]" alt="">
-                        </div>
-                        <div class="card-body ">
-                            <div class="text-2xl font-semibold">Judul Jasa</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, ullam!</p>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
 
             </div>
         </div>

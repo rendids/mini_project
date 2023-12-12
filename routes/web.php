@@ -35,6 +35,7 @@ use App\Http\Controllers\penyedia\DashboardController as PenyediaDashboardContro
 
 
 Route::get('/', [LandingController::class, 'index']);
+Route::delete('/update{id}', [LandingController::class, 'tandai'])->name('tandai');
 
 Route::get('/email/verify', [EmailVerificationController::class, 'showVerificationNotice'])
     ->middleware('auth', 'checkEmailVerification')

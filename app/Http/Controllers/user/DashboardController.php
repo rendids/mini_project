@@ -17,8 +17,9 @@ class DashboardController extends Controller
     {
         $penyedia = Penyedia::get();
         $bestseller = $penyedia->sortByDesc(function ($penyedia) {
-            return $penyedia->pesanan; // Gantilah dengan metode atau atribut yang sesuai
+            return $penyedia->pesanan;
         })->take(6);
+        
 
         // dd($bestseller);
         $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want

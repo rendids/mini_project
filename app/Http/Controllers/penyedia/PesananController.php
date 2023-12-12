@@ -5,6 +5,7 @@ namespace App\Http\Controllers\penyedia;
 use App\Models\pesanan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Notifikasi;
 
 class PesananController extends Controller
 {
@@ -19,6 +20,14 @@ class PesananController extends Controller
         $pesan->update([
             'status' => 'di tolak'
         ]);
+
+        $pesanId = $pesan->users->id;
+
+        Notifikasi::create([
+            'user_id' => $pesanId,
+            'pesan' => 'ada pesanan yang perlu anda setujui'
+          ]);
+          
         return redirect()->back()->with('success', 'Berhasil ditolak');
     }
 

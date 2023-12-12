@@ -18,7 +18,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach ($pesananDitolak->merge($pesananDiterima) as $pesanan)
+                                @foreach ($pesananDitolak as $pesanan)
                                     <tr>
                                         <td>
                                             <h5 class="mb-0">{{ $pesanan->jasa }}</h5>
@@ -151,7 +151,7 @@
         }
     </script>
     <!-- Modal -->
-    @foreach ($pesananDitolak->merge($pesananDiterima) as $pesanan)
+    @foreach ($pesananDitolak as $pesanan)
     <div class="modal fade" id="exampleModal{{ $pesanan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -172,7 +172,6 @@
                                     <i class="far fa-star" data-rating="3" style="font-size: 300%; color: #ffd700;"></i>
                                     <i class="far fa-star" data-rating="4" style="font-size: 300%; color: #ffd700;"></i>
                                     <i class="far fa-star" data-rating="5" style="font-size: 300%; color: #ffd700;"></i>
-
                                     <input type="hidden" id="ratingValue" name="ratting" value="">
                                 </div>
 
@@ -195,7 +194,6 @@
         </div>
     </div>
     @endforeach
-
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         const stars = document.querySelectorAll(".rating-container i");

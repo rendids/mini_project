@@ -15,7 +15,9 @@ class pesanan extends Model
         return $this->belongsTo(Penyedia::class);
     }
 
-    // Pesanan.php
+    public function users(){
+        return $this->belongsTo(user::class);
+    }
 
     public function ratings()
     {

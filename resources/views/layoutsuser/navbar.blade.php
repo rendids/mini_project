@@ -1,16 +1,4 @@
 <style>
-    width: 300px;
-    height: 0px;
-    opacity: 0;
-    position: absolute;
-    top: 63px;
-    right: 35px;
-    transition: 1s opacity,
-    250ms height;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
     .notifi-box h2 {
         font-size: 14px;
         padding: 10px;
@@ -63,6 +51,7 @@
         right: 0;
         transform: translate(50%, -50%);
     }
+
     .notification-icon {
         position: relative;
         display: inline-block;
@@ -73,10 +62,9 @@
         top: 0;
         right: 0;
         transform: translate(50%, -50%);
-        font-size: 8px; /* Sesuaikan ukuran sesuai kebutuhan */
+        font-size: 8px;
+        /* Sesuaikan ukuran sesuai kebutuhan */
     }
-
-
 </style>
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
@@ -130,22 +118,51 @@
                     <ul class="navbar-nav header-right ">
                         <li class="nav-item d-flex align-items-center ms-3 me-4     " style="margin-top: 30px;">
                             <div class="dropdown">
-                                <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="notification-icon">
+                                <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false" class="notification-icon">
                                     <i class="fas fa-bell fs-3 text-light"></i>
-                                    <span class="badge rounded-circle badge-notification bg-danger ms-2" style="border-radius: 50%;">10</span>
+                                    @php
+                                      $jumlah = Auth::user()->notifikasi->where('dibaca', false)->count();
+                                    @endphp
+                                    <span class="badge rounded-circle badge-notification bg-danger ms-2"
+                                        style="border-radius: 50%;">{{ $jumlah }}</span>
 
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;"
-                                    aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;" aria-labelledby="navbarDropdownMenuLink">
                                     <div class="mx-3 mb-3 d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Notifikasi <span
-                                                    class="badge badge-notification rounded-pill bg-primary">14</span></div>
+                                            <div class="fw-bold text-primary">Notifikasi</div>
                                         </div>
-                                        <a href="">selengkapnya</a>
+
                                     </div>
-                                    <li class="list-group-item">A second item</li>
+                                    @if (count(Auth::user()->notifikasi->where('dibaca', false)) > 0)
+                                    @foreach (Auth::user()->notifikasi->where('dibaca', false)->take(3) as $item)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ms-3">
+                                                    <p class="fw-bold mb-1">Hai {{ $item->user->name }}</p>
+                                                    <p class="text-muted mb-0">{{ $item->pesan }}</p>
+                                                </div>
+                                            </div>
+                                            <form action="{{ route('tandai',['id' => $item->id]) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="badge rounded-pill badge-success" onclick="handleButtonClick(event)">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            </form>
+                                        </li>
+                                    @endforeach
+                                    @else
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                       <h5>belum ada notif </h5>
+                                    </li>
+                                    @endif
                                 </ul>
+
+                                <!-- Skrip JavaScript untuk menghentikan propagasi event -->
+
+
                             </div>
                         </li>
 

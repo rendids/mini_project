@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\pesanan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Notifikasi;
 
 class PemesananController extends Controller
 {
@@ -27,7 +28,12 @@ class PemesananController extends Controller
 
       $pesanan->update(['status' => 'dalam proses tahap 2']);
 
-
+      $pesananId = $pesanan->penyedia->user->id;
+      dd($pesananId);
+      Notifikasi::create([
+        'user_id' => $pesananId,
+        'pesan' => 'ada pesanan yang perlu anda setujui'
+      ]);
       return redirect()->back();
     }
 

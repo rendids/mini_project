@@ -66,7 +66,23 @@
                             </div>
                             <div class="common d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h5 class="text-base font-bold mb-1">Rating: ⭐⭐⭐⭐</h5>
+                                    @php
+                                    $totalRatings = 0;
+                                    $jumlahRatings = count($item->ratings);
+                                @endphp
+
+                                @foreach ($item->ratings as $rating)
+                                    @php
+                                        $totalRatings += $rating->ratting;
+                                    @endphp
+                                @endforeach
+
+                                @php
+                                    $rataRata = ($jumlahRatings > 0) ? $totalRatings / $jumlahRatings : 0;
+                                    // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
+                                    $rataRataFormatted = number_format($rataRata, 1);
+                                @endphp
+                                    <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }}  </h5>
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
                                     </h5>
@@ -107,7 +123,23 @@
                             </div>
                             <div class="common d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h5 class="text-base font-bold mb-1">Rating: ⭐⭐⭐⭐</h5>
+                                    @php
+                                    $totalRatings = 0;
+                                    $jumlahRatings = count($item->ratings);
+                                @endphp
+
+                                @foreach ($item->ratings as $rating)
+                                    @php
+                                        $totalRatings += $rating->ratting;
+                                    @endphp
+                                @endforeach
+
+                                @php
+                                    $rataRata = ($jumlahRatings > 0) ? $totalRatings / $jumlahRatings : 0;
+                                    // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
+                                    $rataRataFormatted = number_format($rataRata, 1);
+                                @endphp
+                                    <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }}</h5>
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
                                     </h5>
