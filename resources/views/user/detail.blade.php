@@ -174,15 +174,21 @@
                                                         }
                                                     }
                                                 </script>
-                                                <div class="modal-footer ">
-                                                    <div class="">
-                                                        <h3>Total:</h3>
-                                                    </div>
-                                                    <h4 class="">{{ $sedia->harga }}</h4>
-                                                    <input hidden name="total" type="text"
-                                                        value="{{ $sedia->harga }}">
+                                             <div class=" p-3 pb-0 d-flex justify-content-start">
+                                                <div class="d-flex align-items-start">
+                                                    <!-- Total di sebelah kiri -->
+                                                    <h3 class="mb-0">Total:</h3>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
+
+                                                    <h4 class="mt-2 mb-0">{{ $sedia->harga }}</h4>
+                                                    <input hidden name="total" type="text" value="{{ $sedia->harga }}">
+                                                </div>
+                                                <div class="d-flex align-items-start ml-3 p-3 pt-0">
+                                                <span style="color: red; font-size: 12px;">(Termasuk biaya admin)</span>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
+
+
                             </form>
                         </div>
                     </div>
