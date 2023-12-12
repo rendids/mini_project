@@ -19,7 +19,8 @@ class DashboardController extends Controller
         $user=User::where('role', 'user')->count();
         $penyedia=pesanan::where('penyedia_id', $penyedialogin)->where('status', 'di tolak')->count();
         $penyediaterima=pesanan::where('penyedia_id', $penyedialogin)->where('status', 'di ratting')->count();
-        return view('penyedia.dahsboard',compact('user','penyedia', 'penyediaterima'));
+        $selesai=pesanan::where('penyedia_id',$penyedialogin)->where('status','selesai')->count();
+        return view('penyedia.dahsboard',compact('user','penyedia', 'penyediaterima','selesai'));
     }
 
     /**

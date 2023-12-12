@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\User;
+use App\Models\pesanan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,8 @@ class DashboardController extends Controller
     {
         $user=User::where('role', 'user')->count();
         $penyedia=User::where('role','penyedia')->count();
-        return view('admin.dashboard',compact('user','penyedia'));
+        $selesai=pesanan::where('penyedia_id',$penyedia)->where('status','selesai')->count();
+        return view('admin.dashboard',compact('user','penyedia','selesai'));
     }
 
     /**

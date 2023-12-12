@@ -5,28 +5,6 @@
 <div class="row">
     <div class="col-xl-13">
         <div class="row">
-            <div class="col-xl-12">
-                <div class="card income-bx">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-4 col-6">
-                                <div class="line position-relative">
-                                    <p class="font-w500 mb-0">Total Income</p>
-                                    <h2 class="mb-0 text-primary">$12,890,00</h2>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-6">
-                                <p class="font-w500 text-success mb-0">Income</p>
-                                <h2 class="cate-title data">$4345,00</h2>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-6">
-                                <p class="font-w500 text-danger mb-0">Expense</p>
-                                <h4 class="cate-title data">$2890,00</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="content-inner mt-1 py-0">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 mb-4">
@@ -77,7 +55,7 @@
                                     </svg>
                                     <!-- </div> -->
                                     <div class="text-end">
-                                        <h2 class="angka m-0">{{ $penyediaterima }}</h2>
+                                        <h2 class="angka m-0">{{ $selesai }}</h2>
                                         <p>Jumlah pesanan selesai</p>
                                     </div>
                                 </div>
