@@ -175,7 +175,7 @@
                                 <a class="nav-link " href="javascript:void(0);" role="button"
                                     data-bs-toggle="dropdown">
                                     <div class="header-info2 d-flex align-items-center">
-                                        <img src="../../assets/images/banner-img/pic-1.png" alt="">
+                                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="">
                                         <div class="d-flex align-items-center sidebar-info">
                                             <div>
                                                 <h6 class="font-w500 mb-0 ms-2">{{ Auth::user()->name }}</h6>

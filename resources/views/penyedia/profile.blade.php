@@ -1,8 +1,6 @@
 @extends('layoutsuser.appprofile')
 @section('profile')
     <style>
-
-
         .tex {
             color: #0E2954;
             font-family: Poppins;
@@ -72,75 +70,164 @@
             border-bottom: 3px solid #0E2954;
             border-radius: 0;
             background-color: transparent;
-        }
+        }
+            .image-link {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 10px;
+    }
 
+    .image-link::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(220, 220, 220);
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .image-link:hover::after {
+        opacity: 0.2;
+    }
+
+    .image {
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    .image-link:hover .image {
+        transform: scale(1.1);
+    }
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(0, 0, 0);
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .image-link:hover .icon {
+        opacity: 1;
+    }
     </style>
-   <div class="col-xxl-12">
-    <div class="isi">
-        <div class="d-flex justify-content-end">
-            <ul class="nav nav-pills card-header-pills" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active fw-bold" data-bs-toggle="tab" href="#developers" role="tab">
-                        <h4>Profil</h4>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bold" data-bs-toggle="tab" href="#designers" role="tab">
-                        <h4>Kata Sandi</h4>
-                    </a>
-                </li>
-            </ul>
-            <div class="flex-grow-1">
-                <p class="text-muted mb-0"></p>
+    <div class="col-xxl-12">
+        <div class="isi">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <ul class="nav nav-pills card-header-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bold" data-bs-toggle="tab" href="#developers" role="tab">
+                                <h4>Profil</h4>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" data-bs-toggle="tab" href="#designers" role="tab">
+                                <h4>Kata Sandi</h4>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="flex-grow-1">
+                        <p class="text-muted mb-0"></p>
+                    </div>
+                </div>
+                <a href="dashboard" class="ms-2">
+                    <i style="margin-right: 8px; font-size:20px;" class="fas fa-arrow-right-from-bracket"></i>
+                </a>
             </div>
-        </div><!-- end card header -->
-        <hr>
-        <!-- Add the rest of your content here -->
+            <hr>
+        </div>
     </div>
-</div>
 
 
-<div class="card-body">
-    <!-- Tab panes -->
-    <div class="d-flex">
-        <div class="col-4" style="border-right:2px solid black">
-            <form action="{{ route('profile.penyedia.update', ['id' => $data_user->id]) }}" method="POST"
-                enctype="multipart/form-data" class="form-horizontal">
-                @method('PUT')
-                @csrf
-                    <div class="card d-flex align-items-cen                                                                                                                                                                                                                                                                                                                                       ter p-2 h-100 border-0 justify-content-center">
-                        <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
-                            <img src="{{ asset('storage/' . $data_user->penyedia->foto) }}"
-                                class="profile-image card-img-top" alt="Profile" id="photo-profile"
-                                style="width: 100%; height: 100%; border-radius:50%;">
-                        </div>
+    <!-- Add the rest of your content here -->
+    <div class="card-body">
+        <!-- Tab panes -->
+        <div class="d-flex">
+            <div class="col-4" style="border-right:2px solid black">
+                <form id="updateForm" action="{{ route('profile.penyedia.update', ['id' => $data_user->penyedia->id]) }}" method="POST"
+                    enctype="multipart/form-data" class="form-horizontal">
+                    @method('PUT')
+                    @csrf
+                    <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
+                        <label id="label" for="foto">
+                      {{-- <strong><p>choose file</p></strong> --}}
+                            <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px" class="image-link">
+                                <img id="photo-profile"  src="{{ asset('storage/' . $data_user->foto) }}"
+                                    class="profile-image card-img-top image" alt="Profile"
+                                    style="width: 100%; height: 100%; border-radius:50%;">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M156 112a12 12 0 0 1-12 12h-20v20a12 12 0 0 1-24 0v-20H80a12 12 0 0 1 0-24h20V80a12 12 0 0 1 24 0v20h20a12 12 0 0 1 12 12Zm76.49 120.49a12 12 0 0 1-17 0L168 185a92.12 92.12 0 1 1 17-17l47.54 47.53a12 12 0 0 1-.05 16.96ZM112 180a68 68 0 1 0-68-68a68.08 68.08 0 0 0 68 68Z"/></svg>
+                                        </span>
+
+                            </div>
+                        </label>
                         <div class="text-center" style="height: auto">
                             <h5 class="card-title">{{ $data_user->name }}</h5>
                             @error('foto')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
-                            <input hidden type="file" name="foto" id="foto"
-                                onchange="
-                                var reader = new FileReader();
-
-                                reader.onload = function (e) {
-                                    $('#photo-profile').attr('src', e.target.result);
-                                }
-
-
-                                reader.readAsDataURL(this.files[0]);
-                        ">
-                            <label for="foto" class="btn btn-outline-primary btn-block mb-2">Ubah foto
-                                profile</label>
+                            <input style="display: none" type="file" name="foto" id="foto" onchange="previewFile()">
+                            <button type="button" class="btn btn-outline-primary btn-block mb-2"
+                                onclick="previewFile()">Ubah foto
+                                profile</button>
                         </div>
                     </div>
-                </div>
-                <div class="col-8">
+                </form>
+                <style>
+                </style>
+
+                <script>
+                    function previewFile() {
+                        var reader = new FileReader();
+                        var photoProfile = document.getElementById('photo-profile');
+
+                        reader.onload = function(e) {
+                            photoProfile.src = e.target.result;
+                        };
+
+                        reader.readAsDataURL(document.getElementById('foto').files[0]);
+                    }
+
+                    function submitForm() {
+                        var formData = new FormData(document.getElementById('updateForm'));
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', document.getElementById('updateForm').action, true);
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                // Handle success, if needed
+                                console.log(xhr.responseText);
+                                location.reload(); // Reload the page
+                            } else {
+                                // Handle errors, if needed
+                                console.error(xhr.responseText);
+                            }
+                        };
+
+                        xhr.send(formData);
+                    }
+                </script>
+
+
+            </div>
+            <div class="col-8">
                 <div class="tab-content text-muted">
                     <div class="tab-pane active" id="developers" role="tabpanel">
                         <div class="row">
-                                <div class="row">
-                                    <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="{{ route('updateprofile', ['id' => $data_user->id]) }}" method="POST"
+                                        enctype="multipart/form-data" class="form-horizontal">
+                                        @method('PUT')
+                                        @csrf
                                         <div class="card h-100"
                                             style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                             <div class="card-header">
@@ -199,55 +286,48 @@
                                 </div>
                                 <div class="d-flex justify-content-end pt-2">
                                     <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </form>
-
                                 </div>
                             </form>
-
                         </div>
                         <!--end row-->
                     </div>
                     <div class="tab-pane" id="designers" role="tabpanel">
                         <div class="row">
-                            <div class="card h-100"
-                            style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
-                            <div class="card-body">
-                            <div class="form-group">
-                                <label for="password" class="col-form-label fw-bold fs-4">Password</label>
-                                <input type="password" class="form-control" name="password" id="password"
-                                    placeholder="password" value="{{ $data_user->password }}">
-                                @error('password')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="konfirmasi-password" class="col-form-label fw-bold fs-4">Password</label>
-                                <input type="password" class="form-control" name="konfirmasi-konfirmasi-password"
-                                    id="konfirmasi-password" placeholder="konfirmasi password">
-                                @error('konfirmasi-password')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="d-flex justify-content-end pt-2">
-                                <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                                <form action="{{ route('dashboard.penyedia') }}" method="POST">
-                                    @csrf
-                                    <!-- Isi formulir dengan input dan field yang sesuai -->
+                            <form action="{{ route('updatepasswordprofile', ['id' => $data_user->id]) }}" method="POST"
+                                enctype="multipart/form-data" class="form-horizontal">
+                                @csrf
+                                @method('PUT')
+                                <div class="card h-100"
+                                    style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                                    <div class="card-body">
+                                        <div class="card-header">
+                                            <h2>Password</h2>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="col-form-label fw-bold fs-4">Password
+                                                lama</label>
+                                            <input type="password" class="form-control" name="password_lama"
+                                                id="password" placeholder="Password lama" value="">
+                                            @error('password')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="konfirmasi-password" class="col-form-label fw-bold fs-4">Password
+                                                Baru</label>
+                                            <input type="password" class="form-control" name="password"
+                                                id="konfirmasi-password" placeholder="konfirmasi password">
+                                            @error('konfirmasi-password')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="d-flex justify-content-end pt-2">
+                                            <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
 
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                            <div class="d-flex justify-content-end pt-2">
-                                <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                                <form action="{{ route('dashboard.penyedia') }}" method="POST">
-                                    @csrf
-                                    <!-- Isi formulir dengan input dan field yang sesuai -->
-
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-
-                            </div>
+                                        </div>
+                            </form>
 
                         </div>
-
-        @endsection
+                    @endsection

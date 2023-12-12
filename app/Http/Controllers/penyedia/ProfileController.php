@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -46,7 +47,7 @@ class ProfileController extends Controller
 
         return redirect()->back();
     }
-    public function profileupdate(Request $request, $id)
+    public function updateprofile(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
@@ -83,5 +84,27 @@ class ProfileController extends Controller
         ]);
         //   dd($penyedia);
         return redirect()->route('dashboard.penyedia')->with('success', 'Data berhasil disimpan.');
+    }
+    public function updatepassword(Request $request, string $id)
+    {
+        $request->validate([
+            'password_lama' => 'required',
+            'password' => 'required|min:8',
+        ], [
+            'password.required' => 'isi password lama',
+            // 'password.required' => 'Password baru tidak boleh kosong',
+            'password.min' => 'Password baru minimal 8 karakter',
+        ]);
+
+        $user = User::find($id);
+
+        if (!Hash::check($request->password_lama, $user->password)) {
+            return response()->json(['error' => 'Invalid old password.'], 400);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect()->back()->with('success', 'Password berhasil diperbarui');
     }
 }
