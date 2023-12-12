@@ -16,12 +16,12 @@ class RiwayatController extends Controller
     {
 
         $pesananDitolak = Pesanan::whereNotIn('status', ['dalam proses tahap 1', 'dalam proses tahap 2'])
-        ->whereIn('status', ['di terima', 'di tolak', 'selesai'])
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->whereIn('status', ['di terima', 'di tolak', 'selesai', 'tunggu pengembalian', 'pengembalian berhasil' ])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
 
-        return view('user.riwayat', compact('pesananDitolak', ));
+        return view('user.riwayat', compact('pesananDitolak',));
     }
 
     public function rating(Request $request)
@@ -65,6 +65,13 @@ class RiwayatController extends Controller
             'keterangan' => $request->keterangan,
             'status' => 'process',
         ]);
+
+        $pesanan_id = $request->pesanan_id;
+        $pesanan = pesanan::find($pesanan_id);
+
+
+        $pesanan->update(['status' => 'tunggu pengembalian']);
+
 
         return back()->with('success', 'Data Berhasil Ditambahkan');
     }

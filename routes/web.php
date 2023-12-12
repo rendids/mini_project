@@ -85,9 +85,6 @@ Route::middleware('user-access:admin', 'auth',)->prefix('admin')->group(function
     Route::controller(AdminDashboardController::class)->group(function () {
         Route::get('dashboard', 'index')->name('dashboard.admin');
     });
-    Route::controller(PersetujuanAdmin::class)->group(function () {
-        Route::get('persetujuan', 'index')->name('persetujuan');
-    });
     Route::controller(CalonPenyediaController::class)->group(function () {
         route::get('calonpenyedia', 'index')->name('calonpenyedia');
         route::patch('calonpenyedia/terima{id}', 'approv')->name('penyedia.terima');
@@ -158,5 +155,6 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     Route::controller(PenyediaProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile.penyedia');
         Route::put('profile.update/{id}', 'profileupdate')->name('profile.penyedia.update');
+        Route::patch('profile.update/{id}', 'fotopenyediaupdate')->name('fotopenyediaupdate');
     });
 });

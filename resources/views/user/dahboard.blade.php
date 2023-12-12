@@ -41,7 +41,7 @@
 
     <div class="col-xl-12">
         <div class="d-flex align-items-center justify-content-between mb-2 mt-sm-0 mt-3">
-            <h4 class=" mb-0 cate-title">Best Seller</h4>
+            <h4 class=" mb-0 cate-title">Paling Populer</h4>
             <br>
 
         </div>

@@ -25,9 +25,9 @@ class PesananController extends Controller
 
         Notifikasi::create([
             'user_id' => $pesanId,
-            'pesan' => 'ada pesanan yang perlu anda setujui'
+            'pesan' => 'pesanan anda di tolak'
           ]);
-          
+
         return redirect()->back()->with('success', 'Berhasil ditolak');
     }
 
@@ -36,6 +36,14 @@ class PesananController extends Controller
         $pesan->update([
             'status' => 'di terima'
         ]);
+
+        $pesanId = $pesan->users->id;
+
+
+        Notifikasi::create([
+            'user_id' => $pesanId,
+            'pesan' => 'pesanan anda di terima'
+          ]);
 
         return redirect()->back()->with('success', 'Data berhasil disimpan.');;
     }

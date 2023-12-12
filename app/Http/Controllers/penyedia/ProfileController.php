@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\penyedia;
 
 use App\Models\User;
+use App\Models\penyedia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\penyedia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,17 +22,39 @@ class ProfileController extends Controller
         return view('penyedia.profile', compact('data_user'));
     }
 
+    public function fotopenyediaupdate(Request $request, $id){
+        $request->validate([
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'foto.required' => 'Harus diisi',
+            'foto.image' => 'File harus berupa gambar',
+            'foto.mimes' => 'Format gambar tidak valid',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
+        ]);
+
+        $userupdate = User::find($id);
+
+        $foto = $request->file('foto');
+        $fotoPath = $foto->storeAs('foto_user', 'foto_' . Str::random(12) . '.' . $foto->getClientOriginalExtension(), 'public');
+        // Hapus foto lama jika ada
+        if ($userupdate->foto && Storage::exists($userupdate->foto)) {
+            Storage::disk('public')->delete($userupdate->foto);
+        }
+        $userupdate->update([
+            'foto' => $fotoPath,
+        ]);
+
+        return redirect()->back();
+    }
     public function profileupdate(Request $request, $id)
     {
         $request->validate([
-            'foto' => 'required_if:anotherfield,nullable',
             'name' => 'required',
             'email' => 'required',
             'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
             'alamat' => 'required|min:5|max:200',
             'harga' => 'required|min:4'
         ],[
-            'foto.required' => 'Foto Harus Diisi',
             'name.required' => 'Nama Harus Diisi',
             'email.required' => 'Email Harus Diisi',
             'telp.required' => 'No telpon harus diisi',
@@ -44,12 +67,7 @@ class ProfileController extends Controller
         ]);
 
         $user =  user::find($id);
-        $foto = $request->file('foto');
-        if ($foto) {
-            $fotoPath = $foto->storeAs('fotopenyedia', 'foto_' . $user->id . '.' . $foto->getClientOriginalExtension(), 'public');
-        } else {
-            $fotoPath = $user->penyedia->foto ?? null; // Use existing photo path if available
-        }
+
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -58,7 +76,6 @@ class ProfileController extends Controller
         $penyedia = penyedia::where('id_user', $user->id)->first();
 
         $penyedia->update([
-            'foto' => $fotoPath,
             'telp' => $request->telp,
             'alamat' => $request->alamat,
             'harga' => $request->harga,

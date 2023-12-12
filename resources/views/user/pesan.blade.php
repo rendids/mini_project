@@ -34,13 +34,9 @@
                                     <td class="text-orange">
                                         <strong>{{ $item->status == 'dalam proses tahap 1' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}</strong>
                                     </td>
-                                @elseif ($item->status == 'selesai')
-                                    <td class="text-blue">
-                                        <strong>{{ $item->status }}</strong>
-                                    </td>
-                                @else
-                                    <td class="text-primary">
-                                        <strong>{{ $item->status }}</strong>
+                                @elseif ($item->status == 'dalam proses tahap 2')
+                                    <td class="text-orange">
+                                        <strong>{{ $item->status == 'dalam proses tahap 2' ? 'menunggu konfirmasi' : 'menunggu konfirmasi' }}</strong>
                                     </td>
                                 @endif
 

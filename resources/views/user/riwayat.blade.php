@@ -11,58 +11,60 @@
                                 <th>tanggal</th>
                                 <th>pembayaran</th>
                                 <th>Total</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                                <th class="bg-none"></th>
+                                <th colspan="2">Status</th>
                                 <th class="bg-none"></th>
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach ($pesananDitolak as $pesanan)
-                                    <tr>
-                                        <td>
-                                            <h5 class="mb-0">{{ $pesanan->jasa }}</h5>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <h5 class="mb-0">{{ $pesanan->waktu }}</h5>
-                                            </div>
-                                        </td>
-                                        <td>
-                                           <h5 class="mb-0">{{ $pesanan->pembayaran }}</h5>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <h5 class="mb-0">{{ 'RP ' . number_format( $pesanan->total , 0, ',', '.')}}</h5>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <a href="javascript:void(0);"
-                                                    class="
+                            @foreach ($pesananDitolak as $pesanan)
+                                <tr>
+                                    <td>
+                                        <h5 class="mb-0">{{ $pesanan->jasa }}</h5>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5 class="mb-0">{{ $pesanan->waktu }}</h5>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5 class="mb-0">{{ $pesanan->pembayaran }}</h5>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <h5 class="mb-0">{{ 'RP ' . number_format($pesanan->total, 0, ',', '.') }}
+                                            </h5>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="javascript:void(0);"
+                                                class="
                                                     {{ $pesanan->status == 'di tolak' ? 'text-danger' : '' }}
                                                     {{ $pesanan->status == 'di terima' ? 'text-success' : '' }}
                                                     {{ $pesanan->status == 'pengembalian berhasil' ? 'text-success' : '' }}
+                                                    {{ $pesanan->status == 'tunggu pengembalian' ? 'text-warning' : '' }}
+                                                    {{ $pesanan->status == 'selesai' ? 'text-primary' : '' }}
                                                     ">
-                                                    {{ $pesanan->status  }}
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td><!-- Button trigger modal -->
+                                                {{ $pesanan->status }}
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td><!-- Button trigger modal -->
                                         @if ($pesanan->status == 'di tolak')
-                                            <button type="button" class="btn btn-warning btn-sm btn-pengembalian" data-pesanan="{{ $pesanan->id }}" data-bs-toggle="modal" data-bs-target="#basicModal">
+                                            <button type="button" class="btn btn-warning btn-sm btn-pengembalian"
+                                                data-pesanan="{{ $pesanan->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#basicModal">
                                                 pengembalian
                                             </button>
                                         @elseif ($pesanan->status == 'di terima')
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $pesanan->id }}">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal{{ $pesanan->id }}">
                                                 Beri Rating
                                             </button>
-                                        @else
-
                                         @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -152,88 +154,95 @@
     </script>
     <!-- Modal -->
     @foreach ($pesananDitolak as $pesanan)
-    <div class="modal fade" id="exampleModal{{ $pesanan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form action="{{ route('rating') }}" method="post">
-                                @csrf
-                                @method('POST')
-                                <input type="hidden" name="pesanan_id" value="{{ $pesanan->id }}">
-                                <input type="hidden" name="pesanan_penyedia_id" value="{{ $pesanan->penyedia->id }}">
-                                <div class="rating-container">
-                                    <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
-                                    <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
-                                    <i class="far fa-star" data-rating="3" style="font-size: 300%; color: #ffd700;"></i>
-                                    <i class="far fa-star" data-rating="4" style="font-size: 300%; color: #ffd700;"></i>
-                                    <i class="far fa-star" data-rating="5" style="font-size: 300%; color: #ffd700;"></i>
-                                    <input type="hidden" id="ratingValue" name="ratting" value="">
-                                </div>
-
-                                <div class="row mt-3">
-                                    <div class="col-md-12">
-                                        <label for="name" class="fs-4 fw-bold">Komentar</label>
-                                        <textarea name="komentar" id="" cols="30" rows="10" class="form-control"></textarea>
+        <div class="modal fade" id="exampleModal{{ $pesanan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="{{ route('rating') }}" method="post">
+                                    @csrf
+                                    @method('POST')
+                                    <input type="hidden" name="pesanan_id" value="{{ $pesanan->id }}">
+                                    <input type="hidden" name="pesanan_penyedia_id" value="{{ $pesanan->penyedia->id }}">
+                                    <div class="rating-container">
+                                        <i class="far fa-star" data-rating="1"
+                                            style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="2"
+                                            style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="3"
+                                            style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="4"
+                                            style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="5"
+                                            style="font-size: 300%; color: #ffd700;"></i>
+                                        <input type="hidden" id="ratingValue" name="ratting" value="">
                                     </div>
-                                </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-success">Konfirmasi</button>
-                                </div>
-                            </form>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <label for="name" class="fs-4 fw-bold">Komentar</label>
+                                            <textarea name="komentar" id="" cols="30" rows="10" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-success">Konfirmasi</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endforeach
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        const stars = document.querySelectorAll(".rating-container i");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const stars = document.querySelectorAll(".rating-container i");
 
-                        stars.forEach(function(star) {
-                            star.addEventListener("click", function() {
-                                const ratingValue = this.getAttribute("data-rating");
-                                document.getElementById("ratingValue").value = ratingValue;
-                                highlightStars(ratingValue);
-                            });
-                        });
-                    });
-
-                    function highlightStars(rating) {
-                        const stars = document.querySelectorAll(".rating-container i");
-
-                        stars.forEach(function(star) {
-                            const starRating = star.getAttribute("data-rating");
-                            if (starRating <= rating) {
-                                star.classList.add("fas");
-                                star.classList.remove("far");
-                            } else {
-                                star.classList.remove("fas");
-                                star.classList.add("far");
-                            }
-                        });
-                    }
-                </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var modalTriggerButtons = document.querySelectorAll('.btn-pengembalian');
-
-        modalTriggerButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                var pesananId = this.getAttribute('data-pesanan');
-                console.log(pesananId);
-                document.getElementById('modalPesananId').value = pesananId;
+            stars.forEach(function(star) {
+                star.addEventListener("click", function() {
+                    const ratingValue = this.getAttribute("data-rating");
+                    document.getElementById("ratingValue").value = ratingValue;
+                    highlightStars(ratingValue);
+                });
             });
         });
-    });
-</script>
-            @endsection
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll(".rating-container i");
+
+            stars.forEach(function(star) {
+                const starRating = star.getAttribute("data-rating");
+                if (starRating <= rating) {
+                    star.classList.add("fas");
+                    star.classList.remove("far");
+                } else {
+                    star.classList.remove("fas");
+                    star.classList.add("far");
+                }
+            });
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalTriggerButtons = document.querySelectorAll('.btn-pengembalian');
+
+            modalTriggerButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var pesananId = this.getAttribute('data-pesanan');
+                    console.log(pesananId);
+                    document.getElementById('modalPesananId').value = pesananId;
+                });
+            });
+        });
+    </script>
+@endsection
