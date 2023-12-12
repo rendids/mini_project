@@ -71,6 +71,52 @@
             border-radius: 0;
             background-color: transparent;
         }
+            .image-link {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .image-link::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(220, 220, 220);
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .image-link:hover::after {
+        opacity: 0.2;
+    }
+
+    .image {
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    .image-link:hover .image {
+        transform: scale(1.1);
+    }
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(0, 0, 0);
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .image-link:hover .icon {
+        opacity: 1;
+    }
     </style>
     <div class="col-xxl-12">
         <div class="isi">
@@ -113,10 +159,14 @@
                     <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
                         <label id="label" for="foto">
                       {{-- <strong><p>choose file</p></strong> --}}
-                            <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
-                                <img id="photo-profile" src="{{ asset('storage/' . $data_user->foto) }}"
-                                    class="profile-image card-img-top" alt="Profile"
+                            <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px" class="image-link">
+                                <img id="photo-profile"  src="{{ asset('storage/' . $data_user->foto) }}"
+                                    class="profile-image card-img-top image" alt="Profile"
                                     style="width: 100%; height: 100%; border-radius:50%;">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M156 112a12 12 0 0 1-12 12h-20v20a12 12 0 0 1-24 0v-20H80a12 12 0 0 1 0-24h20V80a12 12 0 0 1 24 0v20h20a12 12 0 0 1 12 12Zm76.49 120.49a12 12 0 0 1-17 0L168 185a92.12 92.12 0 1 1 17-17l47.54 47.53a12 12 0 0 1-.05 16.96ZM112 180a68 68 0 1 0-68-68a68.08 68.08 0 0 0 68 68Z"/></svg>
+                                        </span>
+
                             </div>
                         </label>
                         <div class="text-center" style="height: auto">
