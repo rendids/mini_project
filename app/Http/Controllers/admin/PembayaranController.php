@@ -59,7 +59,7 @@ class PembayaranController extends Controller
             }
         }
         pembayaran::create($data);
-        return redirect()->back()->with('success', 'Data berhasil disimpan.');
+        return redirect()->back()->with('success', 'pembayaran berhasil ditambahkan');
     }
 
     /**
@@ -138,6 +138,6 @@ class PembayaranController extends Controller
 
         $pembayaran->delete();
 
-        return redirect()->back()->with('success', 'berhasila menghapus pembayaran');
+        return redirect()->back()->with('success', 'berhasil menghapus pembayaran');
     }
 }
