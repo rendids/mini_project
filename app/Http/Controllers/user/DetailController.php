@@ -29,7 +29,7 @@ class DetailController extends Controller
     public function memesan(string $id)
     {
         $sedia = penyedia::with('user')->find($id);
-        
+
         return view('user.memesan', compact('sedia', 'bayar'));
     }
 
@@ -50,9 +50,9 @@ class DetailController extends Controller
         ],[
             'pemesan.required' => 'nama harus diisi',
             'nopemesan.required' => 'no telp harus diisi',
-            'nopemesan.numberic' => 'Harus berupa angka',
+            'nopemesan.numeric' => ' no telp Harus berupa angka',
             'nopemesan.regex' =>'format tidak valid',
-            'nopemesan.between'=>'harus memiliki antara 10-12 angka',
+            'nopemesan.digits_between'=>' no telp harus memiliki antara 10-12 angka',
             'penyedia.required' => 'nama penyedia harus diisi',
             'jasa.required'=>'jasa harus diisi',
             'alamatpemesan.required'=>'isi alamat anda',
@@ -62,6 +62,7 @@ class DetailController extends Controller
             'pembayaran.required'=>'isi metode pembayaran',
             'bukti.required'=>'isi bukti anda',
         ]);
+
         $keteranganFile = $request->file('bukti');
         if ($keteranganFile) {
             $namaGambar = Str::random(40) . '.' . $keteranganFile->getClientOriginalExtension();
