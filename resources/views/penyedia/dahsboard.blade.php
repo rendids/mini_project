@@ -86,7 +86,7 @@
             </div>
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0" >
                         <h4 class="cate-title">Activity</h4>
                         <div id="chartBar5"></div>
                     </div>

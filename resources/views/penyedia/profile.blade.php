@@ -108,7 +108,7 @@
                 enctype="multipart/form-data" class="form-horizontal">
                 @method('PUT')
                 @csrf
-                    <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
+                    <div class="card d-flex align-items-cen                                                                                                                                                                                                                                                                                                                                       ter p-2 h-100 border-0 justify-content-center">
                         <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px">
                             <img src="{{ asset('storage/' . $data_user->penyedia->foto) }}"
                                 class="profile-image card-img-top" alt="Profile" id="photo-profile"

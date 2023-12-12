@@ -155,5 +155,6 @@ Route::middleware('user-access:penyedia', 'auth')->prefix('penyedia')->group(fun
     Route::controller(PenyediaProfileController::class)->group(function () {
         Route::get('profile', 'index')->name('profile.penyedia');
         Route::put('profile.update/{id}', 'profileupdate')->name('profile.penyedia.update');
+        Route::patch('profile.update/{id}', 'fotopenyediaupdate')->name('fotopenyediaupdate');
     });
 });
