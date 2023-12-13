@@ -3,11 +3,75 @@
     <link rel="stylesheet" href="path/to/styles.css">
 
     <style>
-        .custom-h1 {
-            font-size: 3rem;
-        }
+        .cate-title {
+        font-size: 36px; /* Ukuran font */
+        color: #0355ac; /* Warna teks */
+        font-weight: bold; /* Ketebalan font */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan teks */
+    }
+
+    .custom-h1 {
+        border-bottom: 2px solid #0355ac; /* Garis bawah tebal dengan warna tertentu */
+        display: inline-block; /* Menampilkan elemen sebagai inline block */
+        padding-bottom: 8px; /* Ruang bawah antara teks dan garis bawah */
+        margin-bottom: 10px; /* Ruang bawah total elemen */
+    }
+    .card {
+        transition: transform 0.3s;
+        /* Efek transisi saat hover */
+        border-radius: 10px;
+        overflow: hidden;
+        /* Memberikan efek sudut melengkung */
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        /* Perbesar kartu saat dihover */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        /* Efek bayangan saat dihover */
+    }
+
+    .restro-review {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .restro-review img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+        /* Memberikan efek sudut melengkung pada gambar profil */
+    }
+
+    .recent-review {
+        margin-top: 10px;
+    }
+
+    .recent-review ul {
+        padding: 0;
+        list-style: none;
+        display: flex;
+    }
+
+    .recent-review li {
+        margin-right: 5px;
+    }
+
+    .recent-review svg {
+        fill: #FC8019;
+        /* Warna bintang diisi (rated) */
+        width: 16px;
+        height: 15px;
+    }
+
+    .recent-review h6 {
+        color: black;
+        margin-top: 10px;
+    }
     </style>
-    <h1 class="cate-title font-w1000 mb-5 custom-h1">Riwayat</h1>
+
 
         <div>
             <h1 class="cate-title font-w1000 mb-4 custom-h1">Ratting</h1>
@@ -20,7 +84,7 @@
                     @foreach ($ratings as $item)
                         <div class="col-xl-3 col-xxl-4 col-sm-6">
                             <div class="card shadow">
-                                <div class="card-body shadow" style="background-color: #bcc9dd">
+                                <div class="card-body shadow" style="background-color: #dee6f3">
                                     <div class="restro-review d-flex align-items-center border-bottom mb-4  pb-4">
                                         <img src="{{ asset('storage/' . $item->user->foto) }}" alt="">
                                         <div>

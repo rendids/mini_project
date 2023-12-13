@@ -8,10 +8,41 @@
     .d-flex.justify-content-center {
         justify-content: space-between;
     }
+    .table-list th, .table-list td {
+        text-align: center;
+    }
+
+    .table-list th {
+        background-color: #005abb;
+        color: #ffffff;
+    }
+
+    .table-list tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .table-list tbody tr:hover {
+        background-color: #e0e0e0;
+    }
+
+    .btn-aksi {
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-aksi:hover {
+        background-color: #ff6363; /* Sesuaikan dengan warna hover yang diinginkan */
+        color: #fff;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
 </style>
 
     <div class="col-xl-12">
-        <div class="card h-auto">
+        <div class="card h-auto shadow">
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-list i-table style-1 mb-4 border-0 text-center" id="guestTable-all3 ">
