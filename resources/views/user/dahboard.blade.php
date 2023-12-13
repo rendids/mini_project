@@ -42,16 +42,24 @@
             /* Ganti warna ikon sesuai keinginan Anda */
         }
 
-.cate-title {
-        color: #2e54b5; /* Warna teks */
-        font-size: 2rem; /* Ukuran font */
-        margin-bottom: 10px; /* Jarak bawah */
-        text-align: center; /* Posisi teks */
-        text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
-        font-weight: bold; /* Ketebalan huruf */
-        border-bottom: 2px solid #2e54b5; /* Garis bawah */
-        padding-bottom: 5px; /* Ruang di bawah teks */
-    }
+        .cate-title {
+            color: #2e54b5;
+            /* Warna teks */
+            font-size: 2rem;
+            /* Ukuran font */
+            margin-bottom: 10px;
+            /* Jarak bawah */
+            text-align: center;
+            /* Posisi teks */
+            text-transform: uppercase;
+            /* Mengubah teks menjadi huruf kapital */
+            font-weight: bold;
+            /* Ketebalan huruf */
+            border-bottom: 2px solid #2e54b5;
+            /* Garis bawah */
+            padding-bottom: 5px;
+            /* Ruang di bawah teks */
+        }
     </style>
 
     <div class="input-group search-area2 style-1">
@@ -79,77 +87,80 @@
             <br>
 
         </div>
-        <div class="row">
-            @foreach ($bestseller as $item)
-                <div class="col-xl-3 col-xxl-4 col-sm-6">
-                    <div class="card dishe-bx b-hover style-1 shadow">
-
-                        <div class="card-body pb-0 pt-3 shadow">
-                            <div class="text-center mb-2">
-                                <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width:100%;"
-                                    alt="foto peyedia">
-                            </div>
-                            <div class="border-bottom pb-3">
-                            </div>
-                        </div>
-                        <div class="card-footer border-0 pt-2">
-                            <div
-                                class="text-2xl text-center font-semibold d-flex justify-content-between align-items-center">
-                                <h3 class="fs-4 mb-1 fw-bold">{{ $item->user->name }}</h3>
-                                <h4 class="fw-bold text-black ">{{ $item->layanan }}</h4>
-                            </div>
-                            <div class="common d-flex align-items-center justify-content-between">
-                                <div>
-                                    @php
-                                        $totalRatings = 0;
-                                        $jumlahRatings = count($item->ratings);
-                                    @endphp
-
-                                    @foreach ($item->ratings as $rating)
-                                        @php
-                                            $totalRatings += $rating->ratting;
-                                        @endphp
-                                    @endforeach
-
-                                    @php
-                                        $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
-                                        $rataRataFormatted = number_format($rataRata, 1);
-                                    @endphp
-
-                                    <h5 class="text-base font-bold mb-1">
-                                        Rating:
-                                        @php
-                                            $starCount = 5;
-                                            $filledStars = floor($rataRata);
-                                            $emptyStars = $starCount - $filledStars;
-                                        @endphp
-
-                                        @for ($i = 0; $i < $filledStars; $i++)
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                        @endfor
-
-                                        @for ($i = 0; $i < $emptyStars; $i++)
-                                            <i class="fa-regular fa-star text-warning"></i>
-                                        @endfor
-                                    </h5>
-                                    ({{ $rataRataFormatted }}) from {{ $jumlahRatings }} users
-                                    <div class="star-rating">
-
-                                    </div>
-
-                                    <h5 class="text-base font-bold mb-1">Harga:
-                                        <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
-                                    </h5>
+        <div class="overflow-auto">
+            <div class="row flex-nowrap">
+                @foreach ($bestseller as $item)
+                    <div class="col-xl-3 col-xxl-4 col-sm-6 ">
+                        <div class="card dishe-bx b-hover style-1 shadow">
+                            <div class="card-body pb-0 pt-3 shadow">
+                                <div class="text-center mb-2">
+                                    <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width:100%;"
+                                        alt="foto peyedia">
                                 </div>
-                                <a href="{{ route('detail', ['id' => $item->id]) }}" class="btn btn-primary btn-sm fs-1">
-                                    <i class="fa-regular fa-eye text-white fs-4"></i>
-                                </a>
+                                <div class="border-bottom pb-3">
+                                </div>
                             </div>
+                            <div class="card-footer border-0 pt-2">
+                                <div
+                                    class="text-2xl text-center font-semibold d-flex justify-content-between align-items-center">
+                                    <h3 class="fs-4 mb-1 fw-bold">{{ $item->user->name }}</h3>
+                                    <h4 class="fw-bold text-black ">{{ $item->layanan }}</h4>
+                                </div>
+                                <div class="common d-flex align-items-center justify-content-between">
+                                    <div>
+                                        @php
+                                            $totalRatings = 0;
+                                            $jumlahRatings = count($item->ratings);
+                                        @endphp
 
+                                        @foreach ($item->ratings as $rating)
+                                            @php
+                                                $totalRatings += $rating->ratting;
+                                            @endphp
+                                        @endforeach
+
+                                        @php
+                                            $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
+                                            $rataRataFormatted = number_format($rataRata, 1);
+                                        @endphp
+
+                                        <h5 class="text-base font-bold mb-1">
+                                            Rating:
+                                            @php
+                                                $starCount = 5;
+                                                $filledStars = floor($rataRata);
+                                                $emptyStars = $starCount - $filledStars;
+                                            @endphp
+
+                                            @for ($i = 0; $i < $filledStars; $i++)
+                                                <i class="fa-solid fa-star text-warning"></i>
+                                            @endfor
+
+                                            @for ($i = 0; $i < $emptyStars; $i++)
+                                                <i class="fa-regular fa-star text-warning"></i>
+                                            @endfor
+                                        </h5>
+                                        ({{ $rataRataFormatted }})
+                                        dari {{ $jumlahRatings }} pengguna
+                                        <div class="star-rating">
+
+                                        </div>
+
+                                        <h5 class="text-base font-bold mb-1">Harga:
+                                            <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
+                                        </h5>
+                                    </div>
+                                    <a href="{{ route('detail', ['id' => $item->id]) }}"
+                                        class="btn btn-primary btn-sm fs-1">
+                                        <i class="fa-regular fa-eye text-white fs-4"></i>
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 
@@ -210,7 +221,8 @@
                                             <i class="fa-regular fa-star text-warning"></i>
                                         @endfor
                                     </h5>
-                                    ({{ $rataRataFormatted }}) from {{ $jumlahRatings }} users
+                                    ({{ $rataRataFormatted }})
+                                    dari {{ $jumlahRatings }} pengguna
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
                                     </h5>

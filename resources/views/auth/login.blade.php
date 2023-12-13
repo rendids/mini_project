@@ -3,7 +3,7 @@
 
 <head>
   <!-- Title -->
-  <title>Login</title>
+  <title></title>
   <!-- Meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -103,7 +103,7 @@
               <a href="{{ route('register.user') }}">
                 <!-- Menggunakan URL langsung untuk halaman registrasi pengguna -->
                 <div class="card-body" style="text-align: center;">
-                  <img src="{{ asset('assets/images/penyedia.png') }}" class="card-img-top" alt="...">
+                  <img src="{{ asset('assets/images/Add User-pana.png') }}" class="card-img-top" alt="...">
                   <h5 class="card-title" style="font-size: 19px;"><b>Pengguna</b></h5>
                 </div>
               </a>

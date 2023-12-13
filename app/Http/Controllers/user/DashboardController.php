@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $penyedia = Penyedia::get();
         $bestseller = $penyedia->where('status', 'profilelengkap')->sortByDesc(function ($penyedia) {
             return $penyedia->pesanan;
-        })->take(6);
+        })->take(4);
 
 
         // dd($bestseller);

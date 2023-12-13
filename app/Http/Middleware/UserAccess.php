@@ -19,7 +19,7 @@ class UserAccess
             return $next($request);
         }
 
-        return response()->view('error.403');
+        return redirect()->back()->with('error', 'anda dapat mengakses halaman ini');
         return $next($request);
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Verifikasi Email</title>
+    <title></title>
     <style>
         body {
             font-family: Arial, sans-serif;

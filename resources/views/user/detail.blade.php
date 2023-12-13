@@ -235,19 +235,17 @@
                                                         <h3 class="mb-0">Total:</h3>
                                                     </div>
                                                     <h4 class="mt-2 mb-0">
-                                                        {{ 'Rp ' . number_format($sedia->harga + $sedia->harga * 0.1, 0, ',', '.') }}
+                                                        {{ 'Rp ' . number_format($sedia->harga + $sedia->harga * 0.05, 0, ',', '.') }}
                                                     </h4>
 
                                                     <input hidden name="total" type="text"
-                                                        value="{{ $sedia->harga + $sedia->harga * 0.1 }}">
+                                                        value="{{ $sedia->harga + $sedia->harga * 0.05 }}">
                                                 </div>
                                                 <div class="d-flex align-items-start ml-3 p-3 pt-0">
                                                     <span style="color: red; font-size: 12px;" class=""><i>*Termasuk
-                                                            biaya admin Sebesar:10%</i></span>
+                                                            biaya admin Sebesar:5%</i></span>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
-
-
                             </form>
                         </div>
                     </div>
@@ -276,24 +274,30 @@
         </div>
         <br>
         @foreach ($komentar as $item)
+            <div class="recent-review d-flex align-items-center mb-4">
+                <img src="{{ asset('storage/' . $item->user->foto) }}" alt="">
+                <div>
+                    <h4 class="font-w00 ">{{ $item->user->name }}</h4>
+                    @php
+                        $starCount = 5;
+                        $filledStars = $item->ratting;
+                        $emptyStars = $starCount - $filledStars;
+                    @endphp
 
-        <div class="recent-review d-flex align-items-center mb-2">
-            <img src="{{ asset('storage/'.$item->user->foto) }}" alt="">
-            <div>
-                <h4 class="font-w00 ">{{ $item->user->name }}</h4>
-                @for ($i = 0; $i < $filledStars; $i++)
-                    <i class="fa-solid fa-star text-warning fs-4"></i>
-                @endfor
+                    @for ($i = 0; $i < $filledStars; $i++)
+                        <i class="fa-solid fa-star text-warning"></i>
+                    @endfor
 
-                @for ($i = 0; $i < $emptyStars; $i++)
-                    <i class="fa-regular fa-star text-warning fs-4"></i>
-                @endfor
+                    @for ($i = 0; $i < $emptyStars; $i++)
+                        <i class="fa-regular fa-star text-warning"></i>
+                    @endfor
+                    </h5>
+                </div>
             </div>
-        </div>
-        <p>{{ $item->komentar }}</p>
-        <div>
-            <h6 class="font-w400">Di Pesan {{ $item->pesanan->waktu }}</h6>
-        </div>
+            <p>{{ $item->komentar }}</p>
+            <div>
+                <h6 class="font-w400">Di Pesan {{ $item->pesanan->waktu }}</h6>
+            </div>
         @endforeach
 
     </div>
