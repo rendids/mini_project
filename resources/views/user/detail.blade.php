@@ -9,12 +9,57 @@
     .content-body {
         min-height: 1500px !important;
     }
+
+    .btn-outline-danger:hover {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .rating-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .rating-score {
+        font-size: 36px; /* Sesuaikan ukuran font sesuai keinginan */
+        margin-bottom: 10px; /* Tambahkan margin bawah jika diperlukan */
+        font-weight: bold;
+        margin-right: 8px;
+    }
+
+    .star-rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+    }
+
+
+    .star-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        fill: #f39c12; /* Warna bintang */
+    }
+
+    .review-count {
+        margin-left: 8px;
+        font-size: 18px;
+        color: #636363; /* Warna teks ulasan */
+    }
 </style>
 
 @section('content')
     <h1 class="text-capitalize">
         detail dari : <span class="text-primary">{{ $sedia->layanan }} - {{ $sedia->user->name }}</span>
     </h1>
+    <br>
     <div class="d-flex flex-row gap-2 flex-wrap"
         style="border: 1px solid rgb(128, 128, 128); border-radius: 10px; height: 490px">
         <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
@@ -23,16 +68,17 @@
                     class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
                     <div class="mb-sm-0 mb-3 pagination-title">
                     </div>
-                    <div class="card w-100" style="border: none ">
-                        <div class="card-body d-flex align-items-center">
+                    <div class="card w-100" style="border: none">
+                        <div class="card-body d-flex align-items-center" style="margin-top: -20px;">
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <div class="">
                                         <img src="{{ asset('storage/' . $sedia->foto) }}" class="card-img-top"
-                                            alt="..." style="width: 100%; object-fit: cover; height: auto; max-height: 200px; ">
+                                            alt="..."
+                                            style="width: 100%; object-fit: cover; height: auto; max-height: 200px; ">
                                     </div>
-                                    <h1 class="text-capitalize text-primary" style="font-size: 50px">{{ $sedia->layanan }}
-                                    </h1>
+                                    <h6 class="text-capitalize text-primary" style="font-size: 50px">{{ $sedia->layanan }}
+                                    </h6>
                                     <br>
                                     <h5 class="card-text">Jika ingin memesan, tentukan jadwal pertemuan.</h5>
                                     <h5> Lalu hubungi kontak di bawah untuk informasi selanjutnya:</h5>
@@ -179,21 +225,15 @@
                                                         }
                                                     }
                                                 </script>
-                                             <div class=" p-3 pb-0 d-flex justify-content-start">
-                                                <div class="d-flex align-items-start">
-                                                    <!-- Total di sebelah kiri -->
-                                                    <h3 class="mb-0">Total:</h3>
+                                                <div class="modal-footer ">
+                                                    <div class="">
+                                                        <h3>Total:</h3>
+                                                    </div>
+                                                    <h4 class="">{{ $sedia->harga }}</h4>
+                                                    <input hidden name="total" type="text"
+                                                        value="{{ $sedia->harga }}">
                                                 </div>
-
-                                                    <h4 class="mt-2 mb-0">{{ $sedia->harga }}</h4>
-                                                    <input hidden name="total" type="text" value="{{ $sedia->harga }}">
-                                                </div>
-                                                <div class="d-flex align-items-start ml-3 p-3 pt-0">
-                                                <span style="color: red; font-size: 12px;">(Termasuk biaya admin)</span>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
-
-
+                                                <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
                             </form>
                         </div>
                     </div>
@@ -202,14 +242,26 @@
         </div>
     </div>
     <br><br>
-    <h1></h1>
-    <div class="d-flex " style="left: -424px; position: absolute; top: 487px;">
-        <div class="">
 
+    <div class="d-flex " style="left: -424px; position: absolute; top: 487px; margin-top: 40px; display: block !important;">
+            <div class="rating-container">
+                <div class="rating-score"><h1>4.0</h1></div>
+                <div class="star-rating">
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= 4)
+                            <span class="star-icon"><h6>⭐</h6></span>
+                        @else
+                            <span class="star-icon" style="color: #636363;">⭐</span>
+                        @endif
+                    @endfor
+                </div>
+                <div class="review-count">9.48 jt ulasan</div>
+            </div>
+<br>
             <div class="recent-review d-flex align-items-center">
                 <img src="public/assets/images/popular-img/pic-1.jpg" alt="">
                 <div>
-                    <h4 class="font-w00 ">Fish Burger</h4>
+                    <h4 class="font-w00 ">Service AC</h4>
                     <ul class="d-flex flex-row p-2">
                         <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -255,4 +307,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

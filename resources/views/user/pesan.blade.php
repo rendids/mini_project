@@ -73,12 +73,12 @@
                         <tbody>
                             @foreach ($pesan as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->penyedia->user->name }}</td>
-                                    <td>{{ $item->jasa }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->waktu)->isoFormat('dddd, d MMMM YYYY HH:mm') }}</td>
-                                    <td>{{ $item->pembayaran }}</td>
-                                    <td>{{ 'RP ' . number_format( $item->total , 0, ',', '.')}}</td>
+                                    <td><h5>{{ $loop->iteration }}</h5></td>
+                                    <td><h5>{{ $item->penyedia->user->name }}</h5></td>
+                                    <td><h5>{{ $item->jasa }}</h5></td>
+                                    <td><h5>{{ \Carbon\Carbon::parse($item->waktu)->isoFormat('dddd, d MMMM YYYY HH:mm') }}</h5></td>
+                                    <td><h5>{{ $item->pembayaran }}</h5></td>
+                                    <td><h5>{{ 'RP ' . number_format( $item->total , 0, ',', '.')}}</h5></td>
                                     @if ($item->status == 'di tolak')
                                     <td class="text-red"><strong>{{ $item->status }}</strong></td>
                                 @elseif($item->status == 'di terima')

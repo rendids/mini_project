@@ -1,9 +1,8 @@
 @extends('layoutsuser.app')
 @section('content')
 <style>
-
-    .table-list th{
-        color: #fff;
+    .table-list th {
+        color: #fff; /* Warna putih */
     }
     /* Gaya untuk menonaktifkan garis tabel default */
     .table-list,
@@ -14,63 +13,60 @@
 
     /* Gaya untuk latar belakang header tabel */
     .table-list thead {
-        background-color: #2e54b5; /* Warna latar belakang header */
-        color: #fff; /* Warna teks header */
+        background-color: #283fa7; /* Ganti dengan warna biru yang diinginkan */
+        color: #fff; /* Ganti dengan warna teks yang sesuai */
     }
 
     /* Gaya untuk baris ganjil */
     .table-list tbody tr:nth-child(odd) {
-        background-color: #f2f2f2; /* Warna latar belakang baris ganjil */
+        background-color: #f2f2f2; /* Ganti dengan warna latar belakang yang diinginkan */
     }
 
     /* Gaya untuk baris saat dihover */
     .table-list tbody tr:hover {
-        background-color: #e2e5e8; /* Warna latar belakang saat dihover */
+        background-color: #e2e5e8; /* Ganti dengan warna latar belakang yang diinginkan */
     }
 
     /* Gaya untuk teks berwarna merah pada status "Di Tolak" */
-    .text-danger {
+    .text-red {
         color: #dc3545; /* Warna merah */
     }
 
     /* Gaya untuk teks berwarna orange pada status "Menunggu Konfirmasi" */
-    .text-warning {
+    .text-orange {
         color: #fd7e14; /* Warna orange */
     }
 
     /* Gaya untuk teks berwarna hijau pada status "Diterima" */
-    .text-success {
-        color: #28a745; /* Warna hijau */
-    }
 
-    /* Gaya untuk modal */
-    .modal-content {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
 
-    .modal-header {
-        background-color: #3498db; /* Warna latar belakang header modal */
-        color: #fff; /* Warna teks header modal */
+    /* Gaya untuk box-shadow pada tabel dan garis tepi */
+    .table-responsive,
+    .table-list {
+        border: 1px solid #dee2e6; /* Ganti dengan warna garis tepi yang diinginkan */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sesuaikan dengan bayangan yang diinginkan */
     }
-
-    .modal-footer {
-        background-color: #f2f2f2; /* Warna latar belakang footer modal */
+    .btn-pengembalian:hover,
+    .btn-primary:hover {
+        background-color: rgb(223, 147, 24); /* Ganti dengan warna latar yang diinginkan */
+        color: #fff; /* Ganti dengan warna teks yang diinginkan */
     }
 </style>
+<div class="col-xl-12">
 
-    <div class="col-xl-12">
-        <div class="card h-auto">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-list i-table style-1 mb-4 border-0 text-center" id="guestTable-all3">
+    <div class="card h-auto">
+        <div class="card-body p-0">
+            <div class="table-responsive text-center">
+                    <table class="table table-list i-table style-1 mb-4 border-0" id="guestTable-all3">
                         <thead>
                             <tr>
                                 <th>Jasa</th>
                                 <th>tanggal</th>
                                 <th>pembayaran</th>
                                 <th>Total</th>
-                                <th colspan="2">Status</th>
-                                <th class="bg-none"></th>
+                                <th>Status</th>
+                                <th>Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -93,9 +89,10 @@
                                             </h5>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class=".text-red">
                                         <div>
-                                            <a href="javascript:void(0);"
+                                            <strong>
+                                                <a href="javascript:void(0);"
                                                 class="
                                                     {{ $pesanan->status == 'di tolak' ? 'text-danger' : '' }}
                                                     {{ $pesanan->status == 'di terima' ? 'text-success' : '' }}
@@ -105,6 +102,8 @@
                                                     ">
                                                 {{ $pesanan->status }}
                                             </a>
+                                            </strong>
+
                                         </div>
                                     </td>
                                     <td><!-- Button trigger modal -->
