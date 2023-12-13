@@ -7,19 +7,20 @@
             font-size: 3rem;
         }
     </style>
-    <div class="card-body">
+    <h1 class="cate-title font-w1000 mb-5 custom-h1">Riwayat</h1>
+
         <div>
             <h1 class="cate-title font-w1000 mb-4 custom-h1">Ratting</h1>
             <div class="d-flex align-items-center justifiy-content-between mb-4">
-            </div>
+
         </div>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
                 <div class="row">
                     @foreach ($ratings as $item)
                         <div class="col-xl-3 col-xxl-4 col-sm-6">
-                            <div class="card">
-                                <div class="card-body" style="background-color: #bcc9dd">
+                            <div class="card shadow">
+                                <div class="card-body shadow" style="background-color: #bcc9dd">
                                     <div class="restro-review d-flex align-items-center border-bottom mb-4  pb-4">
                                         <img src="{{ asset('storage/' . $item->user->foto) }}" alt="">
                                         <div>
@@ -61,4 +62,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

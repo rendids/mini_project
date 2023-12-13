@@ -5,14 +5,16 @@
     .table-list th{
         color: white;
     }
+    .d-flex.justify-content-center {
+        justify-content: space-between;
+    }
 </style>
-
 
     <div class="col-xl-12">
         <div class="card h-auto">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-list i-table style-1 mb-4 border-0 text-center" id="guestTable-all3">
+                    <table class="table table-list i-table style-1 mb-4 border-0 text-center" id="guestTable-all3 ">
                         <thead>
                             <tr class="bg-primary text-white">
                                 <th>No</th>
@@ -26,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pesan as $itm)
+                            @forelse ($pesan as $itm)
                             <tr>
                                 <td><strong>{{ $loop->iteration }}</strong></td>
                                 <td>
@@ -55,11 +57,7 @@
                                 </td>
                                 <td>
 
-                                    <style>
-                                        .d-flex.justify-content-center {
-                                            justify-content: space-between;
-                                        }
-                                    </style>
+
 
                                     <div class="d-flex justify-content-center">
                                         <form id="rejectForm{{ $itm->id }}" action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
@@ -74,7 +72,6 @@
                                         </form>
                                     </div>
                                 </td>
-                            </tr>
                             <script>
                                 function confirmReject(itemId) {
                                     Swal.fire({
@@ -94,7 +91,12 @@
                                     });
                                 }
                             </script>
-                            @endforeach
+                            @empty
+                                <td colspan="7">
+                                    <h7>Data Kosong</h7>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

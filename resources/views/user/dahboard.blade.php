@@ -41,6 +41,17 @@
             color: #ffffff;
             /* Ganti warna ikon sesuai keinginan Anda */
         }
+
+.cate-title {
+        color: #2e54b5; /* Warna teks */
+        font-size: 2rem; /* Ukuran font */
+        margin-bottom: 10px; /* Jarak bawah */
+        text-align: center; /* Posisi teks */
+        text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
+        font-weight: bold; /* Ketebalan huruf */
+        border-bottom: 2px solid #2e54b5; /* Garis bawah */
+        padding-bottom: 5px; /* Ruang di bawah teks */
+    }
     </style>
 
     <div class="input-group search-area2 style-1">
@@ -62,8 +73,8 @@
     <br>
 
 
-    <div class="col-xl-12">
-        <div class="d-flex align-items-center justify-content-between mb-2 mt-sm-0 mt-3">
+    <div class="">
+        <div class=" mb-2 mt-sm-0 mt-3">
             <h4 class=" mb-0 cate-title">Paling Populer</h4>
             <br>
 

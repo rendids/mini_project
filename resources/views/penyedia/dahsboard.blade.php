@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <!-- <div class="bg-info text-white rounded p-3"> -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="31"
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <!-- <div class="bg-success text-white rounded p-3"> -->
                                         <i class="fas fa-user-alt-slash text-primary" style="font-size: 30px; margin-bottom: 25px"></i>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <!-- <div class="bg-warning text-white rounded p-3"> -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="61" height="61"
@@ -64,11 +64,11 @@
                     </div>
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <!-- <div class="bg-info text-white rounded p-3"> -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41"
-                                        viewBox="0 0 41 41" fill="none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="61" height="61"
+                                        viewBox="0 0 61 61" fill="none">
                                         <path
                                             d="M0.880859 32.1582V35.4941C0.880859 38.252 7.59961 40.4941 15.8809 40.4941C24.1621 40.4941 30.8809 38.252 30.8809 35.4941V32.1582C27.6543 34.4316 21.7559 35.4941 15.8809 35.4941C10.0059 35.4941 4.10742 34.4316 0.880859 32.1582ZM25.8809 10.4941C34.1621 10.4941 40.8809 8.25195 40.8809 5.49414C40.8809 2.73633 34.1621 0.494141 25.8809 0.494141C17.5996 0.494141 10.8809 2.73633 10.8809 5.49414C10.8809 8.25195 17.5996 10.4941 25.8809 10.4941ZM0.880859 23.9629V27.9941C0.880859 30.752 7.59961 32.9941 15.8809 32.9941C24.1621 32.9941 30.8809 30.752 30.8809 27.9941V23.9629C27.6543 26.6191 21.748 27.9941 15.8809 27.9941C10.0137 27.9941 4.10742 26.6191 0.880859 23.9629ZM33.3809 24.8223C37.8574 23.9551 40.8809 22.3457 40.8809 20.4941V17.1582C39.0684 18.4395 36.4043 19.3145 33.3809 19.8535V24.8223ZM15.8809 12.9941C7.59961 12.9941 0.880859 15.791 0.880859 19.2441C0.880859 22.6973 7.59961 25.4941 15.8809 25.4941C24.1621 25.4941 30.8809 22.6973 30.8809 19.2441C30.8809 15.791 24.1621 12.9941 15.8809 12.9941ZM33.0137 17.3926C37.7012 16.5488 40.8809 14.8926 40.8809 12.9941V9.6582C38.1074 11.6191 33.3418 12.6738 28.3262 12.9238C30.6309 14.041 32.3262 15.541 33.0137 17.3926Z"
                                             fill="#145ACC" />
@@ -86,7 +86,7 @@
             </div>
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-body pb-0" >
+                    <div class="card-body pb-0" style="box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);" >
                         <h4 class="cate-title">Activity</h4>
                         <div id="chartBar5"></div>
                     </div>
