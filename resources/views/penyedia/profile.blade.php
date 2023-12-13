@@ -71,52 +71,53 @@
             border-radius: 0;
             background-color: transparent;
         }
-            .image-link {
-        position: relative;
-        display: inline-block;
-        overflow: hidden;
-        border-radius: 10px;
-    }
 
-    .image-link::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgb(220, 220, 220);
-        opacity: 0;
-        transition: opacity 0.5s;
-    }
+        .image-link {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 10px;
+        }
 
-    .image-link:hover::after {
-        opacity: 0.2;
-    }
+        .image-link::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(220, 220, 220);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
 
-    .image {
-        object-fit: cover;
-        transition: transform 0.5s;
-    }
+        .image-link:hover::after {
+            opacity: 0.2;
+        }
 
-    .image-link:hover .image {
-        transform: scale(1.1);
-    }
+        .image {
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
 
-    .icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: rgb(0, 0, 0);
-        font-size: 24px;
-        opacity: 0;
-        transition: opacity 0.5s;
-    }
+        .image-link:hover .image {
+            transform: scale(1.1);
+        }
 
-    .image-link:hover .icon {
-        opacity: 1;
-    }
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(0, 0, 0);
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .image-link:hover .icon {
+            opacity: 1;
+        }
     </style>
     <div class="col-xxl-12">
         <div class="isi">
@@ -152,20 +153,25 @@
         <!-- Tab panes -->
         <div class="d-flex">
             <div class="col-4" style="border-right:2px solid black">
-                <form id="updateForm" action="{{ route('profile.penyedia.update', ['id' => $data_user->penyedia->id]) }}" method="POST"
-                    enctype="multipart/form-data" class="form-horizontal">
-                    @method('PUT')
+                <form id="updateForm" action="{{ route('fotopenyediaupdate', ['id' => $data_user->id]) }}"
+                    method="POST" enctype="multipart/form-data" class="form-horizontal">
+                    @method('patch')
                     @csrf
                     <div class="card d-flex align-items-center p-2 h-100 border-0 justify-content-center">
                         <label id="label" for="foto">
-                      {{-- <strong><p>choose file</p></strong> --}}
-                            <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px" class="image-link">
-                                <img id="photo-profile"  src="{{ asset('storage/' . $data_user->foto) }}"
+                            {{-- <strong><p>choose file</p></strong> --}}
+                            <div style="border-radius: 100%; height:150px; width:155px; margin-bottom: 25px"
+                                class="image-link">
+                                <img id="photo-profile" src="{{ asset('storage/' . $data_user->penyedia->foto) }}"
                                     class="profile-image card-img-top image" alt="Profile"
                                     style="width: 100%; height: 100%; border-radius:50%;">
-                                        <span class="icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M156 112a12 12 0 0 1-12 12h-20v20a12 12 0 0 1-24 0v-20H80a12 12 0 0 1 0-24h20V80a12 12 0 0 1 24 0v20h20a12 12 0 0 1 12 12Zm76.49 120.49a12 12 0 0 1-17 0L168 185a92.12 92.12 0 1 1 17-17l47.54 47.53a12 12 0 0 1-.05 16.96ZM112 180a68 68 0 1 0-68-68a68.08 68.08 0 0 0 68 68Z"/></svg>
-                                        </span>
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M156 112a12 12 0 0 1-12 12h-20v20a12 12 0 0 1-24 0v-20H80a12 12 0 0 1 0-24h20V80a12 12 0 0 1 24 0v20h20a12 12 0 0 1 12 12Zm76.49 120.49a12 12 0 0 1-17 0L168 185a92.12 92.12 0 1 1 17-17l47.54 47.53a12 12 0 0 1-.05 16.96ZM112 180a68 68 0 1 0-68-68a68.08 68.08 0 0 0 68 68Z" />
+                                    </svg>
+                                </span>
 
                             </div>
                         </label>
@@ -174,9 +180,10 @@
                             @error('foto')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
-                            <input style="display: none" type="file" name="foto" id="foto" onchange="previewFile()">
-                            <button type="button" class="btn btn-outline-primary btn-block mb-2"
-                                onclick="previewFile()">Ubah foto
+                            <input style="display: none" type="file" name="foto" id="foto"
+                                onchange="previewFile()">
+                            <button type="submit" class="btn btn-outline-primary btn-block mb-2"
+                                onclick="submitForm()">Ubah foto
                                 profile</button>
                         </div>
                     </div>
@@ -220,114 +227,119 @@
             </div>
             <div class="col-8">
                 <div class="tab-content text-muted">
+                    <form action="{{ route('profilepenyediaupdate', ['id' => $data_user->id]) }}"
+                        method="POST" enctype="multipart/form-data" class="form-horizontal">
                     <div class="tab-pane active" id="developers" role="tabpanel">
-                        <div class="row">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="{{ route('updateprofile', ['id' => $data_user->id]) }}" method="POST"
-                                        enctype="multipart/form-data" class="form-horizontal">
-                                        @method('PUT')
-                                        @csrf
-                                        <div class="card h-100"
-                                            style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
-                                            <div class="card-header">
-                                                <h2>Detail Info Penyedia</h2>
+                                    @method('PUT')
+                                    @csrf
+                                    <div class="card h-100"
+                                        style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                                        <div class="card-header">
+                                            <h2>Detail Info Penyedia</h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
+                                                <input type="text" class="form-control" name="name" id="inputName"
+                                                    placeholder="Nama" value="{{ $data_user->name }}">
+                                                @error('nama')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <label for="inputName" class="col-form-label fw-bold fs-4">Nama</label>
-                                                    <input type="text" class="form-control" name="name" id="inputName"
-                                                        placeholder="Nama" value="{{ $data_user->name }}">
-                                                    @error('nama')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputEmail" class="col-form-label fw-bold fs-4">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="inputEmail"
-                                                        placeholder="Email" value="{{ $data_user->email }}">
-                                                    @error('email')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail" class="col-form-label fw-bold fs-4">Email</label>
+                                                <input type="email" class="form-control" name="email" id="inputEmail"
+                                                    placeholder="Email" value="{{ $data_user->email }}">
+                                                @error('email')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputName2" class="col-form-label fw-bold fs-4">No Telp</label>
-                                                    <input type="tel" class="form-control" name="telp" id="telp"
-                                                        placeholder="{{ $data_user->phone ?? 'Nomor telepon belum ditambahkan' }}"
-                                                        value="{{ $data_user->penyedia->telp ?? '' }}">
-                                                    @error('phone')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputName2" class="col-form-label fw-bold fs-4">No
+                                                    Telp</label>
+                                                <input type="tel" class="form-control" name="telp" id="telp"
+                                                    placeholder="{{ $data_user->phone ?? 'Nomor telepon belum ditambahkan' }}"
+                                                    value="{{ $data_user->penyedia->telp ?? '' }}">
+                                                @error('phone')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
 
-                                                <div class="form-group">
-                                                    <label for="inputExperience" class="col-form-label fw-bold fs-4">Alamat</label>
-                                                    <textarea class="form-control" name="alamat" id="inputExperience"
-                                                        placeholder="{{ $data_user->penyedia->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->penyedia->alamat ?? '' }}</textarea>
-                                                    @error('alamat')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputExperience" class="col-form-label fw-bold fs-4">Harga yang ingin
-                                                        Anda tetapkan untuk user</label>
-                                                    <input type="number" class="form-control" name="harga" id="inputExperience"
-                                                        placeholder="{{ $data_user->penyedia->harga ?? 'Harga belum ditetapkan' }}"
-                                                        value="{{ $data_user->penyedia->harga ?? '' }}">
-                                                    @error('harga')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="inputExperience"
+                                                    class="col-form-label fw-bold fs-4">Alamat</label>
+                                                <textarea class="form-control" name="alamat" id="inputExperience"
+                                                    placeholder="{{ $data_user->penyedia->alamat ?? 'Alamat belum ditambahkan' }}">{{ $data_user->penyedia->alamat ?? '' }}</textarea>
+                                                @error('alamat')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputExperience" class="col-form-label fw-bold fs-4">Harga
+                                                    yang ingin
+                                                    Anda tetapkan untuk user</label>
+                                                <input type="number" class="form-control" name="harga"
+                                                    id="inputExperience"
+                                                    placeholder="{{ $data_user->penyedia->harga ?? 'Harga belum ditetapkan' }}"
+                                                    value="{{ $data_user->penyedia->harga ?? '' }}">
+                                                @error('harga')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="d-flex justify-content-end pt-2">
+                                <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                        <!--end row-->
+                </div>
+            </div>
+            <div class="tab-pane" id="designers" role="tabpanel">
+                <div class="row">
+                    <form action="{{ route('updatepasswordprofile', ['id' => $data_user->id]) }}" method="POST"
+                        enctype="multipart/form-data" class="form-horizontal">
+                        @csrf
+                        @method('PUT')
+                        <div class="card h-100"
+                            style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
+                            <div class="card-body">
+                                <div class="card-header">
+                                    <h2>Password</h2>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-form-label fw-bold fs-4">Password
+                                        lama</label>
+                                    <input type="password" class="form-control" name="password_lama" id="password"
+                                        placeholder="Password lama" value="">
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="konfirmasi-password" class="col-form-label fw-bold fs-4">Password
+                                        Baru</label>
+                                    <input type="password" class="form-control" name="password" id="konfirmasi-password"
+                                        placeholder="konfirmasi password">
+                                    @error('konfirmasi-password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <div class="d-flex justify-content-end pt-2">
                                     <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+
                                 </div>
-                            </form>
-                        </div>
-                        <!--end row-->
-                    </div>
-                    <div class="tab-pane" id="designers" role="tabpanel">
-                        <div class="row">
-                            <form action="{{ route('updatepasswordprofile', ['id' => $data_user->id]) }}" method="POST"
-                                enctype="multipart/form-data" class="form-horizontal">
-                                @csrf
-                                @method('PUT')
-                                <div class="card h-100"
-                                    style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
-                                    <div class="card-body">
-                                        <div class="card-header">
-                                            <h2>Password</h2>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password" class="col-form-label fw-bold fs-4">Password
-                                                lama</label>
-                                            <input type="password" class="form-control" name="password_lama"
-                                                id="password" placeholder="Password lama" value="">
-                                            @error('password')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="konfirmasi-password" class="col-form-label fw-bold fs-4">Password
-                                                Baru</label>
-                                            <input type="password" class="form-control" name="password"
-                                                id="konfirmasi-password" placeholder="konfirmasi password">
-                                            @error('konfirmasi-password')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="d-flex justify-content-end pt-2">
-                                            <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
 
-                                        </div>
-                            </form>
-
-                        </div>
-                    @endsection
+                </div>
+            </div>
+        @endsection

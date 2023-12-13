@@ -9,7 +9,7 @@
     </style>
     <div class="card-body">
         <div>
-            <h1 class="cate-title font-w1000 mb-4 custom-h1">Riwayat</h1>
+            <h1 class="cate-title font-w1000 mb-4 custom-h1">Ratting</h1>
             <div class="d-flex align-items-center justifiy-content-between mb-4">
             </div>
         </div>
@@ -21,7 +21,7 @@
                             <div class="card">
                                 <div class="card-body" style="background-color: #bcc9dd">
                                     <div class="restro-review d-flex align-items-center border-bottom mb-4  pb-4">
-                                        <img src="{{ asset('storage/foto_user/' . $item->user->foto) }}" alt="">
+                                        <img src="{{ asset('storage/' . $item->user->foto) }}" alt="">
                                         <div>
                                             <h4 class="font-w500">{{ $item->user->name }}</h4>
                                         </div>

@@ -38,12 +38,14 @@ class ProfileController extends Controller
         $foto = $request->file('foto');
         $fotoPath = $foto->storeAs('foto_user', 'foto_' . Str::random(12) . '.' . $foto->getClientOriginalExtension(), 'public');
         // Hapus foto lama jika ada
-        if ($userupdate->foto && Storage::exists($userupdate->foto)) {
+        if ($userupdate->foto && Storage::exists($userupdate->foto) && $userupdate->foto !== 'default.png') {
             Storage::disk('public')->delete($userupdate->foto);
         }
+
         $userupdate->update([
             'foto' => $fotoPath,
         ]);
+
 
         return redirect()->back();
     }
@@ -54,17 +56,17 @@ class ProfileController extends Controller
             'email' => 'required|unique:users|email',
             'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
             'alamat' => 'required|min:5|max:200',
-        ],[
-            'name.required' =>'Harus diisi',
+        ], [
+            'name.required' => 'Harus diisi',
             'email.required' => 'Harus diisi',
             'email.unique' => 'email sudah digunakan',
-            'email.email'=>'email tidak valid',
+            'email.email' => 'email tidak valid',
             'telp.required' => 'Harus diisi',
             'telp.numeric' => 'Harus berupa angka',
-            'telp.regex' =>'format tidak valid',
-            'telp.digits_betweens'=>'harus memiliki antara 10-12 angka',
-            'alamat.min' =>'Alamat minimal 5 karakter',
-            'alamat.max'=> 'Alamat maksimal 200 karakter',
+            'telp.regex' => 'format tidak valid',
+            'telp.digits_betweens' => 'harus memiliki antara 10-12 angka',
+            'alamat.min' => 'Alamat minimal 5 karakter',
+            'alamat.max' => 'Alamat maksimal 200 karakter',
             'alamat.required' => 'Harus diisi',
         ]);
         // dd($request);

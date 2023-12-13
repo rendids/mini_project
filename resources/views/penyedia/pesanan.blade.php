@@ -17,6 +17,7 @@
                             <tr class="bg-primary text-white">
                                 <th>No</th>
                                 <th>Nama Pemesan</th>
+                                <th>Nomer Pemesan</th>
                                 <th>Alamat Pemesaan</th>
                                 <th>Pembayaran</th>
                                 <th>Total</th>
@@ -31,6 +32,11 @@
                                 <td>
                                     <div>
                                         <h5 class="">{{ $itm->users->name }}</h5>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <h5 class="">{{ $itm->nopemesan }}</h5>
                                     </div>
                                 </td>
                                 <td>

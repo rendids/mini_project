@@ -23,7 +23,8 @@ class ProfileController extends Controller
         return view('penyedia.profile', compact('data_user'));
     }
 
-    public function fotopenyediaupdate(Request $request, $id){
+    public function fotopenyediaupdate(Request $request, $id)
+    {
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
@@ -33,17 +34,21 @@ class ProfileController extends Controller
             'foto.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
 
-        $userupdate = User::find($id);
+        $user = User::find($id);
+        $userupdate = penyedia::where('id_user', $user->id)->first();
+        // dd($userupdate);
 
         $foto = $request->file('foto');
-        $fotoPath = $foto->storeAs('foto_user', 'foto_' . Str::random(12) . '.' . $foto->getClientOriginalExtension(), 'public');
-        // Hapus foto lama jika ada
-        if ($userupdate->foto && Storage::exists($userupdate->foto)) {
+        $fotoPath = $foto->storeAs('fotopenyedia', 'foto_' . $user->id . '.' . $foto->getClientOriginalExtension(), 'public');
+
+        if ($userupdate->foto && Storage::exists($userupdate->foto) && $userupdate->foto !== 'default.png') {
             Storage::disk('public')->delete($userupdate->foto);
         }
+
         $userupdate->update([
             'foto' => $fotoPath,
         ]);
+        // dd($userupdate);
 
         return redirect()->back();
     }
@@ -55,7 +60,7 @@ class ProfileController extends Controller
             'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
             'alamat' => 'required|min:5|max:200',
             'harga' => 'required|min:4'
-        ],[
+        ], [
             'name.required' => 'Nama Harus Diisi',
             'email.required' => 'Email Harus Diisi',
             'telp.required' => 'No telpon harus diisi',
@@ -64,7 +69,6 @@ class ProfileController extends Controller
             'telp.digits_between' => 'No telpon harus memiliki panjang antara 10 hingga 12',
             'harga.required' => 'Harga Harus Diisi',
             'harga.min' => 'harga minimal 4 karakter'
-
         ]);
 
         $user =  user::find($id);

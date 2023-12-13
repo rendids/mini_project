@@ -16,10 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $penyedia = Penyedia::get();
-        $bestseller = $penyedia->sortByDesc(function ($penyedia) {
+        $bestseller = $penyedia->where('status', 'profilelengkap')->sortByDesc(function ($penyedia) {
             return $penyedia->pesanan;
         })->take(6);
-        
+
 
         // dd($bestseller);
         $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want

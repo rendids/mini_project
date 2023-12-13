@@ -21,14 +21,17 @@
         background-color: #007bff;
         border-color: #007bff;
     }
+
     .rating-container {
         display: flex;
         align-items: center;
     }
 
     .rating-score {
-        font-size: 36px; /* Sesuaikan ukuran font sesuai keinginan */
-        margin-bottom: 10px; /* Tambahkan margin bawah jika diperlukan */
+        font-size: 36px;
+        /* Sesuaikan ukuran font sesuai keinginan */
+        margin-bottom: 10px;
+        /* Tambahkan margin bawah jika diperlukan */
         font-weight: bold;
         margin-right: 8px;
     }
@@ -45,13 +48,15 @@
         display: inline-block;
         width: 18px;
         height: 18px;
-        fill: #f39c12; /* Warna bintang */
+        fill: #f39c12;
+        /* Warna bintang */
     }
 
     .review-count {
         margin-left: 8px;
         font-size: 18px;
-        color: #636363; /* Warna teks ulasan */
+        color: #636363;
+        /* Warna teks ulasan */
     }
 </style>
 
@@ -82,7 +87,7 @@
                                     <br>
                                     <h5 class="card-text">Jika ingin memesan, tentukan jadwal pertemuan.</h5>
                                     <h5> Lalu hubungi kontak di bawah untuk informasi selanjutnya:</h5>
-                                    <ul class="list-unstyled">
+                                    <ul class="list-unstyled text-black">
                                         <li class="larger-text"><strong>Nama:</strong> {{ $sedia->user->name }}
                                         </li>
                                         <li class="larger-text"><strong>No. Telepon:</strong>
@@ -225,15 +230,24 @@
                                                         }
                                                     }
                                                 </script>
-                                                <div class="modal-footer ">
-                                                    <div class="">
-                                                        <h3>Total:</h3>
+                                                <div class=" p-3 pb-0 d-flex justify-content-start">
+                                                    <div class="d-flex align-items-start">
+                                                        <h3 class="mb-0">Total:</h3>
                                                     </div>
-                                                    <h4 class="">{{ $sedia->harga }}</h4>
+                                                    <h4 class="mt-2 mb-0">
+                                                        {{ 'Rp ' . number_format($sedia->harga + $sedia->harga * 0.1, 0, ',', '.') }}
+                                                    </h4>
+
                                                     <input hidden name="total" type="text"
-                                                        value="{{ $sedia->harga }}">
+                                                        value="{{ $sedia->harga + $sedia->harga * 0.1 }}">
+                                                </div>
+                                                <div class="d-flex align-items-start ml-3 p-3 pt-0">
+                                                    <span style="color: red; font-size: 12px;" class=""><i>*Termasuk
+                                                            biaya admin Sebesar:10%</i></span>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mx-3 mb-3">Bayar</button>
+
+
                             </form>
                         </div>
                     </div>
@@ -243,69 +257,46 @@
     </div>
     <br><br>
 
-    <div class="d-flex " style="left: -424px; position: absolute; top: 487px; margin-top: 40px; display: block !important;">
-            <div class="rating-container">
-                <div class="rating-score"><h1>4.0</h1></div>
-                <div class="star-rating">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= 4)
-                            <span class="star-icon"><h6>⭐</h6></span>
-                        @else
-                            <span class="star-icon" style="color: #636363;">⭐</span>
-                        @endif
-                    @endfor
-                </div>
-                <div class="review-count">9.48 jt ulasan</div>
+    <div class="d-flex "
+        style="left: -424px; position: absolute; top: 487px; margin-top: 40px; display: block !important;">
+        <div class="rating-container">
+            <div class="rating-score">
+                <h1>{{ $formattedAverageRating }}</h1>
             </div>
-<br>
-            <div class="recent-review d-flex align-items-center">
-                <img src="public/assets/images/popular-img/pic-1.jpg" alt="">
-                <div>
-                    <h4 class="font-w00 ">Service AC</h4>
-                    <ul class="d-flex flex-row p-2">
-                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                    fill="#FC8019"></path>
-                            </svg>
-                        </li>
-                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                    fill="#FC8019"></path>
-                            </svg>
-                        </li>
-                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                    fill="#FC8019"></path>
-                            </svg>
-                        </li>
-                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                    fill="#FC8019"></path>
-                            </svg>
-                        </li>
-                        <li><svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8 0.500031L9.79611 6.02789H15.6085L10.9062 9.4443L12.7023 14.9722L8 11.5558L3.29772 14.9722L5.09383 9.4443L0.391548 6.02789H6.20389L8 0.500031Z"
-                                    fill="#FC8019"></path>
-                            </svg>
-                        </li>
-                    </ul>
-                </div>
+            <div class="star-rating">
+                @for ($i = 0; $i < $filledStars; $i++)
+                    <i class="fa-solid fa-star text-warning fs-2"></i>
+                @endfor
+
+                @for ($i = 0; $i < $emptyStars; $i++)
+                    <i class="fa-regular fa-star text-warning fs-2"></i>
+                @endfor
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            <div class="review-count">{{ $numberOfReviews }} ulasan</div>
+        </div>
+        <br>
+        @foreach ($komentar as $item)
+
+        <div class="recent-review d-flex align-items-center mb-2">
+            <img src="{{ asset('storage/'.$item->user->foto) }}" alt="">
             <div>
-                <h6 class="font-w400">Ordered June 21, 2020</h6>
+                <h4 class="font-w00 ">{{ $item->user->name }}</h4>
+                @for ($i = 0; $i < $filledStars; $i++)
+                    <i class="fa-solid fa-star text-warning fs-4"></i>
+                @endfor
+
+                @for ($i = 0; $i < $emptyStars; $i++)
+                    <i class="fa-regular fa-star text-warning fs-4"></i>
+                @endfor
             </div>
         </div>
+        <p>{{ $item->komentar }}</p>
+        <div>
+            <h6 class="font-w400">Di Pesan {{ $item->pesanan->waktu }}</h6>
+        </div>
+        @endforeach
+
     </div>
-</div>
+    </div>
+    </div>
 @endsection

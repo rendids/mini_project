@@ -41,16 +41,6 @@
             color: #ffffff;
             /* Ganti warna ikon sesuai keinginan Anda */
         }
-        .cate-title {
-        color: #2e54b5; /* Warna teks */
-        font-size: 2rem; /* Ukuran font */
-        margin-bottom: 10px; /* Jarak bawah */
-        text-align: center; /* Posisi teks */
-        text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
-        font-weight: bold; /* Ketebalan huruf */
-        border-bottom: 2px solid #2e54b5; /* Garis bawah */
-        padding-bottom: 5px; /* Ruang di bawah teks */
-    }
     </style>
 
     <div class="input-group search-area2 style-1">
@@ -73,7 +63,7 @@
 
 
     <div class="col-xl-12">
-        <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
+        <div class="d-flex align-items-center justify-content-between mb-2 mt-sm-0 mt-3">
             <h4 class=" mb-0 cate-title">Paling Populer</h4>
             <br>
 
@@ -83,7 +73,7 @@
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
                     <div class="card dishe-bx b-hover style-1 shadow">
 
-                        <div class="card-body pb-0 pt-3 ">
+                        <div class="card-body pb-0 pt-3 shadow">
                             <div class="text-center mb-2">
                                 <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width:100%;"
                                     alt="foto peyedia">
@@ -112,10 +102,30 @@
 
                                     @php
                                         $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
-                                        // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
                                         $rataRataFormatted = number_format($rataRata, 1);
                                     @endphp
-                                    <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }} </h5>
+
+                                    <h5 class="text-base font-bold mb-1">
+                                        Rating:
+                                        @php
+                                            $starCount = 5;
+                                            $filledStars = floor($rataRata);
+                                            $emptyStars = $starCount - $filledStars;
+                                        @endphp
+
+                                        @for ($i = 0; $i < $filledStars; $i++)
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        @endfor
+
+                                        @for ($i = 0; $i < $emptyStars; $i++)
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        @endfor
+                                    </h5>
+                                    ({{ $rataRataFormatted }}) from {{ $jumlahRatings }} users
+                                    <div class="star-rating">
+
+                                    </div>
+
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
                                     </h5>
@@ -124,6 +134,7 @@
                                     <i class="fa-regular fa-eye text-white fs-4"></i>
                                 </a>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -169,10 +180,26 @@
 
                                     @php
                                         $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
-                                        // Format nilai rata-rata sesuai kebutuhan, contohnya hingga dua desimal
                                         $rataRataFormatted = number_format($rataRata, 1);
                                     @endphp
-                                    <h5 class="text-base font-bold mb-1">Rating: {{ $rataRataFormatted }}</h5>
+
+                                    <h5 class="text-base font-bold mb-1">
+                                        Rating:
+                                        @php
+                                            $starCount = 5;
+                                            $filledStars = floor($rataRata);
+                                            $emptyStars = $starCount - $filledStars;
+                                        @endphp
+
+                                        @for ($i = 0; $i < $filledStars; $i++)
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        @endfor
+
+                                        @for ($i = 0; $i < $emptyStars; $i++)
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        @endfor
+                                    </h5>
+                                    ({{ $rataRataFormatted }}) from {{ $jumlahRatings }} users
                                     <h5 class="text-base font-bold mb-1">Harga:
                                         <span>{{ 'RP ' . number_format($item->harga, 0, ',', '.') }}</span>
                                     </h5>
@@ -190,7 +217,7 @@
     <br>
 
 
-    <div class="d-flex align-items-center justify-content-center flex-wrap pagination-bx">
+    <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
         <div class="mb-sm-0 mb-3 pagination-title">
             <!-- You can add any title or information here -->
         </div>

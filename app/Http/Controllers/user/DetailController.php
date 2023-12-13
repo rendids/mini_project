@@ -9,6 +9,7 @@ use App\Models\pembayaran;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ratting;
 use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
@@ -19,8 +20,16 @@ class DetailController extends Controller
     public function index(string $id)
     {
         $sedia = penyedia::find($id);
+        $averageRating = Ratting::where('penyedia_id', $sedia->id)->avg('ratting');
+        $starCount = 5;
+        $filledStars = round($averageRating);
+        $emptyStars = $starCount - $filledStars;
+        $numberOfReviews = Ratting::where('penyedia_id', $id)->count();
+        $komentar = ratting::where('penyedia_id', $id)->get();
+
+        $formattedAverageRating = number_format($averageRating, 1);
         $bayar = pembayaran::all();
-        return view('user.detail', compact('sedia', 'bayar'));
+        return view('user.detail', compact('sedia', 'bayar', 'formattedAverageRating', 'averageRating', 'starCount', 'filledStars', 'emptyStars', 'numberOfReviews', 'komentar'));
     }
 
     /**
@@ -88,7 +97,7 @@ class DetailController extends Controller
             ]);
             Notifikasi::create([
                 'user_id' => $user->id,
-                'pesan' => 'anda berhasil membuat pesanan baru',
+                'pesan' => 'anda berhasil membuat pesanan baru silahkan tunggu konfirmasi',
             ]);
         }
 
