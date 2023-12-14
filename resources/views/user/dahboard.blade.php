@@ -2,6 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+
     <style>
         .fa-eye {
             color: blue;
@@ -166,14 +167,20 @@
 
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <h2 class=" mb-0 cate-title">SEMUA MENU</h2>
-        <form action="{{ route('dashboard.user') }}">
-            <select name="harga" class="form-select form-select-lg mb-3" aria-label="Large select example">
+        <form id="filterForm" action="{{ route('dashboard.user') }}" method="GET">
+            <select id="hargaFilter" name="harga" class="form-select form-select-lg mb-3" aria-label="Large select example">
                 <option selected>Open this select menu</option>
-                <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">Terbaru</option>
-                <option value="asc">Terlama</option>
+                <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">TerMahal</option>
+                <option value="asc">TerMurah</option>
             </select>
-            <button type="submit" class="btn btn-primary btn-md">filter</button>
+            <!-- Hapus tombol "Filter" -->
         </form>
+         
+        <script>
+            document.getElementById('hargaFilter').addEventListener('change', function() {
+                document.getElementById('filterForm').submit();
+            });
+        </script>             
         <br>
         <div class="row">
             @foreach ($penyedia as $item)
