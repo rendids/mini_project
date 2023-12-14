@@ -85,9 +85,8 @@
         <div class=" mb-2 mt-sm-0 mt-3">
             <h4 class=" mb-0 cate-title">Paling Populer</h4>
             <br>
-
         </div>
-        <div class="overflow-auto">
+        <div class="overflow-auto mb-5">
             <div class="row flex-nowrap">
                 @foreach ($bestseller as $item)
                     <div class="col-xl-3 col-xxl-4 col-sm-6 ">
@@ -167,6 +166,14 @@
 
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <h2 class=" mb-0 cate-title">SEMUA MENU</h2>
+        <form action="{{ route('dashboard.user') }}">
+            <select name="harga" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                <option selected>Open this select menu</option>
+                <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">Terbaru</option>
+                <option value="asc">Terlama</option>
+            </select>
+            <button type="submit" class="btn btn-primary btn-md">filter</button>
+        </form>
         <br>
         <div class="row">
             @foreach ($penyedia as $item)

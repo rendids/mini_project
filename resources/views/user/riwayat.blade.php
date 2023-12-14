@@ -1,62 +1,75 @@
 @extends('layoutsuser.app')
 @section('content')
-<style>
-    .table-list th {
-        color: #fff; /* Warna putih */
-    }
-    /* Gaya untuk menonaktifkan garis tabel default */
-    .table-list,
-    .table-list th,
-    .table-list td {
-        border: none;
-    }
+    <style>
+        .table-list th {
+            color: #fff;
+            /* Warna putih */
+        }
 
-    /* Gaya untuk latar belakang header tabel */
-    .table-list thead {
-        background-color: #283fa7; /* Ganti dengan warna biru yang diinginkan */
-        color: #fff; /* Ganti dengan warna teks yang sesuai */
-    }
+        /* Gaya untuk menonaktifkan garis tabel default */
+        .table-list,
+        .table-list th,
+        .table-list td {
+            border: none;
+        }
 
-    /* Gaya untuk baris ganjil */
-    .table-list tbody tr:nth-child(odd) {
-        background-color: #f2f2f2; /* Ganti dengan warna latar belakang yang diinginkan */
-    }
+        /* Gaya untuk latar belakang header tabel */
+        .table-list thead {
+            background-color: #283fa7;
+            /* Ganti dengan warna biru yang diinginkan */
+            color: #fff;
+            /* Ganti dengan warna teks yang sesuai */
+        }
 
-    /* Gaya untuk baris saat dihover */
-    .table-list tbody tr:hover {
-        background-color: #e2e5e8; /* Ganti dengan warna latar belakang yang diinginkan */
-    }
+        /* Gaya untuk baris ganjil */
+        .table-list tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+            /* Ganti dengan warna latar belakang yang diinginkan */
+        }
 
-    /* Gaya untuk teks berwarna merah pada status "Di Tolak" */
-    .text-red {
-        color: #dc3545; /* Warna merah */
-    }
+        /* Gaya untuk baris saat dihover */
+        .table-list tbody tr:hover {
+            background-color: #e2e5e8;
+            /* Ganti dengan warna latar belakang yang diinginkan */
+        }
 
-    /* Gaya untuk teks berwarna orange pada status "Menunggu Konfirmasi" */
-    .text-orange {
-        color: #fd7e14; /* Warna orange */
-    }
+        /* Gaya untuk teks berwarna merah pada status "Di Tolak" */
+        .text-red {
+            color: #dc3545;
+            /* Warna merah */
+        }
 
-    /* Gaya untuk teks berwarna hijau pada status "Diterima" */
+        /* Gaya untuk teks berwarna orange pada status "Menunggu Konfirmasi" */
+        .text-orange {
+            color: #fd7e14;
+            /* Warna orange */
+        }
+
+        /* Gaya untuk teks berwarna hijau pada status "Diterima" */
 
 
-    /* Gaya untuk box-shadow pada tabel dan garis tepi */
-    .table-responsive,
-    .table-list {
-        border: 1px solid #dee2e6; /* Ganti dengan warna garis tepi yang diinginkan */
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sesuaikan dengan bayangan yang diinginkan */
-    }
-    .btn-pengembalian:hover,
-    .btn-primary:hover {
-        background-color: rgb(223, 147, 24); /* Ganti dengan warna latar yang diinginkan */
-        color: #fff; /* Ganti dengan warna teks yang diinginkan */
-    }
-</style>
-<div class="col-xl-12">
+        /* Gaya untuk box-shadow pada tabel dan garis tepi */
+        .table-responsive,
+        .table-list {
+            border: 1px solid #dee2e6;
+            /* Ganti dengan warna garis tepi yang diinginkan */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            /* Sesuaikan dengan bayangan yang diinginkan */
+        }
 
-    <div class="card h-auto">
-        <div class="card-body p-0">
-            <div class="table-responsive text-center">
+        .btn-pengembalian:hover,
+        .btn-primary:hover {
+            background-color: rgb(223, 147, 24);
+            /* Ganti dengan warna latar yang diinginkan */
+            color: #fff;
+            /* Ganti dengan warna teks yang diinginkan */
+        }
+    </style>
+    <div class="col-xl-12">
+
+        <div class="card h-auto">
+            <div class="card-body p-0">
+                <div class="table-responsive text-center">
                     <table class="table table-list i-table style-1 mb-4 border-0" id="guestTable-all3">
                         <thead>
                             <tr>
@@ -93,15 +106,15 @@
                                         <div>
                                             <strong>
                                                 <a href="javascript:void(0);"
-                                                class="
+                                                    class="
                                                     {{ $pesanan->status == 'di tolak' ? 'text-danger' : '' }}
                                                     {{ $pesanan->status == 'di terima' ? 'text-success' : '' }}
                                                     {{ $pesanan->status == 'pengembalian berhasil' ? 'text-success' : '' }}
                                                     {{ $pesanan->status == 'tunggu pengembalian' ? 'text-warning' : '' }}
                                                     {{ $pesanan->status == 'selesai' ? 'text-primary' : '' }}
                                                     ">
-                                                {{ $pesanan->status }}
-                                            </a>
+                                                    {{ $pesanan->status }}
+                                                </a>
                                             </strong>
 
                                         </div>
@@ -118,6 +131,19 @@
                                                 data-bs-target="#exampleModal{{ $pesanan->id }}">
                                                 Beri Rating
                                             </button>
+                                        @elseif ($pesanan->status == 'selesai')
+                                        <button onclick="redirectToDetailPage({{ $pesanan->id }})" class="btn btn-primary btn-sm fs-1">
+                                            pesan lagi
+                                        </button>
+
+                                        <script>
+                                            function redirectToDetailPage(id) {
+                                                var url = "{{ route('detail', ['id' => ':id']) }}";
+                                                url = url.replace(':id', id);
+                                                window.location.href = url;
+                                            }
+                                        </script>
+
                                         @endif
                                     </td>
                                 </tr>

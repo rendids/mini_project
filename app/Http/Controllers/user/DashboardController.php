@@ -13,19 +13,39 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        // dd($request);
         $penyedia = Penyedia::get();
         $bestseller = $penyedia->where('status', 'profilelengkap')->sortByDesc(function ($penyedia) {
             return $penyedia->pesanan;
         })->take(4);
 
-
+        $filter = $request->harga;
         // dd($bestseller);
-        $penyedia = penyedia::where('status', 'profilelengkap')->paginate(8); // Change 10 to the number of items per page you want
+        $penyedia = penyedia::where('status', 'profilelengkap')
+            ->when($request->harga == "asc", function ($query) use ($request) {
+                $query->orderBy('harga');
+            })
+            ->when($request->harga == "desc", function ($query) use ($request) {
+                $query->orderByDesc('harga');
+            })
+            ->paginate(8); // Change 10 to the number of items per page you want
 
-        return view('user.dahboard', compact('penyedia', 'bestseller'));
+        return view('user.dahboard', compact('penyedia', 'bestseller','filter'));
     }
+
+    // public function filter(Request $request){
+    //     $penyedia = penyedia::where('status', 'profilelengkap')
+    //     >when($request->harga == "asc", function ($query) use ($request) {
+    //         $query->orderBy('harga');
+    //     })
+    //     ->when($request->harga == "desc", function ($query) use ($request) {
+    //         $query->orderByDesc('harga');
+    //     })
+    //     ->paginate(8);
+    // }
 
 
     public function search(Request $request)
