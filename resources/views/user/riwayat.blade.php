@@ -100,7 +100,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <h5 class="mb-0">{{ $pesanan->waktu }}</h5>
+                                            <h5>{{ \Carbon\Carbon::parse($pesanan->waktu)->isoFormat('dddd, d MMMM YYYY HH:mm') }}</h5>
                                         </div>
                                     </td>
                                     <td>
@@ -193,38 +193,10 @@
                                     <span class="text-danger my-2">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="col-md-12" id="keteranganContainer" style="display: none">
+                            <div class="col-md-12" id="keteranganContainer" >
                                 <label for="keteranganInput">Keterangan</label>
                                 <input type="text" class="form-control" name="keterangan" id="keteranganInput" placeholder="Masukkan nomor">
                             </div>
-
-                        <script>
-                            function showKeterangan() {
-                                var selectElement = document.getElementById("metodePembayaran");
-                                var keteranganContainer = document.getElementById("keteranganContainer");
-                                var keteranganInput = document.getElementById("keteranganInput");
-
-                                console.log(selectElement)
-                                var selectedOption = selectElement.options[selectElement.selectedIndex];
-                                var selectedId = selectedOption.value;
-                                console.log(selectedId);
-
-                                if(selectedId !== []){
-                                    alert(selectedId);
-                                }
-
-                                console.log(keteranganInput)
-
-                                var selectedOption = selectElement.options[selectElement.selectedIndex];
-                                var selectedKeterangan = selectedOption.getAttribute("data-keterangan");
-
-                                if (selectedKeterangan) {
-                                    keteranganContainer.style.display = "block !important";
-                                } else {
-                                    keteranganContainer.style.display = "none";
-                                }
-                            }
-                        </script>
                     </div>
 
                     <div class="modal-footer">
@@ -287,7 +259,7 @@
             </div>
         </div>
     @endforeach
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const stars = document.querySelectorAll(".rating-container i");
@@ -298,7 +270,7 @@
                     bintang = ratingValue;
 
                     console.log(`DATA RATTING ${ratingValue}`);
-                    
+
                     highlightStars(ratingValue);
                     document.getElementById("ratingValue").value = ratingValue;
                     let inputTag = document.getElementById("ratingValue");
