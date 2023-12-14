@@ -61,6 +61,34 @@
             padding-bottom: 5px;
             /* Ruang di bawah teks */
         }
+        #hargaFilter {
+            border: 2px solid #3498db; /* Warna border */
+        color: #3498db; /* Warna teks */
+        border-radius: 8px; /* Sudut border */
+        font-weight: bold; /* Mempertebal teks */
+        padding: 8px; /* Jarak antara teks dan border */
+    }
+
+    #hargaFilter option.font-weight-bold.text-secondary {
+        color: #6c757d; /* Warna teks untuk opsi non-pilih */
+    }
+
+    #hargaFilter option.font-weight-bold.text-danger {
+        color: #dc3545; /* Warna teks untuk opsi Batal urutan */
+    }
+
+    #hargaFilter option.font-weight-bold.text-success {
+        color: #28a745; /* Warna teks untuk opsi TerMahal dan TerMurah */
+    }
+
+    .search-area2{
+        border: 2px solid #3498db; /* Warna border */
+        color: #3498db; /* Warna teks */
+        border-radius: 8px; /* Sudut border */
+        font-weight: bold; /* Mempertebal teks */
+        padding: 8px; /* Jarak antara teks dan border */
+    }
+    
     </style>
 
     <div class="input-group search-area2 style-2">
@@ -82,7 +110,7 @@
                 @foreach ($bestseller as $item)
                     <div class="col-xl-3 col-xxl-4 col-sm-6 ">
                         <div class="card dishe-bx b-hover style-1 shadow">
-                            <div class="card-body pb-0 pt-3 shadow">
+                            <div class="card-body pb-0 pt-3">
                                 <div class="text-center mb-2">
                                     <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width:100%;"
                                         alt="foto peyedia">
@@ -160,12 +188,12 @@
                 <form id="filterForm" action="{{ route('dashboard.user') }}" method="GET">
                     <select id="hargaFilter" name="harga" class="form-select form-select-lg mb-3 mt-3"
                         aria-label="Large select example">
-                        <option disabled selected>urutkan dari</option>
+                        <option disabled selected class="font-weight-bold text-secondary">Urutkan Dari</option>
                         @if ($filter == 'desc' or 'asc')
                             <option value="">Batal urutan</option>
                         @endif
-                        <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">TerMahal</option>
-                        <option {{ $filter == 'asc' ? 'selected' : '' }} value="asc">TerMurah</option>
+                        <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc" class="font-weight-bold">TerMahal</option>
+                        <option {{ $filter == 'asc' ? 'selected' : '' }} value="asc" class="font-weight-bold">TerMurah</option>
                     </select>
                     <!-- Hapus tombol "Filter" -->
                 </form>
@@ -183,7 +211,7 @@
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
                     <div class="card dishe-bx b-hover style-1 shadow">
 
-                        <div class="card-body pb-0 pt-3 shadow">
+                        <div class="card-body pb-0 pt-3">
                             <div class="text-center mb-2">
                                 <img src="{{ asset('storage/' . $item->foto) }}" class="" style="width: 100%;"
                                     alt="foto peyedia">
