@@ -278,7 +278,7 @@
     <br>
 
 
-    <div class="d-flex align-items-center justify-content-xl-between justify-content-center flex-wrap pagination-bx">
+    <div class="d-flex align-items-center justify-content-center flex-wrap pagination-bx">
         <div class="mb-sm-0 mb-3 pagination-title">
             <!-- You can add any title or information here -->
         </div>
