@@ -123,7 +123,7 @@
                                         @if ($pesanan->status == 'di tolak')
                                             <button type="button" class="btn btn-warning btn-sm btn-pengembalian"
                                                 data-pesanan="{{ $pesanan->id }}" data-bs-toggle="modal"
-                                                data-bs-target="#basicModal">
+                                                data-bs-target="#basicModal{{ $pesanan->id }}">
                                                 pengembalian
                                             </button>
                                         @elseif ($pesanan->status == 'di terima')
@@ -132,18 +132,18 @@
                                                 Beri Rating
                                             </button>
                                         @elseif ($pesanan->status == 'selesai')
-                                        <button onclick="redirectToDetailPage({{ $pesanan->id }})" class="btn btn-primary btn-sm fs-1">
-                                            pesan lagi
-                                        </button>
+                                            <button onclick="redirectToDetailPage({{ $pesanan->id }})"
+                                                class="btn btn-primary btn-sm fs-1">
+                                                pesan lagi
+                                            </button>
 
-                                        <script>
-                                            function redirectToDetailPage(id) {
-                                                var url = "{{ route('detail', ['id' => ':id']) }}";
-                                                url = url.replace(':id', id);
-                                                window.location.href = url;
-                                            }
-                                        </script>
-
+                                            <script>
+                                                function redirectToDetailPage(id) {
+                                                    var url = "{{ route('detail', ['id' => ':id']) }}";
+                                                    url = url.replace(':id', id);
+                                                    window.location.href = url;
+                                                }
+                                            </script>
                                         @endif
                                     </td>
                                 </tr>
@@ -154,87 +154,68 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="modal fade" id="basicModal" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Pembayaran</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('pengembalian') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+    @foreach ($pesananDitolak as $pesanan)
+        <div class="modal fade" id="basicModal{{ $pesanan->id }}" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Form pengembalian</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('pengembalian') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="pesanan_id" id="modalPesananId" value="{{ $pesanan->id }}">
+                                <div class="col-md-12">
+                                    <label for="">Pilih metode pembayaran</label>
+                                    <select class="form-control" name="metode" id="metodePembayaran"
+                                        onchange="showKeterangan()">
+                                        <option selected disabled>Pilih metode pembayaran Anda
+                                        </option>
+                                        @foreach ($bayar as $pesanan)
+                                            <option value="{{ $pesanan->tujuan }}"
+                                                data-keterangan="{{ $pesanan->keterangan }}"
+                                                category-keterangan ="{{ $pesanan->metode }}">
+                                                {{ $pesanan->tujuan }}</option>
+                                        @endforeach
+                                    </select>
 
-                        <input type="hidden" name="pesanan_id" id="modalPesananId">
-                        <div class="form-group">
-                            <label for="metode">Metode Pembayaran</label>
-                            <select name="metode" class="form-control" id="metode" onchange="handleMetodeChange()">
-                                <option disabled selected>Pilih Metode</option>
-                                <option value="BANK">BANK</option>
-                                <option value="E-WALET">E-WALET</option>
-                            </select>
-                            @error('metode')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                                    @error('pembayaran')
+                                        <span class="text-danger my-2">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12" id="keteranganContainer" style="display: none;">
+                                    <label>keterangan</label>
+                                    <input type="text" class="form-control" name="keterangan" id="keteranganInput" placeholder="masukan no ">
+                                </div>
+                            <script>
+                                function showKeterangan() {
+                                    var selectElement = document.getElementById("metodePembayaran");
+                                    var keteranganContainer = document.getElementById("keteranganContainer");
+                                    var keteranganInput = document.getElementById("keteranganInput");
 
-                        <div class="form-group">
-                            <label for="tujuan" class="mt-3">Tujuan</label>
-                            <input type="text" id="tujuan" name="tujuan" class="form-control"
-                                placeholder="Masukkan tujuan">
-                            @error('tujuan')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-
-                        <div id="label1" class="form-group label1">
-                            <label for="keterangan" class="mt-3">Keterangan</label>
-                            <input type="text" id="keterangan" name="keterangan" class="form-control"
-                                placeholder="Masukkan keterangan">
-                            @error('keterangan')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <script>
-                            // var Element1 = document.querySelector('#label1')
-                            // var Element2 = document.querySelector('.label1')
-                            var Element3 = document.querySelectorAll('.label1')
-
-                            // console.log(`element berdasarkan id`);
-                            // console.log(Element1);
-                            // console.log(`element berdasarkan classname`);
-                            // console.log(Element2);
-                            console.log(`element berdasarkan semua tag`);
-                            console.log(Element3);
-                        </script>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light btn-sm"
-                                data-bs-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                        </div>
+                                    var selectedOption = selectElement.options[selectElement.selectedIndex];
+                                    var selectedKeterangan = selectedOption.getAttribute("data-keterangan");
+                                    var category = selectedOption.getAttribute("category-keterangan");
+                                    if (selectedKeterangan) {
+                                            keteranganInput.style.display = "block";
+                                            keteranganInput.type = 'text'
+                                    } else {
+                                        keteranganContainer.style.display = "none";
+                                    }
+                                }
+                            </script>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                    </div>
                     </form>
-
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        function handleMetodeChange() {
-            var metodeSelect = document.getElementById('metode');
-            var tujuanInput = document.getElementById('tujuan');
-            var keteranganInput = document.getElementById('keterangan');
-
-            if (metodeSelect.value === 'E-WALET') {
-                keteranganInput.type = 'file';
-            } else {
-                keteranganInput.type = 'text';
-            }
-        }
-    </script>
+    @endforeach
     <!-- Modal -->
     @foreach ($pesananDitolak as $pesanan)
         <div class="modal fade" id="exampleModal{{ $pesanan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -253,12 +234,9 @@
                                     <input type="hidden" name="pesanan_id" value="{{ $pesanan->id }}">
                                     <input type="hidden" name="pesanan_penyedia_id" value="{{ $pesanan->penyedia->id }}">
                                     <div class="rating-container">
-                                        <i class="far fa-star" data-rating="1"
-                                            style="font-size: 300%; color: #ffd700;"></i>
-                                        <i class="far fa-star" data-rating="2"
-                                            style="font-size: 300%; color: #ffd700;"></i>
-                                        <i class="far fa-star" data-rating="3"
-                                            style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="3" style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="4"
                                             style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="5"

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\penyedia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\untung;
 
 class DashboardController extends Controller
 {
@@ -18,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = User::where('role', 'user')->count();
+        $nominal = untung::sum('nominal');
         $penyedia = User::where('role', 'penyedia')->count();
         $selesai = pesanan::where('penyedia_id', $penyedia)->where('status', 'selesai')->count();
         $processData = [];
@@ -60,7 +62,7 @@ class DashboardController extends Controller
                 'color' => $color,
                 'angka_sama' => $dataSama->map(function ($item, $key) {
                     return [
-                            'penyedia_data' => 'Penyedia Data = ' . $item->penyedia->layanan,
+                        'penyedia_data' => 'Penyedia Data = ' . $item->penyedia->layanan,
                         'total' => 'Total = ' . $item->total,
                     ];
                 })->toArray(),
@@ -68,7 +70,7 @@ class DashboardController extends Controller
         }
 
     $chartData = array_values($processData);
-        return view('admin.dashboard', compact('user', 'penyedia', 'selesai', 'chartData'));
+        return view('admin.dashboard', compact('user', 'penyedia', 'selesai', 'chartData', 'nominal'));
     }
 
     /**

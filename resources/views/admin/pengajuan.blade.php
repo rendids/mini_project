@@ -21,7 +21,8 @@
                             <th><strong>No</strong></th>
                             <th><strong>Nama Pemesanan</strong></th>
                             <th><strong>Nama Jasa</strong></th>
-                            <th><strong>Nama Pembayaran</strong></th>
+                            <th><strong>pembayaran</strong></th>
+                            <th><strong>nomer</strong></th>
                             <th><strong>Total</strong></th>
                             <th><strong>Aksi</strong></th>
                         </tr>
@@ -34,6 +35,7 @@
                               <td>{{ $item->user->name }}</td>
                               <td>{{ $item->pesanan->jasa }}</td>
                               <td>{{ $item->metode }}</td>
+                              <td>{{ $item->keterangan }}</td>
                               <td>{{ 'RP ' . number_format(  $item->pesanan->total , 0, ',', '.')}}</td>
                               <td>
                                   <div class="d-flex">

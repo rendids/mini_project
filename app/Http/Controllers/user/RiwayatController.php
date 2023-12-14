@@ -8,6 +8,7 @@ use App\Models\pengembalian;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Notifikasi;
+use App\Models\pembayaran;
 use Illuminate\Support\Facades\Auth;
 use App\Models\penyedia;
 
@@ -21,8 +22,9 @@ class RiwayatController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+            $bayar = pembayaran::all();
 
-        return view('user.riwayat', compact('pesananDitolak',));
+        return view('user.riwayat', compact('pesananDitolak','bayar'));
     }
 
     public function rating(Request $request)
@@ -54,7 +56,6 @@ class RiwayatController extends Controller
 
         $request->validate([
             'metode' => 'required',
-            'tujuan' => 'required',
             'keterangan' => 'required'
         ]);
 
@@ -62,7 +63,6 @@ class RiwayatController extends Controller
             'user_id' => Auth::user()->id,
             'pesanan_id' => $request->pesanan_id,
             'metode' => $request->metode,
-            'tujuan' => $request->tujuan,
             'keterangan' => $request->keterangan,
             'status' => 'process',
         ]);
@@ -72,9 +72,8 @@ class RiwayatController extends Controller
 
         Notifikasi::create([
             'user_id' => Auth::user()->id,
-            'pesan' => 'anda berhasil meminta pengembalian'
+            'pesan' => 'anda berhasil pengembalian'
         ]);
-
 
         $pesanan->update(['status' => 'tunggu pengembalian']);
 

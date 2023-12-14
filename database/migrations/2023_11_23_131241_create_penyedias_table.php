@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('harga')->nullable();
             $table->string('alamat');
             $table->string('telp');
-            $table->string('foto')->nullable();
+            $table->string('foto')->default('fotopenyedia/foto_2.png');
             $table->string('status')->default('profile belum lengkap');
             $table->timestamps();
         });
