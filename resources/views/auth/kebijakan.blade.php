@@ -1,6 +1,15 @@
 @extends('layoutskebijakan.app')
 @section('content')
+<style>
+    .btn-primary:hover {
+        background-color: #2c3e50; /* Ganti dengan warna latar belakang yang diinginkan saat hover */
+        border-color: #2c3e50; /* Ganti dengan warna border yang diinginkan saat hover */
+    }
 
+    .btn-primary:hover i {
+        color: #ffffff; /* Ganti dengan warna ikon yang diinginkan saat hover */
+    }
+</style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,7 +121,14 @@
           <li>Situs komunitas dot.com</li>
           <li>Asosiasi</li>
         </ul>
-
+        <div class="mt-5 text-center">
+            <a href="{{ route('login') }}">
+                <button class="btn btn-primary btn-lg px-4 py-2" onclick="goBack()">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali
+                </button>
+            </a>
+            
+        </div>
       </div>
     </div>
   </div>

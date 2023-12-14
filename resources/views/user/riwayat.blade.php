@@ -137,8 +137,11 @@
                                                 pengembalian
                                             </button>
                                         @elseif ($pesanan->status == 'di terima')
-                                            <button type="button" class="btn btn-warning btn-sm btn-primary"
-                                                data-bs-target="#exampleModal{{ $pesanan->id }}">
+                                            <button type="button" class="btn btn-warning btn-sm btn-primary btn-rating"
+                                                data-pesanan_penyedia="{{ $pesanan->penyedia->id }}"
+                                                data-pesanan="{{ $pesanan->id }}"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalRating">
                                                 Beri Rating
                                             </button>
                                         @elseif ($pesanan->status == 'selesai')
@@ -233,9 +236,9 @@
             </div>
         </div>
     @endforeach
-    <!-- Modal -->
     @foreach ($pesananDitolak as $pesanan)
-        <div class="modal fade" id="exampleModal{{ $pesanan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <!-- Modal -->
+        <div class="modal fade" id="exampleModalRating" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -248,9 +251,11 @@
                                 <form action="{{ route('rating') }}" method="post">
                                     @csrf
                                     @method('POST')
-                                    <input type="hidden" name="pesanan_id" value="{{ $pesanan->id }}">
-                                    <input type="hidden" name="pesanan_penyedia_id" value="{{ $pesanan->penyedia->id }}">
+                                    <input type="hidden" name="pesanan_id" id="inputpesanan_id" value="{{ $pesanan->id }}">
+                                    <input type="hidden" name="pesanan_penyedia_id" id="inputpesanan_penyedia_id" value="{{ $pesanan->penyedia->id }}">
+                                    <input type="hidden" name="ratting" id="ratingValue">
                                     <div class="rating-container">
+
                                         <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="3"
@@ -259,12 +264,12 @@
                                             style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="5"
                                             style="font-size: 300%; color: #ffd700;"></i>
-                                        <input type="hidden" id="ratingValue" name="ratting" value="">
+                                        {{-- <input type="hidden" id="" name="ratting"/> --}}
                                     </div>
 
                                     <div class="row mt-3">
                                         <div class="col-md-12">
-                                            <label for="name" class="fs-4 fw-bold">Komentar</label>
+                                            <label for="name" id="test" class="fs-4 fw-bold">Komentar</label>
                                             <textarea name="komentar" id="" cols="30" rows="10" class="form-control"></textarea>
                                         </div>
                                     </div>
@@ -282,24 +287,35 @@
             </div>
         </div>
     @endforeach
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const stars = document.querySelectorAll(".rating-container i");
-
+            let bintang = 0;
             stars.forEach(function(star) {
                 star.addEventListener("click", function() {
-                    const ratingValue = this.getAttribute("data-rating");
-                    document.getElementById("ratingValue").value = ratingValue;
+                    const ratingValue = star.getAttribute("data-rating");
+                    bintang = ratingValue;
+
+                    console.log(`DATA RATTING ${ratingValue}`);
+                    
                     highlightStars(ratingValue);
+                    document.getElementById("ratingValue").value = ratingValue;
+                    let inputTag = document.getElementById("ratingValue");
+                    console.log(inputTag);
                 });
             });
+            console.log(`DATA RATTING 2 ${ratingValue}`);
+            document.getElementById("ratingValue").value = ratingValue;
         });
 
         function highlightStars(rating) {
+        console.log(`DATA RATTING highlightStars ${rating}`);
             const stars = document.querySelectorAll(".rating-container i");
-
+            document.getElementById("ratingValue").value = rating;
             stars.forEach(function(star) {
                 const starRating = star.getAttribute("data-rating");
+                const test = document.getElementById('test');
                 if (starRating <= rating) {
                     star.classList.add("fas");
                     star.classList.remove("far");
@@ -313,13 +329,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var modalTriggerButtonsRating = document.querySelectorAll('.btn-rating');
             var modalTriggerButtons = document.querySelectorAll('.btn-pengembalian');
 
             modalTriggerButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
                     var pesananId = this.getAttribute('data-pesanan');
-                    console.log(pesananId);
                     document.getElementById('modalPesananId').value = pesananId;
+                });
+            });
+
+            modalTriggerButtonsRating.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var pesanan_penyedia = this.getAttribute('data-pesanan_penyedia');
+                    var pesananId = this.getAttribute('data-pesanan');
+                    document.getElementById('inputpesanan_id').value = pesananId;
+                    document.getElementById('inputpesanan_penyedia').value = pesanan_penyedia;
                 });
             });
         });

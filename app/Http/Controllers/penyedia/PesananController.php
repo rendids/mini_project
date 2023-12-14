@@ -67,6 +67,6 @@ class PesananController extends Controller
             // You may want to log an error or provide a response to the user
         }
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan.');;
+        return redirect()->back()->with('success', 'Pesanan berhasil diterima.');;
     }
 }

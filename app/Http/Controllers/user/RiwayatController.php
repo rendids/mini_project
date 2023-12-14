@@ -29,6 +29,7 @@ class RiwayatController extends Controller
 
     public function rating(Request $request)
     {
+        // dd($request);
         $pesanan_id = $request->pesanan_id;
         $pesanan = pesanan::find($pesanan_id);
 

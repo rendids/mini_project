@@ -101,12 +101,7 @@ class DetailController extends Controller
             ]);
         }
 
-
-
-
-
-
-        return redirect()->route('pesan');
+        return redirect()->route('pesan')->with('success', 'Berhasil diPesan');
     }
 
     /**
