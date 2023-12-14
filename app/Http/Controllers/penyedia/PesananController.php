@@ -12,7 +12,7 @@ class PesananController extends Controller
 {
     public function index()
     {
-        $pesan = pesanan::where('status', 'dalam proses tahap 2')->get();
+        $pesan = pesanan::where('status', 'dalam proses tahap 2')->orderByDesc('create_at')->get();
         return view('penyedia.pesanan', compact('pesan'));
     }
 

@@ -17,7 +17,7 @@ class CalonPenyediaController extends Controller
     public function index()
     {
         $count = User::where('role', 'penyedianotaprov')->count();
-        $penyediaUsers = User::where('role', 'penyedianotaprov')->paginate(10); // Change 10 to the number of items per page you want
+        $penyediaUsers = User::where('role', 'penyedianotaprov')->orderByDesc('created_at')->paginate(10); // Change 10 to the number of items per page you want
 
         return view('admin.calonpenyedia', compact('penyediaUsers', 'count'));
     }

@@ -14,7 +14,7 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        $pengambilans = pengembalian::with('user', 'pesanan')->get();
+        $pengambilans = pengembalian::with('user', 'pesanan')->orderByDesc('created_at')->get();
         return view('admin.pengajuan', compact('pengambilans'));
     }
 

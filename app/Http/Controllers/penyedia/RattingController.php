@@ -13,7 +13,7 @@ class RattingController extends Controller
     public function index()
     {
         $penyedia = Auth::user()->penyedia->id;
-        $ratings = ratting::where('penyedia_id', $penyedia)->get();
+        $ratings = ratting::where('penyedia_id', $penyedia)->orderBydesc('created_at')->get();
         return view('penyedia.ratting', compact('ratings'));
     }
 }
