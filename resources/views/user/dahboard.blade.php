@@ -63,25 +63,15 @@
         }
     </style>
 
-    <div class="input-group search-area2 style-1">
-        <form action="{{ route('dashboard.search') }}" method="GET" class="d-flex">
-            <span class="input-group-text bg-white border-end-0 p-0">
-                <a href="javascript:void(0)" class="text-decoration-none">
-                    <svg class="me-2" width="24" height="24" viewBox="0 0 32 32" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M27.414 24.586L22.337 19.509C23.386 17.928 24 16.035 24 14C24 8.486 19.514 4 14 4C8.486 4 4 8.486 4 14C4 19.514 8.486 24 14 24C16.035 24 17.928 23.386 19.509 22.337L24.586 27.414C25.366 28.195 26.634 28.195 27.414 27.414C28.195 26.633 28.195 25.367 27.414 24.586ZM7 14C7 10.14 10.14 7 14 7C17.86 7 21 10.14 21 14C21 17.86 17.86 21 14 21C10.14 21 7 17.86 7 14Z"
-                            fill="#007BFF"></path>
-                    </svg>
-                </a>
-            </span>
-            <input type="text" class="form-control border-start-0 border-0 rounded-end-0" name="search"
-                placeholder="Cari...." aria-label="Search">
+    <div class="input-group search-area2 style-2">
+        <form action="{{ route('dashboard.user') }}" method="GET" class="d-flex">
+            <i class="fa fa-search fs-4 mt-3 mx-1"></i>
+            <input type="text" class="form-control" name="search" value="{{ old('search', $keyword) }}"
+                placeholder="Cari...." aria-label="Search" style="width: 280px;">
         </form>
     </div>
+
     <br>
-
-
     <div class="">
         <div class=" mb-2 mt-sm-0 mt-3">
             <h4 class=" mb-0 cate-title">Paling Populer</h4>
@@ -167,20 +157,28 @@
 
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <h2 class=" mb-0 cate-title">SEMUA MENU</h2>
-        <form id="filterForm" action="{{ route('dashboard.user') }}" method="GET">
-            <select id="hargaFilter" name="harga" class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>Open this select menu</option>
-                <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">TerMahal</option>
-                <option value="asc">TerMurah</option>
-            </select>
-            <!-- Hapus tombol "Filter" -->
-        </form>
-         
+        <div class="row d-flex justify-content-end">
+            <div class="col-sm-2">
+                <form id="filterForm" action="{{ route('dashboard.user') }}" method="GET">
+                    <select id="hargaFilter" name="harga" class="form-select form-select-lg mb-3 mt-3"
+                        aria-label="Large select example">
+                        <option disabled selected>urutkan dari</option>
+                        @if ($filter == 'desc' or 'asc')
+                            <option value="">Batal urutkan</option>
+                        @endif
+                        <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">TerMahal</option>
+                        <option {{ $filter == 'asc' ? 'selected' : '' }} value="asc">TerMurah</option>
+                    </select>
+                    <!-- Hapus tombol "Filter" -->
+                </form>
+            </div>
+        </div>
+
         <script>
             document.getElementById('hargaFilter').addEventListener('change', function() {
                 document.getElementById('filterForm').submit();
             });
-        </script>             
+        </script>
         <br>
         <div class="row">
             @foreach ($penyedia as $item)

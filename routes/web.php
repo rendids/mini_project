@@ -129,9 +129,6 @@ Route::middleware('user-access:user', 'auth', 'verified')->prefix('user')->group
 
 
     });
-    Route::controller(UserDashboardController::class)->group(function () {
-        Route::get('/dashboard/search', 'search')->name('dashboard.search');
-    });
 
 });
 
