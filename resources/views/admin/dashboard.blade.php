@@ -116,77 +116,75 @@
         console.log(chartData["month"]);
 
         const avatar1 = document.querySelector('#avatar1');
-
         if (avatar1) {
-            const options = {
-                series: [{
-                    name: chartData.penyedia_data, // Add a name for the series
-                    curve: 'smooth',
-                    data: chartData.map(data => parseInt(data['1']))
-                }],
-                chart: {
-                    type: 'bar',
-                    height: 280,
-                    toolbar: {
-                        show: false
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '35%',
-                        endingShape: "rounded",
-                        borderRadius: 2
-                    }
-                },
-                legend: {
-                    show: false,
-                    fontSize: '14px',
-                    position: 'top',
-                    labels: {
-                        colors: '#000000'
-                    },
-                    markers: {
-                        width: 18,
-                        height: 18,
-                        strokeWidth: 0,
-                        strokeColor: '#fff',
-                        fillColors: undefined,
-                        radius: 12
-                    }
-                },
-                xaxis: {
-                    categories: chartData.map(data => data.month),
-                    labels: {
-                        rotate: -45,
-                        minHeight: 20,
-                        maxHeight: 20
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        minWidth: 20,
-                        maxWidth: 20
-                    }
-                },
-                fill: {
-                    opacity: 1,
-                    colors: ['#1FBF75', 'var(--primary)']
-                },
-                tooltip: {
-                    y: {
-                        formatter: function(val) {
-                            return " " + val + "";
-                        }
-                    }
-                },
-            };
-
-            const chart = new ApexCharts(avatar1, options);
-            chart.render();
+          const options = {
+            series: [{
+              name: chartData,
+              curve: 'smooth',
+              data: chartData.map(data => parseInt(data['1']))
+            }],
+            chart: {
+              type: 'bar',
+              height: 280,
+              toolbar: {
+                show: false
+              }
+            },     
+            plotOptions: {
+              bar: {
+                horizontal: false,
+                columnWidth: '35%',
+                endingShape: "rounded",
+                borderRadius: 2
+              }
+            },
+            legend: {
+              show: false,
+              fontSize: '14px',
+              position: 'top',
+              labels: {
+                colors: '#000000'
+              },
+              markers: {
+                width: 18,
+                height: 18,
+                strokeWidth: 0,
+                strokeColor: '#fff',
+                fillColors: undefined,
+                radius: 12
+              }
+            },
+            xaxis: {
+              categories: chartData.map(data => data.month),
+              labels: {
+                rotate: -45,
+                minHeight: 20,
+                maxHeight: 20
+              }
+            },
+            yaxis: {
+              labels: {
+                minWidth: 20,
+                maxWidth: 20
+              }
+            },
+            fill: {
+              opacity: 1,
+              colors: ['#1FBF75', 'var(--primary)']
+            },
+            tooltip: {
+              y: {
+                formatter: function(val) {
+                  return " " + val + "";
+                }
+              }
+            },
+          };
+          const chart = new ApexCharts(avatar1, options);
+          chart.render();
         } else {
-            console.error('Element with ID "avatar1" not found.');
+          console.error('Element with ID "avatar1" not found.');
         }
-    </script>
+      </script>
 
 @endsection

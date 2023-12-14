@@ -69,7 +69,7 @@ class DashboardController extends Controller
             ];
         }
 
-    $chartData = array_values($processData);
+        $chartData = array_values($processData);
         return view('admin.dashboard', compact('user', 'penyedia', 'selesai', 'chartData', 'nominal'));
     }
 
