@@ -1,6 +1,15 @@
 @extends('layoutsjasa.app')
 @section('content')
+    <style>
+        .hover-card {
+            transition: transform 0.3s ease-in-out;
+        }
 
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 
 <div class="row">
     <div class="col-xl-13">
@@ -54,5 +63,123 @@
             </div>
         </div>
     </div>
-</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.44.2/apexcharts.min.js"></script>
+
+    <script>
+        var chartData = @json($chartData);
+        console.log(chartData);
+
+        if (document.querySelector('#chartBar6')) {
+            const options = {
+                series: [{
+                    name: 'pendapatan',
+                    data: chartData.map(data => parseInt(data.harga)),
+                }, ],
+                chart: {
+                    type: 'bar',
+                    height: 280,
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '35%',
+                        endingShape: "rounded",
+                        borderRadius: 2,
+                    },
+                },
+                states: {
+                    hover: {
+                        filter: 'none',
+                    },
+                },
+                colors: ['#1FBF75', 'var(--primary)'],
+                dataLabels: {
+                    enabled: false,
+                },
+                markers: {
+                    shape: "circle",
+                },
+                legend: {
+                    show: false,
+                    fontSize: '14px',
+                    position: 'top',
+                    labels: {
+                        colors: '#000000',
+                    },
+                    markers: {
+                        width: 18,
+                        height: 18,
+                        strokeWidth: 50,
+                        strokeColor: '#fff',
+                        fillColors: undefined,
+                        radius: 12,
+                    },
+                },
+                stroke: {
+                    show: true,
+                    width: 3,
+                    curve: 'smooth',
+                    lineCap: 'round',
+                    colors: ['transparent'],
+                },
+                grid: {
+                    borderColor: '#eee',
+                },
+                xaxis: {
+                    categories: chartData.map(data => data.month),
+                    labels: {
+                        minHeight: 20,
+                        maxHeight: 20,
+                    }
+                },
+                yaxis: {
+                    categories: chartData.map(data => data.math),
+                    labels: {
+                        minWidth: 20,
+                        maxWidth: 20,
+                    }
+                },
+                fill: {
+                    opacity: 1,
+                    colors: ['#1FBF75', 'var(--primary)'],
+                },
+                tooltip: {
+                    y: {
+                        formatter: function(val) {
+                            return " " + val + "";
+                        },
+                    },
+                },
+                responsive: [{
+                    breakpoint: 575,
+                    options: {
+                        series: [{
+                                name: '',
+                                data: [120, 90, 70],
+                            },
+                            {
+                                name: '',
+                                data: [75, 50, 18],
+                            },
+                        ],
+                        plotOptions: {
+                            bar: {
+                                columnWidth: '70%',
+                            },
+                        },
+                        xaxis: {
+                            categories: ['Jan', 'Feb', 'Mar'],
+                        },
+                    },
+                }, ],
+            };
+
+            var chartBar6 = new ApexCharts(document.querySelector("#chartBar6"), options);
+            chartBar6.render();
+        }
+    </script>
 @endsection

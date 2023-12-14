@@ -57,13 +57,23 @@
             /* Sesuaikan dengan bayangan yang diinginkan */
         }
 
-        .btn-pengembalian:hover,
+        .btn-primary:hover,
         .btn-primary:hover {
-            background-color: rgb(223, 147, 24);
+            background-color: rgb(3, 20, 114);
             /* Ganti dengan warna latar yang diinginkan */
             color: #fff;
             /* Ganti dengan warna teks yang diinginkan */
         }
+
+
+         .btn-pengembalian {
+    transition: background-color 0.3s;
+}
+
+
+.btn-pengembalian:hover {
+    background-color: #c58309;
+}
     </style>
     <div class="col-xl-12">
 
@@ -127,7 +137,7 @@
                                                 pengembalian
                                             </button>
                                         @elseif ($pesanan->status == 'di terima')
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-warning btn-sm btn-primary"
                                                 data-bs-target="#exampleModal{{ $pesanan->id }}">
                                                 Beri Rating
                                             </button>

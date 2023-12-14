@@ -1,6 +1,6 @@
 <style>
     .logout-btn {
-        background-color: #007bff;
+        background-color: #145AAC;
         /* Set the default background color */
         color: white;
         padding: 10px 15px;
@@ -13,7 +13,7 @@
     }
 
     .logout-btn:hover {
-        background-color: #89a5c2;
+        background-color: #144e8d;
         /* Change the background color on hover */
     }
 
@@ -21,7 +21,7 @@
         font-weight: bold;
         /* Make the text bold */
     }
-    
+
 </style>
 <!-- Include SweetAlert CSS and JS files -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">

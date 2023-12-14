@@ -237,7 +237,7 @@
                                         <div class="card h-100"
                                             style="border-left:none; border-top: none; border-right: none; border-bottom: none; padding-left: 30px; border-radius: 0;">
                                             <div class="card-header">
-                                                <h2>Profile user</h2>
+                                                <h2>Profile Penyedia</h2>
                                             </div>
                                             <div class="card-body">
                                                 <div class="form-group">
@@ -318,6 +318,7 @@
                                         <div class="card-header">
                                             <h2>Password</h2>
                                         </div>
+                                        <div class="card-body">
                                         <div class="form-group">
                                             <label for="password" class="col-form-label fw-bold fs-4">Password
                                                 lama</label>
@@ -335,6 +336,7 @@
                                             @error('konfirmasi-password')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
+                                        </div>
                                         </div>
                                         <div class="d-flex justify-content-end pt-2">
                                             <button type="reset" class="btn btn-outline-danger mx-2">Batal</button>
