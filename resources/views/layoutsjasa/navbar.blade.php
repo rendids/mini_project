@@ -147,7 +147,8 @@
                                                         <p class="text-muted mb-0">{{ $item->pesan }}</p>
                                                     </div>
                                                 </div>
-                                                <form action="{{ route('tandai', ['id' => $item->id]) }}" method="post">
+                                                <form action="{{ route('tandai', ['id' => $item->id]) }}"
+                                                    method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="badge rounded-pill badge-success"
@@ -172,41 +173,40 @@
                         <li>
 
                             <div class="dropdown header-profile2 ">
-                                <a class="nav-link " href="javascript:void(0);" role="button"
-                                    data-bs-toggle="dropdown">
+                                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                                     <div class="header-info2 d-flex align-items-center">
-                                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="">
+                                        <img src="{{ asset('storage/' . Auth::user()->penyedia->foto) }}" alt="">
                                         <div class="d-flex align-items-center sidebar-info">
                                             <div>
                                                 <h6 class="font-w500 mb-0 ms-2">{{ Auth::user()->name }}</h6>
                                             </div>
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
-
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="{{ route('profile.penyedia') }}" class="dropdown-item ai-icon ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
-                                            height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                        <span class="ms-2">Profile</span>
-                                    </a>
-                                    <a href="#" onclick="confirmLogout()" class="dropdown-item ai-icon ms-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
-                                            height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                            <polyline points="16 17 21 12 16 7"></polyline>
-                                            <line x1="21" y1="12" x2="9" y2="12">
-                                            </line>
-                                        </svg>
-                                        <span class="ms-1">Logout</span>
-                                    </a>
-                                    <i class="fa-solid fa-bell"></i>
+                                <div class="dropdown header-profile" style="width: 175px">
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a href="{{ route('profile.penyedia') }}" class="nav-link ai-icon ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
+                                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                            <span class="ms-2">Profile</span>
+                                        </a>
+                                        <a href="#" onclick="confirmLogout()" class="nav-link ai-icon ms-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
+                                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                <polyline points="16 17 21 12 16 7"></polyline>
+                                                <line x1="21" y1="12" x2="9" y2="12">
+                                                </line>
+                                            </svg>
+                                            <span class="ms-1">Logout</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </li>

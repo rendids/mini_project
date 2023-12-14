@@ -179,6 +179,7 @@
 
                                 </div>
                             </a>
+                            <div class="dropdown header-profile" style="width: 175px">
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="{{ route('profile') }}" class="dropdown-item ai-icon ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
@@ -200,6 +201,7 @@
                                     <span class="ms-1">Logout </span>
                                 </a>
                             </div>
+                        </div>
                         </div>
                         </li>
                     </ul>

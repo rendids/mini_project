@@ -1,8 +1,14 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream
     <title></title>
+=======
+    <title>Assistify</title>
+>>>>>>> Stashed changes
 
     <!-- Tambahkan link Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -13,12 +19,22 @@
 </head>
 
 <body>
+    <!-- Konten situs web Anda di sini -->
+</body>
+
+</html>
+
+<body>
 
     <!-- Navigasi -->
     <nav class="bg-light fixed p-3 shadow-md w-full top-0 z-10">
         <div class="container mx-auto">
             <div class="flex items-center justify-between">
-                <a class="text-green-600 font-bold text-lg" href="#">Logo</a>
+                <a class="text-green-600 font-bold text-lg" href="#">
+                    <div class="ml-auto">
+                        <img src="storage/logo/asst.jpeg" alt="" width="200" height="200">
+                    </div>
+
                 <div class="flex items-center">
                     <ul class="flex items-center font-semibold space-x-4">
                         <li class="nav-item active">

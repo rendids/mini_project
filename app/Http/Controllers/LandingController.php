@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\penyedia;
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
+use App\Models\ratting;
 
 class LandingController extends Controller
 {
@@ -13,6 +14,7 @@ class LandingController extends Controller
         $bestseller = $penyedia->sortByDesc(function ($penyedia) {
             return $penyedia->pesanan;
         })->take(4);
+
         return view('welcome', compact('bestseller'));
     }
 
