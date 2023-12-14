@@ -93,7 +93,7 @@ class DetailController extends Controller
                 'pembayaran' => $request->pembayaran,
                 'bukti' => $namaGambar, // Use $namaGambar directly
                 'total' => $request->total,
-                'status' => 'dalam proses tahap 1',
+                'status' => 'dalam proses tahap 2',
             ]);
             Notifikasi::create([
                 'user_id' => $user->id,

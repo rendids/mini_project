@@ -21,10 +21,5 @@
                     <span class="nav-text">Pengajuan</span>
                 </a>
             </li>
-            <li><a href="{{ route('pemesanan') }}" aria-expanded="false">
-                <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="nav-text">Pemesanan</span>
-                </a>
-            </li>
     </div>
 </div>
