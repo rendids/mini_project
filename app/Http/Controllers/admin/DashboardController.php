@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Models\pesanan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\penyedia;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -14,10 +17,58 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user=User::where('role', 'user')->count();
-        $penyedia=User::where('role','penyedia')->count();
-        $selesai=pesanan::where('penyedia_id',$penyedia)->where('status','selesai')->count();
-        return view('admin.dashboard',compact('user','penyedia','selesai'));
+        $user = User::where('role', 'user')->count();
+        $penyedia = User::where('role', 'penyedia')->count();
+        $selesai = pesanan::where('penyedia_id', $penyedia)->where('status', 'selesai')->count();
+        $processData = [];
+        $currentYear = Carbon::now()->year;
+        $currentMonth = Carbon::now()->month;
+
+        for ($month = 1; $month <= 12; $month++) {
+            $date = Carbon::createFromDate($currentYear, $month, 1);
+            $yearMonth = $date->isoFormat('MMMM');
+
+            $color = ($month == $currentMonth) ? 'blue' : 'green';
+
+            $grafikData = pesanan::select(
+                'penyedia_id',
+                DB::raw('COUNT(*) as total')
+            )
+                ->whereYear('created_at', $currentYear)
+                ->whereMonth('created_at', $month)
+                ->groupBy('penyedia_id')
+                ->orderBy('total', 'desc')
+                ->first();
+
+            $angkaSama = pesanan::select('total')
+                ->whereYear('created_at', $currentYear)
+                ->whereMonth('created_at', $month)
+                ->groupBy('total')
+                ->havingRaw('COUNT(*) > 1')
+                ->pluck('total')
+                ->toArray();
+
+            $dataSama = pesanan::select('penyedia_id', 'total')
+                ->whereYear('created_at', $currentYear)
+                ->whereMonth('created_at', $month)
+                ->whereIn('total', $angkaSama)
+                ->get();
+
+            $processData[$yearMonth] = [
+                'month' => $yearMonth,
+                '1' => $grafikData->total ?? 0,
+                'color' => $color,
+                'angka_sama' => $dataSama->map(function ($item, $key) {
+                    return [
+                            'penyedia_data' => 'Penyedia Data = ' . $item->penyedia->layanan,
+                        'total' => 'Total = ' . $item->total,
+                    ];
+                })->toArray(),
+            ];
+        }
+
+    $chartData = array_values($processData);
+        return view('admin.dashboard', compact('user', 'penyedia', 'selesai', 'chartData'));
     }
 
     /**
