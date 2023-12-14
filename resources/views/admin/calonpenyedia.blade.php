@@ -1,10 +1,49 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+    .pagination-bx {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-<div class="row page-titles">
+    .pagination-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .styled-table th {
+        background-color: #145ACC;
+        color: white;
+    }
+
+    .styled-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .btn-action {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="row page-titles shadow" style="background-color: #166ea9; color: #ffffff;">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active">admin</li>
+        <li class="breadcrumb-item active"  style="color: #ffffff;">admin</li>
         <li class="breadcrumb-item">calon penyedia</li>
     </ol>
 </div>
@@ -12,9 +51,9 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Persetujuan Calon penyedia jasa</h4>
+            <h4 class="d-inline-block" style="color: #333; font-size: 34px; padding-bottom: 10px;">Persetujuan Calon penyedia jasa</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body shadow">
             <div class="table-responsive">
                 <table class="table table-responsive-md">
                     <thead>
@@ -32,10 +71,10 @@
                         @foreach ($penyediaUsers as $item)
                         <tr>
                             <td><strong>{{ $loop->iteration }}</strong></td>
-                            <td><span >{{ $item->name }}</span></div></td>
-                            <td>{{ $item->email }}	</td>
-                            <td><span >{{ $item->penyedia->layanan }}</span></td>
-                            <td>{{ $item->penyedia->telp }}</td>
+                            <td><strong >{{ $item->name }}</strong></div></td>
+                            <td><strong>{{ $item->email }}</strong></td>
+                            <td><strong >{{ $item->penyedia->layanan }}</strong></td>
+                            <td><strong>{{ $item->penyedia->telp }}</strong></td>
                             <td>
                                 <div class="d-flex">
                                     <form action="{{ route('penyedia.terima', ['id' => $item->id]) }}" method="POST">

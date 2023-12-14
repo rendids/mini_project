@@ -1,8 +1,50 @@
 @extends('layouts.app')
 @section('content')
-    <div class="row page-titles">
+
+
+    <style>
+    .pagination-bx {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .pagination-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .styled-table th {
+        background-color: #145ACC;
+        color: white;
+    }
+
+    .styled-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .btn-action {
+        margin-right: 5px;
+    }
+</style>
+
+    <div class="row page-titles shadow" style="background-color: #0f6299; color: #ffffff;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">admin</li>
+            <li class="breadcrumb-item active" style="color: #ffffff;">admin</li>
             <li class="breadcrumb-item">pembayaran</li>
         </ol>
     </div>
@@ -19,7 +61,7 @@
                     <form action="{{ route('pembayaran.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="metode">Metode Pembayaran</label>
+                            <label for="metode" class="d-inline-block" style="color: #333; font-size: 24px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">Metode Pembayaran</label>
                             <select name="metode" class="form-control" id="metode" onchange="handleMetodeChange()">
                                 <option disabled selected>Pilih Metode</option>
                                 <option value="BANK">BANK</option>
@@ -79,7 +121,7 @@
                 <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal"
                     data-bs-target="#basicModal">Tambah</button>
             </div>
-            <div class="card-body">
+            <div class="card-body shadow">
                 <div class="table-responsive">
                     <table class="table table-responsive-md">
                         <thead>
