@@ -24,16 +24,27 @@ class DashboardController extends Controller
         $penyediaterima = pesanan::where('penyedia_id', $penyedialogin)->where('status', 'di ratting')->count();
         $selesai = pesanan::where('penyedia_id', $penyedialogin)->where('status', 'selesai')->count();
 
-        $grafik = penyedia::select(
-            DB::raw('MONTH(created_at) as month'),
-            DB::raw('YEAR(created_at) as year'),
-            DB::raw('SUM(harga) as total')
-        )
-            ->where('harga', '!=', 0)
-            ->whereYear('created_at', Carbon::now()->year)
-            ->where('id',$penyedialogin)
-            ->groupBy('year', 'month')
-            ->get();
+        // $grafik = penyedia::select(
+        //     DB::raw('MONTH(created_at) as month'),
+        //     DB::raw('YEAR(created_at) as year'),
+        //     DB::raw('SUM(harga) as total')
+        // )
+        //     // ->where('harga', '!=', 0)
+        //     ->whereYear('created_at', Carbon::now()->year)
+        //     ->where('id',$penyedialogin)
+        //     ->groupBy('year', 'month')
+        //     ->get();
+            // dd($grafik);
+            $pesanan = Pesanan::select(
+                DB::raw('MONTH(created_at) as month'),
+                DB::raw('YEAR(created_at) as year'),
+                DB::raw('SUM(total) as total')
+            )->where('penyedia_id', $penyedialogin)
+                ->where('status', 'selesai')
+                ->groupBy(DB::raw('MONTH(created_at)'), DB::raw('YEAR(created_at)'))
+                ->get();
+
+        // dd($pesanan);
 
         $proses = [];
         $currentYear = Carbon::now()->year;
@@ -51,7 +62,7 @@ class DashboardController extends Controller
             ];
         }
 
-        foreach ($grafik as $item) {
+        foreach ($pesanan as $item) {
             $yearMonth = Carbon::createFromDate($item->year, $item->month, 1)->isoFormat('MMMM');
 
             if (isset($proses[$yearMonth])) {
@@ -60,6 +71,7 @@ class DashboardController extends Controller
         }
 
         $chartData = array_values($proses);
+        // return $chartData;
 
         return view('penyedia.dahsboard', compact('user', 'penyedia', 'penyediaterima', 'selesai', 'chartData'));
     }

@@ -57,7 +57,7 @@
                 <div class="card">
                     <div class="card-body pb-0" style="box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);" >
                         <h4 class="cate-title">Activity</h4>
-                        <div id="chartBar5"></div>
+                        <div id="chartBar6"></div>
                     </div>
                 </div>
             </div>
@@ -68,9 +68,13 @@
 
     <script>
         var chartData = @json($chartData);
-        console.log(chartData);
+        // console.log(chartData);
+        if (chartData) {
+            console.log(chartData);
+        }
 
         if (document.querySelector('#chartBar6')) {
+            // console.log(chartData);
             const options = {
                 series: [{
                     name: 'pendapatan',

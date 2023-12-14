@@ -78,7 +78,7 @@
     <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/js/swiper-bundle.min.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script> --}}
     <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/js/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>

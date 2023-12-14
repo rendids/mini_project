@@ -153,8 +153,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
         <h2 class=" mb-0 cate-title">SEMUA MENU</h2>
         <div class="row d-flex justify-content-end">
@@ -164,7 +162,7 @@
                         aria-label="Large select example">
                         <option disabled selected>urutkan dari</option>
                         @if ($filter == 'desc' or 'asc')
-                            <option value="">Batal urutkan</option>
+                            <option value="">Batal urutan</option>
                         @endif
                         <option {{ $filter == 'desc' ? 'selected' : '' }} value="desc">TerMahal</option>
                         <option {{ $filter == 'asc' ? 'selected' : '' }} value="asc">TerMurah</option>

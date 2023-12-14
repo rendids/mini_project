@@ -177,46 +177,53 @@
                         <form action="{{ route('pengembalian') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="pesanan_id" id="modalPesananId" value="{{ $pesanan->id }}">
-                                <div class="col-md-12">
-                                    <label for="">Pilih metode pembayaran</label>
-                                    <select class="form-control" name="metode" id="metodePembayaran"
-                                        onchange="showKeterangan()">
-                                        <option selected disabled>Pilih metode pembayaran Anda
-                                        </option>
-                                        @foreach ($bayar as $pesanan)
-                                            <option value="{{ $pesanan->tujuan }}"
-                                                data-keterangan="{{ $pesanan->keterangan }}"
-                                                category-keterangan ="{{ $pesanan->metode }}">
-                                                {{ $pesanan->tujuan }}</option>
-                                        @endforeach
-                                    </select>
+                            <div class="col-md-12">
+                                <label for="">Pilih metode pembayaran</label>
+                                <select class="form-control" name="metode" id="metodePembayaran" onchange="showKeterangan()">
+                                    <option value="">Pilih metode pembayaran Anda</option>
+                                    @foreach ($bayar as $item)
+                                        <option value="{{ $item->tujuan }}" data-keterangan="{{ $item->keterangan }}" category-keterangan="{{ $item->metode }}"> {{ $item->tujuan }} </option>
+                                    @endforeach
+                                </select>
 
-                                    @error('pembayaran')
-                                        <span class="text-danger my-2">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-12" id="keteranganContainer" style="display: none;">
-                                    <label>keterangan</label>
-                                    <input type="text" class="form-control" name="keterangan" id="keteranganInput" placeholder="masukan no ">
-                                </div>
-                            <script>
-                                function showKeterangan() {
-                                    var selectElement = document.getElementById("metodePembayaran");
-                                    var keteranganContainer = document.getElementById("keteranganContainer");
-                                    var keteranganInput = document.getElementById("keteranganInput");
+                                @error('metode')
+                                    <span class="text-danger my-2">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-md-12" id="keteranganContainer" style="display: none">
+                                <label for="keteranganInput">Keterangan</label>
+                                <input type="text" class="form-control" name="keterangan" id="keteranganInput" placeholder="Masukkan nomor">
+                            </div>
 
-                                    var selectedOption = selectElement.options[selectElement.selectedIndex];
-                                    var selectedKeterangan = selectedOption.getAttribute("data-keterangan");
-                                    var category = selectedOption.getAttribute("category-keterangan");
-                                    if (selectedKeterangan) {
-                                            keteranganInput.style.display = "block";
-                                            keteranganInput.type = 'text'
-                                    } else {
-                                        keteranganContainer.style.display = "none";
-                                    }
+                        <script>
+                            function showKeterangan() {
+                                var selectElement = document.getElementById("metodePembayaran");
+                                var keteranganContainer = document.getElementById("keteranganContainer");
+                                var keteranganInput = document.getElementById("keteranganInput");
+
+                                console.log(selectElement)
+                                var selectedOption = selectElement.options[selectElement.selectedIndex];
+                                var selectedId = selectedOption.value;
+                                console.log(selectedId);
+
+                                if(selectedId !== []){
+                                    alert(selectedId);
                                 }
-                            </script>
+
+                                console.log(keteranganInput)
+
+                                var selectedOption = selectElement.options[selectElement.selectedIndex];
+                                var selectedKeterangan = selectedOption.getAttribute("data-keterangan");
+
+                                if (selectedKeterangan) {
+                                    keteranganContainer.style.display = "block !important";
+                                } else {
+                                    keteranganContainer.style.display = "none";
+                                }
+                            }
+                        </script>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
@@ -246,7 +253,8 @@
                                     <div class="rating-container">
                                         <i class="far fa-star" data-rating="1" style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="2" style="font-size: 300%; color: #ffd700;"></i>
-                                        <i class="far fa-star" data-rating="3" style="font-size: 300%; color: #ffd700;"></i>
+                                        <i class="far fa-star" data-rating="3"
+                                            style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="4"
                                             style="font-size: 300%; color: #ffd700;"></i>
                                         <i class="far fa-star" data-rating="5"
