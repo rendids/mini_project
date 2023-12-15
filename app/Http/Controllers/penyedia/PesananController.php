@@ -16,7 +16,7 @@ class PesananController extends Controller
         return view('penyedia.pesanan', compact('pesan'));
     }
 
-    public function tolakpesanan($id)
+    public function tolakpesanan(Request $request, $id)
     {
         $pesan = pesanan::find($id);
         $pesan->update([
@@ -27,7 +27,8 @@ class PesananController extends Controller
 
         Notifikasi::create([
             'user_id' => $pesanId,
-            'pesan' => 'pesanan anda di tolak oleh penyedia silahkan oleh penyedia silahkan minta pengembalian dana'
+            // 'pesan' => 'pesanan anda di tolak oleh penyedia silahkan oleh penyedia silahkan minta pengembalian dana'
+            'pesan' =>$request->input('alasan')
         ]);
 
         return redirect()->back()->with('success', 'Berhasil ditolak');
