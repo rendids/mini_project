@@ -63,12 +63,17 @@ class DashboardController extends Controller
                 ->groupBy('penyedia_id')
                 ->orderByDesc('total')
                 ->first();
-                $nama = $penyediaTerbanyak->penyedia->user->name; 
+                if($penyediaTerbanyak != ''){
+                    $nama = $penyediaTerbanyak->penyedia->user->name;
+                }else{
+                    $nama = '';
+                }
+
                 // dd($penyediaTerbanyak);
             $processData[$yearMonth] = [
                 'month' => $yearMonth,
                 '1' => $grafikData->total ?? 0,
-                'nama' => $penyediaTerbanyak->penyedia->user->name,
+                'nama' => $penyediaTerbanyak->penyedia->user->name ?? 0,
                 'color' => $color,
                 'angka_sama' => $dataSama->map(function ($item, $key,) {
                     return [

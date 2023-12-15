@@ -116,7 +116,7 @@
                                     </div>
                                     <h6 style="color: black">{{ $item->komentar }}</h6>
                                     <div>
-                                        <h6 class="font-w400">{{ $item->pesanan->waktu }}</h6>
+                                        <h6 class="font-w400">{{ \Carbon\Carbon::parse($item->pesanan->waktu)->isoFormat('dddd, d MMMM YYYY HH:mm') }}</h6>
                                     </div>
                                 </div>
                             </div>

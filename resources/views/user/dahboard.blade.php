@@ -88,7 +88,7 @@
         font-weight: bold; /* Mempertebal teks */
         padding: 8px; /* Jarak antara teks dan border */
     }
-    
+
     </style>
 
     <div class="input-group search-area2 style-2">
