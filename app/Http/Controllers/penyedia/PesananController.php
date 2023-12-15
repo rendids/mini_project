@@ -18,6 +18,13 @@ class PesananController extends Controller
 
     public function tolakpesanan(Request $request, $id)
     {
+        $request->validate([
+            'alasan' => 'required|min:30|max:255'
+        ],[
+            'alasan.required'=>'Alasan harus diisi',
+            'alasan.min'=>'Minimal 30 karakter',
+            'alasan.max'=>'Maksimal 255 krakter'
+        ]);
         $pesan = pesanan::find($id);
         $pesan->update([
             'status' => 'di tolak'

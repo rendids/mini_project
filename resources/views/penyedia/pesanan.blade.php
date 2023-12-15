@@ -123,6 +123,9 @@
                           <div class="modal-body">
                             <label for="" class="form-label fw-bold">Alasan</label>
                             <textarea name="alasan" class="form-control" cols="30" rows="10" placeholder="masukkan alasan penolakan"></textarea>
+                            @error('alasan')
+                                    <span class="text-danger my-2">{{ $message }}</span>
+                                @enderror
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
