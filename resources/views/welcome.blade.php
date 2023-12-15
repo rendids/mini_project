@@ -28,7 +28,7 @@
             <div class="flex items-center justify-between">
                 <a class="text-green-600 font-bold text-lg" href="#">
                     <div class="ml-auto">
-                        <img src="storage/logo/asst.jpeg" alt="" width="200" height="200">
+                        <img src="storage/logo/asst.jpeg" alt="" width="150" height="150">
                     </div>
 
                 <div class="flex items-center">
@@ -91,15 +91,15 @@
         <!-- Bagian Kiri -->
         <div class="lg:w-1/2 relative text-white flex items-center justify-center">
             <div class="text-left mt-8 mx-5 lg:mx-0">
-                <h1 class="text-6xl font-bold mb-3">SELAMAT DATANG DI WEBSITE KAMI</h1>
-                <p class="text-lg ml-3  mb-8">Website kami adalah website yang menyediakan berbagai jenis layanan jasa unggulan yang akan membantu anda dengan layanan terbaik.Kualitas tanpa kompromi, layanan yang disesuaikan dengan kebutuhan Anda.Kami bangga menjadi mitra pilihan dalam memenuhi kebutuhan Anda.</p>
+                <h1 class="text-4xl font-bold mb-3">SELAMAT DATANG DI WEBSITE KAMI</h1>
+                <p class="text-lg ml-2  mb-8">Website kami adalah website yang menyediakan berbagai jenis layanan jasa unggulan yang akan membantu anda dengan layanan terbaik.Kualitas tanpa kompromi, layanan yang disesuaikan dengan kebutuhan Anda.Kami bangga menjadi mitra pilihan dalam memenuhi kebutuhan Anda.</p>
             </div>
         </div>
 
         <!-- Bagian Kanan -->
         <div class="lg:w-1/2">
-            <div class="mt-10 lg:ml-16">
-                <img src="{{ asset('assets/images/penyedia.png') }}" class="w-[36rem]" alt="">
+            <div class="mt-10 lg:ml-16" style="margin-top: 20%;">
+                <img src="{{ asset('assets/images/penyedia.png') }}" class="w-[30rem]" alt="">
             </div>
         </div>
     </div>
@@ -131,7 +131,7 @@
             </div>
         </div>
     </div>
-    <div id="tentang" class="w-full bg-blue-600   h-[35rem]">
+    <div id="tentang" class="w-full bg-blue-600   h-[30rem]">
         <div class="row mx-5 ">
             <div class=" mx-auto mt-14 mb-5">
 

@@ -156,7 +156,7 @@
                     }
                   </script>
                 @empty
-                  <td colspan="7">
+                  <td colspan="8">
                     <h7>Data Kosong</h7>
                   </td>
                 </tr>
