@@ -42,6 +42,7 @@ class DashboardController extends Controller
                 ->orderBy('total', 'desc')
                 ->first();
 
+                // dd($grafikData);
             $angkaSama = pesanan::select('total')
                 ->whereYear('created_at', $currentYear)
                 ->whereMonth('created_at', $month)
@@ -50,27 +51,38 @@ class DashboardController extends Controller
                 ->pluck('total')
                 ->toArray();
 
+                // dd($angkaSama);
             $dataSama = pesanan::select('penyedia_id', 'total')
                 ->whereYear('created_at', $currentYear)
                 ->whereMonth('created_at', $month)
                 ->whereIn('total', $angkaSama)
                 ->get();
 
+
+                $penyediaTerbanyak = pesanan::select('penyedia_id', DB::raw('COUNT(*) as total'))
+                ->groupBy('penyedia_id')
+                ->orderByDesc('total')
+                ->first();
+                $nama = $penyediaTerbanyak->penyedia->user->name;
+                // dd($penyediaTerbanyak);
             $processData[$yearMonth] = [
                 'month' => $yearMonth,
                 '1' => $grafikData->total ?? 0,
+                'nama' => $penyediaTerbanyak->penyedia->user->name,
                 'color' => $color,
-                'angka_sama' => $dataSama->map(function ($item, $key) {
+                'angka_sama' => $dataSama->map(function ($item, $key,) {
                     return [
-                        'penyedia_data' => 'Penyedia Data = ' . $item->penyedia->layanan,
+                        'penyedia_data' => 'Penyedia Data = ' . $item->penyedia->user->name,
                         'total' => 'Total = ' . $item->total,
+
                     ];
                 })->toArray(),
             ];
         }
 
-        $chartData = array_values($processData);
-        return view('admin.dashboard', compact('user', 'penyedia', 'selesai', 'chartData', 'nominal'));
+    $chartData = array_values($processData);
+    // dd($chartData);
+        return view('admin.dashboard', compact('user', 'penyedia', 'selesai', "nama",'chartData', 'nominal','penyediaTerbanyak'));
     }
 
     /**
