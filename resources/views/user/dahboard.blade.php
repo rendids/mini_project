@@ -107,7 +107,7 @@
         </div>
         <div class="overflow-auto mb-5">
             <div class="row flex-nowrap">
-                @foreach ($bestseller as $item)
+                @forelse ($bestseller as $item)
                     <div class="col-xl-3 col-xxl-4 col-sm-6 ">
                         <div class="card dishe-bx b-hover style-1 shadow">
                             <div class="card-body pb-0 pt-3">
@@ -177,7 +177,12 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                    @empty
+                    <div class="container">
+                        <img src="{{ asset('no_data.jpg') }}" alt="">
+
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>
@@ -207,7 +212,7 @@
         </script>
         <br>
         <div class="row">
-            @foreach ($penyedia as $item)
+            @forelse ($penyedia as $item)
                 <div class="col-xl-3 col-xxl-4 col-sm-6">
                     <div class="card dishe-bx b-hover style-1 shadow">
 
@@ -272,7 +277,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @empty
+                <div class="container text-center">
+                    <img src="{{ asset('no_data.jpg') }}" alt="" style="width: 42%; height: 79%;">
+                </div>
+            @endforelse
         </div>
     </div>
     <br>
