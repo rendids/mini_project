@@ -66,7 +66,7 @@ class DashboardController extends Controller
             $yearMonth = Carbon::createFromDate($item->year, $item->month, 1)->isoFormat('MMMM');
 
             if (isset($proses[$yearMonth])) {
-                $proses[$yearMonth]['harga'] = $item->total;
+                $proses[$yearMonth]['harga'] = $item->total * 0.95;
             }
         }
 
