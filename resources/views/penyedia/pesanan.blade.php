@@ -113,23 +113,20 @@
                   <div class="modal fade" id="tolakpesanan{{ $itm->id }}" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
-                        <form action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
-                            @csrf
-                            @method('patch')
+                        <form id="rejectForm{{ $itm->id }}" action="{{ route('tolak.pesanan', ['id' => $itm->id]) }}" method="POST">
+                          @csrf
+                          @method('patch')
                           <div class="modal-header">
                             <h5 class="modal-title">Tolak Pesanan</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal">
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                           </div>
                           <div class="modal-body">
                             <label for="" class="form-label fw-bold">Alasan</label>
                             <textarea name="alasan" class="form-control" cols="30" rows="10" placeholder="masukkan alasan penolakan"></textarea>
                           </div>
-
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light btn-sm"
-                              data-bs-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary btn-sm" onclick="">Tolak</button>
+                            <button type="button" class="btn btn-danger light btn-sm" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="confirmReject({{ $itm->id }})">Tolak</button>
                           </div>
                         </form>
                       </div>
@@ -137,7 +134,7 @@
                   </div>
 
                   <script>
-                    function confirmReject() {
+                    function confirmReject(itemId) {
                       Swal.fire({
                         title: 'Konfirmasi',
                         text: 'Anda yakin ingin menolak pesanan?',
@@ -147,11 +144,11 @@
                         cancelButtonColor: '#3085d6',
                         confirmButtonText: 'Ya, Tolak!',
                         cancelButtonText: 'Batal'
-                    //   }).then((result) => {
-                        // if (result.isConfirmed) {
+                      }).then((result) => {
+                        if (result.isConfirmed) {
                           // Submit the form when the user clicks 'Ya, Tolak!'
-                        //   document.getElementById('rejectForm' + itemId).submit();
-                        // }
+                          document.getElementById('rejectForm' + itemId).submit();
+                        }
                       });
                     }
                   </script>
