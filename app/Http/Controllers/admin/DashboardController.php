@@ -63,7 +63,7 @@ class DashboardController extends Controller
                 ->groupBy('penyedia_id')
                 ->orderByDesc('total')
                 ->first();
-                $nama = $penyediaTerbanyak->penyedia->user->name;
+                $nama = $penyediaTerbanyak->penyedia->user->name; 
                 // dd($penyediaTerbanyak);
             $processData[$yearMonth] = [
                 'month' => $yearMonth,
