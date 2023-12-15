@@ -95,7 +95,7 @@
                                             <h2 class="angka m-0">{{ 'Rp. ' . number_format($nominal, 0, ',', '.') }}
                                             </h2>
                                             <p>Untung</p>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
