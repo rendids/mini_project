@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
+<style>
+     .card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+
     <div class="row">
         <div class="col-xl-13">
             <div class="row">
@@ -7,7 +15,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body shadow">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <!-- <div class="bg-info text-white rounded p-3"> -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="31"
@@ -27,7 +35,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body shadow">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <!-- <div class="bg-success text-white rounded p-3"> -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
@@ -53,7 +61,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body shadow">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <!-- <div class="bg-warning text-white rounded p-3"> -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="61" height="61"
@@ -73,7 +81,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body shadow">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <!-- <div class="bg-info text-white rounded p-3"> -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41"
@@ -99,7 +107,7 @@
 
         <div class="col-xl-12">
             <div class="card">
-                <div class="card-body pb-0">
+                <div class="card-body shadow pb-0">
                     <h4 class="cate-title">Statik penghasilan</h4>
                     <div id="avatar1" class="apexchartjs"></div>
                 </div>
