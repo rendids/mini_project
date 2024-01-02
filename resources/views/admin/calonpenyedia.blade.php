@@ -51,7 +51,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="d-inline-block" style="color: #333; font-size: 34px; padding-bottom: 10px;">Persetujuan Calon penyedia jasa</h4>
+            <h4 class="d-inline-block" style="color: #333; font-size: 15px; padding-bottom: 10px;">Persetujuan Calon penyedia jasa</h4>
         </div>
         <div class="card-body shadow">
             <div class="table-responsive">

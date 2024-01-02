@@ -8728,14 +8728,7 @@ label {
   position: relative;
   border-bottom: 1px solid #B3B3B3; }
   .header:before, .header:after {
-    content: "";
-    width: 2.5rem;
-    height: 2.188rem;
-    background: var(--headerbg);
-    position: absolute;
-    bottom: -2.188rem;
-    right: 0;
-    z-index: -8; }
+     }
     @media only screen and (max-width: 74.9375rem) {
       .header:before, .header:after {
         right: -8px; } }
@@ -8749,10 +8742,7 @@ label {
     @media only screen and (max-width: 35.9375rem) {
       .header:before, .header:after {
         width: 1.625rem; } }
-  .header:before {
-    z-index: -7;
-    background: #fff;
-    border-radius: 0 40px 0 0; }
+  .header:before { }
   .header .header-content {
     height: 100%;
     padding-left: 0;
@@ -11737,14 +11727,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   box-shadow: 0rem 0.9375rem 1.875rem 0rem rgba(0, 0, 0, 0.02);
   position: relative; }
   .dlabnav:before, .dlabnav:after {
-    content: "";
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--nav-headbg);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -8; }
+     }
   .dlabnav:before {
     z-index: -1;
     background: var(--sidebar-bg);

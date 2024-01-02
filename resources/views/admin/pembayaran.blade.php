@@ -278,36 +278,34 @@
     <script>
         function openEditModal(id, metode, tujuan, keterangan) {
             var editForm = document.getElementById('editForm');
-            // Ganti bagian ini untuk memastikan URL rute sesuai dengan struktur URL aplikasi Anda
+            // Update the form action URL using the route function with the correct route name and parameters
             editForm.action = "{{ route('pembayaran.update', ['id' => ':id']) }}".replace(':id', id);
 
+            // Set values for the form fields
             document.getElementById('edit_name').value = metode;
             document.getElementById('edit_tujuan').value = tujuan;
 
             if (metode === 'E-WALET') {
+                // If the method is 'E-WALET', display the image
                 var gambarmuncul = document.getElementById('gambarmuncul');
                 gambarmuncul.src = "{{ asset('storage/pembayaran') }}/" + keterangan;
-                gambarmuncul.style.display = 'block'; // Tampilkan gambar
+                gambarmuncul.style.display = 'block'; // Show the image
             } else {
-                document.getElementById('gambarmuncul').style.display = 'none'; // Sembunyikan gambar
+                // If the method is not 'E-WALET', hide the image
+                document.getElementById('gambarmuncul').style.display = 'none';
             }
 
             var keteranganInput = document.getElementById('edit_keterangan');
             keteranganInput.value = keterangan;
 
-            // Display the existing file preview (jika ada)
-
             // Change input type based on metode
-            if (metode === 'E-WALET') {
-                keteranganInput.type = 'file';
-            } else {
-                keteranganInput.type = 'text';
-            }
+            keteranganInput.type = (metode === 'E-WALET') ? 'file' : 'text';
 
-            // Tampilkan modal
+            // Show the modal
             $('#editModal').modal('show');
         }
     </script>
+
 
 
 

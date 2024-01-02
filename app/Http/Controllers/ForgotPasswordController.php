@@ -18,7 +18,21 @@ class ForgotPasswordController extends Controller
 
     public function sendResetLinkEmail(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $request->validate([
+            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                function ($attribute, $value, $fail) {
+                    // You can customize the condition for admin emails
+                    $adminEmails = ['admin@gmail.com', 'anotheradmin@example.com'];
+
+                    if (in_array($value, $adminEmails)) {
+                        $fail(__('Tidak dapat mereset password admin'));
+                    }
+                },
+            ],
+        ]);
 
         $status = Password::sendResetLink(
             $request->only('email')
@@ -59,5 +73,4 @@ class ForgotPasswordController extends Controller
             ? redirect()->route('login')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
     }
-
 }

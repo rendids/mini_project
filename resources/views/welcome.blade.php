@@ -114,7 +114,7 @@
                     unggulan yang akan membantu anda dengan layanan terbaik. Kualitas tanpa kompromi, layanan yang
                     disesuaikan dengan kebutuhan Anda. Kami bangga menjadi mitra pilihan dalam memenuhi kebutuhan Anda.
                 </p>
-                <button class="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900" onclick="">Login</button>
+                <button class="border-2 border-white text-white py-2 px-4 rounded hover:bg-blue-800 hover:text-white focus:outline-none" onclick="window.location.href='/auth/login'">Login</button>
             </div>
         </div>
 

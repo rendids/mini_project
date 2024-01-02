@@ -39,10 +39,16 @@
                     <div class="mb-3">
                         <div class="input-group">
                             <span class="input-group-addon d-flex align-items-center justify-content-center">
-                                <i class="fas fa-envelope color-blue"></i>
+                                <i class="fas fa-envelope color-blue mx-2"></i>
                             </span>
-                            <input id="emailInput" placeholder="Email address" name="email" class="form-control" type="email" autocomplete="off" required>
+                            <input id="emailInput" placeholder="Email address" name="email" class="form-control"
+                                type="email" autocomplete="off" required>
                         </div>
+                        @error('email')
+                            <span class="text-danger mt-1" style="size: 16px">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <button class="btn btn-primary btn-block" type="submit">Kirim</button>
