@@ -64,6 +64,20 @@
         transform: translate(50%, -50%);
         font-size: 8px;
         /* Sesuaikan ukuran sesuai kebutuhan */
+
+    }
+
+    .rounded-circle-btn {
+        width: 30px; /* Sesuaikan lebar sesuai kebutuhan */
+        height: 30px; /* Sesuaikan tinggi sesuai kebutuhan */
+        border-radius: 50%; /* Mengatur border-radius ke 50% untuk membuat bentuk lingkaran */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #28a745; /* Sesuaikan warna latar belakang sesuai kebutuhan */
+        border: none;
+        color: #fff; /* Sesuaikan warna teks sesuai kebutuhan */
     }
 </style>
 <div class="nav-header">
@@ -146,13 +160,15 @@
                                                     <div class="d-flex align-items-center sidebar-info">
                                                     </div>
 
-                                                    <p class="fw-bold mb-1" style="font-size: 14pt;">Hai {{ $item->user->name }}</p>
+                                                    <p class="fw-bold mb-1" style="font-size: 10pt;">Hai {{ $item->user->name }}</p>
                                                     </span>
                                                     <form action="{{ route('tandai',['id' => $item->id]) }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button class="badge rounded-pill badge-success" onclick="handleButtonClick(event)">
-                                                            <i class="fa fa-check"></i>
+                                                        <button class="rounded-circle-btn badge-success" onclick="handleButtonClick(event)">
+                                                            <div class="d-flex align-items-center justify-content-center">
+                                                                <i class="fa fa-check mx-auto"></i>
+                                                            </div>
                                                         </button>
                                                     </form>
                                                 </div>

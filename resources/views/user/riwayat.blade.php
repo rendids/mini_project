@@ -157,6 +157,8 @@
                                                     window.location.href = url;
                                                 }
                                             </script>
+                                            @else
+                                            <h4>-</h4>
                                         @endif
                                     </td>
                                 </tr>

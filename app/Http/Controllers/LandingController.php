@@ -11,11 +11,13 @@ class LandingController extends Controller
 {
     public function index() {
         $penyedia = penyedia::get();
-        $bestseller = $penyedia->sortByDesc(function ($penyedia) {
+        $bestseller = $penyedia->where('status','profilelengkap')->sortByDesc(function ($penyedia) {
             return $penyedia->pesanan;
         })->take(4);
 
-        return view('welcome', compact('bestseller'));
+        $ratting = ratting::all();
+
+        return view('welcome', compact('bestseller', 'ratting'));
     }
 
     public function tandai($id) {

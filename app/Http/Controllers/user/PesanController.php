@@ -11,7 +11,10 @@ class PesanController extends Controller
     public function index()
     {
 
-        $pesan = Pesanan::where('status', '!=', 'selesai')->orderByDesc('created_at')->get();
+        $pesan = Pesanan::whereNotIn('status', ['selesai', 'tunggu pengembalian'])
+        ->orderByDesc('created_at')
+        ->get();
+
 
        return view('user.pesan', compact('pesan'));
     }

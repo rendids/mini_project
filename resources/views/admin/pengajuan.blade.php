@@ -38,11 +38,12 @@
                               <td>{{ $item->keterangan }}</td>
                               <td>{{ 'RP ' . number_format(  $item->pesanan->total , 0, ',', '.')}}</td>
                               <td>
-                                  <div class="d-flex">
-                                      <a href="{{ route('pengajuan-process', $item->id) }}" class="btn btn-primary shadow btn-xm sharp me-1">
-                                        <i class="bi bi-check-circle-fill"></i>
-                                      </a>
-                                  </div>
+                                <div class="d-flex">
+                                    <a href="{{ route('pengajuan-process', $item->id) }}" class="btn btn-primary shadow btn-xm sharp me-1 d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-check"></i>
+                                    </a>
+                                </div>
+
                               </td>
                           </tr>
                           @endif

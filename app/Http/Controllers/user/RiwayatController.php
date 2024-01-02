@@ -19,7 +19,7 @@ class RiwayatController extends Controller
 
         $pesananDitolak = Pesanan::whereNotIn('status', ['dalam proses tahap 1', 'dalam proses tahap 2'])
             ->whereIn('status', ['di terima', 'di tolak', 'selesai', 'tunggu pengembalian', 'pengembalian berhasil' ])
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
             $bayar = pembayaran::all();

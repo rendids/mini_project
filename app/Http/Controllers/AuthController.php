@@ -139,7 +139,8 @@ class AuthController extends Controller
             'telp' => $request->telp,
         ]);
 
-        return redirect('auth/login')->with('success', 'silahkan tunggu konfirmasi admin');
+        return redirect('auth/
+        login')->with('success', 'silahkan tunggu konfirmasi admin');
     }
 
     public function logout(Request $request)
