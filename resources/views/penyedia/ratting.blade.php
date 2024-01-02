@@ -80,8 +80,8 @@
         </div>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
-                <div class="row">
-                    @foreach ($ratings as $item)
+                <div class="row flex-nowrap">
+                    @forelse ($ratings as $item)
                         <div class="col-xl-3 col-xxl-4 col-sm-6">
                             <div class="card shadow">
                                 <div class="card-body shadow" style="background-color: #dee6f3">
@@ -121,7 +121,12 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @empty
+                    <div class="container">
+                        <img src="{{ asset('no_data.jpg') }}" alt="">
+
+                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

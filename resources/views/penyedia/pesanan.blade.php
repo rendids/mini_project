@@ -42,8 +42,24 @@
       max-width: 100%;
       height: auto;
     }
+    .custom-h1 {
+        border-bottom: 2px solid #0355ac; /* Garis bawah tebal dengan warna tertentu */
+        display: inline-block; /* Menampilkan elemen sebagai inline block */
+        padding-bottom: 8px; /* Ruang bawah antara teks dan garis bawah */
+        margin-bottom: 10px; /* Ruang bawah total elemen */
+    }
+    .cate-title {
+        font-size: 36px; /* Ukuran font */
+        color: #0355ac; /* Warna teks */
+        font-weight: bold; /* Ketebalan font */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan teks */
+    }
   </style>
+<div>
+    <h1 class="cate-title font-w1000 mb-4 custom-h1">Pesanan</h1>
+    <div class="d-flex align-items-center justifiy-content-between mb-4">
 
+</div>
   <div class="col-xl-12">
     <div class="card h-auto shadow">
       <div class="card-body p-0">

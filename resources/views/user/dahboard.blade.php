@@ -179,9 +179,9 @@
                     </div>
                     @empty
                     <div class="container">
-                        <img src="{{ asset('no_data.jpg') }}" alt="">
-
+                        <img src="{{ asset('no_data.jpg') }}" alt="" style="max-width: 50%; height: auto;">
                     </div>
+
                 @endforelse
             </div>
         </div>

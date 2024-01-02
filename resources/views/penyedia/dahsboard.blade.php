@@ -14,7 +14,12 @@
         transition: transform 0.3s ease-in-out;
     }
 </style>
-
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">anda login sebagai</li>
+        <li class="breadcrumb-item ">{{ Auth::user()->penyedia->layanan }}</li>
+    </ol>
+</div>
 <div class="row">
     <div class="col-xl-13">
         <div class="row">
