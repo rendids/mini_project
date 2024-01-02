@@ -107,14 +107,18 @@
 
     <div class="flex h-screen bg-blue-600">
         <!-- Bagian Kiri -->
-        <div class="lg:w-1/2 relative text-white flex items-center justify-center animate__animated animate__slideInLeft animate__slow">
+        <div
+            class="lg:w-1/2 relative text-white flex items-center justify-center animate__animated animate__slideInLeft animate__slow">
             <div class="text-left mt-8 mx-5 lg:mx-0">
                 <h1 class="text-4xl font-bold mb-3">SELAMAT DATANG DI WEBSITE KAMI</h1>
                 <p class="text-lg ml-2 mb-8">Website kami adalah website yang menyediakan berbagai jenis layanan jasa
                     unggulan yang akan membantu anda dengan layanan terbaik. Kualitas tanpa kompromi, layanan yang
                     disesuaikan dengan kebutuhan Anda. Kami bangga menjadi mitra pilihan dalam memenuhi kebutuhan Anda.
                 </p>
-                <button class="border-2 border-white text-white py-2 px-4 rounded hover:bg-blue-800 hover:text-white focus:outline-none" onclick="window.location.href='/auth/login'">Login</button>
+                @guest
+                    <button class="border-2 rounded-full border-white  py-2 px-4 hover:bg-white hover:text-blue-600 "
+                        onclick="window.location.href='/auth/login'">Login</button>
+                @endguest
             </div>
         </div>
 
@@ -144,44 +148,45 @@
                             class="card hover:-translate-y-2 rounded-lg duration-300 ease-in-out transition border-none shadow-md animate__animated animate__slideInRight animate__slow">
                             <div class="card-header">
 
-                                <img src="{{ asset('storage/'.$best->foto) }}" class="w-[36rem]" alt="">
+                                <img src="{{ asset('storage/' . $best->foto) }}" class="w-[36rem] max-h-40"
+                                    alt="">
                             </div>
                             <div class="card-body ">
-                                <div class="text-2xl font-semibold">{{ $best->layanan }}</div>
+                                <div class="text-xl font-semibold">{{ $best->layanan }}</div>
                                 @php
-                                        $totalRatings = 0;
-                                        $jumlahRatings = count($best->ratings);
-                                    @endphp
+                                    $totalRatings = 0;
+                                    $jumlahRatings = count($best->ratings);
+                                @endphp
 
-                                    @foreach ($best->ratings as $rating)
-                                        @php
-                                            $totalRatings += $rating->ratting;
-                                        @endphp
-                                    @endforeach
-
+                                @foreach ($best->ratings as $rating)
                                     @php
-                                        $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
-                                        $rataRataFormatted = number_format($rataRata, 1);
+                                        $totalRatings += $rating->ratting;
+                                    @endphp
+                                @endforeach
+
+                                @php
+                                    $rataRata = $jumlahRatings > 0 ? $totalRatings / $jumlahRatings : 0;
+                                    $rataRataFormatted = number_format($rataRata, 1);
+                                @endphp
+
+                                <h5 class="text-base font-bold mb-1">
+                                    Rating:
+                                    @php
+                                        $starCount = 5;
+                                        $filledStars = floor($rataRata);
+                                        $emptyStars = $starCount - $filledStars;
                                     @endphp
 
-                                    <h5 class="text-base font-bold mb-1">
-                                        Rating:
-                                        @php
-                                            $starCount = 5;
-                                            $filledStars = floor($rataRata);
-                                            $emptyStars = $starCount - $filledStars;
-                                        @endphp
+                                    @for ($i = 0; $i < $filledStars; $i++)
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                    @endfor
 
-                                        @for ($i = 0; $i < $filledStars; $i++)
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                        @endfor
-
-                                        @for ($i = 0; $i < $emptyStars; $i++)
-                                            <i class="fa-regular fa-star text-warning"></i>
-                                        @endfor
-                                    </h5>
-                                    ({{ $rataRataFormatted }})
-                                    dari {{ $jumlahRatings }} pengguna
+                                    @for ($i = 0; $i < $emptyStars; $i++)
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                    @endfor
+                                </h5>
+                                ({{ $rataRataFormatted }})
+                                dari {{ $jumlahRatings }} pengguna
                             </div>
                         </div>
                     </div>
@@ -277,7 +282,7 @@
 
 
                                     <div class="text-2xl text-center font-semibold flex gap-x-[20rem] ">
-                                        <p class="text-xl font-bold mb-1">{{ $item->user->name }} </p>
+                                        <p class="text-xs font-bold mb-1">{{ $item->user->name }} </p>
                                         <p
                                             class=" font-semibold text-xs bg-blue-600 rounded-full px-3 text-white py-2">
                                             {{ $item->pesanan->penyedia->layanan }}</p>
@@ -291,13 +296,15 @@
 
 
                                     <p class="text-base font-bold mb-1">Rating : @for ($i = 0; $i < $filledStars; $i++)
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                    @endfor
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        @endfor
 
-                                    @for ($i = 0; $i < $emptyStars; $i++)
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                    @endfor </p>
-                                    <p class="text-base font-bold">Tanggapan : <span class="font-semibold">{{ $item->komentar }} </p>
+                                        @for ($i = 0; $i < $emptyStars; $i++)
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        @endfor
+                                    </p>
+                                    <p class="text-base font-bold">Tanggapan : <span
+                                            class="font-semibold">{{ $item->komentar }} </p>
                                 </div>
                             </div>
                         </div>

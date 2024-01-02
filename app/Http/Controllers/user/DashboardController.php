@@ -18,9 +18,13 @@ class DashboardController extends Controller
 
         // dd($request);
         $penyedia = Penyedia::get();
-        $bestseller = $penyedia->where('status', 'profilelengkap')->sortByDesc(function ($penyedia) {
-            return $penyedia->pesanan;
-        })->take(4);
+        $bestseller = Penyedia::where('status', 'profilelengkap')
+            ->has('ratings') // Ensures providers have at least one rating
+            ->with('ratings') // Load ratings relationship
+            ->withCount('ratings') // Add a count of ratings
+            ->orderByDesc('ratings_count') // Order by the count of ratings in descending order
+            ->take(4)
+            ->get();
 
         $filter = $request->harga;
         $keyword = $request->input('search');

@@ -122,8 +122,8 @@
                             </div>
                         </div>
                         @empty
-                    <div class="container">
-                        <img src="{{ asset('no_data.jpg') }}" alt="">
+                    <div class="container d-flex justify-content-center">
+                        <img src="{{ asset('no_data.jpg') }}" alt="" style="width: 40%;  height: auto;">
 
                     </div>
                     @endforelse

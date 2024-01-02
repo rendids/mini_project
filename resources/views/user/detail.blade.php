@@ -80,9 +80,9 @@
                                     <div class="">
                                         <img src="{{ asset('storage/' . $sedia->foto) }}" class="card-img-top"
                                             alt="..."
-                                            style="width: 100%; object-fit: cover; height: auto; max-height: 200px; ">
+                                            style="width: 100%;  object-fit: cover; height: auto; max-height: 200px; ">
                                     </div>
-                                    <h6 class="text-capitalize text-primary" style="font-size: 50px">{{ $sedia->layanan }}
+                                    <h6 class="text-capitalize text-primary" style="font-size: 25px">{{ $sedia->layanan }}
                                     </h6>
                                     <br>
                                     <h5 class="card-text">Jika ingin memesan, tentukan jadwal pertemuan.</h5>
