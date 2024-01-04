@@ -145,7 +145,7 @@
                                                 Beri Rating
                                             </button>
                                         @elseif ($pesanan->status == 'selesai')
-                                            <button onclick="redirectToDetailPage({{ $pesanan->id }})"
+                                            <button onclick="redirectToDetailPage({{ $pesanan->penyedia->id }})"
                                                 class="btn btn-primary btn-sm fs-1">
                                                 pesan lagi
                                             </button>

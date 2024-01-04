@@ -99,6 +99,14 @@ class DetailController extends Controller
                 'user_id' => $user->id,
                 'pesan' => 'anda berhasil membuat pesanan baru silahkan tunggu konfirmasi',
             ]);
+            $penyedia = pesanan::find($buat->id)->penyedia;
+
+            if ($penyedia) {
+                Notifikasi::create([
+                    'user_id' => $penyedia->id,
+                    'pesan' => 'Anda memiliki pesanan baru. Silahkan tolak atau terima pesanan tersebut.',
+                ]);
+            }
         }
 
         return redirect()->route('pesan')->with('success', 'Berhasil diPesan');

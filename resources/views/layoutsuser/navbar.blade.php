@@ -138,8 +138,10 @@
                                     @php
                                       $jumlah = Auth::user()->notifikasi->where('dibaca', false)->count();
                                     @endphp
+                                    @if ($jumlah > 0)
                                     <span class="badge rounded-circle badge-notification bg-danger ms-2"
                                         style="border-radius: 50%;">{{ $jumlah }}</span>
+                                    @endif
 
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;" aria-labelledby="navbarDropdownMenuLink">

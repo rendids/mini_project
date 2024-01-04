@@ -64,6 +64,20 @@
         transform: translate(50%, -50%);
         font-size: 8px;
         /* Sesuaikan ukuran sesuai kebutuhan */
+
+    }
+
+    .rounded-circle-btn {
+        width: 30px; /* Sesuaikan lebar sesuai kebutuhan */
+        height: 30px; /* Sesuaikan tinggi sesuai kebutuhan */
+        border-radius: 50%; /* Mengatur border-radius ke 50% untuk membuat bentuk lingkaran */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #28a745; /* Sesuaikan warna latar belakang sesuai kebutuhan */
+        border: none;
+        color: #fff; /* Sesuaikan warna teks sesuai kebutuhan */
     }
 </style>
 <div class="nav-header">
@@ -126,43 +140,53 @@
                                             ->notifikasi->where('dibaca', false)
                                             ->count();
                                     @endphp
+                                    @if ($jumlah > 0)
                                     <span class="badge rounded-circle badge-notification bg-danger ms-2"
                                         style="border-radius: 50%;">{{ $jumlah }}</span>
+                                    @endif
 
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;"
-                                    aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;" aria-labelledby="navbarDropdownMenuLink">
                                     <div class="mx-3 mb-3 d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <div class="fw-bold text-primary">Notifikasi</div>
+                                            <div class="fw-bold text-primary" style="font-size: 15pt;">Notifikasi</div>
                                         </div>
 
                                     </div>
                                     @if (count(Auth::user()->notifikasi->where('dibaca', false)) > 0)
-                                        @foreach (Auth::user()->notifikasi->where('dibaca', false)->take(3) as $item)
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="ms-3">
-                                                        <p class="fw-bold mb-1">Hai {{ $item->user->name }}</p>
-                                                        <p class="text-muted mb-0">{{ $item->pesan }}</p>
+                                    @foreach (Auth::user()->notifikasi->where('dibaca', false)->take(3) as $item)
+                                        <li class="list-group-item align-items-center">
+                                            <div class="align-items-center">
+                                                <div class="header-info2 d-flex justify-content-between">
+                                                    <span class="d-flex">
+                                                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="" style="width: 35px; height: 35px; border-radius: 50%;">
+
+                                                    <div class="d-flex align-items-center sidebar-info">
                                                     </div>
+
+                                                    <p class="fw-bold mb-1" style="font-size: 10pt;">Hai {{ $item->user->name }}</p>
+                                                    </span>
+                                                    <form action="{{ route('tandai',['id' => $item->id]) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="rounded-circle-btn badge-success" onclick="handleButtonClick(event)">
+                                                            <div class="d-flex align-items-center justify-content-center">
+                                                                <i class="fa fa-check mx-auto"></i>
+                                                            </div>
+                                                        </button>
+                                                    </form>
                                                 </div>
-                                                <form action="{{ route('tandai', ['id' => $item->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="badge rounded-pill badge-success"
-                                                        onclick="handleButtonClick(event)">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                </form>
-                                            </li>
-                                        @endforeach
-                                    @else
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <h5>belum ada notif </h5>
+                                                <div class="ms-5">
+                                                    <p class="text-muted mb-0">{{ $item->pesan }}</p>
+                                                </div>
+                                            </div>
+
                                         </li>
+                                    @endforeach
+                                    @else
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                       <h5>belum ada notif </h5>
+                                    </li>
                                     @endif
                                 </ul>
 

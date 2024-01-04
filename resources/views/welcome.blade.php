@@ -22,7 +22,7 @@
 
 </html>
 
-<body>
+<body class="overflow-x-hidden">
 
     <!-- Navigasi -->
     <nav class="bg-light fixed p-3 shadow-md w-full top-0 z-10 ">
@@ -117,7 +117,7 @@
                 </p>
                 @guest
                     <button class="border-2 rounded-full border-white  py-2 px-4 hover:bg-white hover:text-blue-600 "
-                        onclick="window.location.href='/auth/login'">Login</button>
+                        onclick="window.location.href='/auth/login'">Masuk</button>
                 @endguest
             </div>
         </div>
@@ -281,7 +281,7 @@
                                 <div class="card-body  ">
 
 
-                                    <div class="text-2xl text-center font-semibold flex gap-x-[20rem] ">
+                                    <div class="text-2xl text-center font-semibold flex justify-between">
                                         <p class="text-xs font-bold mb-1">{{ $item->user->name }} </p>
                                         <p
                                             class=" font-semibold text-xs bg-blue-600 rounded-full px-3 text-white py-2">
@@ -316,13 +316,12 @@
     </div>
 
 
-    <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
-        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="https://flowbite.com/"
-                    class="hover:underline"></a>
-            </span>
+    <footer class="bg-blue-600 p-4">
+        <div class="text-center">
+            <p class="text-sm text-white">© 2023 Assistify.</p>
         </div>
     </footer>
+
 
     <!-- Tambahkan link Tailwind CSS (diperbarui ke versi terbaru) -->
     <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>

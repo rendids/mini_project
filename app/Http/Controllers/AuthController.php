@@ -41,6 +41,9 @@ class AuthController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('dashboard.admin')->with('message', 'Login berhasil');
             } elseif ($user->role === 'user') {
+                if($user->email_verified_at == null ){
+                    return redirect()->route('verification.notice');
+                }
                 return redirect()->route('dashboard.user')->with('message', 'Login berhasil');
             } elseif ($user->role === 'penyedia') {
                 return redirect()->route('dashboard.penyedia')->with('message', 'Login berhasil');

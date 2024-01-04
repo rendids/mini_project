@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -47,28 +48,33 @@ class ProfileController extends Controller
         ]);
 
 
-        return redirect()->back();
+        return back()->with('success', 'foto Berhasil Diperbarui');
     }
     public function updateprofile(Request $request, string $id)
     {
+        $user = Auth::user();
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users|email',
-            'telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'email', // 'email' rule already checks for email format
+            ],
+            'telp' => 'required|numeric|digits_between:10,12',
             'alamat' => 'required|min:5|max:200',
         ], [
-            'name.required' => 'Harus diisi',
-            'email.required' => 'Harus diisi',
-            'email.unique' => 'email sudah digunakan',
-            'email.email' => 'email tidak valid',
-            'telp.required' => 'No telpon harus diisi',
-            'telp.numeric' => 'no telpon harus berupa angka',
-            'telp.regex' => 'format tidak valid',
-            'telp.digits_between' => 'No telpon harus memiliki panjang antara 10 hingga 12',
-            'alamat.min' => 'Alamat minimal 5 karakter',
-            'alamat.max' => 'Alamat maksimal 200 karakter',
-            'alamat.required' => 'Harus diisi',
+            'name.required' => 'Nama harus diisi.',
+            'email.required' => 'Email harus diisi.',
+            'email.unique' => 'Email sudah digunakan.',
+            'email.email' => 'Format email tidak valid.',
+            'telp.required' => 'Nomor telepon harus diisi.',
+            'telp.numeric' => 'Nomor telepon harus berupa angka.',
+            'telp.digits_between' => 'Nomor telepon harus memiliki panjang antara 10 hingga 12 digit.',
+            'alamat.required' => 'Alamat harus diisi.',
+            'alamat.min' => 'Alamat minimal 5 karakter.',
+            'alamat.max' => 'Alamat maksimal 200 karakter.',
         ]);
+
         // dd($request);
         $userupdate = User::find($id);
         $userupdate->update([
@@ -79,7 +85,7 @@ class ProfileController extends Controller
         ]);
 
         // dd($userupdate);
-        return redirect()->back();
+        return back()->with('success', 'Profile Berhasil Di update');
     }
 
 

@@ -23,26 +23,14 @@ class DashboardController extends Controller
         $penyedia = pesanan::where('penyedia_id', $penyedialogin)->where('status', 'di tolak')->count();
         $penyediaterima = pesanan::where('penyedia_id', $penyedialogin)->where('status', 'di ratting')->count();
         $selesai = pesanan::where('penyedia_id', $penyedialogin)->where('status', 'selesai')->count();
-
-        // $grafik = penyedia::select(
-        //     DB::raw('MONTH(created_at) as month'),
-        //     DB::raw('YEAR(created_at) as year'),
-        //     DB::raw('SUM(harga) as total')
-        // )
-        //     // ->where('harga', '!=', 0)
-        //     ->whereYear('created_at', Carbon::now()->year)
-        //     ->where('id',$penyedialogin)
-        //     ->groupBy('year', 'month')
-        //     ->get();
-            // dd($grafik);
-            $pesanan = Pesanan::select(
-                DB::raw('MONTH(created_at) as month'),
-                DB::raw('YEAR(created_at) as year'),
-                DB::raw('SUM(total) as total')
-            )->where('penyedia_id', $penyedialogin)
-                ->where('status', 'selesai')
-                ->groupBy(DB::raw('MONTH(created_at)'), DB::raw('YEAR(created_at)'))
-                ->get();
+        $pesanan = Pesanan::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('SUM(total) as total')
+        )->where('penyedia_id', $penyedialogin)
+            ->where('status', 'selesai')
+            ->groupBy(DB::raw('MONTH(created_at)'), DB::raw('YEAR(created_at)'))
+            ->get();
 
         // dd($pesanan);
 
@@ -76,51 +64,4 @@ class DashboardController extends Controller
         return view('penyedia.dahsboard', compact('user', 'penyedia', 'penyediaterima', 'selesai', 'chartData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

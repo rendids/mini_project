@@ -7,14 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Notifikasi;
 use App\Models\untung;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
     public function index()
-    {
-        $pesan = pesanan::where('status', 'dalam proses tahap 2')->orderByDesc('created_at')->get();
-        return view('penyedia.pesanan', compact('pesan'));
-    }
+{
+    $user = Auth::user()->penyedia;
+    $pesan = pesanan::where('status', 'dalam proses tahap 2')
+                    ->where('penyedia_id', $user->id)
+                    ->orderByDesc('created_at')
+                    ->get();
+
+    return view('penyedia.pesanan', compact('pesan'));
+}
+
 
     public function tolakpesanan(Request $request, $id)
     {

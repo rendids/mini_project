@@ -175,8 +175,7 @@
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                             <input style="display: none" type="file" name="foto" id="foto" onchange="previewFile()">
-                            <button type="button" class="btn btn-outline-primary btn-block mb-2"
-                                onclick="submitForm()">Ubah foto
+                            <button type="submit" class="btn btn-outline-primary btn-block mb-2">Ubah foto
                                 profile</button>
                         </div>
                     </div>
@@ -195,28 +194,7 @@
 
                         reader.readAsDataURL(document.getElementById('foto').files[0]);
                     }
-
-                    function submitForm() {
-                        var formData = new FormData(document.getElementById('updateForm'));
-
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('POST', document.getElementById('updateForm').action, true);
-                        xhr.onload = function() {
-                            if (xhr.status === 200) {
-                                // Handle success, if needed
-                                console.log(xhr.responseText);
-                                location.reload(); // Reload the page
-                            } else {
-                                // Handle errors, if needed
-                                console.error(xhr.responseText);
-                            }
-                        };
-
-                        xhr.send(formData);
-                    }
                 </script>
-
-
             </div>
             <div class="col-8">
                 <div class="tab-content text-muted">
@@ -309,7 +287,7 @@
                                             <label for="konfirmasi-password" class="col-form-label fw-bold fs-4">Password
                                                 Baru</label>
                                             <input type="password" class="form-control" name="password"
-                                                id="konfirmasi-password" placeholder="konfirmasi password">
+                                                id="konfirmasi-password" placeholder="password baru">
                                             @error('konfirmasi-password')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
