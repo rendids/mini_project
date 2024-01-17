@@ -16,15 +16,16 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-
+        $user = Auth::user()->id;
         $pesananDitolak = Pesanan::whereNotIn('status', ['dalam proses tahap 1', 'dalam proses tahap 2'])
-            ->whereIn('status', ['di terima', 'di tolak', 'selesai', 'tunggu pengembalian', 'pengembalian berhasil' ])
+            ->where('pemesan', $user)
+            ->whereIn('status', ['di terima', 'di tolak', 'selesai', 'tunggu pengembalian', 'pengembalian berhasil'])
             ->orderBy('created_at', 'desc')
             ->get();
 
-            $bayar = pembayaran::all();
+        $bayar = pembayaran::all();
 
-        return view('user.riwayat', compact('pesananDitolak','bayar'));
+        return view('user.riwayat', compact('pesananDitolak', 'bayar'));
     }
 
     public function rating(Request $request)

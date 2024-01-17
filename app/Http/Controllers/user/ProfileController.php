@@ -58,9 +58,9 @@ class ProfileController extends Controller
             'email' => [
                 'required',
                 Rule::unique('users')->ignore($user->id),
-                'email', // 'email' rule already checks for email format
+                'email',
             ],
-            'telp' => 'required|numeric|digits_between:10,12',
+            'telp' => 'required|numeric|min:0|digits_between:10,12',
             'alamat' => 'required|min:5|max:200',
         ], [
             'name.required' => 'Nama harus diisi.',
@@ -69,6 +69,7 @@ class ProfileController extends Controller
             'email.email' => 'Format email tidak valid.',
             'telp.required' => 'Nomor telepon harus diisi.',
             'telp.numeric' => 'Nomor telepon harus berupa angka.',
+            'telp.min' => 'Nomor telepon tidak boleh negatif.',
             'telp.digits_between' => 'Nomor telepon harus memiliki panjang antara 10 hingga 12 digit.',
             'alamat.required' => 'Alamat harus diisi.',
             'alamat.min' => 'Alamat minimal 5 karakter.',
@@ -103,7 +104,7 @@ class ProfileController extends Controller
         $user = User::find($id);
 
         if (!Hash::check($request->password_lama, $user->password)) {
-            return response()->json(['error' => 'Invalid old password.'], 400);
+            return redirect()->back()->with('error', 'password lama salah');
         }
 
         $user->update([

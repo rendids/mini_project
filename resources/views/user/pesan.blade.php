@@ -71,6 +71,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (count($pesan) > 0)
                             @foreach ($pesan as $item)
                                 <tr>
                                     <td><h5>{{ $loop->iteration }}</h5></td>
@@ -96,6 +97,11 @@
 
                                 </tr>
                             @endforeach
+                            @else
+                            <tr>
+                                <td colspan="7">tidak ada data</td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

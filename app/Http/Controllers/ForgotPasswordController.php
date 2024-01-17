@@ -19,12 +19,11 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
             'email' => [
                 'required',
                 'email',
                 function ($attribute, $value, $fail) {
-                    // You can customize the condition for admin emails
+                    // Anda dapat menyesuaikan kondisi untuk email admin
                     $adminEmails = ['admin@gmail.com', 'anotheradmin@example.com'];
 
                     if (in_array($value, $adminEmails)) {
@@ -32,7 +31,11 @@ class ForgotPasswordController extends Controller
                     }
                 },
             ],
+        ], [
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
         ]);
+
 
         $status = Password::sendResetLink(
             $request->only('email')
@@ -40,7 +43,7 @@ class ForgotPasswordController extends Controller
 
         return $status === Password::RESET_LINK_SENT
             ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+            : back()->withErrors(['email' => __('Kami tidak dapat menemukan pengguna dengan alamat email tersebut.')]);
     }
 
     public function showResetPasswordForm(string $token)

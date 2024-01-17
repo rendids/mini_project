@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $user = User::where('role', 'user')->count();
         $nominal = untung::sum('nominal');
         $penyedia = User::where('role', 'penyedia')->count();
-        $selesai = pesanan::where('penyedia_id', $penyedia)->where('status', 'selesai')->count();
+        $selesai = pesanan::where('status', 'selesai')->count();
         $processData = [];
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;

@@ -2,7 +2,7 @@
 @section('content')
     <div class="row page-titles" style="background-color: #0f6299; color: #ffffff;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" style="color: #ffffff;" >admin</li>
+            <li class="breadcrumb-item active" style="color: #ffffff;">admin</li>
             <li class="breadcrumb-item">pengajuan</li>
         </ol>
     </div>
@@ -27,8 +27,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pengambilans as $index => $item)
-                                @if ($item->status == 'process')
+                            @if (count($pengambilans) > 0)
+                                @foreach ($pengambilans as $index => $item)
                                     <tr>
                                         <td><strong></strong>{{ $index + 1 }}</td>
                                         <td>{{ $item->user->name }}</td>
@@ -46,14 +46,14 @@
 
                                         </td>
                                     </tr>
-                                @else
-                                    <tr>
-                                        <td colspan="8" class="text-center">
-                                            Tidak ada data
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        Tidak ada data
+                                    </td>
+                                </tr>
+                            @endif
 
 
                         </tbody>

@@ -93,6 +93,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @if (count($pesananDitolak) >0 )
                             @foreach ($pesananDitolak as $pesanan)
                                 <tr>
                                     <td>
@@ -163,6 +164,11 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @else
+                            <tr>
+                                <td colspan="6">tidak ada data</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

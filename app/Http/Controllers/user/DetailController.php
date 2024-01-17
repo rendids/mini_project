@@ -48,27 +48,32 @@ class DetailController extends Controller
     public function store(Request $request, string $id)
     {
         $request->validate([
-            'nopemesan' => 'required|numeric|regex:/^\d*$/|digits_between:10,12',
+            'nopemesan' => 'required|numeric|regex:/^\d*$/|digits_between:10,13',
             'penyedia' => 'required',
             'jasa' => 'required',
             'alamatpemesan' => 'required|min:5|max:200',
-            'waktu' => 'required',
+            'waktu' => 'required|date|after_or_equal:today',
             'pembayaran' => 'required',
-            'bukti' => 'required'
+            'bukti' => 'required|image|mimes:jpeg,png,jpg,gif', // Sesuaikan ekstensi gambar yang diizinkan dan batas maksimal ukuran (dalam kilobita)
         ], [
-            'nopemesan.required' => 'no telp harus diisi',
-            'nopemesan.numeric' => ' no telp Harus berupa angka',
-            'nopemesan.regex' => 'format tidak valid',
-            'nopemesan.digits_between' => ' no telp harus memiliki antara 10-12 angka',
-            'penyedia.required' => 'nama penyedia harus diisi',
-            'jasa.required' => 'jasa harus diisi',
-            'alamatpemesan.required' => 'isi alamat anda',
-            'alamatpemesan.min' => 'Alamat minimal 5 karakter',
-            'alamatpemesan.max' => 'Alamat maksimal 200 karakter',
-            'waktu.required' => 'tentukan waktu pelaksanaan',
-            'pembayaran.required' => 'isi metode pembayaran',
-            'bukti.required' => 'isi bukti anda',
+            'nopemesan.required' => 'Nomor telepon harus diisi.',
+            'nopemesan.numeric' => 'Nomor telepon harus berupa angka.',
+            'nopemesan.regex' => 'Format nomor telepon tidak valid.',
+            'nopemesan.digits_between' => 'Nomor telepon harus memiliki antara 10-12 angka.',
+            'penyedia.required' => 'Nama penyedia harus diisi.',
+            'jasa.required' => 'Jasa harus diisi.',
+            'alamatpemesan.required' => 'Isi alamat Anda.',
+            'alamatpemesan.min' => 'Alamat minimal 5 karakter.',
+            'alamatpemesan.max' => 'Alamat maksimal 200 karakter.',
+            'waktu.required' => 'Tentukan waktu pelaksanaan.',
+            'waktu.date' => 'Format waktu tidak valid.',
+            'waktu.after_or_equal' => 'Waktu pelaksanaan harus setelah atau sama dengan hari ini.',
+            'pembayaran.required' => 'Isi metode pembayaran.',
+            'bukti.required' => 'Isi bukti Anda.',
+            'bukti.image' => 'File harus berupa gambar.',
+            'bukti.mimes' => 'Format file tidak valid. Hanya menerima file dengan format jpeg, png, jpg, atau gif.',
         ]);
+
 
 
         $user = Auth::user();
@@ -99,7 +104,7 @@ class DetailController extends Controller
                 'user_id' => $user->id,
                 'pesan' => 'anda berhasil membuat pesanan baru silahkan tunggu konfirmasi',
             ]);
-            $penyedia = pesanan::find($buat->id)->penyedia;
+            $penyedia = pesanan::find($buat->id)->penyedia->user;
 
             if ($penyedia) {
                 Notifikasi::create([
